@@ -448,6 +448,10 @@
               <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">1. Selecciona tu teléfono actual:</label>
               <select id="tradein-device-select" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-xs text-gray-900 font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none" onchange="calculateTradeInDiscount()">
                 <option value="0">Seleccionar dispositivo...</option>
+                <option value="2500000">Samsung Galaxy S25 Ultra (512GB) — Hasta -$2.500.000 COP</option>
+                <option value="2200000">Samsung Galaxy S24 Ultra (256GB) — Hasta -$2.200.000 COP</option>
+                <option value="1900000">Samsung Galaxy Z Fold 6 (256GB) — Hasta -$1.900.000 COP</option>
+                <option value="1400000">Samsung Galaxy S24+ / S24 (256GB) — Hasta -$1.400.000 COP</option>
                 <option value="2000000">iPhone 15 Pro Max (256GB) — Hasta -$2.000.000 COP</option>
                 <option value="1650000">iPhone 15 Pro (128GB) — Hasta -$1.650.000 COP</option>
                 <option value="1500000">iPhone 15 Plus (128GB) — Hasta -$1.500.000 COP</option>
@@ -2213,9 +2217,7 @@
       if (!newId) return;
       const url = new URL(window.location.href);
       url.searchParams.set('id', newId);
-      window.history.pushState({}, '', url);
-      initProductConfigurator();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.location.href = url.toString();
     }
 
     function populateQuickSwitcher() {
@@ -2242,6 +2244,9 @@
     }
 
     function renderConfiguratorUI() {
+      // Dynamic Page Title
+      document.title = `${currentDevice.title} - Configuración Oficial RedCover Colombia`;
+
       // Titles and Badges
       const stickyTitle = document.getElementById('sticky-title');
       const stickyBadge = document.getElementById('sticky-badge');
