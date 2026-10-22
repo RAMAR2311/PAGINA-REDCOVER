@@ -296,94 +296,33 @@
         </a>
       </div>
 
-      <!-- Cinematic Hero Card -->
-      <div class="relative w-full rounded-3xl overflow-hidden glass-card p-2 crimson-glow border border-gray-200 bg-white">
-        <div class="relative h-[380px] sm:h-[480px] md:h-[580px] w-full rounded-2xl overflow-hidden bg-zinc-950">
-          <img id="cms-hero-banner-img" class="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700" alt="iPhone 18 Pro en acabado Titanio Carmesí Profundo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-          
-          <div class="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-left">
-            <div>
-              <span id="cms-hero-banner-badge" class="inline-block px-3 py-1 rounded-full bg-red-600/90 text-white text-[11px] uppercase tracking-wider font-bold mb-2">Lanzamiento Mundial • Próxima Generación</span>
-              <h3 id="cms-hero-banner-price" class="text-2xl sm:text-3xl font-bold text-white tracking-tight">iPhone 18 Pro Max • Desde $6.499.000 COP</h3>
-              <p id="cms-hero-banner-sub" class="text-sm text-zinc-300 font-medium">Hasta 24 cuotas sin interés de $270.791 COP con bancos aliados y 1 año de garantía oficial Apple</p>
-            </div>
-            <div class="flex items-center gap-3">
-              <button onclick="openProductModal('iphone-18-pro')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <span class="material-symbols-outlined text-base">tune</span>
-                <span id="cms-hero-banner-btn1">Ficha Técnica iPhone 18 Pro</span>
-              </button>
-              <a href="iphone-16-pro.html" class="inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white hover:underline bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/20">
-                <span id="cms-hero-banner-btn2">Ver iPhone 16 Pro</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-          </div>
+      <!-- Cinematic 4-Slide Movable Hero Carousel (Soporta Imágenes y Videos Cortos) -->
+      <div class="relative w-full rounded-3xl overflow-hidden glass-card p-2 crimson-glow border border-gray-200 bg-white group/hero">
+        <div id="hero-slides-viewport" class="relative h-[400px] sm:h-[490px] md:h-[580px] w-full rounded-2xl overflow-hidden bg-zinc-950">
+          <!-- Renderizado dinámicamente por JS (4 Banners / Videos Cortos) -->
+        </div>
+
+        <!-- Flecha Izquierda Hero -->
+        <button type="button" onclick="prevHeroSlide()" aria-label="Banner anterior" class="absolute left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-lg">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+
+        <!-- Flecha Derecha Hero -->
+        <button type="button" onclick="nextHeroSlide()" aria-label="Siguiente banner" class="absolute right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/50 hover:bg-primary text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-lg">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+
+        <!-- Indicadores de los 4 Banners + Controles -->
+        <div id="hero-dots-bar" class="absolute top-5 right-5 z-20 flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+          <!-- Renderizado por JS -->
         </div>
       </div>
     </section>
 
     <!-- Quick Category Bar -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
-      <div id="quick-categories-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('iphone')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-xl">phone_iphone</span>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-gray-900">iPhone</div>
-            <div class="text-[11px] text-gray-500">Serie 18 a 11 (24)</div>
-          </div>
-        </a>
-
-        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('mac')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-xl">laptop_mac</span>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-gray-900">MacBook & Mac</div>
-            <div class="text-[11px] text-gray-500">Serie M5 / M4 / M3 (9)</div>
-          </div>
-        </a>
-
-        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('watch')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-xl">watch</span>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-gray-900">Watch</div>
-            <div class="text-[11px] text-gray-500">Ultra 3 y Series 12 (7)</div>
-          </div>
-        </a>
-
-        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('ipad')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-xl">tablet_mac</span>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-gray-900">iPad</div>
-            <div class="text-[11px] text-gray-500">Pro M5 y Air M4 (7)</div>
-          </div>
-        </a>
-
-        <a href="#accesorios" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-xl">headphones</span>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-gray-900">Audio</div>
-            <div class="text-[11px] text-gray-500">AirPods Pro 2</div>
-          </div>
-        </a>
-
-        <a href="#canje" class="p-3 bg-red-50/50 border border-red-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center">
-            <span class="material-symbols-outlined text-xl">autorenew</span>
-          </div>
-          <div>
-            <div class="text-xs font-bold text-gray-900">Plan Canje</div>
-            <div class="text-[11px] text-primary font-semibold">Bono hasta $3.2M</div>
-          </div>
-        </a>
+      <div id="quick-categories-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-3">
+        <!-- Renderizado dinámicamente por JS -->
       </div>
     </section>
 
@@ -395,19 +334,19 @@
             <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
             Ecosistema RedCover • Colección Oficial 2026
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Ingeniería Apple en perfecta sincronía.</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Ingeniería de vanguardia en perfecta sincronía.</h2>
           <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-xl">
-            Cuatro líneas insignia impulsadas por silicio de 2 nanómetros, Apple Intelligence 3.0 y respaldo oficial en Colombia.
+            Cuatro líneas insignia impulsadas por silicio de 2 nanómetros, inteligencia artificial avanzada y respaldo oficial en Colombia.
           </p>
         </div>
 
         <!-- Luxury Ecosystem Highlights Pills -->
         <div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold text-gray-700">
           <span class="px-3 py-1.5 rounded-xl bg-white border border-gray-200 shadow-2xs flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-primary text-sm">memory</span> Chips A20 Pro & M5 (2nm)
+            <span class="material-symbols-outlined text-primary text-sm">memory</span> Chips 2nm (A20 Pro, M5 & Elite)
           </span>
           <span class="px-3 py-1.5 rounded-xl bg-white border border-gray-200 shadow-2xs flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-primary text-sm">verified</span> Garantía Apple 1 Año
+            <span class="material-symbols-outlined text-primary text-sm">verified</span> Garantía Oficial 1 Año
           </span>
           <span class="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-1.5">
             <span class="material-symbols-outlined text-emerald-600 text-sm">payments</span> 24 Cuotas 0% Interés
@@ -422,13 +361,13 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- CATÁLOGO COMPLETO DE DISPOSITIVOS APPLE -->
+    <!-- CATÁLOGO COMPLETO DE PRODUCTOS CON PAGINACIÓN (MÁX 12 POR PÁGINA: 3x4) -->
     <!-- ========================================== -->
     <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-200/80" id="catalogo-dispositivos">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
           <span class="text-xs font-bold text-primary uppercase tracking-wider bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Tienda Oficial Completa</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-2 tracking-tight">Explora Todos los Productos Apple</h2>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-2 tracking-tight">Explora Todos los Productos</h2>
           <p class="text-xs sm:text-sm text-gray-600 mt-1">Selecciona cualquier equipo para ver su ficha técnica, elegir capacidad, comprar de contado o financiar al 0% por WhatsApp.</p>
         </div>
         <a href="iphone-16-pro.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline bg-red-50 px-4 py-2.5 rounded-full border border-red-100">
@@ -439,166 +378,60 @@
 
       <!-- Pestañas de Categoría de Dispositivos -->
       <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8" id="device-category-tabs">
-        <button type="button" onclick="filterDevices('all')" data-dev-filter="all" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap">
-          Todos los Equipos (47)
-        </button>
-        <button type="button" onclick="filterDevices('iphone')" data-dev-filter="iphone" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (24)
-        </button>
-        <button type="button" onclick="filterDevices('mac')" data-dev-filter="mac" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">laptop_mac</span> Mac & MacBook (9)
-        </button>
-        <button type="button" onclick="filterDevices('ipad')" data-dev-filter="ipad" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">tablet_mac</span> iPad (7)
-        </button>
-        <button type="button" onclick="filterDevices('watch')" data-dev-filter="watch" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">watch</span> Apple Watch (7)
-        </button>
+        <!-- Renderizado por JS -->
       </div>
 
-      <!-- Grilla Dinámica de Todos los Dispositivos (Renderizada por JS) -->
+      <!-- Grilla Dinámica Paginada (Máximo 12 productos por página: 3 filas x 4 columnas) -->
       <div id="full-devices-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <!-- Llenado automáticamente por JS con todos los modelos y acciones -->
+        <!-- Llenado automáticamente por JS -->
+      </div>
+
+      <!-- Barra de Paginación (1 a N páginas) -->
+      <div id="devices-pagination" class="mt-10 pt-6 border-t border-gray-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Llenado automáticamente por JS -->
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- SECCIÓN DE OFERTAS ESPECIALES (#ofertas) -->
+    <!-- SECCIÓN DE OFERTAS ESPECIALES CON CARRUSEL DESLIZABLE (#ofertas) -->
     <!-- ========================================== -->
     <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-200/80" id="ofertas">
-      <div class="rounded-3xl bg-gradient-to-br from-zinc-900 via-neutral-900 to-zinc-950 text-white p-8 md:p-12 relative overflow-hidden shadow-xl">
+      <div class="rounded-3xl bg-gradient-to-br from-zinc-900 via-neutral-900 to-zinc-950 text-white p-6 sm:p-10 md:p-12 relative overflow-hidden shadow-xl">
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
         
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 relative z-10">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4 relative z-10">
           <div>
             <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
               <span class="material-symbols-outlined text-sm">local_fire_department</span>
               <span id="cms-ofertas-badge">Ofertas Exclusivas por Tiempo Limitado</span>
             </div>
-            <h2 id="cms-ofertas-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight">Promociones y Combos RedCover</h2>
-            <p id="cms-ofertas-subtitle" class="text-sm text-zinc-400 mt-1">Aprovecha precios con descuento directo de distribuidor o financia a 24 cuotas sin interés.</p>
+            <h2 id="cms-ofertas-title" class="text-2xl sm:text-4xl font-extrabold tracking-tight">Promociones y Combos RedCover</h2>
+            <p id="cms-ofertas-subtitle" class="text-xs sm:text-sm text-zinc-400 mt-1">Aprovecha precios con descuento directo de distribuidor o financia a 24 cuotas sin interés.</p>
           </div>
-          <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span id="cms-ofertas-stock">Unidades disponibles con envío inmediato hoy</span>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-2 rounded-xl flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span id="cms-ofertas-stock">Unidades disponibles con envío hoy</span>
+            </div>
+
+            <!-- Flechas para deslizar cuando hay más de 4 ofertas -->
+            <div class="flex items-center gap-2 bg-zinc-800/90 border border-zinc-700 px-2.5 py-1.5 rounded-xl">
+              <button type="button" onclick="prevOffersSlide()" class="w-8 h-8 rounded-lg bg-zinc-900 hover:bg-primary text-white flex items-center justify-center transition-colors" title="Ofertas anteriores">
+                <span class="material-symbols-outlined text-base">chevron_left</span>
+              </button>
+              <span id="offers-slide-indicator" class="text-xs font-mono font-bold text-zinc-300 px-1">1 / 2</span>
+              <button type="button" onclick="nextOffersSlide()" class="w-8 h-8 rounded-lg bg-zinc-900 hover:bg-primary text-white flex items-center justify-center transition-colors" title="Siguientes ofertas">
+                <span class="material-symbols-outlined text-base">chevron_right</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-          <!-- Oferta 1 -->
-          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">-12% OFF</span>
-                <span class="text-[11px] text-zinc-400 line-through">$5.699.000 COP</span>
-              </div>
-              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk" alt="iPhone 16 Pro Promo" class="max-h-32 w-auto object-contain">
-              </div>
-              <h3 class="text-base font-bold text-white">Bono Lanzamiento iPhone 16 Pro (128GB)</h3>
-              <p class="text-xs text-zinc-400 mt-1">Incluye Adaptador 20W Original + Envío Blindado Gratis.</p>
-            </div>
-            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
-              <div class="flex items-baseline justify-between">
-                <span class="text-xs text-zinc-400">Precio Hoy:</span>
-                <span class="text-lg font-extrabold text-white">$4.999.000 COP</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="addToCart('Promo iPhone 16 Pro 128GB + Cargador 20W', 4999000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
-                </button>
-                <button onclick="directFinanceWhatsApp('Promo iPhone 16 Pro 128GB + Cargador 20W', 4999000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Oferta 2 -->
-          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">Ahorra $700.000</span>
-                <span class="text-[11px] text-zinc-400 line-through">$6.199.000 COP</span>
-              </div>
-              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0" alt="MacBook Air M3" class="max-h-32 w-auto object-contain">
-              </div>
-              <h3 class="text-base font-bold text-white">Combo Estudio: MacBook Air 13" M3 + AirPods</h3>
-              <p class="text-xs text-zinc-400 mt-1">Chip M3, 8GB RAM, 256GB SSD + AirPods 4 incluidos en el paquete.</p>
-            </div>
-            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
-              <div class="flex items-baseline justify-between">
-                <span class="text-xs text-zinc-400">Precio Hoy:</span>
-                <span class="text-lg font-extrabold text-white">$5.499.000 COP</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="addToCart('Combo MacBook Air 13 M3 + AirPods 4', 5499000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
-                </button>
-                <button onclick="directFinanceWhatsApp('Combo MacBook Air 13 M3 + AirPods 4', 5499000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Oferta 3 -->
-          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">-15% OFF</span>
-                <span class="text-[11px] text-zinc-400 line-through">$1.529.000 COP</span>
-              </div>
-              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi" alt="AirPods Pro 2" class="max-h-32 w-auto object-contain">
-              </div>
-              <h3 class="text-base font-bold text-white">AirPods Pro 2 (USB-C MagSafe)</h3>
-              <p class="text-xs text-zinc-400 mt-1">Cancelación activa 2x, audio espacial y estuche de carga MagSafe con USB-C.</p>
-            </div>
-            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
-              <div class="flex items-baseline justify-between">
-                <span class="text-xs text-zinc-400">Precio Hoy:</span>
-                <span class="text-lg font-extrabold text-white">$1.299.000 COP</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="addToCart('AirPods Pro 2 con USB-C MagSafe', 1299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
-                </button>
-                <button onclick="directFinanceWhatsApp('AirPods Pro 2 con USB-C MagSafe', 1299000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Oferta 4 -->
-          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold uppercase">Pack Full</span>
-                <span class="text-[11px] text-zinc-400 line-through">$698.000 COP</span>
-              </div>
-              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we" alt="Kit MagSafe" class="max-h-32 w-auto object-contain">
-              </div>
-              <h3 class="text-base font-bold text-white">Kit Protección + Carga MagSafe 25W</h3>
-              <p class="text-xs text-zinc-400 mt-1">Funda Carbon Armor Pro + Cargador MagSafe 25W + Adaptador 20W Original.</p>
-            </div>
-            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
-              <div class="flex items-baseline justify-between">
-                <span class="text-xs text-zinc-400">Precio Hoy:</span>
-                <span class="text-lg font-extrabold text-white">$549.000 COP</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="addToCart('Kit Protección Carbon Armor + MagSafe 25W + Adaptador 20W', 549000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
-                </button>
-                <button onclick="directFinanceWhatsApp('Kit Protección Carbon Armor + MagSafe 25W + Adaptador 20W', 549000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
-                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
-                </button>
-              </div>
-            </div>
+        <!-- Contenedor con Flechas Flotantes Laterales y Grid de 4 Columnas -->
+        <div class="relative z-10">
+          <div id="offers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Renderizado dinámicamente por JS -->
           </div>
         </div>
       </div>
@@ -1442,6 +1275,49 @@
     <button type="button" onclick="exitAdminMode()" class="px-2.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-red-900/60 text-zinc-300 text-xs font-semibold" title="Salir de modo admin">
       <span class="material-symbols-outlined text-sm">logout</span>
     </button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL DE ACCESO CON CONTRASEÑA ADMIN        -->
+  <!-- ========================================== -->
+  <div id="admin-login-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-gray-200 relative">
+      <button type="button" onclick="closeAdminLoginModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-12 h-12 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-2xl">lock</span>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Seguridad RedCover</span>
+          <h3 class="text-lg font-extrabold text-gray-900">Acceso Administrador</h3>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+        Ingresa la contraseña de administrador para desbloquear la edición de productos, categorías, banners, videos, ofertas y tiendas.
+      </p>
+
+      <form onsubmit="submitAdminPassword(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1.5">Contraseña de Administrador</label>
+          <div class="relative">
+            <input id="admin-password-input" type="password" placeholder="Ingresa la contraseña..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm font-mono text-gray-900 pr-11" required autocomplete="off">
+            <button type="button" onclick="toggleAdminPassVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700">
+              <span id="admin-pass-eye" class="material-symbols-outlined text-lg">visibility</span>
+            </button>
+          </div>
+          <p id="admin-login-error" class="text-xs text-red-600 font-bold mt-2 hidden">❌ Contraseña incorrecta. Intenta nuevamente.</p>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-full crimson-btn text-white text-xs font-extrabold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-base">key</span>
+          Desbloquear Panel Administrador
+        </button>
+      </form>
+    </div>
   </div>
 
   <!-- ========================================== -->
@@ -2571,21 +2447,38 @@
     }
 
     // ==========================================
-    // RENDERIZADO DEL CATÁLOGO DE DISPOSITIVOS
+    // RENDERIZADO DEL CATÁLOGO DE PRODUCTOS CON PAGINACIÓN (MÁX 12: 3 FILAS x 4 COLUMNAS)
     // ==========================================
     let currentCatalogCategoryFilter = 'all';
+    let currentCatalogPage = 1;
+    const PRODUCTS_PER_PAGE = 12;
     let adminModeActive = false;
 
-    function renderDevicesCatalog(filterCategory = currentCatalogCategoryFilter) {
-      currentCatalogCategoryFilter = filterCategory;
+    function renderDevicesCatalog(filterCategory = currentCatalogCategoryFilter, page = currentCatalogPage) {
+      if (filterCategory !== currentCatalogCategoryFilter) {
+        currentCatalogCategoryFilter = filterCategory;
+        currentCatalogPage = 1;
+      } else {
+        currentCatalogPage = page;
+      }
+
       const grid = document.getElementById('full-devices-grid');
+      const pagContainer = document.getElementById('devices-pagination');
       if (!grid) return;
 
-      const filtered = filterCategory === 'all'
+      const filtered = currentCatalogCategoryFilter === 'all'
         ? allCatalogDevices
-        : allCatalogDevices.filter(d => d.category === filterCategory);
+        : allCatalogDevices.filter(d => d.category === currentCatalogCategoryFilter);
 
-      grid.innerHTML = filtered.map((dev) => {
+      const totalItems = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(totalItems / PRODUCTS_PER_PAGE));
+      if (currentCatalogPage > totalPages) currentCatalogPage = totalPages;
+      if (currentCatalogPage < 1) currentCatalogPage = 1;
+
+      const startIndex = (currentCatalogPage - 1) * PRODUCTS_PER_PAGE;
+      const paginatedItems = filtered.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+
+      grid.innerHTML = paginatedItems.map((dev) => {
         const realIdx = allCatalogDevices.findIndex(item => item.id === dev.id);
         return `
         <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/60 transition-all shadow-sm hover:shadow-md relative">
@@ -2600,7 +2493,7 @@
               <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${dev.title}" src="${dev.img}">
             </div>
             <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 uppercase">
-              <span>${dev.warranty || 'Garantía 1 Año Apple'}</span>
+              <span>${dev.warranty || 'Garantía Oficial 1 Año'}</span>
               <span class="text-emerald-600 font-bold">${dev.stockStatus || '● En Stock'}</span>
             </div>
             <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug cursor-pointer hover:text-primary transition-colors" onclick="openProductModal('${dev.id}')">${dev.title}</h3>
@@ -2631,9 +2524,47 @@
         </div>
       `;
       }).join('');
+
+      if (pagContainer) {
+        const showingFrom = totalItems === 0 ? 0 : startIndex + 1;
+        const showingTo = Math.min(startIndex + PRODUCTS_PER_PAGE, totalItems);
+        let pageButtonsHTML = '';
+
+        for (let p = 1; p <= totalPages; p++) {
+          const isCurrent = p === currentCatalogPage;
+          pageButtonsHTML += `
+            <button type="button" onclick="goToCatalogPage(${p})" class="w-9 h-9 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center ${isCurrent ? 'bg-primary text-white shadow-md scale-105' : 'bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary'}">
+              ${p}
+            </button>
+          `;
+        }
+
+        pagContainer.innerHTML = `
+          <div class="text-xs text-gray-500 font-medium">
+            Mostrando <strong class="text-gray-900">${showingFrom}–${showingTo}</strong> de <strong class="text-primary">${totalItems} productos</strong> (Página ${currentCatalogPage} de ${totalPages})
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-1.5">
+            <button type="button" onclick="goToCatalogPage(${currentCatalogPage - 1})" ${currentCatalogPage === 1 ? 'disabled' : ''} class="px-3.5 h-9 rounded-xl text-xs font-bold border border-gray-200 bg-white text-gray-700 hover:border-primary hover:text-primary disabled:opacity-40 disabled:pointer-events-none flex items-center gap-1 transition-all">
+              <span class="material-symbols-outlined text-sm">chevron_left</span> Anterior
+            </button>
+            ${pageButtonsHTML}
+            <button type="button" onclick="goToCatalogPage(${currentCatalogPage + 1})" ${currentCatalogPage === totalPages ? 'disabled' : ''} class="px-3.5 h-9 rounded-xl text-xs font-bold border border-gray-200 bg-white text-gray-700 hover:border-primary hover:text-primary disabled:opacity-40 disabled:pointer-events-none flex items-center gap-1 transition-all">
+              Siguiente <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function goToCatalogPage(page) {
+      renderDevicesCatalog(currentCatalogCategoryFilter, page);
+      const sec = document.getElementById('catalogo-dispositivos');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function filterDevices(category) {
+      currentCatalogCategoryFilter = category;
+      currentCatalogPage = 1;
       document.querySelectorAll('.dev-tab-btn').forEach(btn => {
         if (btn.getAttribute('data-dev-filter') === category) {
           btn.className = "dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap flex items-center gap-1.5";
@@ -2641,7 +2572,7 @@
           btn.className = "dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5";
         }
       });
-      renderDevicesCatalog(category);
+      renderDevicesCatalog(category, 1);
     }
 
     function filterAndScroll(category) {
@@ -3696,30 +3627,78 @@
     });
 
     // ============================================================================
-    // SISTEMA CMS DE ADMINISTRADOR EN TIEMPO REAL (PRODUCTOS, OFERTAS, IMÁGENES, CATEGORÍAS)
+    // SISTEMA CMS DE ADMINISTRADOR EN TIEMPO REAL (PRODUCTOS, OFERTAS, IMÁGENES, VIDEOS, CATEGORÍAS)
     // ============================================================================
-    const CMS_STORAGE_KEY = 'redcover_cms_state_v4';
+    const CMS_STORAGE_KEY = 'redcover_cms_state_v5';
+    const ADMIN_MASTER_PASSWORD = 'admin2026*';
+    let adminAuthenticated = false;
+    let pendingAdminTabAfterAuth = null;
+
     const factoryCatalogDevices = JSON.parse(JSON.stringify(allCatalogDevices));
 
     const defaultCMSData = {
       whatsappNumber: '573001234567',
       topbarText: '🇨🇴 Lanzamiento 2026: iPhone 18 Pro, AirPods Pro 3 & Samsung Galaxy S26 Ultra • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
       hero: {
-        authBadge: 'Apple Authorized Reseller • Colombia',
+        authBadge: 'Distribuidor Oficial Autorizado • Colombia',
         clientsBadge: '+10.000 Clientes Satisfechos',
         ratingBadge: '4.9/5 Estrellas',
         titleMain: 'iPhone 18 Pro',
         titleGradient: 'Titanio Grado Aeroespacial. Chip A20 Pro.',
         description: 'El salto más grande en la historia del iPhone junto al revolucionario iPhone Duo plegable. Nuevo Chip A20 Pro de 2nm, triple cámara de 48 MP con Teleobjetivo Periscopio 10x, Face ID bajo pantalla y Apple Intelligence 3.0. Fináncialo hoy al 0% de interés por WhatsApp.',
         cta1Text: 'Reservar / Comprar iPhone 18 Pro',
-        cta2Text: 'Cotizar mi iPhone en Plan Canje',
-        bannerImg: IMG_IPHONE_PRO,
-        bannerBadge: 'Nuevo Buque Insignia 2026 • Chip A20 Pro',
-        bannerPrice: 'Desde $5.999.000 COP • o 24 cuotas de $249.958 sin interés',
-        bannerSub: 'Recibimos tu iPhone 11, 12, 13, 14, 15, 16 o 17 en parte de pago',
-        bannerBtn1Text: 'Añadir a la Bolsa ($5.999.000)',
-        bannerBtn2Text: 'Financiar por WhatsApp'
+        cta2Text: 'Cotizar mi Equipo en Plan Canje'
       },
+      heroSlides: [
+        {
+          id: 'slide-1',
+          mediaType: 'image',
+          mediaUrl: IMG_IPHONE_PRO,
+          badge: 'Banner 1 • Buque Insignia Apple 2026',
+          title: 'iPhone 18 Pro Max & iPhone Duo • Desde $5.999.000 COP',
+          subtitle: 'Chip A20 Pro 2nm • Hasta 24 cuotas sin interés por WhatsApp y 1 año de garantía oficial',
+          btn1Text: 'Ver Ficha iPhone 18 Pro',
+          productIdTarget: 'iphone-18-pro-max',
+          btn2Text: 'Explorar 34 iPhones',
+          categoryTarget: 'iphone'
+        },
+        {
+          id: 'slide-2',
+          mediaType: 'image',
+          mediaUrl: IMG_IPHONE_16,
+          badge: 'Banner 2 • Nuevo Flagship Android 2026',
+          title: 'Samsung Galaxy S26 Ultra 5G & Z Fold 7 • Desde $4.299.000 COP',
+          subtitle: 'Snapdragon 8 Elite Gen 2 • Cámara Cuádruple 200 MP + S-Pen Integrado + Galaxy AI 3.0',
+          btn1Text: 'Ver Galaxy S26 Ultra',
+          productIdTarget: 'samsung-s26-ultra',
+          btn2Text: 'Ver 17 Modelos Samsung',
+          categoryTarget: 'samsung'
+        },
+        {
+          id: 'slide-3',
+          mediaType: 'image',
+          mediaUrl: IMG_MACBOOK,
+          badge: 'Banner 3 • Estaciones de Trabajo 2nm',
+          title: 'MacBook Pro M5 Max & iPad Pro M5 OLED • Desde $4.199.000 COP',
+          subtitle: 'Puertos Thunderbolt 5 de 120 Gb/s, pantalla Tandem OLED y hasta 24 horas de autonomía',
+          btn1Text: 'Ver MacBook Pro M5',
+          productIdTarget: 'macbook-pro-m5',
+          btn2Text: 'Explorar Línea Mac',
+          categoryTarget: 'mac'
+        },
+        {
+          id: 'slide-4',
+          mediaType: 'image',
+          mediaUrl: IMG_WATCH,
+          badge: 'Banner 4 • Ecosistema Salud & Audio 2026',
+          title: 'AirPods Pro 3 (Chip H3) & Watch Ultra 3 Satelital',
+          subtitle: 'Monitoreo cardíaco en oído, Cancelación Activa 4x y conexión satelital fuera de red',
+          btn1Text: 'Ver AirPods Pro 3',
+          productIdTarget: 'airpods-pro-3',
+          btn2Text: 'Explorar AirPods',
+          categoryTarget: 'airpods'
+        }
+      ],
       bentoCards: [
         {
           id: 'bento-1',
@@ -3795,7 +3774,7 @@
       offersHeader: {
         badge: '🔥 Ofertas Relámpago Colombia',
         title: 'Precios Especiales y Combos RedCover',
-        subtitle: 'Descuentos directos aplicados en carrito o financiados a 0% de interés por WhatsApp.',
+        subtitle: 'Descuentos directos aplicados en carrito o financiados a 0% de interés por WhatsApp. Desliza con las flechas para ver más.',
         stockAlert: 'Unidades Limitadas con Envío Hoy'
       },
       offers: [
@@ -3803,36 +3782,36 @@
           id: 'offer-1',
           discountBadge: '-18% OFF',
           topTag: 'Envío Gratis Hoy',
-          title: 'Combo iPhone 16 Pro (256GB) + Funda MagSafe + Adaptador 20W',
-          desc: 'Lleva el paquete completo listo para usar con protección de grado militar y carga rápida original Apple.',
-          price: 5499000,
-          oldPrice: 6699000,
-          progressPercent: 82,
+          title: 'Combo iPhone 18 Pro (256GB) + Funda MagSafe + Cargador 35W',
+          desc: 'Lleva el nuevo buque insignia 2026 listo para usar con protección Carbon Armor y carga rápida original.',
+          price: 6199000,
+          oldPrice: 7499000,
+          progressPercent: 85,
           stockLeftText: 'Quedan 4 combos',
           img: IMG_IPHONE_PRO
         },
         {
           id: 'offer-2',
           discountBadge: '-15% OFF',
-          topTag: 'Especial Estudiantes y Creativos',
-          title: 'Combo MacBook Air M4 13" (16GB/256GB) + AirPods Pro 2 USB-C',
-          desc: 'Potencia todo tu flujo de trabajo y estudio con el chip M4 e inteligencia artificial con cancelación activa de ruido.',
-          price: 5699000,
-          oldPrice: 6698000,
-          progressPercent: 75,
-          stockLeftText: 'Quedan 6 combos',
+          topTag: 'Especial Creativos',
+          title: 'Combo MacBook Air M5 13" (16GB/512GB) + AirPods 4 ANC',
+          desc: 'Potencia todo tu flujo de trabajo con el chip M5 de 2nm y auriculares con cancelación activa de ruido.',
+          price: 5899000,
+          oldPrice: 6898000,
+          progressPercent: 78,
+          stockLeftText: 'Quedan 5 combos',
           img: IMG_MACBOOK
         },
         {
           id: 'offer-3',
           discountBadge: '-22% OFF',
           topTag: 'Pack Ecosistema Pro',
-          title: 'Kit MagSafe Total: Cargador MagSafe + Batería Externa + AirTag',
+          title: 'Kit MagSafe Total: Cargador MagSafe 25W + Batería + AirTag',
           desc: 'Energía magnética todo el día y localización precisa en la red Encontrar de Apple.',
           price: 799000,
           oldPrice: 1029000,
           progressPercent: 90,
-          stockLeftText: 'Últimas 3 unidades',
+          stockLeftText: 'Últimas 3 uds',
           img: IMG_AIRPODS
         },
         {
@@ -3846,6 +3825,30 @@
           progressPercent: 68,
           stockLeftText: 'Quedan 7 combos',
           img: IMG_IPAD
+        },
+        {
+          id: 'offer-5',
+          discountBadge: '-16% OFF',
+          topTag: 'Combo Android Flagship',
+          title: 'Samsung Galaxy S26 Ultra (256GB) + Cargador 45W + Funda',
+          desc: 'Estrena el nuevo Galaxy S26 Ultra con S-Pen integrado, cámara de 200 MP y carga superrápida.',
+          price: 6399000,
+          oldPrice: 7599000,
+          progressPercent: 80,
+          stockLeftText: 'Quedan 4 combos',
+          img: IMG_IPHONE_PRO
+        },
+        {
+          id: 'offer-6',
+          discountBadge: '-19% OFF',
+          topTag: 'Salud & Deporte 2026',
+          title: 'Pack Apple Watch Series 12 + AirPods Pro 3 (Chip H3)',
+          desc: 'Sincronización total de salud cardíaca, temperatura y audio espacial sin pérdida para entrenar al máximo.',
+          price: 3199000,
+          oldPrice: 3948000,
+          progressPercent: 74,
+          stockLeftText: 'Quedan 6 packs',
+          img: IMG_WATCH
         }
       ],
       accessories: [
@@ -4092,6 +4095,11 @@
       updateAdminCounters();
     }
 
+    let currentHeroSlideIndex = 0;
+    let heroAutoSlideTimer = null;
+    let currentOffersStartIndex = 0;
+    const OFFERS_PER_VIEW = 4;
+
     function renderCMSHeroAndTopbar() {
       const topbar = document.getElementById('cms-promo-topbar');
       if (topbar) topbar.innerText = cmsData.topbarText;
@@ -4106,14 +4114,8 @@
       setTxt('cms-hero-description', h.description);
       setTxt('cms-hero-cta1', h.cta1Text);
       setTxt('cms-hero-cta2', h.cta2Text);
-      setTxt('cms-hero-banner-badge', h.bannerBadge);
-      setTxt('cms-hero-banner-price', h.bannerPrice);
-      setTxt('cms-hero-banner-sub', h.bannerSub);
-      setTxt('cms-hero-banner-btn1', h.bannerBtn1Text);
-      setTxt('cms-hero-banner-btn2', h.bannerBtn2Text);
 
-      const bannerImg = document.getElementById('cms-hero-banner-img');
-      if (bannerImg && h.bannerImg) bannerImg.src = h.bannerImg;
+      renderHeroBannerCarousel();
 
       const bentoGrid = document.getElementById('bento-ecosystem-grid');
       if (bentoGrid && Array.isArray(cmsData.bentoCards)) {
@@ -4168,6 +4170,86 @@
           </div>
         `).join('');
       }
+    }
+
+    function renderHeroBannerCarousel() {
+      const viewport = document.getElementById('hero-slides-viewport');
+      const dotsBar = document.getElementById('hero-dots-bar');
+      if (!viewport) return;
+
+      if (!Array.isArray(cmsData.heroSlides) || cmsData.heroSlides.length === 0) {
+        cmsData.heroSlides = JSON.parse(JSON.stringify(defaultCMSData.heroSlides));
+      }
+
+      const slides = cmsData.heroSlides;
+      if (currentHeroSlideIndex >= slides.length) currentHeroSlideIndex = 0;
+      if (currentHeroSlideIndex < 0) currentHeroSlideIndex = slides.length - 1;
+
+      const s = slides[currentHeroSlideIndex];
+      const isVideo = s.mediaType === 'video' || (s.mediaUrl && /\.(mp4|webm|ogg)(\?|$)/i.test(s.mediaUrl)) || (s.mediaUrl && s.mediaUrl.startsWith('data:video/'));
+
+      viewport.innerHTML = `
+        <div class="w-full h-full relative transition-opacity duration-500">
+          ${isVideo ? `
+            <video src="${s.mediaUrl}" autoplay muted loop playsinline class="w-full h-[360px] md:h-[520px] object-cover"></video>
+          ` : `
+            <img src="${s.mediaUrl}" alt="${s.title}" class="w-full h-[360px] md:h-[520px] object-cover transition-transform duration-700">
+          `}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex flex-col justify-end p-6 md:p-10 text-left">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div class="space-y-1.5 max-w-2xl">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 rounded-full bg-red-600/90 text-white text-[10px] font-extrabold uppercase tracking-widest">${s.badge || 'Banner RedCover 2026'}</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 text-white text-[10px] font-mono">
+                    ${isVideo ? '🎬 Video Corto' : `Banner ${currentHeroSlideIndex + 1} de ${slides.length}`}
+                  </span>
+                </div>
+                <p class="text-white font-extrabold text-xl md:text-2xl tracking-tight">${s.title}</p>
+                <p class="text-zinc-300 text-xs md:text-sm">${s.subtitle}</p>
+              </div>
+              <div class="flex flex-wrap gap-2.5">
+                <button type="button" onclick="openProductModal('${s.productIdTarget || 'iphone-18-pro-max'}')" class="px-5 py-2.5 rounded-full bg-white text-zinc-900 hover:bg-red-50 text-xs font-extrabold uppercase tracking-wider transition-all shadow-lg">
+                  ${s.btn1Text || 'Ver Ficha Técnica'}
+                </button>
+                <button type="button" onclick="filterAndScroll('${s.categoryTarget || 'iphone'}')" class="px-5 py-2.5 rounded-full crimson-btn text-white text-xs font-extrabold uppercase tracking-wider transition-all shadow-lg">
+                  ${s.btn2Text || 'Ver Catálogo'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (dotsBar) {
+        dotsBar.innerHTML = slides.map((slideItem, idx) => `
+          <button type="button" onclick="goToHeroSlide(${idx})" class="h-2.5 rounded-full transition-all ${idx === currentHeroSlideIndex ? 'w-8 bg-primary shadow-sm' : 'w-2.5 bg-white/50 hover:bg-white'}" title="Ir a Banner ${idx + 1}"></button>
+        `).join('');
+      }
+
+      if (heroAutoSlideTimer) clearInterval(heroAutoSlideTimer);
+      heroAutoSlideTimer = setInterval(() => {
+        if (!adminModeActive) {
+          currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
+          renderHeroBannerCarousel();
+        }
+      }, 7500);
+    }
+
+    function prevHeroSlide() {
+      if (!cmsData.heroSlides || cmsData.heroSlides.length === 0) return;
+      currentHeroSlideIndex = (currentHeroSlideIndex - 1 + cmsData.heroSlides.length) % cmsData.heroSlides.length;
+      renderHeroBannerCarousel();
+    }
+
+    function nextHeroSlide() {
+      if (!cmsData.heroSlides || cmsData.heroSlides.length === 0) return;
+      currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
+      renderHeroBannerCarousel();
+    }
+
+    function goToHeroSlide(index) {
+      currentHeroSlideIndex = index;
+      renderHeroBannerCarousel();
     }
 
     function renderCMSCategories() {
@@ -4262,44 +4344,100 @@
       const grid = document.getElementById('offers-grid');
       if (!grid) return;
 
-      grid.innerHTML = cmsData.offers.map((off, idx) => `
-        <div class="rounded-3xl bg-white border border-red-200 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col sm:flex-row gap-5 items-center relative">
+      const totalOffers = cmsData.offers.length;
+      const maxStart = Math.max(0, totalOffers - OFFERS_PER_VIEW);
+      if (currentOffersStartIndex > maxStart) currentOffersStartIndex = maxStart;
+      if (currentOffersStartIndex < 0) currentOffersStartIndex = 0;
+
+      const visibleOffers = cmsData.offers.slice(currentOffersStartIndex, currentOffersStartIndex + OFFERS_PER_VIEW);
+
+      const ind = document.getElementById('offers-slide-indicator');
+      if (ind) {
+        if (totalOffers === 0) {
+          ind.innerText = '0 / 0';
+        } else {
+          const endIdx = Math.min(currentOffersStartIndex + OFFERS_PER_VIEW, totalOffers);
+          ind.innerText = `${currentOffersStartIndex + 1}-${endIdx} de ${totalOffers}`;
+        }
+      }
+
+      const prevBtn = document.getElementById('offers-prev-btn');
+      const nextBtn = document.getElementById('offers-next-btn');
+      if (prevBtn) {
+        prevBtn.disabled = currentOffersStartIndex <= 0;
+        prevBtn.classList.toggle('opacity-40', currentOffersStartIndex <= 0);
+        prevBtn.classList.toggle('cursor-not-allowed', currentOffersStartIndex <= 0);
+      }
+      if (nextBtn) {
+        nextBtn.disabled = currentOffersStartIndex >= maxStart;
+        nextBtn.classList.toggle('opacity-40', currentOffersStartIndex >= maxStart);
+        nextBtn.classList.toggle('cursor-not-allowed', currentOffersStartIndex >= maxStart);
+      }
+
+      grid.innerHTML = visibleOffers.map((off, localIdx) => {
+        const realIdx = currentOffersStartIndex + localIdx;
+        return `
+        <div class="rounded-2xl bg-zinc-800/95 border border-zinc-700/80 hover:border-red-500/60 p-5 shadow-md hover:shadow-xl transition-all flex flex-col justify-between relative group">
           ${adminModeActive ? `
-            <button type="button" onclick="openAdminEditOffer(${idx})" class="absolute top-3 right-3 z-30 px-3 py-1 rounded-full bg-zinc-900 hover:bg-primary text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
-              <span class="material-symbols-outlined text-xs">edit</span> Editar Oferta
+            <button type="button" onclick="openAdminEditOffer(${realIdx})" class="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-primary text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">edit</span> Editar #${realIdx + 1}
             </button>
           ` : ''}
-          <div class="w-full sm:w-44 h-44 rounded-2xl bg-zinc-950 overflow-hidden shrink-0 relative flex items-center justify-center">
-            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">${off.discountBadge}</span>
-            <img src="${off.img}" alt="${off.title}" class="w-full h-full object-cover">
+          <div>
+            <!-- Imagen Superior Vertical -->
+            <div class="w-full h-44 rounded-xl bg-zinc-950 overflow-hidden relative flex items-center justify-center mb-4 border border-zinc-700/60">
+              <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase shadow-sm">${off.discountBadge}</span>
+              <span class="absolute bottom-2 right-2 z-10 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-amber-400 border border-amber-500/30">${off.stockLeftText}</span>
+              <img src="${off.img}" alt="${off.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <!-- Etiqueta y Textos Bien Alineados -->
+            <div class="space-y-2">
+              <span class="inline-block text-[10px] font-mono uppercase text-red-400 font-bold bg-red-500/15 px-2.5 py-0.5 rounded-full border border-red-500/30">${off.topTag}</span>
+              <h3 class="text-sm font-extrabold text-white leading-snug line-clamp-2 min-h-[2.5rem]">${off.title}</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed line-clamp-2 min-h-[2rem]">${off.desc}</p>
+            </div>
           </div>
-          <div class="flex-1 space-y-2.5 w-full">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono uppercase text-primary font-bold bg-red-50 px-2.5 py-0.5 rounded-full border border-red-100">${off.topTag}</span>
-              <span class="text-[11px] font-bold text-amber-600">${off.stockLeftText}</span>
+
+          <div class="pt-4 mt-4 border-t border-zinc-700/70 space-y-3">
+            <div class="w-full bg-zinc-700 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-gradient-to-r from-red-500 to-amber-500 h-full rounded-full" style="width: ${off.progressPercent || 80}%"></div>
             </div>
-            <h3 class="text-base font-extrabold text-gray-900 leading-snug">${off.title}</h3>
-            <p class="text-xs text-gray-600 leading-relaxed">${off.desc}</p>
-            <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-              <div class="bg-primary h-full rounded-full" style="width: ${off.progressPercent || 80}%"></div>
-            </div>
-            <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-end justify-between gap-2">
               <div>
-                <span class="text-xs text-gray-400 line-through block">${formatCOP(off.oldPrice)}</span>
-                <span class="text-lg font-extrabold text-primary">${formatCOP(off.price)}</span>
+                <span class="text-[11px] text-zinc-400 line-through block">${formatCOP(off.oldPrice)}</span>
+                <span class="text-lg font-extrabold text-white">${formatCOP(off.price)}</span>
               </div>
-              <div class="flex items-center gap-2">
-                <button type="button" onclick="addToCart('${off.title.replace(/'/g, "\\'")}', ${off.price}, '${off.img}')" class="px-4 py-2 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Aprovechar Oferta
-                </button>
-                <button type="button" onclick="directFinanceWhatsApp('${off.title.replace(/'/g, "\\'")}', ${off.price})" class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 transition-colors" title="Financiar Oferta por WhatsApp">
-                  <span class="material-symbols-outlined text-base">chat</span>
-                </button>
-              </div>
+              <button type="button" onclick="directFinanceWhatsApp('${off.title.replace(/'/g, "\\'")}', ${off.price})" class="p-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 transition-colors shrink-0" title="Financiar Oferta por WhatsApp">
+                <span class="material-symbols-outlined text-base">chat</span>
+              </button>
             </div>
+            <button type="button" onclick="addToCart('${off.title.replace(/'/g, "\\'")}', ${off.price}, '${off.img}')" class="w-full py-2.5 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-sm">shopping_bag</span> Aprovechar Oferta
+            </button>
           </div>
         </div>
-      `).join('');
+        `;
+      }).join('');
+    }
+
+    function prevOffersSlide() {
+      if (currentOffersStartIndex > 0) {
+        currentOffersStartIndex = Math.max(0, currentOffersStartIndex - 1);
+        renderCMSOffers();
+      } else {
+        showToast('Estás en el inicio de las ofertas especiales');
+      }
+    }
+
+    function nextOffersSlide() {
+      const maxStart = Math.max(0, cmsData.offers.length - OFFERS_PER_VIEW);
+      if (currentOffersStartIndex < maxStart) {
+        currentOffersStartIndex = Math.min(maxStart, currentOffersStartIndex + 1);
+        renderCMSOffers();
+      } else {
+        showToast('Ya estás viendo las últimas ofertas disponibles');
+      }
     }
 
     function renderCMSAccessories(filterCat = 'all') {
@@ -4382,10 +4520,29 @@
     }
 
     // ==========================================
-    // FUNCIONES DE APERTURA Y EDICIÓN DEL PANEL ADMIN
+    // FUNCIONES DE APERTURA, CONTRASEÑA Y EDICIÓN DEL PANEL ADMIN
     // ==========================================
     function openAdminPanel(initialTab = null) {
       closeMegaMenu();
+      if (!adminAuthenticated) {
+        pendingAdminTabAfterAuth = initialTab;
+        const loginModal = document.getElementById('admin-login-modal');
+        const passInput = document.getElementById('admin-password-input');
+        const errEl = document.getElementById('admin-login-error');
+        if (errEl) errEl.classList.add('hidden');
+        if (passInput) passInput.value = '';
+        if (loginModal) {
+          loginModal.classList.remove('hidden');
+          loginModal.classList.add('flex');
+          setTimeout(() => { if (passInput) passInput.focus(); }, 80);
+        }
+        return;
+      }
+
+      launchAuthenticatedAdminPanel(initialTab);
+    }
+
+    function launchAuthenticatedAdminPanel(initialTab = null) {
       adminModeActive = true;
       const floatBar = document.getElementById('admin-floating-bar');
       if (floatBar) {
@@ -4401,6 +4558,48 @@
       if (modal) {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
+      }
+    }
+
+    function submitAdminPassword(event) {
+      if (event) event.preventDefault();
+      const passInput = document.getElementById('admin-password-input');
+      const errEl = document.getElementById('admin-login-error');
+      const entered = passInput ? passInput.value.trim() : '';
+
+      if (entered === ADMIN_MASTER_PASSWORD) {
+        adminAuthenticated = true;
+        closeAdminLoginModal();
+        showToast('Acceso Administrador Autorizado');
+        launchAuthenticatedAdminPanel(pendingAdminTabAfterAuth);
+        pendingAdminTabAfterAuth = null;
+      } else {
+        if (errEl) errEl.classList.remove('hidden');
+        if (passInput) {
+          passInput.value = '';
+          passInput.focus();
+        }
+      }
+    }
+
+    function closeAdminLoginModal() {
+      const loginModal = document.getElementById('admin-login-modal');
+      if (loginModal) {
+        loginModal.classList.add('hidden');
+        loginModal.classList.remove('flex');
+      }
+    }
+
+    function toggleAdminPassVisibility() {
+      const passInput = document.getElementById('admin-password-input');
+      const icon = document.getElementById('admin-pass-eye');
+      if (!passInput) return;
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        if (icon) icon.innerText = 'visibility_off';
+      } else {
+        passInput.type = 'password';
+        if (icon) icon.innerText = 'visibility';
       }
     }
 
@@ -4421,6 +4620,7 @@
 
     function exitAdminMode() {
       adminModeActive = false;
+      adminAuthenticated = false;
       if (inlineTextEditingEnabled) toggleInlineTextEditing();
       const floatBar = document.getElementById('admin-floating-bar');
       if (floatBar) {
@@ -4429,7 +4629,7 @@
       }
       closeAdminPanel();
       renderAllCMSContent();
-      showToast('Modo Administrador desactivado');
+      showToast('Sesión de Administrador cerrada');
     }
 
     function toggleInlineTextEditing() {
@@ -4471,7 +4671,7 @@
       openAdminPanel(tab);
     }
 
-    // Subida de imágenes desde la PC del Administrador (Base64 instantáneo)
+    // Subida de imágenes o videos cortos desde la PC del Administrador (Base64 instantáneo)
     function handleAdminImageUpload(fileInput, targetInputId, previewImgId) {
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
@@ -4482,7 +4682,25 @@
         const previewImg = document.getElementById(previewImgId);
         if (urlInput) urlInput.value = dataUrl;
         if (previewImg) previewImg.src = dataUrl;
-        showToast('Imagen cargada correctamente. Recuerda hacer clic en Guardar.');
+        showToast('Archivo multimedia cargado correctamente. Recuerda hacer clic en Guardar.');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleAdminHeroMediaUpload(fileInput, slideIdx) {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const isVideoFile = file.type && file.type.startsWith('video/');
+      const typeSelect = document.getElementById(`adm-slide-type-${slideIdx}`);
+      if (typeSelect) {
+        typeSelect.value = isVideoFile ? 'video' : 'image';
+      }
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const dataUrl = evt.target.result;
+        const urlInput = document.getElementById(`adm-slide-url-${slideIdx}`);
+        if (urlInput) urlInput.value = dataUrl;
+        showToast(isVideoFile ? '🎬 Video corto cargado. Haz clic en Guardar Banner para aplicarlo.' : '🖼️ Imagen de banner cargada. Haz clic en Guardar Banner para aplicarla.');
       };
       reader.readAsDataURL(file);
     }
@@ -5193,21 +5411,25 @@
     }
 
     // ==========================================
-    // TAB 5: PUBLICIDAD HERO & BENTO ECOSISTEMA
+    // TAB 5: PUBLICIDAD HERO (4 BANNERS MOVIBLES CON IMAGEN O VIDEO CORTO) & BENTO ECOSISTEMA
     // ==========================================
     function renderAdminHeroTab(container) {
       const h = cmsData.hero;
+      if (!Array.isArray(cmsData.heroSlides) || cmsData.heroSlides.length === 0) {
+        cmsData.heroSlides = JSON.parse(JSON.stringify(defaultCMSData.heroSlides));
+      }
+
       container.innerHTML = `
         <div class="space-y-6 text-xs">
-          <!-- Publicidad Principal Hero -->
+          <!-- Publicidad Principal Hero (Textos Superiores) -->
           <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
             <div class="flex items-center justify-between border-b border-gray-200 pb-3">
               <div>
-                <h4 class="text-sm font-extrabold text-gray-900">Banner Principal de Inicio (Hero) y Barra Superior</h4>
-                <p class="text-[11px] text-gray-500">Modifica el producto estrella anunciado al abrir la página.</p>
+                <h4 class="text-sm font-extrabold text-gray-900">Encabezado Principal de Inicio (Hero) y Barra Superior</h4>
+                <p class="text-[11px] text-gray-500">Modifica el titular principal anunciado al abrir la página.</p>
               </div>
               <button type="button" onclick="saveAdminHeroConfig()" class="px-5 py-2.5 rounded-full crimson-btn text-white font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">save</span> Guardar Publicidad Hero
+                <span class="material-symbols-outlined text-sm">save</span> Guardar Textos Hero
               </button>
             </div>
 
@@ -5246,32 +5468,80 @@
               <label class="font-bold text-gray-700 block mb-1">Párrafo Descriptivo Principal</label>
               <textarea id="adm-hero-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${h.description}</textarea>
             </div>
+          </div>
 
-            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row items-center gap-4">
-              <img id="adm-hero-img-prev" src="${h.bannerImg}" class="w-28 h-24 rounded-xl object-cover bg-zinc-950 shrink-0">
-              <div class="flex-1 w-full space-y-2">
-                <label class="font-bold text-gray-700 block">Imagen del Banner Principal Hero (URL o Subir desde PC)</label>
-                <input id="adm-hero-img" type="text" value="${h.bannerImg}" oninput="document.getElementById('adm-hero-img-prev').src=this.value" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 bg-white">
-                <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm">upload_file</span> Subir Imagen Banner desde PC
-                  <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-hero-img', 'adm-hero-img-prev')">
-                </label>
+          <!-- 4 Banners Movibles del Carrusel Hero (Imagen o Video Corto) -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-3">
+              <div>
+                <h4 class="text-sm font-extrabold text-gray-900">Carrusel de 4 Banners Principales Movibles (Imágenes o Videos Cortos)</h4>
+                <p class="text-[11px] text-gray-500">Configura hasta 4 banners deslizables. Puedes pegar URL de imagen/video (.mp4/.webm) o subir archivos desde tu PC.</p>
               </div>
+              <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 font-extrabold text-[11px]">4 Slides Activos</span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Etiqueta dentro del Banner</label>
-                <input id="adm-hero-bbadge" type="text" value="${h.bannerBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
-              </div>
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Precio y Cuotas en Banner</label>
-                <input id="adm-hero-bprice" type="text" value="${h.bannerPrice.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold">
-              </div>
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Subtexto Plan Canje en Banner</label>
-                <input id="adm-hero-bsub" type="text" value="${h.bannerSub.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
-              </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${cmsData.heroSlides.map((sl, idx) => `
+                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-2.5">
+                  <div class="flex items-center justify-between">
+                    <span class="font-extrabold text-primary uppercase flex items-center gap-1">
+                      <span class="material-symbols-outlined text-sm">view_carousel</span> Banner Slide #${idx + 1}
+                    </span>
+                    <div class="flex items-center gap-1.5">
+                      <button type="button" onclick="goToHeroSlide(${idx}); showToast('Previsualizando Banner #${idx + 1} en la página')" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-[10px]">Ver Slide</button>
+                      <button type="button" onclick="saveAdminHeroSlide(${idx})" class="px-3 py-1 rounded-lg crimson-btn text-white font-bold">Guardar Banner #${idx + 1}</button>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 block">Tipo de Multimedia</label>
+                      <select id="adm-slide-type-${idx}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
+                        <option value="image" ${sl.mediaType !== 'video' ? 'selected' : ''}>🖼️ Imagen / Foto</option>
+                        <option value="video" ${sl.mediaType === 'video' ? 'selected' : ''}>🎬 Video Corto (MP4/WebM)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 block">Etiqueta Superior Roja</label>
+                      <input id="adm-slide-badge-${idx}" type="text" value="${(sl.badge || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="text-[10px] font-bold text-gray-500 block">Título Principal del Banner</label>
+                    <input id="adm-slide-title-${idx}" type="text" value="${(sl.title || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-extrabold">
+                  </div>
+
+                  <div>
+                    <label class="text-[10px] font-bold text-gray-500 block">Subtítulo / Oferta del Banner</label>
+                    <input id="adm-slide-sub-${idx}" type="text" value="${(sl.subtitle || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 block">Texto Botón 1</label>
+                      <input id="adm-slide-btn1-${idx}" type="text" value="${(sl.btn1Text || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                    </div>
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 block">Categoría Destino Botón 2</label>
+                      <select id="adm-slide-cat-${idx}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-semibold">
+                        ${cmsData.deviceCategories.map(c => `<option value="${c.id}" ${sl.categoryTarget === c.id ? 'selected' : ''}>${c.shortName || c.name}</option>`).join('')}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="space-y-1.5 pt-1">
+                    <label class="text-[10px] font-bold text-gray-600 block">URL de Imagen o Video Corto (.mp4 / .webm) o Subir Archivo</label>
+                    <div class="flex items-center gap-2">
+                      <input id="adm-slide-url-${idx}" type="text" value="${sl.mediaUrl || ''}" placeholder="https://... (.jpg, .png, .mp4)" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                      <label class="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-primary text-white cursor-pointer font-bold shrink-0 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">upload_file</span> Subir Img/Video
+                        <input type="file" accept="image/*,video/mp4,video/webm,video/ogg" class="hidden" onchange="handleAdminHeroMediaUpload(this, ${idx})">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
             </div>
           </div>
 
@@ -5328,14 +5598,27 @@
       h.titleMain = document.getElementById('adm-hero-title1').value;
       h.titleGradient = document.getElementById('adm-hero-title2').value;
       h.description = document.getElementById('adm-hero-desc').value;
-      h.bannerImg = document.getElementById('adm-hero-img').value;
-      h.bannerBadge = document.getElementById('adm-hero-bbadge').value;
-      h.bannerPrice = document.getElementById('adm-hero-bprice').value;
-      h.bannerSub = document.getElementById('adm-hero-bsub').value;
 
       saveCMSState();
       renderCMSHeroAndTopbar();
-      showToast('¡Publicidad principal Hero actualizada!');
+      showToast('¡Textos principales del Hero actualizados!');
+    }
+
+    function saveAdminHeroSlide(idx) {
+      const sl = cmsData.heroSlides[idx];
+      if (!sl) return;
+      sl.mediaType = document.getElementById(`adm-slide-type-${idx}`).value;
+      sl.badge = document.getElementById(`adm-slide-badge-${idx}`).value;
+      sl.title = document.getElementById(`adm-slide-title-${idx}`).value;
+      sl.subtitle = document.getElementById(`adm-slide-sub-${idx}`).value;
+      sl.btn1Text = document.getElementById(`adm-slide-btn1-${idx}`).value;
+      sl.categoryTarget = document.getElementById(`adm-slide-cat-${idx}`).value;
+      sl.mediaUrl = document.getElementById(`adm-slide-url-${idx}`).value;
+
+      currentHeroSlideIndex = idx;
+      saveCMSState();
+      renderCMSHeroAndTopbar();
+      showToast(`¡Banner #${idx + 1} guardado y actualizado en el carrusel!`);
     }
 
     function saveAdminBentoCard(idx) {
