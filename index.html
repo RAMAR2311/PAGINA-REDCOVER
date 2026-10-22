@@ -89,6 +89,50 @@
       from { transform: translateY(100%); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
+    /* ==========================================
+       SISTEMA DE MODO OSCURO COMPLETO (html.dark)
+       ========================================== */
+    html.dark body {
+      background-color: #09090B !important;
+      color: #F4F4F5 !important;
+    }
+    html.dark .glass-nav {
+      background: rgba(15, 15, 18, 0.90) !important;
+      border-color: #27272A !important;
+    }
+    html.dark .glass-card {
+      background: rgba(24, 24, 27, 0.95) !important;
+      border-color: #27272A !important;
+    }
+    html.dark .bg-white:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      background-color: #18181B !important;
+    }
+    html.dark .bg-gray-50:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .bg-gray-100:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      background-color: #27272A !important;
+    }
+    html.dark .text-gray-900:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .text-gray-800:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      color: #F4F4F5 !important;
+    }
+    html.dark .text-gray-700:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .text-gray-600:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      color: #A1A1AA !important;
+    }
+    html.dark .text-gray-500:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      color: #71717A !important;
+    }
+    html.dark .border-gray-200:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-200\/80:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-200\/90:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-300:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-100:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      border-color: #27272A !important;
+    }
+    html.dark #cms-hero-title-gradient {
+      background-image: linear-gradient(to right, #FFFFFF, #FCA5A5, #EF233C) !important;
+    }
   </style>
 </head>
 <body class="bg-[#FAFAFC] text-gray-900 antialiased selection:bg-red-100 selection:text-red-700 min-h-screen flex flex-col justify-between">
@@ -145,12 +189,17 @@
       </nav>
 
       <!-- Right Actions -->
-      <div class="flex items-center gap-2 sm:gap-4">
+      <div class="flex items-center gap-2 sm:gap-3">
         <!-- Promo pill -->
         <a href="#ofertas" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full crimson-btn text-white text-xs font-semibold shadow-sm">
           <span class="material-symbols-outlined text-sm">local_fire_department</span>
           Ofertas
         </a>
+
+        <!-- Dark Mode Toggle Button -->
+        <button type="button" onclick="toggleDarkMode()" id="dark-mode-btn" aria-label="Alternar Modo Oscuro" title="Alternar Modo Oscuro / Claro" class="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors border border-gray-200/80">
+          <span id="dark-mode-icon" class="material-symbols-outlined text-[20px]">dark_mode</span>
+        </button>
 
         <!-- Search button -->
         <button id="search-btn" aria-label="Buscar" class="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors">
@@ -185,8 +234,11 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-6 py-4 space-y-3">
-      <div class="border-b border-gray-100 pb-2">
+      <div class="border-b border-gray-100 pb-2 flex items-center justify-between">
         <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos 2026</span>
+        <button type="button" onclick="toggleDarkMode()" class="px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-bold flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">dark_mode</span> Modo Oscuro
+        </button>
       </div>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (18 Pro, Duo, 17, Air, 16, 15, 14, 13, 12, 11)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('airpods')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">AirPods (Pro 3 2026, Max 2, AirPods 4 ANC, Pro 2)</a>
@@ -196,7 +248,7 @@
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('samsung')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">Samsung Galaxy (S26 Ultra, Z Fold 7, S25 Ultra, S24 Ultra)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, Cargadores)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras 4 Tiendas en Colombia</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras Tiendas en Bogotá</a>
       <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
         <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" href="#ofertas" class="w-full text-center py-2.5 rounded-full crimson-btn text-white text-sm font-semibold">
           Ver Ofertas Especiales
@@ -243,33 +295,10 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="relative pt-12 pb-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto overflow-hidden flex flex-col items-center text-center">
+    <section class="relative pt-10 pb-10 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto overflow-hidden flex flex-col items-center text-center">
       <!-- Glow ambient background -->
       <div class="absolute inset-0 -z-10 flex items-center justify-center opacity-40 pointer-events-none">
         <div class="w-[500px] h-[500px] bg-red-100 rounded-full blur-[140px]"></div>
-      </div>
-
-      <!-- Badges: Authorized & +10,000 Satisfied Customers -->
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 text-xs font-semibold text-primary shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-primary badge-pulse"></span>
-          <span id="cms-hero-auth-badge">Distribuidor Autorizado Apple en Colombia</span>
-        </div>
-
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-sm backdrop-blur-md">
-          <div class="flex -space-x-2 overflow-hidden">
-            <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop" alt="Cliente">
-            <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop" alt="Cliente">
-            <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop" alt="Cliente">
-          </div>
-          <div class="flex items-center gap-1.5 text-xs">
-            <div class="flex text-amber-500 font-bold tracking-tighter">
-              ★★★★★
-            </div>
-            <span class="font-extrabold text-gray-900" id="cms-hero-clients-badge">+10.000 clientes satisfechos</span>
-            <span class="text-[11px] text-gray-500 hidden sm:inline" id="cms-hero-rating-badge">• 4.9/5 en Colombia</span>
-          </div>
-        </div>
       </div>
 
       <!-- Headline -->
@@ -285,7 +314,7 @@
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row items-center gap-4 mb-14 w-full sm:w-auto">
+      <div class="flex flex-col sm:flex-row items-center gap-4 mb-12 w-full sm:w-auto">
         <a class="w-full sm:w-auto px-8 py-4 rounded-full crimson-btn text-white font-semibold text-sm shadow-lg flex items-center justify-center gap-2" href="#catalogo-dispositivos" onclick="filterDevices('iphone')">
           <span id="cms-hero-cta1">Reservar iPhone 18 Pro</span>
           <span class="material-symbols-outlined text-sm">arrow_forward</span>
@@ -319,10 +348,87 @@
       </div>
     </section>
 
-    <!-- Quick Category Bar -->
+    <!-- Sección Interactiva Debajo del Banner Principal: +10.000 Clientes Satisfechos -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
-      <div id="quick-categories-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-3">
-        <!-- Renderizado dinámicamente por JS -->
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800/90 p-6 sm:p-8 shadow-2xl text-white">
+        <!-- Resplandor decorativo -->
+        <div class="absolute -top-24 -left-24 w-72 h-72 bg-primary/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- Columna Izquierda: Contador & Comunidad +10.000 Clientes -->
+          <div class="lg:col-span-5 space-y-3 text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[11px] font-extrabold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+              Comunidad Oficial RedCover Colombia
+            </div>
+            <div class="flex items-baseline gap-3">
+              <span class="text-4xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-primary">+10.000</span>
+              <span class="text-lg sm:text-xl font-extrabold text-white">Clientes Felices</span>
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              Más de diez mil personas en Bogotá y toda Colombia han estrenado su iPhone, MacBook, iPad, Apple Watch y Samsung Galaxy con respaldo oficial y entrega inmediata.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 pt-1">
+              <div class="flex -space-x-2.5 overflow-hidden">
+                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente 1">
+                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Cliente 2">
+                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Cliente 3">
+                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Cliente 4">
+                <span class="inline-flex items-center justify-center h-9 px-2.5 rounded-full ring-2 ring-zinc-900 bg-primary text-white text-[10px] font-extrabold">+10K</span>
+              </div>
+              <div>
+                <div class="flex items-center text-amber-400 text-sm font-bold tracking-tight">
+                  ★★★★★ <span class="text-white text-xs font-extrabold ml-1.5">4.9 / 5.0</span>
+                </div>
+                <span class="text-[11px] text-zinc-400 block">Calificación verificada en tiendas y WhatsApp</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Testimonios Interactivos + Métricas en Vivo -->
+          <div class="lg:col-span-7 flex flex-col gap-4">
+            <!-- Métricas Interactivas -->
+            <div class="grid grid-cols-3 gap-2.5 sm:gap-3">
+              <div onclick="document.getElementById('tiendas').scrollIntoView({behavior:'smooth'})" class="cursor-pointer p-3.5 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-primary/60 transition-all text-center group">
+                <span class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-primary transition-colors block">10.480+</span>
+                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Equipos Entregados</span>
+              </div>
+              <div onclick="document.getElementById('canje').scrollIntoView({behavior:'smooth'})" class="cursor-pointer p-3.5 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-primary/60 transition-all text-center group">
+                <span class="text-xl sm:text-2xl font-extrabold text-emerald-400 block">99.4%</span>
+                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Recomendación Real</span>
+              </div>
+              <div onclick="document.getElementById('tiendas').scrollIntoView({behavior:'smooth'})" class="cursor-pointer p-3.5 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-primary/60 transition-all text-center group">
+                <span class="text-xl sm:text-2xl font-extrabold text-amber-400 block">2 Sedes</span>
+                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">C.C. Caribe • Locales 136 y 197</span>
+              </div>
+            </div>
+
+            <!-- Visor Interactivo de Clientes Satisfechos -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-zinc-900/95 border border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3.5">
+                <img id="client-story-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop" alt="Cliente RedCover" class="w-12 h-12 rounded-2xl object-cover border-2 border-primary shrink-0">
+                <div class="space-y-1 text-left">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span id="client-story-name" class="text-xs font-extrabold text-white">Valentina Gómez • Bogotá</span>
+                    <span id="client-story-model" class="px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold">Estrenó iPhone 18 Pro Max</span>
+                  </div>
+                  <p id="client-story-quote" class="text-xs text-zinc-300 italic leading-relaxed">
+                    "Entregué mi iPhone 15 Pro en Plan Canje en el Local 136 del C.C. Caribe y salí en 15 minutos con mi iPhone 18 Pro Max nuevo y sellado. ¡Atención 10/10!"
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 self-end sm:self-center shrink-0">
+                <button type="button" onclick="prevClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors" title="Testimonio anterior">
+                  <span class="material-symbols-outlined text-sm">chevron_left</span>
+                </button>
+                <button type="button" onclick="nextClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors" title="Siguiente testimonio">
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -915,104 +1021,39 @@
     <!-- Physical Stores Section -->
     <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-200" id="tiendas">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold text-primary uppercase tracking-wider bg-red-50 px-3 py-1 rounded-md border border-red-100">Presencia Nacional</span>
-        <h2 class="text-3xl font-extrabold text-gray-900 mt-2 tracking-tight">Nuestras Tiendas Físicas en Colombia</h2>
-        <p class="text-sm text-gray-600 mt-2">Visítanos, prueba los equipos en persona y vive la asesoría técnica especializada.</p>
+        <span class="text-xs font-bold text-primary uppercase tracking-wider bg-red-50 px-3 py-1 rounded-md border border-red-100">Sedes Oficiales Bogotá</span>
+        <h2 class="text-3xl font-extrabold text-gray-900 mt-2 tracking-tight">Nuestras Tiendas en San Andresito de la 38</h2>
+        <p class="text-sm text-gray-600 mt-2">Visítanos en el Centro Comercial Caribe (Locales 136 y 197), prueba los equipos en persona y recibe asesoría especializada.</p>
       </div>
 
-      <div id="stores-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Store 1: Bogotá -->
-        <div class="bg-white p-6 rounded-2xl border border-gray-200/90 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Flagship Store</span>
-              <span class="material-symbols-outlined text-primary">storefront</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">Bogotá D.C.</h3>
-            <p class="text-xs text-gray-600 mb-3 font-medium">Centro Comercial Andino, Local 204 (Zona Rosa)</p>
-            <div class="text-[11px] text-gray-500 space-y-1">
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">schedule</span> Lun - Sáb: 10:00 a.m. - 8:00 p.m.</p>
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">call</span> +57 (601) 745-8900</p>
-            </div>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100">
-            <a class="text-primary text-xs font-bold hover:underline inline-flex items-center gap-1" target="_blank" href="https://maps.google.com/?q=Centro+Comercial+Andino+Bogota">
-              Cómo llegar <span class="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Store 2: Medellín -->
-        <div class="bg-white p-6 rounded-2xl border border-gray-200/90 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Tienda Autorizada</span>
-              <span class="material-symbols-outlined text-primary">storefront</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">Medellín</h3>
-            <p class="text-xs text-gray-600 mb-3 font-medium">Centro Comercial El Tesoro, Local 1210 (El Poblado)</p>
-            <div class="text-[11px] text-gray-500 space-y-1">
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">schedule</span> Lun - Sáb: 10:00 a.m. - 9:00 p.m.</p>
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">call</span> +57 (604) 448-3200</p>
-            </div>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100">
-            <a class="text-primary text-xs font-bold hover:underline inline-flex items-center gap-1" target="_blank" href="https://maps.google.com/?q=El+Tesoro+Medellin">
-              Cómo llegar <span class="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Store 3: Cali -->
-        <div class="bg-white p-6 rounded-2xl border border-gray-200/90 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Tienda Autorizada</span>
-              <span class="material-symbols-outlined text-primary">storefront</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">Cali</h3>
-            <p class="text-xs text-gray-600 mb-3 font-medium">Centro Comercial Jardín Plaza, Local 142</p>
-            <div class="text-[11px] text-gray-500 space-y-1">
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">schedule</span> Lun - Sáb: 10:00 a.m. - 8:30 p.m.</p>
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">call</span> +57 (602) 380-9900</p>
-            </div>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100">
-            <a class="text-primary text-xs font-bold hover:underline inline-flex items-center gap-1" target="_blank" href="https://maps.google.com/?q=Jardin+Plaza+Cali">
-              Cómo llegar <span class="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Store 4: Barranquilla -->
-        <div class="bg-white p-6 rounded-2xl border border-gray-200/90 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Tienda Autorizada</span>
-              <span class="material-symbols-outlined text-primary">storefront</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1">Barranquilla</h3>
-            <p class="text-xs text-gray-600 mb-3 font-medium">Centro Comercial Buenavista, Local 210</p>
-            <div class="text-[11px] text-gray-500 space-y-1">
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">schedule</span> Lun - Sáb: 10:00 a.m. - 8:00 p.m.</p>
-              <p class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-gray-400">call</span> +57 (605) 369-1100</p>
-            </div>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100">
-            <a class="text-primary text-xs font-bold hover:underline inline-flex items-center gap-1" target="_blank" href="https://maps.google.com/?q=Buenavista+Barranquilla">
-              Cómo llegar <span class="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
-          </div>
-        </div>
+      <div id="stores-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <!-- Renderizado dinámicamente por JS (Locales 136 y 197 C.C. Caribe) -->
       </div>
     </section>
 
-    <!-- WhatsApp Floating Action Button (Solo icono circular) -->
-    <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20quiero%20asesor%C3%ADa%20sobre%20un%20producto%20Apple" target="_blank" class="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Chat en WhatsApp" aria-label="Chat en WhatsApp">
-      <svg class="w-7 h-7 fill-current transition-transform group-hover:scale-105" viewBox="0 0 24 24">
-        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-      </svg>
-    </a>
+    <!-- Floating Social Buttons: TikTok, Instagram y WhatsApp -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
+      <!-- TikTok Floating Action Button -->
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="bg-zinc-950 hover:bg-black text-white w-12 h-12 rounded-full shadow-2xl border border-zinc-700 hover:border-[#00f2fe] hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Síguenos en TikTok" aria-label="Síguenos en TikTok">
+        <svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+        </svg>
+      </a>
+
+      <!-- Instagram Floating Action Button -->
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white w-12 h-12 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Síguenos en Instagram" aria-label="Síguenos en Instagram">
+        <svg class="w-6 h-6 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+
+      <!-- WhatsApp Floating Action Button -->
+      <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20quiero%20asesor%C3%ADa%20sobre%20un%20producto%20Apple" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#20bd5a] text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Chat en WhatsApp" aria-label="Chat en WhatsApp">
+        <svg class="w-7 h-7 fill-current transition-transform group-hover:scale-105" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+      </a>
+    </div>
 
   </main>
 
@@ -1150,10 +1191,8 @@
                 <label class="block text-[11px] font-bold text-gray-600 mb-1">Modalidad de Entrega *</label>
                 <select id="chk-delivery" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs bg-white focus:border-primary outline-none">
                   <option value="Envío Express Asegurado a Domicilio (Gratis)">Envío Express Asegurado a Domicilio (Gratis)</option>
-                  <option value="Retiro en Tienda Bogotá (C.C. Andino Local 204)">Retiro en Tienda Bogotá (C.C. Andino Local 204)</option>
-                  <option value="Retiro en Tienda Medellín (C.C. El Tesoro Local 1210)">Retiro en Tienda Medellín (C.C. El Tesoro Local 1210)</option>
-                  <option value="Retiro en Tienda Cali (C.C. Jardín Plaza Local 142)">Retiro en Tienda Cali (C.C. Jardín Plaza Local 142)</option>
-                  <option value="Retiro en Tienda Barranquilla (C.C. Buenavista Local 210)">Retiro en Tienda Barranquilla (C.C. Buenavista Local 210)</option>
+                  <option value="Retiro en Tienda Bogotá (San Andresito de la 38 - C.C. Caribe Local 136)">Retiro en Tienda Bogotá (San Andresito de la 38 - C.C. Caribe Local 136)</option>
+                  <option value="Retiro en Tienda Bogotá (San Andresito de la 38 - C.C. Caribe Local 197)">Retiro en Tienda Bogotá (San Andresito de la 38 - C.C. Caribe Local 197)</option>
                 </select>
               </div>
               <div>
@@ -3498,23 +3537,21 @@
         ]
       },
       tiendas: {
-        categoryTitle: "Tiendas Oficiales RedCover",
+        categoryTitle: "Tiendas Oficiales RedCover Bogotá",
         primaryLinks: [
-          { name: "Ver todas nuestras tiendas físicas", href: "#tiendas", bold: true },
-          { name: "Bogotá D.C. - C.C. Andino Local 204", href: "#tiendas" },
-          { name: "Medellín - C.C. El Tesoro Local 1210", href: "#tiendas" },
-          { name: "Cali - C.C. Jardín Plaza Local 142", href: "#tiendas" },
-          { name: "Barranquilla - C.C. Buenavista Local 210", href: "#tiendas" }
+          { name: "Ver nuestras 2 sedes en Bogotá", href: "#tiendas", bold: true },
+          { name: "Bogotá D.C. • San Andresito de la 38 (C.C. Caribe Local 136)", href: "#tiendas" },
+          { name: "Bogotá D.C. • San Andresito de la 38 (C.C. Caribe Local 197)", href: "#tiendas" }
         ],
         secondaryTitle: "Servicios en Tienda",
         secondaryLinks: [
           { name: "Agendar Servicio Técnico Apple", action: "openInfoModal('soporte')" },
           { name: "Hablar con Asesor por WhatsApp", href: "https://wa.me/573001234567" }
         ],
-        tertiaryTitle: "Contacto & Horarios",
+        tertiaryTitle: "Ubicación & Horarios",
         tertiaryLinks: [
-          { name: "Línea Nacional: (601) 745-8900", href: "#tiendas" },
-          { name: "Horarios: Lun a Sáb 10am - 8pm", href: "#tiendas" }
+          { name: "San Andresito de la 38 • C.C. Caribe", href: "#tiendas" },
+          { name: "Horarios: Lun a Sáb 9:30am - 7:30pm", href: "#tiendas" }
         ]
       }
     };
@@ -3629,10 +3666,91 @@
     // ============================================================================
     // SISTEMA CMS DE ADMINISTRADOR EN TIEMPO REAL (PRODUCTOS, OFERTAS, IMÁGENES, VIDEOS, CATEGORÍAS)
     // ============================================================================
-    const CMS_STORAGE_KEY = 'redcover_cms_state_v5';
+    const CMS_STORAGE_KEY = 'redcover_cms_state_v6';
     const ADMIN_MASTER_PASSWORD = 'admin2026*';
     let adminAuthenticated = false;
     let pendingAdminTabAfterAuth = null;
+
+    // ==========================================
+    // MODO OSCURO Y TESTIMONIOS INTERACTIVOS (+10.000 CLIENTES)
+    // ==========================================
+    const DARK_MODE_STORAGE_KEY = 'redcover_dark_mode';
+
+    function initDarkMode() {
+      const saved = localStorage.getItem(DARK_MODE_STORAGE_KEY);
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+        updateDarkModeIcons(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        updateDarkModeIcons(false);
+      }
+    }
+
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem(DARK_MODE_STORAGE_KEY, isDark ? 'dark' : 'light');
+      updateDarkModeIcons(isDark);
+      showToast(isDark ? '🌙 Modo Oscuro activado' : '☀️ Modo Claro activado');
+    }
+
+    function updateDarkModeIcons(isDark) {
+      const icon = document.getElementById('dark-mode-icon');
+      if (icon) icon.innerText = isDark ? 'light_mode' : 'dark_mode';
+    }
+
+    initDarkMode();
+
+    const clientStoriesData = [
+      {
+        name: 'Valentina Gómez • Bogotá D.C.',
+        model: 'Estrenó iPhone 18 Pro Max',
+        quote: '"Entregué mi iPhone 15 Pro en Plan Canje en el Local 136 del C.C. Caribe y salí en 15 minutos con mi iPhone 18 Pro Max nuevo y sellado. ¡Atención 10/10!"',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop'
+      },
+      {
+        name: 'Andrés Felipe Pardo • Bogotá D.C.',
+        model: 'Estrenó Samsung Galaxy S26 Ultra',
+        quote: '"Compré mi Galaxy S26 Ultra en San Andresito de la 38 (Local 197 C.C. Caribe). Me dieron factura oficial, garantía de 1 año y el mejor precio de Bogotá."',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop'
+      },
+      {
+        name: 'Camila Restrepo • Medellín',
+        model: 'Estrenó MacBook Pro M5 & AirPods Pro 3',
+        quote: '"Pedí mi MacBook Pro M5 y los nuevos AirPods Pro 3 por WhatsApp con envío asegurado. Llegó al día siguiente totalmente sellado y original."',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop'
+      },
+      {
+        name: 'Sebastián Morales • Bogotá D.C.',
+        model: 'Estrenó iPhone Duo Plegable 2026',
+        quote: '"Visité el Centro Comercial Caribe Local 136 y pude probar toda la gama Apple 2026. Me recibieron mi iPad y mi iPhone anterior en parte de pago."',
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop'
+      }
+    ];
+    let currentClientStoryIdx = 0;
+
+    function renderClientStory() {
+      const st = clientStoriesData[currentClientStoryIdx];
+      if (!st) return;
+      const av = document.getElementById('client-story-avatar');
+      const nm = document.getElementById('client-story-name');
+      const md = document.getElementById('client-story-model');
+      const qt = document.getElementById('client-story-quote');
+      if (av) av.src = st.avatar;
+      if (nm) nm.innerText = st.name;
+      if (md) md.innerText = st.model;
+      if (qt) qt.innerText = st.quote;
+    }
+
+    function prevClientStory() {
+      currentClientStoryIdx = (currentClientStoryIdx - 1 + clientStoriesData.length) % clientStoriesData.length;
+      renderClientStory();
+    }
+
+    function nextClientStory() {
+      currentClientStoryIdx = (currentClientStoryIdx + 1) % clientStoriesData.length;
+      renderClientStory();
+    }
 
     const factoryCatalogDevices = JSON.parse(JSON.stringify(allCatalogDevices));
 
@@ -4004,35 +4122,19 @@
       stores: [
         {
           id: 'store-1',
-          city: 'Bogotá D.C.',
-          badge: 'Tienda Principal + Lab Técnico',
-          address: 'C.C. Andino • Local 204 (Cra. 11 #82-71)',
-          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 6:00 PM',
-          phone: '(601) 745-8900'
+          city: 'Bogotá D.C. • San Andresito de la 38',
+          badge: 'Sede Principal • Local 136',
+          address: 'Centro Comercial Caribe • Local 136 (San Andresito de la 38)',
+          hours: 'Lun - Sáb: 9:30 AM - 7:30 PM | Dom y Festivos: 10:00 AM - 5:00 PM',
+          phone: '+57 300 123 4567'
         },
         {
           id: 'store-2',
-          city: 'Medellín',
-          badge: 'Showroom & Plan Canje',
-          address: 'C.C. El Tesoro • Local 1210 (Poblado)',
-          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 7:00 PM',
-          phone: '(604) 604-3210'
-        },
-        {
-          id: 'store-3',
-          city: 'Cali',
-          badge: 'Experiencia Apple & Servicio',
-          address: 'C.C. Jardín Plaza • Local 142 (Sur)',
-          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 6:00 PM',
-          phone: '(602) 489-1120'
-        },
-        {
-          id: 'store-4',
-          city: 'Barranquilla',
-          badge: 'Tienda Oficial & Accesorios',
-          address: 'C.C. Buenavista II • Local 210',
-          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 6:00 PM',
-          phone: '(605) 385-4400'
+          city: 'Bogotá D.C. • San Andresito de la 38',
+          badge: 'Showroom & Plan Canje • Local 197',
+          address: 'Centro Comercial Caribe • Local 197 (San Andresito de la 38)',
+          hours: 'Lun - Sáb: 9:30 AM - 7:30 PM | Dom y Festivos: 10:00 AM - 5:00 PM',
+          phone: '+57 300 123 4567'
         }
       ]
     };
