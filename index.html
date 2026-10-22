@@ -176,38 +176,49 @@
       <div class="border-b border-gray-100 pb-2">
         <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos</span>
       </div>
-      <a class="block text-base font-semibold text-gray-800 hover:text-primary" href="#iphone">iPhone (16 Pro, 16, 15 Pro, 15)</a>
-      <a class="block text-base font-medium text-gray-700 hover:text-primary" href="#watch">Apple Watch (Ultra 2, Series 10, SE)</a>
-      <a class="block text-base font-medium text-gray-700 hover:text-primary" href="#mac">MacBook & Mac (Pro M3, Air M2, Studio)</a>
-      <a class="block text-base font-medium text-gray-700 hover:text-primary" href="#ipad">iPad (Pro M4, Air M2, iPad mini)</a>
-      <a class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, AirPods)</a>
-      <a class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
-      <a class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras 4 Tiendas en Colombia</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (16 Pro, 16, 15 Pro, 15, 14, 13)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('watch')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">Apple Watch (Ultra 2, Series 10, SE)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('mac')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">MacBook & Mac (Pro M3, Air M3, iMac, Studio)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('ipad')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">iPad (Pro M4, Air M2, 10ª Gen, mini)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, AirPods)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras 4 Tiendas en Colombia</a>
       <div class="pt-2 border-t border-gray-100 flex items-center justify-between">
-        <a href="#ofertas" class="w-full text-center py-2.5 rounded-full crimson-btn text-white text-sm font-semibold">
+        <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" href="#ofertas" class="w-full text-center py-2.5 rounded-full crimson-btn text-white text-sm font-semibold">
           Ver Ofertas Especiales
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Search Modal -->
-  <div id="search-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-start justify-center pt-24 px-4 transition-all">
-    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-gray-200">
+  <!-- Search Modal (100% Funcional en tiempo real) -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-start justify-center pt-20 px-4 transition-all">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-gray-200 max-h-[82vh] flex flex-col">
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-bold text-gray-900 text-lg flex items-center gap-2">
           <span class="material-symbols-outlined text-primary">search</span>
-          Buscar en RedCover
+          Buscador Oficial RedCover
         </h3>
-        <button id="close-search-btn" class="text-gray-400 hover:text-gray-600">
+        <button id="close-search-btn" class="text-gray-400 hover:text-gray-700 w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
           <span class="material-symbols-outlined">close</span>
         </button>
       </div>
       <div class="relative">
-        <input type="text" id="search-input" placeholder="Escribe 'iPhone', 'MacBook', 'AirPods', 'MagSafe'..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm text-gray-900" autofocus>
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+        <input type="text" id="search-input" placeholder="Busca 'iPhone 16 Pro', 'MacBook', 'AirPods', 'iPad', 'Watch', 'MagSafe'..." class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm text-gray-900" autocomplete="off">
       </div>
-      <div class="mt-4 text-xs text-gray-500">
-        <span class="font-semibold text-gray-700">Búsquedas populares:</span> iPhone 16 Pro, MacBook Pro M3, AirPods Pro 2, Adaptador 35W, Plan Canje.
+      <div class="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-gray-500">
+        <span class="font-semibold text-gray-700 mr-1">Búsquedas rápidas:</span>
+        <button type="button" onclick="triggerQuickSearch('iPhone 16')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPhone 16 Pro</button>
+        <button type="button" onclick="triggerQuickSearch('MacBook')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">MacBook M3</button>
+        <button type="button" onclick="triggerQuickSearch('AirPods')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">AirPods Pro 2</button>
+        <button type="button" onclick="triggerQuickSearch('iPad')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPad Pro M4</button>
+        <button type="button" onclick="triggerQuickSearch('Watch')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">Apple Watch</button>
+        <button type="button" onclick="triggerQuickSearch('MagSafe')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">MagSafe</button>
+      </div>
+      <!-- Resultados dinámicos -->
+      <div id="search-results-container" class="mt-4 pt-3 border-t border-gray-100 overflow-y-auto space-y-2.5 flex-1">
+        <!-- Llenado por JS -->
       </div>
     </div>
   </div>
@@ -296,43 +307,43 @@
     <!-- Quick Category Bar -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-        <a href="#iphone" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
+        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('iphone')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
             <span class="material-symbols-outlined text-xl">phone_iphone</span>
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">iPhone</div>
-            <div class="text-[11px] text-gray-500">Serie 16 y 15</div>
+            <div class="text-[11px] text-gray-500">Serie 16 y 15 (6)</div>
           </div>
         </a>
 
-        <a href="#mac" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
+        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('mac')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
             <span class="material-symbols-outlined text-xl">laptop_mac</span>
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">MacBook</div>
-            <div class="text-[11px] text-gray-500">Air y Pro M3/M4</div>
+            <div class="text-[11px] text-gray-500">Air y Pro M3/M4 (4)</div>
           </div>
         </a>
 
-        <a href="#watch" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
+        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('watch')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
             <span class="material-symbols-outlined text-xl">watch</span>
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">Watch</div>
-            <div class="text-[11px] text-gray-500">Ultra 2 y Series 10</div>
+            <div class="text-[11px] text-gray-500">Ultra 2 y S10 (3)</div>
           </div>
         </a>
 
-        <a href="#ipad" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
+        <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('ipad')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
             <span class="material-symbols-outlined text-xl">tablet_mac</span>
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">iPad</div>
-            <div class="text-[11px] text-gray-500">Pro M4 y Air M2</div>
+            <div class="text-[11px] text-gray-500">Pro M4 y Air M2 (3)</div>
           </div>
         </a>
 
@@ -395,10 +406,15 @@
               <span class="text-xs text-gray-500 block">Precio especial:</span>
               <span class="text-xl font-extrabold text-gray-900">$4.199.000 COP</span>
             </div>
-            <button onclick="addToCart('Apple Watch Ultra 2 (49mm Titanio)', 4199000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-              <span class="material-symbols-outlined text-sm">shopping_cart</span>
-              Comprar
-            </button>
+            <div class="flex items-center gap-2">
+              <button onclick="openProductModal('watch-ultra-2')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
+                Ver Ficha
+              </button>
+              <button onclick="addToCart('Apple Watch Ultra 2 (49mm Titanio)', 4199000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
+                <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                Comprar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -424,10 +440,15 @@
               <span class="text-xs text-gray-500 block">Configuraciones desde:</span>
               <span class="text-xl font-extrabold text-gray-900">$9.899.000 COP</span>
             </div>
-            <button onclick="addToCart('MacBook Pro 14 M3 Pro (18GB/512GB)', 9899000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-              <span class="material-symbols-outlined text-sm">shopping_cart</span>
-              Comprar
-            </button>
+            <div class="flex items-center gap-2">
+              <button onclick="openProductModal('macbook-pro-m3')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
+                Ver Ficha
+              </button>
+              <button onclick="addToCart('MacBook Pro 14 M3 Pro (18GB/512GB)', 9899000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
+                <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                Comprar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -448,9 +469,14 @@
               <span class="text-[10px] text-gray-400 block">Desde</span>
               <span class="text-base font-bold text-gray-900">$4.299.000</span>
             </div>
-            <button onclick="addToCart('iPhone 16 (128GB Ultramarine)', 4299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B')" class="px-4 py-2 rounded-full crimson-btn text-white text-xs font-semibold">
-              Comprar
-            </button>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openProductModal('iphone-16')" class="px-2.5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-[11px] font-bold">
+                Ficha
+              </button>
+              <button onclick="addToCart('iPhone 16 (128GB Ultramarine)', 4299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B')" class="px-3.5 py-2 rounded-full crimson-btn text-white text-xs font-semibold">
+                Comprar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -471,9 +497,14 @@
               <span class="text-[10px] text-gray-400 block">Precio oficial</span>
               <span class="text-base font-bold text-gray-900">$1.299.000</span>
             </div>
-            <button onclick="addToCart('AirPods Pro 2 con USB-C MagSafe', 1299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="px-4 py-2 rounded-full crimson-btn text-white text-xs font-semibold">
-              Comprar
-            </button>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openProductModal('airpods-pro-2')" class="px-2.5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-[11px] font-bold">
+                Ficha
+              </button>
+              <button onclick="addToCart('AirPods Pro 2 con USB-C MagSafe', 1299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="px-3.5 py-2 rounded-full crimson-btn text-white text-xs font-semibold">
+                Comprar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -497,13 +528,201 @@
               <span class="text-xs text-gray-500 block">Desde</span>
               <span class="text-xl font-extrabold text-gray-900">$5.999.000 COP</span>
             </div>
-            <button onclick="addToCart('iPad Pro 11 M4 (256GB Wi-Fi)', 5999000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-              <span class="material-symbols-outlined text-sm">shopping_cart</span>
-              Comprar
-            </button>
+            <div class="flex items-center gap-2">
+              <button onclick="openProductModal('ipad-pro-m4')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
+                Ver Ficha
+              </button>
+              <button onclick="addToCart('iPad Pro 11 M4 (256GB Wi-Fi)', 5999000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
+                <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                Comprar
+              </button>
+            </div>
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CATÁLOGO COMPLETO DE DISPOSITIVOS APPLE -->
+    <!-- ========================================== -->
+    <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-200/80" id="catalogo-dispositivos">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="text-xs font-bold text-primary uppercase tracking-wider bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Tienda Oficial Completa</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-2 tracking-tight">Explora Todos los Productos Apple</h2>
+          <p class="text-xs sm:text-sm text-gray-600 mt-1">Selecciona cualquier equipo para ver su ficha técnica, elegir capacidad, comprar de contado o financiar al 0% por WhatsApp.</p>
+        </div>
+        <a href="iphone-16-pro.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline bg-red-50 px-4 py-2.5 rounded-full border border-red-100">
+          <span class="material-symbols-outlined text-sm">tune</span>
+          Ir al Configurador 3D iPhone 16 Pro
+        </a>
+      </div>
+
+      <!-- Pestañas de Categoría de Dispositivos -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8" id="device-category-tabs">
+        <button type="button" onclick="filterDevices('all')" data-dev-filter="all" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap">
+          Todos los Equipos (16)
+        </button>
+        <button type="button" onclick="filterDevices('iphone')" data-dev-filter="iphone" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (6)
+        </button>
+        <button type="button" onclick="filterDevices('mac')" data-dev-filter="mac" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">laptop_mac</span> Mac & MacBook (4)
+        </button>
+        <button type="button" onclick="filterDevices('ipad')" data-dev-filter="ipad" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">tablet_mac</span> iPad (3)
+        </button>
+        <button type="button" onclick="filterDevices('watch')" data-dev-filter="watch" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">watch</span> Apple Watch (3)
+        </button>
+      </div>
+
+      <!-- Grilla Dinámica de Todos los Dispositivos (Renderizada por JS) -->
+      <div id="full-devices-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Llenado automáticamente por JS con todos los modelos y acciones -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECCIÓN DE OFERTAS ESPECIALES (#ofertas) -->
+    <!-- ========================================== -->
+    <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-200/80" id="ofertas">
+      <div class="rounded-3xl bg-gradient-to-br from-zinc-900 via-neutral-900 to-zinc-950 text-white p-8 md:p-12 relative overflow-hidden shadow-xl">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 relative z-10">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+              <span class="material-symbols-outlined text-sm">local_fire_department</span>
+              Ofertas Exclusivas por Tiempo Limitado
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Promociones y Combos RedCover</h2>
+            <p class="text-sm text-zinc-400 mt-1">Aprovecha precios con descuento directo de distribuidor o financia a 24 cuotas sin interés.</p>
+          </div>
+          <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Unidades disponibles con envío inmediato hoy
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+          <!-- Oferta 1 -->
+          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">-12% OFF</span>
+                <span class="text-[11px] text-zinc-400 line-through">$5.699.000 COP</span>
+              </div>
+              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk" alt="iPhone 16 Pro Promo" class="max-h-32 w-auto object-contain">
+              </div>
+              <h3 class="text-base font-bold text-white">Bono Lanzamiento iPhone 16 Pro (128GB)</h3>
+              <p class="text-xs text-zinc-400 mt-1">Incluye Adaptador 20W Original + Envío Blindado Gratis.</p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs text-zinc-400">Precio Hoy:</span>
+                <span class="text-lg font-extrabold text-white">$4.999.000 COP</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="addToCart('Promo iPhone 16 Pro 128GB + Cargador 20W', 4999000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
+                </button>
+                <button onclick="directFinanceWhatsApp('Promo iPhone 16 Pro 128GB + Cargador 20W', 4999000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oferta 2 -->
+          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">Ahorra $700.000</span>
+                <span class="text-[11px] text-zinc-400 line-through">$6.199.000 COP</span>
+              </div>
+              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0" alt="MacBook Air M3" class="max-h-32 w-auto object-contain">
+              </div>
+              <h3 class="text-base font-bold text-white">Combo Estudio: MacBook Air 13" M3 + AirPods</h3>
+              <p class="text-xs text-zinc-400 mt-1">Chip M3, 8GB RAM, 256GB SSD + AirPods 4 incluidos en el paquete.</p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs text-zinc-400">Precio Hoy:</span>
+                <span class="text-lg font-extrabold text-white">$5.499.000 COP</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="addToCart('Combo MacBook Air 13 M3 + AirPods 4', 5499000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
+                </button>
+                <button onclick="directFinanceWhatsApp('Combo MacBook Air 13 M3 + AirPods 4', 5499000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oferta 3 -->
+          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">-15% OFF</span>
+                <span class="text-[11px] text-zinc-400 line-through">$1.529.000 COP</span>
+              </div>
+              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi" alt="AirPods Pro 2" class="max-h-32 w-auto object-contain">
+              </div>
+              <h3 class="text-base font-bold text-white">AirPods Pro 2 (USB-C MagSafe)</h3>
+              <p class="text-xs text-zinc-400 mt-1">Cancelación activa 2x, audio espacial y estuche de carga MagSafe con USB-C.</p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs text-zinc-400">Precio Hoy:</span>
+                <span class="text-lg font-extrabold text-white">$1.299.000 COP</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="addToCart('AirPods Pro 2 con USB-C MagSafe', 1299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
+                </button>
+                <button onclick="directFinanceWhatsApp('AirPods Pro 2 con USB-C MagSafe', 1299000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oferta 4 -->
+          <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold uppercase">Pack Full</span>
+                <span class="text-[11px] text-zinc-400 line-through">$698.000 COP</span>
+              </div>
+              <div class="h-40 rounded-xl bg-zinc-900 p-3 flex items-center justify-center mb-4">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we" alt="Kit MagSafe" class="max-h-32 w-auto object-contain">
+              </div>
+              <h3 class="text-base font-bold text-white">Kit Protección + Carga MagSafe 25W</h3>
+              <p class="text-xs text-zinc-400 mt-1">Funda Carbon Armor Pro + Cargador MagSafe 25W + Adaptador 20W Original.</p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-zinc-700/80 space-y-2.5">
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs text-zinc-400">Precio Hoy:</span>
+                <span class="text-lg font-extrabold text-white">$549.000 COP</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="addToCart('Kit Protección Carbon Armor + MagSafe 25W + Adaptador 20W', 549000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
+                </button>
+                <button onclick="directFinanceWhatsApp('Kit Protección Carbon Armor + MagSafe 25W + Adaptador 20W', 549000)" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-sm">chat</span> Financiar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1090,18 +1309,41 @@
         </div>
 
         <!-- Cart Footer -->
-        <div class="p-6 border-t border-gray-200 bg-gray-50/50 space-y-4">
-          <div class="flex items-center justify-between text-sm">
+        <div class="p-6 border-t border-gray-200 bg-gray-50/50 space-y-3.5">
+          <!-- Bono Plan Canje aplicado -->
+          <div id="cart-canje-row" class="hidden p-2.5 rounded-xl bg-red-50 border border-red-200 flex items-center justify-between text-xs">
+            <div>
+              <span class="font-bold text-primary block">Bono Plan Canje Aplicado:</span>
+              <span id="cart-canje-device" class="text-[10px] text-gray-600">iPhone 15 Pro</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="cart-canje-amount" class="font-extrabold text-primary">-$0 COP</span>
+              <button type="button" onclick="removeAppliedCanje()" class="text-gray-400 hover:text-red-600" title="Quitar bono">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs">
             <span class="text-gray-500">Envío nacional:</span>
             <span class="text-emerald-600 font-bold">GRATIS Asegurado</span>
           </div>
           <div class="flex items-center justify-between text-base">
-            <span class="font-bold text-gray-900">Total estimado:</span>
+            <span class="font-bold text-gray-900">Total a pagar:</span>
             <span id="cart-total" class="font-extrabold text-xl text-primary">$0 COP</span>
           </div>
-          <button id="checkout-btn" class="w-full py-3.5 rounded-full crimson-btn text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 uppercase tracking-wider">
-            <span>Iniciar Compra Segura</span>
-            <span class="material-symbols-outlined text-sm">lock</span>
+
+          <!-- Checkbox de financiación en carrito -->
+          <div class="p-2.5 rounded-xl bg-white border border-gray-200 flex items-center justify-between text-xs">
+            <label class="flex items-center gap-2 cursor-pointer text-gray-700 font-medium">
+              <input type="checkbox" id="cart-financing-checkbox" onchange="toggleCartFinancing(this.checked)" class="rounded text-primary focus:ring-primary h-4 w-4">
+              <span>¿Financiar hasta en 24 cuotas 0% interés?</span>
+            </label>
+          </div>
+
+          <button id="checkout-btn" class="w-full py-3.5 rounded-full crimson-btn text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 uppercase tracking-wider transition-all">
+            <span id="checkout-btn-text">Iniciar Compra Segura</span>
+            <span class="material-symbols-outlined text-sm" id="checkout-btn-icon">lock</span>
           </button>
           <div class="text-center">
             <span class="text-[11px] text-gray-400 flex items-center justify-center gap-1">
@@ -1110,6 +1352,175 @@
             </span>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL DE FICHA TÉCNICA Y COMPRA DE PRODUCTO -->
+  <!-- ========================================== -->
+  <div id="product-detail-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-gray-200 relative my-8">
+      <button type="button" onclick="closeProductModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div id="product-modal-body">
+        <!-- Llenado dinámicamente por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL DE CHECKOUT MULTI-PASO (PASARELA)    -->
+  <!-- ========================================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-gray-200 relative my-8 max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeCheckoutModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+
+      <!-- Step 1 & 2 Form -->
+      <div id="checkout-form-step">
+        <div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider mb-1">
+          <span class="material-symbols-outlined text-base">verified_user</span>
+          Pasarela Oficial RedCover Colombia
+        </div>
+        <h3 class="text-2xl font-extrabold text-gray-900 mb-6">Finalizar Compra Segura</h3>
+
+        <form id="order-checkout-form" onsubmit="submitOrderCheckout(event)" class="space-y-5">
+          <!-- Datos del Cliente -->
+          <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200 space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-primary">person</span>
+              1. Datos para Facturación Electrónica DIAN y Entrega
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 mb-1">Nombre Completo *</label>
+                <input type="text" id="chk-name" required placeholder="Ej. Carlos Andrés Gómez" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 mb-1">Cédula o NIT *</label>
+                <input type="text" id="chk-doc" required placeholder="Ej. 1.020.345.678" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 mb-1">WhatsApp / Celular *</label>
+                <input type="tel" id="chk-phone" required placeholder="Ej. 300 123 4567" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 mb-1">Correo Electrónico *</label>
+                <input type="email" id="chk-email" required placeholder="cliente@correo.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 mb-1">Modalidad de Entrega *</label>
+                <select id="chk-delivery" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs bg-white focus:border-primary outline-none">
+                  <option value="Envío Express Asegurado a Domicilio (Gratis)">Envío Express Asegurado a Domicilio (Gratis)</option>
+                  <option value="Retiro en Tienda Bogotá (C.C. Andino Local 204)">Retiro en Tienda Bogotá (C.C. Andino Local 204)</option>
+                  <option value="Retiro en Tienda Medellín (C.C. El Tesoro Local 1210)">Retiro en Tienda Medellín (C.C. El Tesoro Local 1210)</option>
+                  <option value="Retiro en Tienda Cali (C.C. Jardín Plaza Local 142)">Retiro en Tienda Cali (C.C. Jardín Plaza Local 142)</option>
+                  <option value="Retiro en Tienda Barranquilla (C.C. Buenavista Local 210)">Retiro en Tienda Barranquilla (C.C. Buenavista Local 210)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-gray-600 mb-1">Ciudad y Dirección *</label>
+                <input type="text" id="chk-address" required placeholder="Ej. Bogotá, Cra 11 # 82-71 Apto 502" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Método de Pago -->
+          <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200 space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-primary">payments</span>
+              2. Selecciona tu Medio de Pago
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <label class="flex items-center gap-2 p-3 rounded-xl border-2 border-primary bg-white cursor-pointer text-xs font-bold text-gray-900 chk-pay-label" onclick="selectCheckoutPayMethod('pse', this)">
+                <input type="radio" name="chk_pay" value="pse" checked class="text-primary focus:ring-primary">
+                <span>PSE / Débito</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-gray-200 bg-white cursor-pointer text-xs font-semibold text-gray-700 chk-pay-label" onclick="selectCheckoutPayMethod('card', this)">
+                <input type="radio" name="chk_pay" value="card" class="text-primary focus:ring-primary">
+                <span>Tarjeta Contado</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-gray-200 bg-white cursor-pointer text-xs font-semibold text-emerald-700 chk-pay-label" onclick="selectCheckoutPayMethod('financing', this)">
+                <input type="radio" name="chk_pay" value="financing" class="text-emerald-600 focus:ring-emerald-600">
+                <span>Financiar (WhatsApp)</span>
+              </label>
+            </div>
+
+            <!-- Sub-opciones PSE -->
+            <div id="chk-pse-box" class="pt-2">
+              <label class="block text-[11px] font-bold text-gray-600 mb-1">Selecciona tu Banco PSE:</label>
+              <select class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs bg-white">
+                <option>Bancolombia</option>
+                <option>Davivienda</option>
+                <option>Nu Colombia</option>
+                <option>Banco de Bogotá</option>
+                <option>BBVA Colombia</option>
+                <option>Scotiabank Colpatria</option>
+                <option>Nequi / DaviPlata</option>
+              </select>
+            </div>
+
+            <!-- Aviso si selecciona Financiar -->
+            <div id="chk-financing-box" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs">
+              <strong>Estudio de Crédito por WhatsApp:</strong> Al confirmar, te enviaremos directamente al WhatsApp oficial de RedCover con tus datos y pedido para aprobar tus 24 cuotas al 0% de interés.
+            </div>
+          </div>
+
+          <!-- Resumen Total -->
+          <div class="p-4 rounded-2xl bg-zinc-900 text-white flex items-center justify-between">
+            <div>
+              <span class="text-xs text-zinc-400 block">Total a pagar (IVA incluido):</span>
+              <span id="chk-summary-total" class="text-2xl font-extrabold text-white">$0 COP</span>
+            </div>
+            <button type="submit" id="chk-submit-btn" class="px-6 py-3.5 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2">
+              <span id="chk-submit-text">Confirmar y Pagar</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Confirmación de Orden Exitosa -->
+      <div id="checkout-success-step" class="hidden text-center py-6 space-y-5">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+          <span class="material-symbols-outlined text-4xl">check_circle</span>
+        </div>
+        <div>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold uppercase">¡Orden Confirmada!</span>
+          <h3 class="text-2xl font-extrabold text-gray-900 mt-3" id="success-order-id">Pedido #RC-2026-9042</h3>
+          <p class="text-xs text-gray-600 mt-1 max-w-md mx-auto">Hemos generado tu Factura Electrónica DIAN y preparado tu despacho asegurado con cobertura 100%.</p>
+        </div>
+        <div id="success-order-details" class="bg-gray-50 p-4 rounded-2xl border border-gray-200 text-left text-xs space-y-1.5 max-w-md mx-auto">
+          <!-- Detalles dinámicos -->
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <button type="button" onclick="sendOrderReceiptWhatsApp()" class="w-full sm:w-auto px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <span class="material-symbols-outlined text-sm">chat</span>
+            Recibir Comprobante y Tracking por WhatsApp
+          </button>
+          <button type="button" onclick="closeCheckoutModal()" class="w-full sm:w-auto px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold">
+            Volver a la Tienda
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL INFORMATIVO OFICIAL (SOPORTE / LEGAL)-->
+  <!-- ========================================== -->
+  <div id="info-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-gray-200 relative my-8">
+      <button type="button" onclick="closeInfoModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div id="info-modal-body">
+        <!-- Llenado por JS -->
       </div>
     </div>
   </div>
@@ -1131,14 +1542,16 @@
           RedCover Colombia
         </div>
         <div class="flex flex-wrap items-center gap-5 text-xs font-medium">
-          <a class="hover:text-primary transition-colors" href="#iphone">iPhone</a>
-          <a class="hover:text-primary transition-colors" href="#watch">Apple Watch</a>
-          <a class="hover:text-primary transition-colors" href="#mac">MacBook</a>
-          <a class="hover:text-primary transition-colors" href="#ipad">iPad</a>
+          <a onclick="filterDevices('iphone')" class="hover:text-primary transition-colors cursor-pointer" href="#catalogo-dispositivos">iPhone</a>
+          <a onclick="filterDevices('watch')" class="hover:text-primary transition-colors cursor-pointer" href="#catalogo-dispositivos">Apple Watch</a>
+          <a onclick="filterDevices('mac')" class="hover:text-primary transition-colors cursor-pointer" href="#catalogo-dispositivos">MacBook</a>
+          <a onclick="filterDevices('ipad')" class="hover:text-primary transition-colors cursor-pointer" href="#catalogo-dispositivos">iPad</a>
+          <a class="hover:text-primary transition-colors" href="#ofertas">Ofertas</a>
           <a class="hover:text-primary transition-colors" href="#canje">Plan Canje</a>
           <a class="hover:text-primary transition-colors" href="#accesorios">Accesorios</a>
           <a class="hover:text-primary transition-colors" href="#tiendas">Tiendas Físicas</a>
-          <a class="hover:text-primary transition-colors" href="#">Términos y Condiciones</a>
+          <button type="button" onclick="openInfoModal('terminos')" class="hover:text-primary transition-colors">Términos y Condiciones</button>
+          <button type="button" onclick="openInfoModal('soporte')" class="hover:text-primary transition-colors">Soporte Técnico</button>
           <span class="text-primary font-bold">🇨🇴 Colombia</span>
         </div>
       </div>
@@ -1151,7 +1564,7 @@
           <span>Bogotá D.C., Colombia</span>
           <span>•</span>
           <span class="text-emerald-600 font-semibold flex items-center gap-0.5">
-            <span class="material-symbols-outlined text-[13px]">verified</span> Respaldo Oficial
+            <span class="material-symbols-outlined text-[13px]">verified</span> +10.000 Clientes Satisfechos
           </span>
         </div>
       </div>
@@ -1160,11 +1573,220 @@
 
   <!-- Interactive JavaScript Logic -->
   <script>
-    // Shopping Cart State
-    let cart = [];
+    // ==========================================
+    // BASE DE DATOS COMPLETA DE DISPOSITIVOS APPLE
+    // ==========================================
+    const IMG_IPHONE_PRO = "https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk";
+    const IMG_IPHONE_16 = "https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B";
+    const IMG_MACBOOK = "https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0";
+    const IMG_IPAD = "https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ";
+    const IMG_WATCH = "https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn";
+    const IMG_AIRPODS = "https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi";
+    const IMG_MAGSAFE = "https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48";
+    const IMG_CASE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we";
+
+    const allCatalogDevices = [
+      {
+        id: 'iphone-16-pro',
+        category: 'iphone',
+        badge: 'Buque Insignia',
+        title: 'iPhone 16 Pro (128GB - 1TB)',
+        price: 4999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Chasis de Titanio Grado 5, Chip A18 Pro, Control de Cámara táctil y grabación 4K 120 fps.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion 120Hz', 'Chip A18 Pro de 3nm (GPU 6 núcleos)', 'Sistema de cámaras Pro 48MP + Zoom Óptico 5x', 'Acabados: Titanio Desierto, Natural, Blanco y Negro'],
+        variants: ['128 GB - $4.999.000', '256 GB - $5.599.000', '512 GB - $6.799.000', '1 TB - $7.999.000'],
+        configUrl: 'iphone-16-pro.html'
+      },
+      {
+        id: 'iphone-16-pro-max',
+        category: 'iphone',
+        badge: 'Máxima Autonomía',
+        title: 'iPhone 16 Pro Max (256GB - 1TB)',
+        price: 5899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'La pantalla más grande de 6.9", hasta 33 horas de video y teleobjetivo tetraprisma 5x.',
+        specs: ['Pantalla Super Retina XDR 6.9" bordes ultrafinos', 'Chip A18 Pro optimizado para Apple Intelligence', 'Hasta 33 horas de reproducción continua de video', 'Acabados: Titanio Desierto, Natural, Blanco y Negro'],
+        variants: ['256 GB - $5.899.000', '512 GB - $7.099.000', '1 TB - $8.299.000'],
+        configUrl: 'iphone-16-pro.html'
+      },
+      {
+        id: 'iphone-16',
+        category: 'iphone',
+        badge: 'Apple Intelligence',
+        title: 'iPhone 16 & 16 Plus (128GB)',
+        price: 4299000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Nuevo Chip A18, Botón de Acción personalizable, Control de Cámara y colores vibrantes.',
+        specs: ['Pantalla Super Retina XDR de 6.1" (o 6.7" en Plus)', 'Chip A18 de última generación', 'Cámara Fusion de 48 MP + Ultra Gran Angular Macro', 'Colores: Ultramarino, Verde Azulado, Rosa, Blanco, Negro'],
+        variants: ['iPhone 16 128GB - $4.299.000', 'iPhone 16 256GB - $4.799.000', 'iPhone 16 Plus 128GB - $4.799.000']
+      },
+      {
+        id: 'iphone-15-pro-max',
+        category: 'iphone',
+        badge: 'Titanio Aeroespacial',
+        title: 'iPhone 15 Pro Max (256GB)',
+        price: 5199000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Chip A17 Pro, conector USB-C con velocidad USB 3 y zoom óptico 5x en diseño de titanio.',
+        specs: ['Pantalla Super Retina XDR 6.7" ProMotion', 'Chip A17 Pro con trazado de rayos por hardware', 'Cámara principal 48 MP con teleobjetivo 5x', 'Compatible 100% con Apple Intelligence'],
+        variants: ['256 GB - $5.199.000', '512 GB - $5.999.000']
+      },
+      {
+        id: 'iphone-15',
+        category: 'iphone',
+        badge: 'Best Seller',
+        title: 'iPhone 15 (128GB)',
+        price: 3499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Dynamic Island, cámara gran angular de 48 MP con teleobjetivo 2x y puerto USB-C.',
+        specs: ['Pantalla Super Retina XDR de 6.1" hasta 2000 nits', 'Chip A16 Bionic ultrarrápido y eficiente', 'Vidrio trasero con infusión de color mate', 'Colores: Negro, Azul, Verde, Amarillo, Rosa'],
+        variants: ['128 GB - $3.499.000', '256 GB - $3.999.000']
+      },
+      {
+        id: 'iphone-14-13',
+        category: 'iphone',
+        badge: 'Oportunidad',
+        title: 'iPhone 14 & iPhone 13 (128GB)',
+        price: 2499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El ingreso ideal al ecosistema Apple con pantalla OLED Super Retina XDR, 5G y cámaras avanzadas.',
+        specs: ['Pantalla OLED de 6.1" con Ceramic Shield', 'Modo Cine en 4K Dolby Vision y Modo Acción', 'Autonomía para todo el día y carga MagSafe', 'Garantía Oficial Apple de 1 año en Colombia'],
+        variants: ['iPhone 13 128GB - $2.299.000', 'iPhone 14 128GB - $2.699.000']
+      },
+      {
+        id: 'macbook-pro-m3',
+        category: 'mac',
+        badge: 'Potencia Extrema',
+        title: 'MacBook Pro 14" y 16" (M3 Pro / Max)',
+        price: 9899000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Pantalla Liquid Retina XDR, hasta 22 horas de batería y todos los puertos profesionales.',
+        specs: ['Chip Apple M3 Pro o M3 Max de hasta 16 núcleos CPU', '18 GB o 36 GB de memoria unificada ultrarrápida', 'Puertos HDMI, lector SDXC, MagSafe 3 y 3x Thunderbolt 4', 'Acabado exclusivo Negro Espacial (Space Black) o Plata'],
+        variants: ['14" M3 Pro (18GB/512GB) - $9.899.000', '14" M3 Max (36GB/1TB) - $14.499.000', '16" M3 Pro (18GB/512GB) - $11.899.000']
+      },
+      {
+        id: 'macbook-air-m3',
+        category: 'mac',
+        badge: 'Ultraligera',
+        title: 'MacBook Air 13" y 15" (Chip M3)',
+        price: 5499000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Súper portátil, soporte para dos monitores externos, Wi-Fi 6E y hasta 18 horas de batería.',
+        specs: ['Chip Apple M3 de 8 núcleos CPU y GPU de hasta 10 núcleos', 'Pantalla Liquid Retina de 13.6" o 15.3" con True Tone', 'Cámara FaceTime HD 1080p y sistema de 4 o 6 altavoces', 'Colores: Medianoche, Blanco Estelar, Gris Espacial y Plata'],
+        variants: ['13" M3 (8GB/256GB) - $5.499.000', '13" M3 (16GB/512GB) - $6.699.000', '15" M3 (16GB/512GB) - $7.499.000']
+      },
+      {
+        id: 'imac-24-m3',
+        category: 'mac',
+        badge: 'Todo en Uno',
+        title: 'iMac 24" Pantalla Retina 4.5K (M3)',
+        price: 6899000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Diseño icónico de solo 11.5 mm de grosor con pantalla 4.5K de 1.000 millones de colores.',
+        specs: ['Pantalla Retina 4.5K de 24 pulgadas (4480 x 2520)', 'Chip Apple M3 para productividad y diseño gráfico', 'Incluye Magic Keyboard con Touch ID y Magic Mouse', '6 parlantes de alta fidelidad con Audio Espacial'],
+        variants: ['256GB SSD / 8GB - $6.899.000', '512GB SSD / 16GB - $8.199.000']
+      },
+      {
+        id: 'mac-studio-mini',
+        category: 'mac',
+        badge: 'Desktop Pro',
+        title: 'Mac mini & Mac Studio (M2 Pro / Max)',
+        price: 3199000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Escritorios compactos de alto desempeño para estudios de grabación, código y edición 8K.',
+        specs: ['Conectividad Thunderbolt 4, HDMI, Ethernet y USB-A', 'Dimensiones ultracompactas silenciosas', 'Compatible con Studio Display 5K de 27 pulgadas', 'Garantía Oficial Apple Colombia 1 Año'],
+        variants: ['Mac mini M2 (8GB/256GB) - $3.199.000', 'Mac mini M2 Pro (16GB/512GB) - $6.299.000', 'Mac Studio M2 Max (32GB/512GB) - $9.999.000']
+      },
+      {
+        id: 'ipad-pro-m4',
+        category: 'ipad',
+        badge: 'Tandem OLED',
+        title: 'iPad Pro 11" y 13" (Chip M4)',
+        price: 5999000,
+        img: IMG_IPAD,
+        shortDesc: 'Pantalla Ultra Retina XDR OLED en tándem y el potente Chip M4 en apenas 5.1 mm de grosor.',
+        specs: ['Pantalla Ultra Retina XDR con ProMotion y True Tone', 'Chip M4 con motor neuronal de 38 billones de ops/s', 'Compatible con Apple Pencil Pro y nuevo Magic Keyboard de aluminio', 'Escáner LiDAR y cámaras 4K ProRes'],
+        variants: ['11" Wi-Fi 256GB - $5.999.000', '11" Wi-Fi 512GB - $6.999.000', '13" Wi-Fi 256GB - $7.599.000']
+      },
+      {
+        id: 'ipad-air-m2',
+        category: 'ipad',
+        badge: 'Nuevo 11" y 13"',
+        title: 'iPad Air con Chip M2',
+        price: 3299000,
+        img: IMG_IPAD,
+        shortDesc: 'Disponible ahora en dos tamaños (11" y 13"), con cámara frontal horizontal y soporte Apple Pencil Pro.',
+        specs: ['Chip Apple M2 casi un 50% más rápido que la generación previa', 'Pantalla Liquid Retina laminada con revestimiento antirreflejo', 'Compatible con Apple Pencil Pro y Magic Keyboard', 'Colores: Azul, Morado, Blanco Estelar y Gris Espacial'],
+        variants: ['11" 128GB Wi-Fi - $3.299.000', '11" 256GB Wi-Fi - $3.899.000', '13" 128GB Wi-Fi - $4.399.000']
+      },
+      {
+        id: 'ipad-10-mini',
+        category: 'ipad',
+        badge: 'Versatilidad Total',
+        title: 'iPad (10.ª Gen) & iPad mini',
+        price: 1999000,
+        img: IMG_IPAD,
+        shortDesc: 'Diseño todo pantalla colorido ideal para universidad, notas manuscritas, lectura y entretenimiento.',
+        specs: ['Pantalla Liquid Retina de 10.9" (o 8.3" en iPad mini)', 'Conector USB-C y Touch ID en botón superior', 'Cámaras de 12 MP con Encuadre Centrado automático', 'Colores: Azul, Rosa, Amarillo y Plata'],
+        variants: ['iPad 10ª Gen 64GB - $1.999.000', 'iPad 10ª Gen 256GB - $2.699.000', 'iPad mini 64GB - $2.599.000']
+      },
+      {
+        id: 'watch-ultra-2',
+        category: 'watch',
+        badge: 'Titanio 49mm',
+        title: 'Apple Watch Ultra 2 (GPS + Cellular)',
+        price: 4199000,
+        img: IMG_WATCH,
+        shortDesc: 'El reloj más robusto y capaz de Apple. Pantalla de 3000 nits, sirena de 86 dB y buceo hasta 40m.',
+        specs: ['Caja de titanio aeroespacial de 49 mm (Natural o Negro)', 'Botón de Acción personalizable en Naranja Internacional', 'Hasta 36 horas de uso normal y 72h en modo ahorro', 'Correas: Alpine Loop, Trail Loop y Ocean Band'],
+        variants: ['Titanio Natural 49mm - $4.199.000', 'Titanio Negro 49mm - $4.299.000']
+      },
+      {
+        id: 'watch-series-10',
+        category: 'watch',
+        badge: 'Nuevo Diseño',
+        title: 'Apple Watch Series 10 (42mm / 46mm)',
+        price: 2199000,
+        img: IMG_WATCH,
+        shortDesc: 'El Apple Watch más delgado jamás creado con la pantalla OLED de ángulo amplio más grande.',
+        specs: ['Carga rápida: 80% de batería en solo 30 minutos', 'Sensores de temperatura del agua, profundidad y ECG', 'Notificaciones de apnea del sueño y frecuencia cardíaca', 'Acabados: Negro Azabache brillante, Oro Rosa y Plata'],
+        variants: ['Aluminio 42mm GPS - $2.199.000', 'Aluminio 46mm GPS - $2.399.000', 'Titanio 46mm GPS+Cell - $3.699.000']
+      },
+      {
+        id: 'watch-se-2',
+        category: 'watch',
+        badge: 'Calidad / Precio',
+        title: 'Apple Watch SE (2.ª Generación)',
+        price: 1299000,
+        img: IMG_WATCH,
+        shortDesc: 'Todas las funciones esenciales de salud, ejercicio y seguridad con Detección de Choques.',
+        specs: ['Chip S8 SiP de doble núcleo ultrarrápido', 'Resistencia al agua hasta 50 metros para natación', 'Monitoreo de frecuencia cardíaca y fases del sueño', 'Cajas de 40 mm y 44 mm en Medianoche, Estelar y Plata'],
+        variants: ['40mm GPS - $1.299.000', '44mm GPS - $1.449.000']
+      }
+    ];
+
+    // Estado del Carrito (Sincronizado con localStorage)
+    let cart = JSON.parse(localStorage.getItem('redcover_cart') || '[]');
+    let appliedCanje = JSON.parse(localStorage.getItem('redcover_canje') || 'null');
+    let cartFinancingMode = false;
+    let lastCompletedOrder = null;
+
+    function saveCartState() {
+      localStorage.setItem('redcover_cart', JSON.stringify(cart));
+      if (appliedCanje) {
+        localStorage.setItem('redcover_canje', JSON.stringify(appliedCanje));
+      } else {
+        localStorage.removeItem('redcover_canje');
+      }
+    }
 
     function formatCOP(val) {
-      return '$' + val.toLocaleString('es-CO') + ' COP';
+      return '$' + Math.round(val).toLocaleString('es-CO') + ' COP';
+    }
+
+    function calculate24Installment(val) {
+      return '$' + Math.round(val / 24).toLocaleString('es-CO') + ' COP/mes';
     }
 
     function showToast(msg) {
@@ -1176,9 +1798,202 @@
       setTimeout(() => {
         toast.classList.add('hidden');
         toast.classList.remove('flex', 'toast-enter');
-      }, 2600);
+      }, 2800);
     }
 
+    // ==========================================
+    // RENDERIZADO DEL CATÁLOGO DE DISPOSITIVOS
+    // ==========================================
+    function renderDevicesCatalog(filterCategory = 'all') {
+      const grid = document.getElementById('full-devices-grid');
+      if (!grid) return;
+
+      const filtered = filterCategory === 'all'
+        ? allCatalogDevices
+        : allCatalogDevices.filter(d => d.category === filterCategory);
+
+      grid.innerHTML = filtered.map(dev => `
+        <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/60 transition-all shadow-sm hover:shadow-md">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-zinc-950 mb-4 flex items-center justify-center cursor-pointer" onclick="openProductModal('${dev.id}')">
+              <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full bg-red-600/90 text-[10px] font-bold text-white uppercase">${dev.badge}</span>
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${dev.title}" src="${dev.img}">
+            </div>
+            <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 uppercase">
+              <span>Garantía 1 Año Apple</span>
+              <span class="text-emerald-600 font-bold">● En Stock</span>
+            </div>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug cursor-pointer hover:text-primary transition-colors" onclick="openProductModal('${dev.id}')">${dev.title}</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${dev.shortDesc}</p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-gray-100 space-y-2.5">
+            <div>
+              <div class="flex items-baseline justify-between">
+                <span class="text-[11px] text-gray-400">Contado desde:</span>
+                <span class="text-base font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
+              </div>
+              <p class="text-[11px] text-primary font-medium text-right">o 24 cuotas de ${calculate24Installment(dev.price)} (0%)</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="openProductModal('${dev.id}')" class="py-2 px-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-sm">visibility</span> Ver / Elegir
+              </button>
+              <button type="button" onclick="addToCart('${dev.title.replace(/'/g, "\\'")}', ${dev.price}, '${dev.img}')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-sm">shopping_bag</span> Comprar
+              </button>
+            </div>
+            <button type="button" onclick="directFinanceWhatsApp('${dev.title.replace(/'/g, "\\'")}', ${dev.price})" class="w-full py-2 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 text-[11px] font-bold transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">chat</span> Solicitar Financiación 0% por WhatsApp
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterDevices(category) {
+      document.querySelectorAll('.dev-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-dev-filter') === category) {
+          btn.className = "dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap flex items-center gap-1.5";
+        } else {
+          btn.className = "dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5";
+        }
+      });
+      renderDevicesCatalog(category);
+    }
+
+    function filterAndScroll(category) {
+      closeMegaMenu();
+      filterDevices(category);
+      const sec = document.getElementById('catalogo-dispositivos');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // MODAL DE DETALLE Y CONFIGURACIÓN DE PRODUCTO
+    // ==========================================
+    function openProductModal(productId) {
+      closeMegaMenu();
+      let dev = allCatalogDevices.find(d => d.id === productId);
+      if (!dev && productId === 'airpods-pro-2') {
+        dev = {
+          id: 'airpods-pro-2',
+          badge: 'Audio Pro',
+          title: 'AirPods Pro 2 con Estuche MagSafe (USB-C)',
+          price: 1299000,
+          img: IMG_AIRPODS,
+          shortDesc: 'Cancelación activa de ruido hasta 2 veces superior, Audio Adaptativo y Audio Espacial personalizado.',
+          specs: ['Chip H2 diseñado por Apple', 'Hasta 6 horas de audio con una sola carga (30h con estuche)', 'Resistencia al polvo, al sudor y al agua (IP54)', 'Estuche MagSafe con altavoz integrado y Rastreo Preciso'],
+          variants: ['Edición USB-C MagSafe - $1.299.000']
+        };
+      }
+      if (!dev) return;
+
+      const modal = document.getElementById('product-detail-modal');
+      const body = document.getElementById('product-modal-body');
+
+      body.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-5 rounded-2xl overflow-hidden bg-zinc-950 h-64 sm:h-72 flex items-center justify-center relative">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-bold uppercase">${dev.badge}</span>
+            <img src="${dev.img}" alt="${dev.title}" class="w-full h-full object-cover">
+          </div>
+          <div class="md:col-span-7 space-y-4 text-left">
+            <div>
+              <span class="text-[11px] font-mono text-emerald-600 font-bold">● En Stock Oficial Colombia • Envío Gratis</span>
+              <h3 class="text-2xl font-extrabold text-gray-900 mt-1">${dev.title}</h3>
+              <p class="text-xs text-gray-600 mt-1 leading-relaxed">${dev.shortDesc}</p>
+            </div>
+
+            <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-200 space-y-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-700 block">Especificaciones Destacadas:</span>
+              <ul class="text-xs text-gray-600 space-y-1">
+                ${dev.specs.map(s => `<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> ${s}</li>`).join('')}
+              </ul>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1.5">Selecciona versión / capacidad:</label>
+              <select id="modal-variant-select" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs font-semibold bg-white text-gray-900">
+                ${dev.variants.map(v => `<option value="${v}">${v}</option>`).join('')}
+              </select>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100 flex flex-wrap items-baseline justify-between gap-2">
+              <div>
+                <span class="text-xs text-gray-500 block">Precio Oficial Contado:</span>
+                <span class="text-2xl font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-emerald-700 font-bold block">Financiación 0% Interés:</span>
+                <span class="text-xs text-gray-600">24 cuotas de <strong>${calculate24Installment(dev.price)}</strong></span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+              <button type="button" onclick="addFromProductModal('${dev.title.replace(/'/g, "\\'")}', ${dev.price}, '${dev.img}')" class="py-3 px-4 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+                <span class="material-symbols-outlined text-base">shopping_bag</span>
+                Añadir a la Bolsa
+              </button>
+              <button type="button" onclick="financeFromProductModal('${dev.title.replace(/'/g, "\\'")}', ${dev.price})" class="py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+                <span class="material-symbols-outlined text-base">chat</span>
+                Financiar por WhatsApp
+              </button>
+            </div>
+            ${dev.configUrl ? `
+              <div class="text-center pt-1">
+                <a href="${dev.configUrl}" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1">
+                  Abrir Configurador Interactivo Completo del iPhone 16 Pro <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('product-detail-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function addFromProductModal(baseTitle, basePrice, img) {
+      const sel = document.getElementById('modal-variant-select');
+      const variantText = sel ? sel.value : baseTitle;
+      addToCart(`${baseTitle} [${variantText}]`, basePrice, img);
+      closeProductModal();
+      setTimeout(openCart, 400);
+    }
+
+    function financeFromProductModal(baseTitle, basePrice) {
+      const sel = document.getElementById('modal-variant-select');
+      const variantText = sel ? sel.value : baseTitle;
+      directFinanceWhatsApp(`${baseTitle} (${variantText})`, basePrice);
+    }
+
+    function directFinanceWhatsApp(productTitle, price) {
+      const installment = calculate24Installment(price);
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN a 0% de interés* para:%0A%0A` +
+        `📱 *Producto:* ${encodeURIComponent(productTitle)}%0A` +
+        `💰 *Precio de contado:* ${encodeURIComponent(formatCOP(price))}%0A` +
+        `💳 *Cuota estimada:* ${encodeURIComponent(installment)} (24 cuotas sin interés)%0A`;
+
+      if (appliedCanje) {
+        msg += `🔄 *Bono Plan Canje aplicado:* -${encodeURIComponent(formatCOP(appliedCanje.amount))} (Entregando ${encodeURIComponent(appliedCanje.device)})%0A`;
+      }
+
+      msg += `%0A¿Me indican los pasos para el estudio de crédito inmediato?`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    // ==========================================
+    // GESTIÓN DEL CARRITO + BONO PLAN CANJE
+    // ==========================================
     function addToCart(title, price, img) {
       const existing = cart.find(item => item.title === title);
       if (existing) {
@@ -1186,12 +2001,14 @@
       } else {
         cart.push({ title, price, img, qty: 1 });
       }
+      saveCartState();
       updateCartUI();
       showToast(`${title} añadido a la bolsa`);
     }
 
     function removeFromCart(index) {
       cart.splice(index, 1);
+      saveCartState();
       updateCartUI();
     }
 
@@ -1201,7 +2018,21 @@
       if (cart[index].qty <= 0) {
         cart.splice(index, 1);
       }
+      saveCartState();
       updateCartUI();
+    }
+
+    function removeAppliedCanje() {
+      appliedCanje = null;
+      saveCartState();
+      updateCartUI();
+      showToast('Bono de Plan Canje retirado');
+    }
+
+    function getCartNetTotal() {
+      const rawTotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const discount = appliedCanje ? appliedCanje.amount : 0;
+      return Math.max(0, rawTotal - discount);
     }
 
     function updateCartUI() {
@@ -1209,9 +2040,20 @@
       const itemsContainer = document.getElementById('cart-items');
       const emptyMsg = document.getElementById('empty-cart-msg');
       const totalEl = document.getElementById('cart-total');
+      const canjeRow = document.getElementById('cart-canje-row');
+      const canjeDevice = document.getElementById('cart-canje-device');
+      const canjeAmount = document.getElementById('cart-canje-amount');
 
       const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
       counter.innerText = totalQty;
+
+      if (appliedCanje && canjeRow) {
+        canjeRow.classList.remove('hidden');
+        canjeDevice.innerText = `${appliedCanje.device} (${appliedCanje.battery}, ${appliedCanje.condition})`;
+        canjeAmount.innerText = `-${formatCOP(appliedCanje.amount)}`;
+      } else if (canjeRow) {
+        canjeRow.classList.add('hidden');
+      }
 
       if (cart.length === 0) {
         itemsContainer.innerHTML = '';
@@ -1224,12 +2066,7 @@
       emptyMsg.classList.add('hidden');
       itemsContainer.innerHTML = '';
 
-      let grandTotal = 0;
-
       cart.forEach((item, idx) => {
-        const itemTotal = item.price * item.qty;
-        grandTotal += itemTotal;
-
         const row = document.createElement('div');
         row.className = 'flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-200/80';
         row.innerHTML = `
@@ -1250,7 +2087,24 @@
         itemsContainer.appendChild(row);
       });
 
-      totalEl.innerText = formatCOP(grandTotal);
+      totalEl.innerText = formatCOP(getCartNetTotal());
+    }
+
+    function toggleCartFinancing(checked) {
+      cartFinancingMode = checked;
+      const btn = document.getElementById('checkout-btn');
+      const text = document.getElementById('checkout-btn-text');
+      const icon = document.getElementById('checkout-btn-icon');
+
+      if (checked) {
+        btn.className = "w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
+        text.innerText = "Solicitar Financiación por WhatsApp";
+        icon.innerText = "chat";
+      } else {
+        btn.className = "w-full py-3.5 rounded-full crimson-btn text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
+        text.innerText = "Iniciar Compra Segura";
+        icon.innerText = "lock";
+      }
     }
 
     // Cart Drawer Toggle
@@ -1286,18 +2140,99 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Search Modal Toggle
+    // ==========================================
+    // BUSCADOR EN TIEMPO REAL
+    // ==========================================
     const searchBtn = document.getElementById('search-btn');
     const closeSearchBtn = document.getElementById('close-search-btn');
     const searchModal = document.getElementById('search-modal');
+    const searchInput = document.getElementById('search-input');
+    const searchResultsContainer = document.getElementById('search-results-container');
+
+    function getAllSearchableProducts() {
+      const items = allCatalogDevices.map(d => ({
+        title: d.title,
+        price: d.price,
+        img: d.img,
+        category: d.badge,
+        id: d.id
+      }));
+      // Also include all accessories from DOM
+      document.querySelectorAll('.acc-card').forEach(card => {
+        const h3 = card.querySelector('h3');
+        const img = card.querySelector('img');
+        const btn = card.querySelector('button[onclick^="addToCart"]');
+        if (h3 && img && btn) {
+          const match = btn.getAttribute('onclick').match(/addToCart\('([^']+)',\s*(\d+)/);
+          if (match) {
+            items.push({
+              title: h3.innerText,
+              price: parseInt(match[2], 10),
+              img: img.src,
+              category: 'Accesorio Oficial',
+              id: null
+            });
+          }
+        }
+      });
+      return items;
+    }
+
+    function renderSearchResults(query = '') {
+      const allItems = getAllSearchableProducts();
+      const q = query.trim().toLowerCase();
+      const results = q === '' ? allItems.slice(0, 6) : allItems.filter(item =>
+        item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+      );
+
+      if (results.length === 0) {
+        searchResultsContainer.innerHTML = `
+          <div class="text-center py-8 text-gray-400 text-xs">
+            No encontramos productos para "${query}". Prueba con 'iPhone', 'MacBook', 'iPad', 'Watch' o 'MagSafe'.
+          </div>
+        `;
+        return;
+      }
+
+      searchResultsContainer.innerHTML = results.map(item => `
+        <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-gray-50 hover:bg-red-50/40 border border-gray-200 transition-all">
+          <div class="flex items-center gap-3 min-w-0">
+            <img src="${item.img}" class="w-12 h-12 rounded-xl object-cover bg-zinc-900 shrink-0" alt="${item.title}">
+            <div class="min-w-0">
+              <span class="text-[10px] font-bold text-primary uppercase">${item.category}</span>
+              <h4 class="text-xs font-bold text-gray-900 truncate">${item.title}</h4>
+              <p class="text-xs font-extrabold text-gray-700">${formatCOP(item.price)}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            ${item.id ? `<button type="button" onclick="searchModal.classList.add('hidden'); searchModal.classList.remove('flex'); openProductModal('${item.id}')" class="px-3 py-1.5 rounded-full bg-white border border-gray-300 text-[11px] font-bold text-gray-800 hover:border-primary">Ver</button>` : ''}
+            <button type="button" onclick="addToCart('${item.title.replace(/'/g, "\\'")}', ${item.price}, '${item.img}'); searchModal.classList.add('hidden'); searchModal.classList.remove('flex'); openCart();" class="px-3 py-1.5 rounded-full crimson-btn text-white text-[11px] font-bold">+ Bolsa</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function triggerQuickSearch(term) {
+      searchInput.value = term;
+      renderSearchResults(term);
+    }
+
     searchBtn.addEventListener('click', () => {
       searchModal.classList.remove('hidden');
       searchModal.classList.add('flex');
+      renderSearchResults(searchInput.value);
+      setTimeout(() => searchInput.focus(), 50);
     });
+
+    searchInput.addEventListener('input', (e) => {
+      renderSearchResults(e.target.value);
+    });
+
     closeSearchBtn.addEventListener('click', () => {
       searchModal.classList.add('hidden');
       searchModal.classList.remove('flex');
     });
+
     searchModal.addEventListener('click', (e) => {
       if (e.target === searchModal) {
         searchModal.classList.add('hidden');
@@ -1305,7 +2240,9 @@
       }
     });
 
-    // Plan Canje Calculator con Batería y Estado
+    // ==========================================
+    // PLAN CANJE CON BATERÍA Y ESTADO DEL EQUIPO
+    // ==========================================
     const deviceSelect = document.getElementById('device-select');
     const batteryButtons = document.querySelectorAll('.battery-btn');
     const conditionButtons = document.querySelectorAll('.condition-btn');
@@ -1319,10 +2256,13 @@
     let currentConditionFactor = 1.0;
     let currentConditionLabel = 'Impecable (Sin detalles)';
 
-    function recalculateCanje() {
+    function getCurrentCanjeAmount() {
       const baseValue = parseFloat(deviceSelect.value);
-      const finalValue = Math.round(baseValue * currentConditionFactor * currentBatteryFactor);
-      calculatedBonus.innerText = formatCOP(finalValue);
+      return Math.round(baseValue * currentConditionFactor * currentBatteryFactor);
+    }
+
+    function recalculateCanje() {
+      calculatedBonus.innerText = formatCOP(getCurrentCanjeAmount());
     }
 
     if (deviceSelect) {
@@ -1362,11 +2302,17 @@
     if (applyCanjeBtn) {
       applyCanjeBtn.addEventListener('click', () => {
         const deviceText = deviceSelect.options[deviceSelect.selectedIndex].text;
-        const bonusText = calculatedBonus.innerText;
-        showToast(`¡Bono de ${bonusText} aplicado a tu cotización!`);
-        setTimeout(() => {
-          openCart();
-        }, 700);
+        const amount = getCurrentCanjeAmount();
+        appliedCanje = {
+          device: deviceText,
+          battery: currentBatteryLabel,
+          condition: currentConditionLabel,
+          amount: amount
+        };
+        saveCartState();
+        updateCartUI();
+        showToast(`¡Bono de ${formatCOP(amount)} aplicado a tu bolsa!`);
+        setTimeout(openCart, 500);
       });
     }
 
@@ -1407,173 +2353,376 @@
       });
     });
 
-    // Checkout button
+    // ==========================================
+    // CHECKOUT MULTI-PASO Y FINANCIACIÓN WHATSAPP
+    // ==========================================
+    let selectedCheckoutMethod = 'pse';
+
     document.getElementById('checkout-btn').addEventListener('click', () => {
       if (cart.length === 0) {
-        alert('Tu bolsa de compras está vacía. Selecciona un producto para continuar.');
+        showToast('Tu bolsa está vacía. Añade un producto primero.');
         return;
       }
-      alert('¡Gracias por elegir RedCover Colombia! Te estamos redirigiendo a la pasarela segura con PSE y financiación oficial Apple.');
+
+      if (cartFinancingMode) {
+        sendCartFinancingWhatsApp();
+        return;
+      }
+
+      closeCart();
+      openCheckoutModal();
     });
 
+    function sendCartFinancingWhatsApp(customerInfo = null) {
+      const netTotal = getCartNetTotal();
+      const itemsText = cart.map(i => `• ${i.title} (x${i.qty}) - ${formatCOP(i.price * i.qty)}`).join('%0A');
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar *FINANCIACIÓN a 24 cuotas (0% interés)* para mi pedido:%0A%0A` +
+        `${itemsText}%0A`;
+
+      if (appliedCanje) {
+        msg += `%0A🔄 *Plan Canje Aplicado:*%0A` +
+          `• Equipo entregado: ${encodeURIComponent(appliedCanje.device)}%0A` +
+          `• Batería: ${encodeURIComponent(appliedCanje.battery)} | Estado: ${encodeURIComponent(appliedCanje.condition)}%0A` +
+          `• Descuento: -${encodeURIComponent(formatCOP(appliedCanje.amount))}%0A`;
+      }
+
+      msg += `%0A💰 *Total Neto a Financiar:* ${encodeURIComponent(formatCOP(netTotal))}%0A` +
+        `💳 *Cuota mensual estimada (24 meses):* ${encodeURIComponent(calculate24Installment(netTotal))}%0A`;
+
+      if (customerInfo) {
+        msg += `%0A👤 *Datos del Solicitante:*%0A` +
+          `• Nombre: ${encodeURIComponent(customerInfo.name)}%0A` +
+          `• Cédula/NIT: ${encodeURIComponent(customerInfo.doc)}%0A` +
+          `• Teléfono: ${encodeURIComponent(customerInfo.phone)}%0A` +
+          `• Entrega: ${encodeURIComponent(customerInfo.delivery)} (${encodeURIComponent(customerInfo.address)})%0A`;
+      }
+
+      msg += `%0A¿Me ayudan con la aprobación inmediata de mi crédito?`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    function openCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      document.getElementById('checkout-form-step').classList.remove('hidden');
+      document.getElementById('checkout-success-step').classList.add('hidden');
+      document.getElementById('chk-summary-total').innerText = formatCOP(getCartNetTotal());
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectCheckoutPayMethod(method, labelEl) {
+      selectedCheckoutMethod = method;
+      document.querySelectorAll('.chk-pay-label').forEach(l => {
+        l.classList.remove('border-primary', 'border-2', 'font-bold');
+        l.classList.add('border-gray-200', 'border');
+      });
+      labelEl.classList.remove('border-gray-200', 'border');
+      labelEl.classList.add('border-primary', 'border-2', 'font-bold');
+
+      const pseBox = document.getElementById('chk-pse-box');
+      const finBox = document.getElementById('chk-financing-box');
+      const submitText = document.getElementById('chk-submit-text');
+
+      if (method === 'financing') {
+        pseBox.classList.add('hidden');
+        finBox.classList.remove('hidden');
+        submitText.innerText = 'Enviar Solicitud a WhatsApp';
+      } else if (method === 'pse') {
+        pseBox.classList.remove('hidden');
+        finBox.classList.add('hidden');
+        submitText.innerText = 'Pagar con PSE Ahora';
+      } else {
+        pseBox.classList.add('hidden');
+        finBox.classList.add('hidden');
+        submitText.innerText = 'Pagar con Tarjeta Ahora';
+      }
+    }
+
+    function submitOrderCheckout(e) {
+      e.preventDefault();
+      const customer = {
+        name: document.getElementById('chk-name').value,
+        doc: document.getElementById('chk-doc').value,
+        phone: document.getElementById('chk-phone').value,
+        email: document.getElementById('chk-email').value,
+        delivery: document.getElementById('chk-delivery').value,
+        address: document.getElementById('chk-address').value
+      };
+
+      if (selectedCheckoutMethod === 'financing') {
+        sendCartFinancingWhatsApp(customer);
+        closeCheckoutModal();
+        return;
+      }
+
+      const orderId = 'RC-2026-' + Math.floor(1000 + Math.random() * 9000);
+      const netTotal = getCartNetTotal();
+      lastCompletedOrder = {
+        orderId,
+        customer,
+        items: [...cart],
+        canje: appliedCanje,
+        total: netTotal,
+        method: selectedCheckoutMethod === 'pse' ? 'Débito Bancario PSE' : 'Tarjeta Crédito/Débito Contado'
+      };
+
+      document.getElementById('success-order-id').innerText = `Pedido #${orderId}`;
+      document.getElementById('success-order-details').innerHTML = `
+        <p><strong>Cliente:</strong> ${customer.name} (CC/NIT: ${customer.doc})</p>
+        <p><strong>Entrega:</strong> ${customer.delivery}</p>
+        <p><strong>Dirección:</strong> ${customer.address}</p>
+        <p><strong>Medio de Pago:</strong> ${lastCompletedOrder.method}</p>
+        <p><strong>Total Pagado:</strong> <span class="text-primary font-extrabold">${formatCOP(netTotal)}</span></p>
+      `;
+
+      // Clear cart after successful order
+      cart = [];
+      appliedCanje = null;
+      saveCartState();
+      updateCartUI();
+
+      document.getElementById('checkout-form-step').classList.add('hidden');
+      document.getElementById('checkout-success-step').classList.remove('hidden');
+    }
+
+    function sendOrderReceiptWhatsApp() {
+      if (!lastCompletedOrder) return;
+      const o = lastCompletedOrder;
+      const itemsStr = o.items.map(i => `• ${i.title} (x${i.qty})`).join('%0A');
+      const msg = `Hola RedCover Colombia 👋 Acabo de realizar el *Pedido #${o.orderId}* en la web:%0A%0A` +
+        `👤 *Cliente:* ${encodeURIComponent(o.customer.name)} (${encodeURIComponent(o.customer.doc)})%0A` +
+        `📦 *Productos:*%0A${itemsStr}%0A` +
+        `🚚 *Entrega:* ${encodeURIComponent(o.customer.delivery)} - ${encodeURIComponent(o.customer.address)}%0A` +
+        `💳 *Pago:* ${encodeURIComponent(o.method)} (${encodeURIComponent(formatCOP(o.total))})%0A%0A` +
+        `Quedo atento a mi guía de despacho asegurado y factura DIAN.`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
     // ==========================================
-    // MEGA MENÚ ESTILO APPLE (DESPLEGABLE INTERACTIVO)
+    // MODALES INFORMATIVOS OFICIALES
+    // ==========================================
+    const officialInfoPages = {
+      soporte: {
+        badge: 'Centro de Servicio Autorizado',
+        title: 'Soporte Técnico Oficial Apple en Colombia',
+        content: `
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">En RedCover Colombia contamos con laboratorios certificados por Apple, diagnósticos oficiales AST2 y repuestos 100% genuinos de fábrica.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
+              <strong class="text-gray-900 block mb-1">🔋 Cambio de Batería Original</strong>
+              <p class="text-gray-600">Reemplazo en 2 horas manteniendo la certificación de resistencia al agua y el 100% de condición en iOS.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
+              <strong class="text-gray-900 block mb-1">📱 Pantallas y Cámaras Genuinas</strong>
+              <p class="text-gray-600">Calibración True Tone oficial y piezas originales para iPhone, iPad, Mac y Apple Watch.</p>
+            </div>
+          </div>
+          <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20necesito%20agendar%20una%20cita%20de%20Soporte%20T%C3%A9cnico%20Apple" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full crimson-btn text-white text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">calendar_month</span> Agendar Cita Técnica por WhatsApp
+          </a>
+        `
+      },
+      garantia: {
+        badge: 'Respaldo Oficial 1 Año',
+        title: 'Garantía Oficial Apple y AppleCare+',
+        content: `
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">Todos los equipos vendidos por RedCover Colombia se entregan sellados, con factura electrónica legal DIAN y 1 año de garantía directa en cualquier centro autorizado Apple del país.</p>
+          <ul class="text-xs text-gray-700 space-y-2 mb-4">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Cobertura nacional e internacional Apple por 12 meses.</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Equipos 100% libres de operador y homologados en Colombia.</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Póliza de envío blindado contra todo riesgo hasta tus manos.</li>
+          </ul>
+        `
+      },
+      sistemas: {
+        badge: 'Ecosistema de Software',
+        title: 'iOS 18, macOS Sequoia, iPadOS 18 & Apple Intelligence',
+        content: `
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">La nueva generación de hardware Apple está diseñada desde el silicio para potenciar Apple Intelligence, brindando herramientas de escritura inteligente, edición generativa de fotos y una Siri completamente renovada con privacidad en el dispositivo.</p>
+          <div class="p-4 rounded-2xl bg-red-50 border border-red-100 text-xs text-gray-800">
+            <strong>Configuración Gratuita en Tienda:</strong> Al comprar tu equipo en RedCover, nuestros especialistas transfieren todos tus datos de tu teléfono anterior y configuran tu iCloud+ sin costo adicional.
+          </div>
+        `
+      },
+      terminos: {
+        badge: 'Información Legal Colombia',
+        title: 'Términos, Condiciones y Políticas RedCover',
+        content: `
+          <div class="space-y-3 text-xs text-gray-600 max-h-64 overflow-y-auto pr-2">
+            <p><strong>1. Facturación Electrónica DIAN:</strong> Todos los precios publicados están en Pesos Colombianos (COP) e incluyen el IVA legal vigente (19% cuando aplique según estatuto tributario).</p>
+            <p><strong>2. Financiación 0% Interés:</strong> Las 24 cuotas sin interés aplican con tarjetas seleccionadas de Bancolombia, Davivienda, Nu Colombia y Banco de Bogotá previa aprobación de la entidad financiera a través de nuestro canal asistido por WhatsApp.</p>
+            <p><strong>3. Plan Canje RedCover:</strong> El valor cotizado en la web corresponde a una estimación según el estado reportado de batería y estética. Al entregar el equipo se realiza una revisión técnica de 10 minutos para validar que no tenga bloqueos de iCloud ni reportes.</p>
+            <p><strong>4. Derecho de Retracto:</strong> Cumplimos íntegramente con el Estatuto del Consumidor (Ley 1480 de 2011) de la Superintendencia de Industria y Comercio (SIC).</p>
+          </div>
+        `
+      }
+    };
+
+    function openInfoModal(key) {
+      closeMegaMenu();
+      const info = officialInfoPages[key] || officialInfoPages.garantia;
+      const modal = document.getElementById('info-modal');
+      const body = document.getElementById('info-modal-body');
+
+      body.innerHTML = `
+        <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 text-[11px] font-bold uppercase">${info.badge}</span>
+        <h3 class="text-2xl font-extrabold text-gray-900 mt-3 mb-4">${info.title}</h3>
+        ${info.content}
+      `;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeInfoModal() {
+      const modal = document.getElementById('info-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // ==========================================
+    // MEGA MENÚ ESTILO APPLE (100% CONECTADO)
     // ==========================================
     const megaMenuData = {
       iphone: {
         categoryTitle: "Explorar iPhone",
         primaryLinks: [
-          { name: "Ver todos los modelos de iPhone", href: "iphone-16-pro.html", bold: true },
+          { name: "Ver todos los modelos de iPhone", action: "filterAndScroll('iphone')", bold: true },
           { name: "iPhone 16 Pro & Pro Max", href: "iphone-16-pro.html" },
-          { name: "iPhone 16", href: "#iphone" },
-          { name: "iPhone 15 Pro Max", href: "#iphone" },
-          { name: "iPhone 15", href: "#iphone" },
-          { name: "iPhone 14", href: "#iphone" },
-          { name: "iPhone 13", href: "#iphone" }
+          { name: "iPhone 16 & 16 Plus", action: "openProductModal('iphone-16')" },
+          { name: "iPhone 15 Pro Max", action: "openProductModal('iphone-15-pro-max')" },
+          { name: "iPhone 15", action: "openProductModal('iphone-15')" },
+          { name: "iPhone 14 & iPhone 13", action: "openProductModal('iphone-14-13')" }
         ],
         secondaryTitle: "Comprar iPhone",
         secondaryLinks: [
           { name: "Personalizar iPhone 16 Pro", href: "iphone-16-pro.html" },
-          { name: "Comprar iPhone", href: "iphone-16-pro.html" },
-          { name: "Accesorios para iPhone", href: "#accesorios" },
-          { name: "Fundas MagSafe & Carbon", href: "#accesorios" },
-          { name: "Cargadores y Cables USB-C", href: "#accesorios" },
+          { name: "Ver Catálogo de iPhone", action: "filterAndScroll('iphone')" },
+          { name: "Accesorios MagSafe para iPhone", href: "#accesorios" },
           { name: "Plan Canje para iPhone", href: "#canje" },
-          { name: "Financiación 0% Interés", href: "#canje" }
+          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('iPhone 16 Pro', 4999000)" }
         ],
         tertiaryTitle: "Más para el iPhone",
         tertiaryLinks: [
-          { name: "Soporte técnico para iPhone", href: "#tiendas" },
-          { name: "iOS 18 y Apple Intelligence", href: "#iphone" },
-          { name: "Garantía Oficial Apple 1 Año", href: "#tiendas" },
-          { name: "iCloud+", href: "#" },
-          { name: "Comparar modelos de iPhone", href: "#iphone" }
+          { name: "Soporte técnico para iPhone", action: "openInfoModal('soporte')" },
+          { name: "iOS 18 y Apple Intelligence", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" },
+          { name: "Comparar modelos de iPhone", href: "iphone-16-pro.html" }
         ]
       },
       watch: {
         categoryTitle: "Explorar Apple Watch",
         primaryLinks: [
-          { name: "Ver todos los modelos de Watch", href: "#watch", bold: true },
-          { name: "Apple Watch Ultra 2", href: "#watch" },
-          { name: "Apple Watch Series 10", href: "#watch" },
-          { name: "Apple Watch SE", href: "#watch" },
-          { name: "Apple Watch Hermès", href: "#watch" }
+          { name: "Ver todos los modelos de Watch", action: "filterAndScroll('watch')", bold: true },
+          { name: "Apple Watch Ultra 2 (49mm)", action: "openProductModal('watch-ultra-2')" },
+          { name: "Apple Watch Series 10", action: "openProductModal('watch-series-10')" },
+          { name: "Apple Watch SE (2.ª Gen)", action: "openProductModal('watch-se-2')" }
         ],
         secondaryTitle: "Comprar Watch",
         secondaryLinks: [
-          { name: "Comprar Apple Watch", href: "#watch" },
-          { name: "Correas oficiales Apple", href: "#accesorios" },
-          { name: "Correas Ocean & Alpine Loop", href: "#accesorios" },
-          { name: "Cargador magnético rápido", href: "#accesorios" }
+          { name: "Comprar Apple Watch", action: "filterAndScroll('watch')" },
+          { name: "Cargadores y Accesorios", href: "#accesorios" },
+          { name: "Financiar Apple Watch al 0%", action: "directFinanceWhatsApp('Apple Watch Ultra 2 / Series 10', 2199000)" }
         ],
         tertiaryTitle: "Más para el Apple Watch",
         tertiaryLinks: [
-          { name: "Soporte para Apple Watch", href: "#tiendas" },
-          { name: "watchOS 11", href: "#watch" },
-          { name: "Salud y Fitness Apple", href: "#" },
-          { name: "Comparar modelos de Watch", href: "#watch" }
+          { name: "Soporte para Apple Watch", action: "openInfoModal('soporte')" },
+          { name: "watchOS 11 y Salud", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial Apple", action: "openInfoModal('garantia')" }
         ]
       },
       mac: {
         categoryTitle: "Explorar Mac",
         primaryLinks: [
-          { name: "Ver todos los modelos de Mac", href: "#mac", bold: true },
-          { name: "MacBook Pro 14\" y 16\" (M3 Max)", href: "#mac" },
-          { name: "MacBook Air 13\" y 15\" (M3)", href: "#mac" },
-          { name: "iMac 24\" Retina 4.5K", href: "#mac" },
-          { name: "Mac mini", href: "#mac" },
-          { name: "Mac Studio", href: "#mac" },
-          { name: "Pantallas Studio Display", href: "#mac" }
+          { name: "Ver todos los modelos de Mac", action: "filterAndScroll('mac')", bold: true },
+          { name: "MacBook Pro 14\" y 16\" (M3 Pro/Max)", action: "openProductModal('macbook-pro-m3')" },
+          { name: "MacBook Air 13\" y 15\" (M3)", action: "openProductModal('macbook-air-m3')" },
+          { name: "iMac 24\" Retina 4.5K (M3)", action: "openProductModal('imac-24-m3')" },
+          { name: "Mac mini & Mac Studio", action: "openProductModal('mac-studio-mini')" }
         ],
         secondaryTitle: "Comprar Mac",
         secondaryLinks: [
-          { name: "Comprar Mac", href: "#mac" },
-          { name: "Accesorios para Mac", href: "#accesorios" },
-          { name: "Magic Keyboard & Magic Mouse", href: "#accesorios" },
-          { name: "Plan Canje de MacBooks", href: "#canje" }
+          { name: "Ver Catálogo de Mac", action: "filterAndScroll('mac')" },
+          { name: "Accesorios y Carga USB-C", href: "#accesorios" },
+          { name: "Plan Canje de MacBooks", href: "#canje" },
+          { name: "Financiar MacBook por WhatsApp", action: "directFinanceWhatsApp('MacBook Pro / Air M3', 5499000)" }
         ],
         tertiaryTitle: "Más para Mac",
         tertiaryLinks: [
-          { name: "Soporte técnico Mac", href: "#tiendas" },
-          { name: "macOS Sequoia", href: "#mac" },
-          { name: "AppleCare+ y Garantía", href: "#tiendas" },
-          { name: "Mac para Educación y Empresas", href: "#" }
+          { name: "Soporte técnico Mac", action: "openInfoModal('soporte')" },
+          { name: "macOS Sequoia", action: "openInfoModal('sistemas')" },
+          { name: "AppleCare+ y Garantía", action: "openInfoModal('garantia')" }
         ]
       },
       ipad: {
         categoryTitle: "Explorar iPad",
         primaryLinks: [
-          { name: "Ver todos los modelos de iPad", href: "#ipad", bold: true },
-          { name: "iPad Pro (Chip M4 Tandem OLED)", href: "#ipad" },
-          { name: "iPad Air (Chip M2)", href: "#ipad" },
-          { name: "iPad (10.ª generación)", href: "#ipad" },
-          { name: "iPad mini", href: "#ipad" },
-          { name: "Apple Pencil Pro & USB-C", href: "#ipad" },
-          { name: "Magic Keyboard para iPad Pro", href: "#ipad" }
+          { name: "Ver todos los modelos de iPad", action: "filterAndScroll('ipad')", bold: true },
+          { name: "iPad Pro (Chip M4 Tandem OLED)", action: "openProductModal('ipad-pro-m4')" },
+          { name: "iPad Air 11\" y 13\" (Chip M2)", action: "openProductModal('ipad-air-m2')" },
+          { name: "iPad (10.ª gen) & iPad mini", action: "openProductModal('ipad-10-mini')" }
         ],
         secondaryTitle: "Comprar iPad",
         secondaryLinks: [
-          { name: "Comprar iPad", href: "#ipad" },
+          { name: "Comprar iPad", action: "filterAndScroll('ipad')" },
           { name: "Accesorios para iPad", href: "#accesorios" },
-          { name: "Fundas Smart Folio", href: "#accesorios" },
-          { name: "Plan Canje para iPad", href: "#canje" }
+          { name: "Plan Canje para iPad", href: "#canje" },
+          { name: "Financiar iPad por WhatsApp", action: "directFinanceWhatsApp('iPad Pro M4 / Air M2', 3299000)" }
         ],
         tertiaryTitle: "Más para el iPad",
         tertiaryLinks: [
-          { name: "Soporte para el iPad", href: "#tiendas" },
-          { name: "iPadOS 18", href: "#ipad" },
-          { name: "Apple Intelligence", href: "#" },
-          { name: "Apps creativas (Final Cut & Logic)", href: "#" },
-          { name: "Comparar los modelos de iPad", href: "#ipad" }
+          { name: "Soporte para el iPad", action: "openInfoModal('soporte')" },
+          { name: "iPadOS 18 y Apple Intelligence", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial 1 Año", action: "openInfoModal('garantia')" }
         ]
       },
       accesorios: {
         categoryTitle: "Explorar Accesorios",
         primaryLinks: [
-          { name: "Ver todos los Accesorios", href: "#accesorios", bold: true },
-          { name: "AirPods Pro 2 (USB-C)", href: "#accesorios" },
-          { name: "AirPods 4 (con ANC)", href: "#accesorios" },
-          { name: "AirPods Max", href: "#accesorios" },
+          { name: "Ver todos los Accesorios (12)", href: "#accesorios", bold: true },
+          { name: "AirPods Pro 2 (USB-C)", action: "openProductModal('airpods-pro-2')" },
+          { name: "AirPods Max (USB-C)", href: "#accesorios" },
           { name: "Cargadores MagSafe Oficiales", href: "#accesorios" },
-          { name: "Fundas Carbon Armor Pro", href: "#accesorios" },
-          { name: "Adaptadores de corriente USB-C 35W", href: "#accesorios" },
-          { name: "AirTag y Llaveros", href: "#accesorios" }
+          { name: "Batería Externa MagSafe", href: "#accesorios" },
+          { name: "Fundas Carbon Armor & Silicona", href: "#accesorios" },
+          { name: "AirTag (Pack 1 y Pack 4)", href: "#accesorios" }
         ],
-        secondaryTitle: "Comprar por Dispositivo",
+        secondaryTitle: "Filtrar por Categoría",
         secondaryLinks: [
-          { name: "Accesorios para iPhone", href: "#accesorios" },
-          { name: "Accesorios para Apple Watch", href: "#accesorios" },
-          { name: "Accesorios para Mac", href: "#accesorios" },
-          { name: "Accesorios para iPad", href: "#accesorios" }
+          { name: "Audio & AirPods", href: "#accesorios" },
+          { name: "Carga Inalámbrica MagSafe", href: "#accesorios" },
+          { name: "Fundas y Protección", href: "#accesorios" },
+          { name: "Cables y Adaptadores USB-C", href: "#accesorios" }
         ],
         tertiaryTitle: "Beneficios de Accesorios",
         tertiaryLinks: [
-          { name: "Compatibilidad MagSafe 100%", href: "#accesorios" },
-          { name: "Repuestos y Cables originales Apple", href: "#tiendas" },
-          { name: "Envío gratis en compras mayores a $200.000", href: "#accesorios" }
+          { name: "100% Originales Sellados Apple", action: "openInfoModal('garantia')" },
+          { name: "Servicio Técnico y Repuestos", action: "openInfoModal('soporte')" }
         ]
       },
       canje: {
         categoryTitle: "Plan Canje RedCover",
         primaryLinks: [
-          { name: "Cotizador Express de Plan Canje", href: "#canje", bold: true },
+          { name: "Ir al Cotizador con Batería y Estado", href: "#canje", bold: true },
           { name: "Canjear iPhone (hasta $3.250.000)", href: "#canje" },
           { name: "Canjear MacBook (hasta $2.700.000)", href: "#canje" },
-          { name: "Canjear iPad (hasta $1.800.000)", href: "#canje" },
-          { name: "Canjear Apple Watch", href: "#canje" }
+          { name: "Canjear iPad (hasta $1.800.000)", href: "#canje" }
         ],
         secondaryTitle: "¿Cómo Funciona?",
         secondaryLinks: [
-          { name: "1. Cotiza tu dispositivo online", href: "#canje" },
-          { name: "2. Recibe tu bono de inmediato", href: "#canje" },
-          { name: "3. Entrega en tienda o por envío", href: "#canje" },
-          { name: "4. Estrena tu nuevo Apple hoy mismo", href: "#canje" }
+          { name: "1. Selecciona modelo, batería y estado", href: "#canje" },
+          { name: "2. Aplica el bono directo a tu bolsa", href: "#canje" },
+          { name: "3. O cotiza directo por WhatsApp", action: "sendCanjeToWhatsApp()" }
         ],
         tertiaryTitle: "Ventajas del Canje",
         tertiaryLinks: [
-          { name: "Sin intermediarios ni regateos", href: "#canje" },
-          { name: "Borrado seguro certificado de datos", href: "#canje" },
-          { name: "Abono directo a cuotas de financiación", href: "#canje" }
+          { name: "Términos del Plan Canje", action: "openInfoModal('terminos')" },
+          { name: "Borrado seguro certificado de datos", action: "openInfoModal('garantia')" }
         ]
       },
       tiendas: {
@@ -1587,15 +2736,12 @@
         ],
         secondaryTitle: "Servicios en Tienda",
         secondaryLinks: [
-          { name: "Asesoría personalizada Apple", href: "#tiendas" },
-          { name: "Servicio Técnico Autorizado", href: "#tiendas" },
-          { name: "Prueba libre de dispositivos", href: "#tiendas" },
-          { name: "Recogida de compras online", href: "#tiendas" }
+          { name: "Agendar Servicio Técnico Apple", action: "openInfoModal('soporte')" },
+          { name: "Hablar con Asesor por WhatsApp", href: "https://wa.me/573001234567" }
         ],
         tertiaryTitle: "Contacto & Horarios",
         tertiaryLinks: [
           { name: "Línea Nacional: (601) 745-8900", href: "#tiendas" },
-          { name: "WhatsApp Oficial de Ventas", href: "https://wa.me/573001234567" },
           { name: "Horarios: Lun a Sáb 10am - 8pm", href: "#tiendas" }
         ]
       }
@@ -1607,49 +2753,42 @@
     let activeMenuKey = null;
     let menuCloseTimeout = null;
 
+    function renderMegaLink(link, cls) {
+      if (link.action) {
+        return `<button type="button" onclick="${link.action}" class="block text-left w-full ${cls} transition-colors">${link.name}</button>`;
+      }
+      const target = link.href && link.href.startsWith('http') ? 'target="_blank"' : '';
+      return `<a href="${link.href}" ${target} onclick="closeMegaMenu()" class="block ${cls} transition-colors">${link.name}</a>`;
+    }
+
     function renderMenuContent(key) {
       const data = megaMenuData[key];
       if (!data) return;
 
       megaMenuContent.innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 text-left animate-fadeIn">
-          <!-- Columna 1: Modelos / Conoce (Grande y Destacado estilo Apple) -->
           <div class="md:col-span-5 space-y-3">
             <span class="text-xs font-semibold text-zinc-400 tracking-wider uppercase block mb-3">${data.categoryTitle}</span>
             <div class="space-y-2.5">
-              ${data.primaryLinks.map(link => `
-                <a href="${link.href}" onclick="closeMegaMenu()" class="block ${link.bold ? 'text-2xl lg:text-3xl font-bold text-white hover:text-primary' : 'text-lg lg:text-xl font-semibold text-zinc-200 hover:text-white'} transition-colors">
-                  ${link.name}
-                </a>
-              `).join('')}
+              ${data.primaryLinks.map(link => renderMegaLink(link, link.bold ? 'text-2xl lg:text-3xl font-bold text-white hover:text-primary' : 'text-lg lg:text-xl font-semibold text-zinc-200 hover:text-white')).join('')}
             </div>
           </div>
 
-          <!-- Columna 2: Comprar / Opciones -->
           <div class="md:col-span-4 space-y-2 pl-0 md:pl-4 border-l-0 md:border-l border-zinc-800">
             <span class="text-xs font-semibold text-zinc-400 tracking-wider uppercase block mb-3">${data.secondaryTitle}</span>
             <div class="space-y-2">
-              ${data.secondaryLinks.map(link => `
-                <a href="${link.href}" onclick="closeMegaMenu()" class="block text-sm font-medium text-zinc-300 hover:text-primary transition-colors py-0.5">
-                  ${link.name}
-                </a>
-              `).join('')}
+              ${data.secondaryLinks.map(link => renderMegaLink(link, 'text-sm font-medium text-zinc-300 hover:text-primary py-0.5')).join('')}
             </div>
           </div>
 
-          <!-- Columna 3: Más para el dispositivo / Servicios -->
           <div class="md:col-span-3 space-y-2 pl-0 md:pl-4 border-l-0 md:border-l border-zinc-800">
             <span class="text-xs font-semibold text-zinc-400 tracking-wider uppercase block mb-3">${data.tertiaryTitle}</span>
             <div class="space-y-2">
-              ${data.tertiaryLinks.map(link => `
-                <a href="${link.href}" onclick="closeMegaMenu()" class="block text-xs font-medium text-zinc-400 hover:text-white transition-colors py-0.5">
-                  ${link.name}
-                </a>
-              `).join('')}
+              ${data.tertiaryLinks.map(link => renderMegaLink(link, 'text-xs font-medium text-zinc-400 hover:text-white py-0.5')).join('')}
             </div>
             <div class="pt-4 mt-4 border-t border-zinc-800/80">
               <span class="inline-flex items-center gap-1.5 text-xs text-primary font-semibold">
-                <span class="material-symbols-outlined text-sm">verified</span> Garantía Oficial Apple Colombia
+                <span class="material-symbols-outlined text-sm">verified</span> +10.000 Clientes Satisfechos
               </span>
             </div>
           </div>
@@ -1686,49 +2825,43 @@
       activeMenuKey = null;
     }
 
-    // Hover y click events en los botones del nav
     navButtons.forEach(btn => {
       const menuKey = btn.getAttribute('data-menu');
-
-      btn.addEventListener('mouseenter', () => {
-        openMegaMenu(menuKey);
-      });
-
+      btn.addEventListener('mouseenter', () => openMegaMenu(menuKey));
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (activeMenuKey === menuKey) {
-          closeMegaMenu();
-        } else {
-          openMegaMenu(menuKey);
-        }
+        if (activeMenuKey === menuKey) closeMegaMenu();
+        else openMegaMenu(menuKey);
       });
     });
 
-    // Mantener abierto mientras el cursor esté dentro del mega menú
-    megaMenu.addEventListener('mouseenter', () => {
-      clearTimeout(menuCloseTimeout);
-    });
-
-    megaMenu.addEventListener('mouseleave', () => {
-      menuCloseTimeout = setTimeout(closeMegaMenu, 250);
-    });
-
-    // Cerrar si el mouse sale del nav
-    document.getElementById('nav-container').addEventListener('mouseleave', () => {
-      menuCloseTimeout = setTimeout(closeMegaMenu, 300);
-    });
-
-    // Cerrar si se hace click fuera
+    megaMenu.addEventListener('mouseenter', () => clearTimeout(menuCloseTimeout));
+    megaMenu.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 250));
+    document.getElementById('nav-container').addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 300));
     document.addEventListener('click', (e) => {
       if (!megaMenu.contains(e.target) && !document.getElementById('nav-container').contains(e.target)) {
         closeMegaMenu();
       }
     });
 
-    // Cerrar al presionar Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMegaMenu();
+        closeProductModal();
+        closeCheckoutModal();
+        closeInfoModal();
+      }
+    });
+
+    // Inicializar Catálogo y Carrito al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDevicesCatalog('all');
+      updateCartUI();
+      if (window.location.hash) {
+        const h = window.location.hash.replace('#', '');
+        if (['iphone', 'mac', 'ipad', 'watch'].includes(h)) {
+          filterDevices(h);
+        }
       }
     });
   </script>

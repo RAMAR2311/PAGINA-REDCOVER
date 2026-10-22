@@ -621,16 +621,6 @@
           </div>
         </div>
 
-          <!-- Shipping Delivery Estimator -->
-          <div class="pt-3 border-t border-gray-100 space-y-1.5 text-xs text-gray-600">
-            <div class="flex items-center gap-2 text-gray-900 font-medium">
-              <span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
-              <span><strong>Envío express asegurado:</strong> Llega mañana a Bogotá D.C.</span>
-            </div>
-            <p class="text-[11px] pl-6 text-gray-500">O retira sin costo en nuestras tiendas autorizadas Andino, El Tesoro (Medellín) o Jardín Plaza (Cali).</p>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -642,7 +632,7 @@
     <!-- ========================================== -->
     <!-- 4. KEY ENGINEERING HIGHLIGHTS (BENTO GRID) -->
     <!-- ========================================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
+    <section id="ingenieria" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8 scroll-mt-28">
       <div class="text-center max-w-2xl mx-auto space-y-2">
         <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Ingeniería Apple sin precedentes</span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Titanio. Rendimiento A18 Pro. Máxima potencia.</h3>
@@ -711,7 +701,7 @@
     <!-- ========================================== -->
     <!-- 5. DIRECT COMPARISON (iPhone 16 Pro vs iPhone 15 Pro) -->
     <!-- ========================================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
+    <section id="comparativa" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8 scroll-mt-28">
       <div class="text-center max-w-xl mx-auto space-y-2">
         <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Comparativa Generacional</span>
         <h3 class="text-2xl font-bold text-gray-900">iPhone 16 Pro vs. iPhone 15 Pro</h3>
@@ -770,7 +760,7 @@
     <!-- ========================================== -->
     <!-- 6. FREQUENTLY BOUGHT TOGETHER (ACCESSORIES) -->
     <!-- ========================================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
+    <section id="accesorios" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8 scroll-mt-28">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Ecosistema Completo</span>
@@ -946,6 +936,163 @@
           <button onclick="handleCheckoutFromDrawer()" id="drawer-checkout-btn" class="w-full py-3.5 rounded-full crimson-btn text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider">
             <span id="drawer-checkout-text">Iniciar Compra Segura</span>
             <span class="material-symbols-outlined text-sm" id="drawer-checkout-icon">lock</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL DE CHECKOUT SEGURO MULTI-PASO -->
+  <!-- ========================================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-2xl bg-white rounded-3xl border border-gray-200 shadow-2xl overflow-hidden my-8">
+      <!-- Header -->
+      <div class="px-6 py-4 bg-zinc-900 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-emerald-400">verified_user</span>
+          <div>
+            <h3 class="text-sm font-bold">Pasarela Oficial RedCover Colombia</h3>
+            <p class="text-[11px] text-zinc-400">Transacción encriptada SSL 256-bit • Factura Electrónica DIAN</p>
+          </div>
+        </div>
+        <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <!-- Formulario Checkout -->
+      <div id="checkout-step-form" class="p-6 sm:p-8 space-y-6 max-h-[80vh] overflow-y-auto">
+        <!-- Paso 1: Datos de Envío / Retiro -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center">1</span>
+              Datos del Comprador y Entrega
+            </h4>
+            <span class="text-[11px] text-emerald-600 font-bold">Envío Asegurado Gratis</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 mb-1">Nombre Completo *</label>
+              <input id="chk-name" type="text" placeholder="Ej. Carlos Andrés Gómez" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 mb-1">Cédula / NIT (Para Factura DIAN) *</label>
+              <input id="chk-doc" type="text" placeholder="Ej. 1.020.345.678" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 mb-1">Celular / WhatsApp *</label>
+              <input id="chk-phone" type="tel" placeholder="Ej. 300 123 4567" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 mb-1">Correo Electrónico *</label>
+              <input id="chk-email" type="email" placeholder="nombre@correo.com" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 mb-1">Modalidad de Entrega</label>
+              <select id="chk-delivery" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
+                <option value="Envío Express Asegurado a Domicilio (Gratis)">Envío Express Asegurado a Domicilio (Gratis)</option>
+                <option value="Retiro en Tienda Bogotá - C.C. Andino Local 204">Retiro en Tienda Bogotá - C.C. Andino</option>
+                <option value="Retiro en Tienda Medellín - P.C. El Tesoro Local 1210">Retiro en Tienda Medellín - El Tesoro</option>
+                <option value="Retiro en Tienda Cali - C.C. Jardín Plaza Local 142">Retiro en Tienda Cali - Jardín Plaza</option>
+                <option value="Retiro en Tienda Barranquilla - C.C. Buenavista">Retiro en Tienda Barranquilla - Buenavista</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 mb-1">Ciudad y Dirección *</label>
+              <input id="chk-address" type="text" placeholder="Ej. Bogotá, Calle 82 # 11-24 Apto 502" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2: Método de Pago -->
+        <div class="space-y-3 pt-4 border-t border-gray-200">
+          <h4 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center">2</span>
+            Selecciona tu Medio de Pago
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <button type="button" onclick="selectCheckoutPayment('pse')" id="pay-opt-pse" class="p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-extrabold text-gray-900">PSE / Nequi</span>
+                <span class="material-symbols-outlined text-primary text-base">account_balance</span>
+              </div>
+              <p class="text-[11px] text-gray-500">Débito bancario inmediato</p>
+            </button>
+            <button type="button" onclick="selectCheckoutPayment('card')" id="pay-opt-card" class="p-3.5 rounded-2xl border border-gray-200 bg-white text-left transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-extrabold text-gray-900">Tarjeta Crédito</span>
+                <span class="material-symbols-outlined text-gray-600 text-base">credit_card</span>
+              </div>
+              <p class="text-[11px] text-gray-500">Visa, Mastercard, Amex</p>
+            </button>
+            <button type="button" onclick="selectCheckoutPayment('whatsapp')" id="pay-opt-whatsapp" class="p-3.5 rounded-2xl border border-gray-200 bg-white text-left transition-all">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-extrabold text-emerald-700">Financiar 0%</span>
+                <span class="material-symbols-outlined text-emerald-600 text-base">chat</span>
+              </div>
+              <p class="text-[11px] text-gray-500">Estudio en WhatsApp</p>
+            </button>
+          </div>
+
+          <div id="pse-bank-selector" class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+            <label class="block text-[11px] font-bold text-gray-700">Selecciona tu Entidad Bancaria (PSE Colombia):</label>
+            <select id="chk-bank" class="w-full rounded-xl border-gray-300 text-xs py-2 px-3">
+              <option>Bancolombia Personas / Nequi</option>
+              <option>Banco Davivienda / DaviPlata</option>
+              <option>Nu Colombia</option>
+              <option>Banco de Bogotá</option>
+              <option>BBVA Colombia</option>
+              <option>Scotiabank Colpatria</option>
+              <option>Lulo Bank</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Resumen de Totales -->
+        <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-2 text-xs">
+          <div class="flex justify-between text-gray-600">
+            <span>Artículos en tu orden:</span>
+            <span id="chk-summary-items" class="font-bold text-gray-900">1 artículo</span>
+          </div>
+          <div class="flex justify-between text-gray-600">
+            <span>Seguro de transporte + IVA 19%:</span>
+            <span class="text-emerald-600 font-bold">Incluido</span>
+          </div>
+          <div class="flex justify-between text-base font-extrabold text-gray-900 pt-2 border-t border-gray-200">
+            <span>Total a Pagar:</span>
+            <span id="chk-summary-total" class="text-primary">$0 COP</span>
+          </div>
+        </div>
+
+        <button type="button" onclick="confirmCheckoutOrder()" class="w-full py-4 rounded-full crimson-btn text-white font-bold text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-base">check_circle</span>
+          <span>Confirmar y Procesar Pedido Oficial</span>
+        </button>
+      </div>
+
+      <!-- Pantalla de Éxito del Pedido -->
+      <div id="checkout-step-success" class="hidden p-8 text-center space-y-5">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+          <span class="material-symbols-outlined text-4xl">task_alt</span>
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-mono uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-bold border border-emerald-200">Orden Confirmada</span>
+          <h4 class="text-2xl font-extrabold text-gray-900 pt-2">¡Gracias por tu compra en RedCover!</h4>
+          <p class="text-xs text-gray-600 max-w-md mx-auto">Hemos registrado tu pedido con factura electrónica DIAN y garantía oficial Apple de 1 año en Colombia.</p>
+        </div>
+        <div id="checkout-receipt-box" class="p-4 rounded-2xl bg-gray-50 border border-gray-200 text-left text-xs space-y-1.5 max-w-md mx-auto">
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+          <button onclick="sendOrderReceiptToWhatsApp()" class="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md">
+            <span class="material-symbols-outlined text-base">chat</span> Recibir Guía en WhatsApp
+          </button>
+          <button onclick="closeCheckoutModal()" class="px-6 py-3 rounded-full bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs">
+            Volver a la Tienda
           </button>
         </div>
       </div>
@@ -1288,10 +1435,13 @@
       }
     }
 
+    let checkoutSelectedPayMethod = 'pse';
+    let lastConfirmedOrder = null;
+
     function handleCheckoutFromDrawer() {
       const isFinancing = document.getElementById('drawer-financing-checkbox') && document.getElementById('drawer-financing-checkbox').checked;
       if (productState.bagItems.length === 0) {
-        alert('Tu bolsa de compras está vacía.');
+        showToast('Bolsa vacía', 'Añade al menos un producto Apple a tu bolsa.');
         return;
       }
 
@@ -1311,8 +1461,143 @@
 
         window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
       } else {
-        alert('¡Gracias por elegir RedCover Colombia! Redirigiendo a pasarela segura de pago con PSE y tarjetas.');
+        closeCartDrawer();
+        openCheckoutModal();
       }
+    }
+
+    function openCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      document.getElementById('checkout-step-form').classList.remove('hidden');
+      document.getElementById('checkout-step-success').classList.add('hidden');
+
+      let total = 0;
+      let count = 0;
+      productState.bagItems.forEach(item => {
+        total += item.price * item.qty;
+        count += item.qty;
+      });
+
+      document.getElementById('chk-summary-items').innerText = `${count} ${count === 1 ? 'artículo' : 'artículos'}`;
+      document.getElementById('chk-summary-total').innerText = formatCOP(total);
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectCheckoutPayment(method) {
+      checkoutSelectedPayMethod = method;
+      const pseBtn = document.getElementById('pay-opt-pse');
+      const cardBtn = document.getElementById('pay-opt-card');
+      const waBtn = document.getElementById('pay-opt-whatsapp');
+      const bankBox = document.getElementById('pse-bank-selector');
+
+      [pseBtn, cardBtn, waBtn].forEach(b => {
+        b.className = "p-3.5 rounded-2xl border border-gray-200 bg-white text-left transition-all";
+      });
+
+      if (method === 'pse') {
+        pseBtn.className = "p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all";
+        bankBox.classList.remove('hidden');
+      } else if (method === 'card') {
+        cardBtn.className = "p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all";
+        bankBox.classList.add('hidden');
+      } else {
+        waBtn.className = "p-3.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50/40 text-left transition-all";
+        bankBox.classList.add('hidden');
+      }
+    }
+
+    function confirmCheckoutOrder() {
+      const name = (document.getElementById('chk-name').value || '').trim();
+      const doc = (document.getElementById('chk-doc').value || '').trim();
+      const phone = (document.getElementById('chk-phone').value || '').trim();
+      const email = (document.getElementById('chk-email').value || '').trim();
+      const delivery = document.getElementById('chk-delivery').value;
+      const address = (document.getElementById('chk-address').value || '').trim();
+      const bank = document.getElementById('chk-bank').value;
+
+      if (!name || !doc || !phone || !address) {
+        showToast('Completa tus datos', 'Por favor ingresa tu nombre, documento, celular y dirección.');
+        return;
+      }
+
+      let total = 0;
+      productState.bagItems.forEach(item => total += item.price * item.qty);
+
+      if (checkoutSelectedPayMethod === 'whatsapp') {
+        const itemsList = productState.bagItems.map(i => `• ${i.name} (x${i.qty})`).join('%0A');
+        const msg = `Hola RedCover Colombia 👋 Quiero finalizar mi pedido con *FINANCIACIÓN 0% INTERÉS*:%0A%0A` +
+          `👤 *Cliente:* ${encodeURIComponent(name)} (CC/NIT: ${encodeURIComponent(doc)})%0A` +
+          `📞 *Contacto:* ${encodeURIComponent(phone)}%0A` +
+          `📍 *Entrega:* ${encodeURIComponent(delivery)} - ${encodeURIComponent(address)}%0A%0A` +
+          `🛍️ *Productos:*%0A${itemsList}%0A%0A` +
+          `💰 *Total a financiar:* ${encodeURIComponent(formatCOP(total))}`;
+        window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+        return;
+      }
+
+      const orderId = 'RC-2026-' + Math.floor(1000 + Math.random() * 9000);
+      lastConfirmedOrder = {
+        orderId,
+        name,
+        doc,
+        phone,
+        email,
+        delivery,
+        address,
+        payMethod: checkoutSelectedPayMethod === 'pse' ? `PSE (${bank})` : 'Tarjeta de Crédito / Débito',
+        items: [...productState.bagItems],
+        total
+      };
+
+      document.getElementById('checkout-receipt-box').innerHTML = `
+        <div class="flex justify-between border-b border-gray-200 pb-1.5">
+          <span class="text-gray-500">Orden Oficial:</span>
+          <span class="font-mono font-extrabold text-primary">#${orderId}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-500">Titular Factura DIAN:</span>
+          <span class="font-bold text-gray-900">${name} (${doc})</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-500">Medio de Pago:</span>
+          <span class="font-bold text-gray-900">${lastConfirmedOrder.payMethod}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-500">Modalidad Entrega:</span>
+          <span class="font-semibold text-gray-800">${delivery}</span>
+        </div>
+        <div class="flex justify-between pt-1.5 border-t border-gray-200 text-sm">
+          <span class="font-bold text-gray-900">Total Pagado:</span>
+          <span class="font-extrabold text-emerald-600">${formatCOP(total)}</span>
+        </div>
+      `;
+
+      document.getElementById('checkout-step-form').classList.add('hidden');
+      document.getElementById('checkout-step-success').classList.remove('hidden');
+      productState.bagItems = [];
+      try { localStorage.setItem('redcover_cart', JSON.stringify([])); } catch(e) {}
+      updateCartDrawerUI();
+    }
+
+    function sendOrderReceiptToWhatsApp() {
+      if (!lastConfirmedOrder) return;
+      const itemsText = lastConfirmedOrder.items.map(i => `• ${i.name} (x${i.qty})`).join('%0A');
+      const msg = `Hola RedCover Colombia 👋 Acabo de confirmar mi orden oficial *#${lastConfirmedOrder.orderId}*:%0A%0A` +
+        `👤 *Titular:* ${encodeURIComponent(lastConfirmedOrder.name)} (${encodeURIComponent(lastConfirmedOrder.doc)})%0A` +
+        `💳 *Pago:* ${encodeURIComponent(lastConfirmedOrder.payMethod)}%0A` +
+        `🚚 *Entrega:* ${encodeURIComponent(lastConfirmedOrder.delivery)} (${encodeURIComponent(lastConfirmedOrder.address)})%0A` +
+        `🛍️ *Artículos:*%0A${itemsText}%0A` +
+        `💰 *Total Pagado:* ${encodeURIComponent(formatCOP(lastConfirmedOrder.total))}%0A%0A` +
+        `Quedo atento al número de guía asegurada y factura electrónica.`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
     }
 
     function scrollToConfig() {
@@ -1446,9 +1731,9 @@
         tertiaryTitle: "Más para el iPhone",
         tertiaryLinks: [
           { name: "Soporte técnico para iPhone", href: "index.html#tiendas" },
-          { name: "iOS 18 y Apple Intelligence", href: "#" },
+          { name: "iOS 18 y Apple Intelligence", href: "#ingenieria" },
           { name: "Garantía Oficial Apple 1 Año", href: "index.html#tiendas" },
-          { name: "Comparar modelos de iPhone", href: "#" }
+          { name: "Comparar modelos de iPhone", href: "#comparativa" }
         ]
       },
       watch: {
