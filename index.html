@@ -174,13 +174,13 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-6 py-4 space-y-3">
       <div class="border-b border-gray-100 pb-2">
-        <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos</span>
+        <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos 2026</span>
       </div>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (18 Pro, 18, 17 Pro, 16 Pro, 15, 14, 13, 12, 11)</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('watch')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">Apple Watch (Ultra 2, Series 10, SE)</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('mac')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">MacBook & Mac (Pro M3, Air M3, iMac, Studio)</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('ipad')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">iPad (Pro M4, Air M2, 10ª Gen, mini)</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, AirPods)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('watch')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">Apple Watch (Ultra 3, Series 12, Series 11, SE 3, Ultra 2)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('mac')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">MacBook & Mac (Pro M5 Max, Air M5, Studio M4 Ultra, iMac M4)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('ipad')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">iPad (Pro M5 OLED, Air M4, mini A17 Pro, 11ª Gen)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, AirPods Pro 3)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras 4 Tiendas en Colombia</a>
       <div class="pt-2 border-t border-gray-100 flex items-center justify-between">
@@ -210,12 +210,11 @@
       <div class="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-gray-500">
         <span class="font-semibold text-gray-700 mr-1">Búsquedas rápidas:</span>
         <button type="button" onclick="triggerQuickSearch('iPhone 18')" class="px-2.5 py-1 rounded-full bg-red-50 text-primary border border-red-200 hover:bg-primary hover:text-white transition-colors font-bold">✨ iPhone 18 Pro</button>
-        <button type="button" onclick="triggerQuickSearch('iPhone 17')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPhone 17</button>
-        <button type="button" onclick="triggerQuickSearch('iPhone 16')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPhone 16 Pro</button>
-        <button type="button" onclick="triggerQuickSearch('MacBook')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">MacBook M3</button>
+        <button type="button" onclick="triggerQuickSearch('M5')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">MacBook M5</button>
+        <button type="button" onclick="triggerQuickSearch('Ultra 3')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">Watch Ultra 3</button>
+        <button type="button" onclick="triggerQuickSearch('iPad Pro')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPad Pro M5</button>
+        <button type="button" onclick="triggerQuickSearch('Mac mini')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">Mac mini M4</button>
         <button type="button" onclick="triggerQuickSearch('AirPods')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">AirPods Pro 2</button>
-        <button type="button" onclick="triggerQuickSearch('iPad')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPad Pro M4</button>
-        <button type="button" onclick="triggerQuickSearch('Watch')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">Apple Watch</button>
         <button type="button" onclick="triggerQuickSearch('MagSafe')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">MagSafe</button>
       </div>
       <!-- Resultados dinámicos -->
@@ -328,8 +327,8 @@
             <span class="material-symbols-outlined text-xl">laptop_mac</span>
           </div>
           <div>
-            <div class="text-xs font-bold text-gray-900">MacBook</div>
-            <div class="text-[11px] text-gray-500">Air y Pro M3/M4 (4)</div>
+            <div class="text-xs font-bold text-gray-900">MacBook & Mac</div>
+            <div class="text-[11px] text-gray-500">Serie M5 / M4 / M3 (9)</div>
           </div>
         </a>
 
@@ -339,7 +338,7 @@
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">Watch</div>
-            <div class="text-[11px] text-gray-500">Ultra 2 y S10 (3)</div>
+            <div class="text-[11px] text-gray-500">Ultra 3 y Series 12 (7)</div>
           </div>
         </a>
 
@@ -349,7 +348,7 @@
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">iPad</div>
-            <div class="text-[11px] text-gray-500">Pro M4 y Air M2 (3)</div>
+            <div class="text-[11px] text-gray-500">Pro M5 y Air M4 (7)</div>
           </div>
         </a>
 
@@ -390,33 +389,33 @@
       <!-- Bento Grid Layout -->
       <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         
-        <!-- Card 1: Apple Watch Ultra 2 (Span 2) -->
+        <!-- Card 1: Apple Watch Ultra 3 (Span 2) -->
         <div id="watch" class="md:col-span-2 rounded-3xl bg-white p-7 sm:p-8 flex flex-col justify-between relative overflow-hidden group border border-gray-200/90 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
           <div class="absolute top-0 right-0 w-72 h-72 bg-red-50 rounded-full blur-3xl group-hover:bg-red-100 transition-all pointer-events-none"></div>
           
           <div class="z-10 mb-6">
             <div class="flex items-center gap-2 mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[11px] font-bold text-primary border border-red-100 uppercase tracking-wide">Extremo</span>
-              <span class="text-xs text-gray-400 font-medium">• Caja de titanio 49mm</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[11px] font-bold text-primary border border-red-100 uppercase tracking-wide">Nuevo 2026</span>
+              <span class="text-xs text-gray-400 font-medium">• Titanio 49mm • Chip S11 SiP</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Apple Watch Ultra 2</h3>
-            <p class="text-xs sm:text-sm text-gray-600 mt-1">Aventuras sin límites. GPS de doble frecuencia de máxima precisión y hasta 72 horas de autonomía.</p>
+            <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Apple Watch Ultra 3</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">Conexión satelital de emergencia fuera de red, monitoreo de presión arterial y hasta 96 horas de autonomía.</p>
           </div>
 
           <div class="relative h-60 rounded-2xl overflow-hidden bg-zinc-950 my-2">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Apple Watch Ultra 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Apple Watch Ultra 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn">
           </div>
 
           <div class="z-10 mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
             <div>
-              <span class="text-xs text-gray-500 block">Precio especial:</span>
-              <span class="text-xl font-extrabold text-gray-900">$4.199.000 COP</span>
+              <span class="text-xs text-gray-500 block">Precio oficial 2026:</span>
+              <span class="text-xl font-extrabold text-gray-900">$4.499.000 COP</span>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="openProductModal('watch-ultra-2')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
+              <button onclick="openProductModal('watch-ultra-3')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
                 Ver Ficha
               </button>
-              <button onclick="addToCart('Apple Watch Ultra 2 (49mm Titanio)', 4199000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
+              <button onclick="addToCart('Apple Watch Ultra 3 (49mm Titanio Satelital)', 4499000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
                 <span class="material-symbols-outlined text-sm">shopping_cart</span>
                 Comprar
               </button>
@@ -424,33 +423,33 @@
           </div>
         </div>
 
-        <!-- Card 2: MacBook Pro M3 Max (Span 2) -->
+        <!-- Card 2: MacBook Pro M5 Max (Span 2) -->
         <div id="mac" class="md:col-span-2 rounded-3xl bg-white p-7 sm:p-8 flex flex-col justify-between relative overflow-hidden group border border-gray-200/90 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
           <div class="absolute top-0 right-0 w-72 h-72 bg-red-50 rounded-full blur-3xl group-hover:bg-red-100 transition-all pointer-events-none"></div>
           
           <div class="z-10 mb-6">
             <div class="flex items-center gap-2 mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[11px] font-bold text-primary border border-red-100 uppercase tracking-wide">Rendimiento Pro</span>
-              <span class="text-xs text-gray-400 font-medium">• Space Black 14\" / 16\"</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[11px] font-bold text-primary border border-red-100 uppercase tracking-wide">Arquitectura 2nm</span>
+              <span class="text-xs text-gray-400 font-medium">• Space Black 14\" / 16\" • Thunderbolt 5</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 tracking-tight">MacBook Pro con Chip M3 Max</h3>
-            <p class="text-xs sm:text-sm text-gray-600 mt-1">La laptop definitiva para desarrolladores, creadores 3D y flujos de trabajo profesionales pesados.</p>
+            <h3 class="text-2xl font-bold text-gray-900 tracking-tight">MacBook Pro con Chip M5 Max</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">Potencia extrema 2026 con hasta 128GB de memoria unificada, Wi-Fi 7 y pantalla Nano-Texturizada XDR.</p>
           </div>
 
           <div class="relative h-60 rounded-2xl overflow-hidden bg-zinc-950 my-2">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="MacBook Pro M3 Max en acabado Space Black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="MacBook Pro M5 Max en acabado Space Black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0">
           </div>
 
           <div class="z-10 mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
             <div>
               <span class="text-xs text-gray-500 block">Configuraciones desde:</span>
-              <span class="text-xl font-extrabold text-gray-900">$9.899.000 COP</span>
+              <span class="text-xl font-extrabold text-gray-900">$10.499.000 COP</span>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="openProductModal('macbook-pro-m3')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
+              <button onclick="openProductModal('macbook-pro-m5')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
                 Ver Ficha
               </button>
-              <button onclick="addToCart('MacBook Pro 14 M3 Pro (18GB/512GB)', 9899000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
+              <button onclick="addToCart('MacBook Pro 14 M5 Pro (24GB/512GB)', 10499000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
                 <span class="material-symbols-outlined text-sm">shopping_cart</span>
                 Comprar
               </button>
@@ -458,40 +457,40 @@
           </div>
         </div>
 
-        <!-- Card 3: iPhone 16 (Span 1) -->
+        <!-- Card 3: iPhone 18 (Span 1) -->
         <div id="iphone" class="rounded-3xl bg-white p-6 flex flex-col justify-between relative overflow-hidden group border border-gray-200 hover:border-primary/50 transition-all duration-300 shadow-sm">
           <div class="z-10 mb-2">
-            <span class="px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Apple Intelligence</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-2">iPhone 16</h3>
-            <p class="text-xs text-gray-500">Cámara dual 48MP y botón de Acción.</p>
+            <span class="px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Apple Intelligence 3.0</span>
+            <h3 class="text-lg font-bold text-gray-900 mt-2">iPhone 18</h3>
+            <p class="text-xs text-gray-500">Chip A20 2nm, 120Hz y cámara 64MP.</p>
           </div>
 
           <div class="relative h-48 rounded-xl overflow-hidden bg-zinc-950 my-3">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="iPhone 16 Ultramarine" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="iPhone 18" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B">
           </div>
 
           <div class="z-10 mt-2 pt-3 border-t border-gray-100 flex items-center justify-between">
             <div>
               <span class="text-[10px] text-gray-400 block">Desde</span>
-              <span class="text-base font-bold text-gray-900">$4.299.000</span>
+              <span class="text-base font-bold text-gray-900">$4.999.000</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <button onclick="openProductModal('iphone-16')" class="px-2.5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-[11px] font-bold">
+              <button onclick="openProductModal('iphone-18')" class="px-2.5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-[11px] font-bold">
                 Ficha
               </button>
-              <button onclick="addToCart('iPhone 16 (128GB Ultramarine)', 4299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B')" class="px-3.5 py-2 rounded-full crimson-btn text-white text-xs font-semibold">
+              <button onclick="addToCart('iPhone 18 (128GB Carmesí Titanio)', 4999000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B')" class="px-3.5 py-2 rounded-full crimson-btn text-white text-xs font-semibold">
                 Comprar
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Card 4: AirPods Pro 2 (Span 1) -->
+        <!-- Card 4: AirPods Pro 2 / 3 (Span 1) -->
         <div class="rounded-3xl bg-white p-6 flex flex-col justify-between relative overflow-hidden group border border-gray-200 hover:border-primary/50 transition-all duration-300 shadow-sm">
           <div class="z-10 mb-2">
-            <span class="px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Audio Espacial</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-2">AirPods Pro 2</h3>
-            <p class="text-xs text-gray-500">Cancelación activa de ruido 2x.</p>
+            <span class="px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Audio Espacial H3</span>
+            <h3 class="text-lg font-bold text-gray-900 mt-2">AirPods Pro 2 USB-C</h3>
+            <p class="text-xs text-gray-500">Salud auditiva y cancelación activa 2x.</p>
           </div>
 
           <div class="relative h-48 rounded-xl overflow-hidden bg-zinc-950 my-3">
@@ -514,31 +513,31 @@
           </div>
         </div>
 
-        <!-- Card 5: iPad Pro M4 (Span 2) -->
+        <!-- Card 5: iPad Pro M5 (Span 2) -->
         <div id="ipad" class="md:col-span-2 rounded-3xl bg-white p-7 sm:p-8 flex flex-col justify-between relative overflow-hidden group border border-gray-200/90 hover:border-primary/50 transition-all duration-300 shadow-sm">
           <div class="z-10 mb-4">
             <div class="flex items-center gap-2 mb-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[11px] font-bold text-primary border border-red-100 uppercase tracking-wide">Ultra Fino</span>
-              <span class="text-xs text-gray-400 font-medium">• Tandem OLED Ultra Retina XDR</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-[11px] font-bold text-primary border border-red-100 uppercase tracking-wide">Nuevo 2026</span>
+              <span class="text-xs text-gray-400 font-medium">• Tandem OLED 2.0 Ultra Retina XDR</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 tracking-tight">iPad Pro con Chip M4</h3>
-            <p class="text-xs sm:text-sm text-gray-600 mt-1">Imposiblemente delgado (5.1 mm). Rendimiento gráfico sin precedentes para artistas y arquitectos.</p>
+            <h3 class="text-2xl font-bold text-gray-900 tracking-tight">iPad Pro con Chip M5</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">Imposiblemente delgado (5.0 mm) con Wi-Fi 7, 16GB de RAM base y rendimiento neuronal de nueva generación.</p>
           </div>
 
           <div class="relative h-56 rounded-2xl overflow-hidden bg-zinc-950 my-2">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="iPad Pro con pantalla Tandem OLED" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="iPad Pro M5 con pantalla Tandem OLED" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ">
           </div>
 
           <div class="z-10 mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
             <div>
               <span class="text-xs text-gray-500 block">Desde</span>
-              <span class="text-xl font-extrabold text-gray-900">$5.999.000 COP</span>
+              <span class="text-xl font-extrabold text-gray-900">$6.499.000 COP</span>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="openProductModal('ipad-pro-m4')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
+              <button onclick="openProductModal('ipad-pro-m5')" class="px-3.5 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all">
                 Ver Ficha
               </button>
-              <button onclick="addToCart('iPad Pro 11 M4 (256GB Wi-Fi)', 5999000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
+              <button onclick="addToCart('iPad Pro 11 M5 (256GB Wi-Fi 7)', 6499000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
                 <span class="material-symbols-outlined text-sm">shopping_cart</span>
                 Comprar
               </button>
@@ -568,19 +567,19 @@
       <!-- Pestañas de Categoría de Dispositivos -->
       <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8" id="device-category-tabs">
         <button type="button" onclick="filterDevices('all')" data-dev-filter="all" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap">
-          Todos los Equipos (34)
+          Todos los Equipos (47)
         </button>
         <button type="button" onclick="filterDevices('iphone')" data-dev-filter="iphone" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
           <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (24)
         </button>
         <button type="button" onclick="filterDevices('mac')" data-dev-filter="mac" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">laptop_mac</span> Mac & MacBook (4)
+          <span class="material-symbols-outlined text-base">laptop_mac</span> Mac & MacBook (9)
         </button>
         <button type="button" onclick="filterDevices('ipad')" data-dev-filter="ipad" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">tablet_mac</span> iPad (3)
+          <span class="material-symbols-outlined text-base">tablet_mac</span> iPad (7)
         </button>
         <button type="button" onclick="filterDevices('watch')" data-dev-filter="watch" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">watch</span> Apple Watch (3)
+          <span class="material-symbols-outlined text-base">watch</span> Apple Watch (7)
         </button>
       </div>
 
@@ -811,8 +810,16 @@
                   <option value="850000">iPhone 11 Pro Max (64GB)</option>
                   <option value="750000">iPhone 11 Pro (64GB)</option>
                   <option value="600000">iPhone 11 (64GB)</option>
-                  <option value="2700000">MacBook Air M2 (256GB)</option>
-                  <option value="1800000">iPad Pro 11 M2 (128GB)</option>
+                  <option value="4900000">MacBook Pro 14 M4 Pro (512GB) — Hasta $4.900.000 COP</option>
+                  <option value="3900000">MacBook Pro 14 M3 Pro (512GB) — Hasta $3.900.000 COP</option>
+                  <option value="3300000">MacBook Air M4 (256GB) — Hasta $3.300.000 COP</option>
+                  <option value="2850000">MacBook Air M3 (256GB) — Hasta $2.850.000 COP</option>
+                  <option value="2400000">MacBook Air M2 (256GB) — Hasta $2.400.000 COP</option>
+                  <option value="3400000">iPad Pro 11 M4 OLED (256GB) — Hasta $3.400.000 COP</option>
+                  <option value="2100000">iPad Air M2 (128GB) — Hasta $2.100.000 COP</option>
+                  <option value="1800000">iPad Pro 11 M2 (128GB) — Hasta $1.800.000 COP</option>
+                  <option value="2200000">Apple Watch Ultra 2 (49mm) — Hasta $2.200.000 COP</option>
+                  <option value="1250000">Apple Watch Series 10 (46mm) — Hasta $1.250.000 COP</option>
                 </select>
               </div>
 
@@ -1960,115 +1967,269 @@
         specs: ['Pantalla Retina HD de 4.7" con amplia gama cromática (P3)', 'Chip A15 Bionic de 6 núcleos ultrarrápido', 'Botón de inicio con sensor de huellas Touch ID', 'Cámara avanzada de 12 MP con Estilos Fotográficos y Deep Fusion'],
         variants: ['64 GB - $1.499.000', '128 GB - $1.699.000']
       },
+      // ==========================================
+      // LÍNEA MAC & MACBOOK (ACTUALIZADA A 2026: M5, M4 Y M3)
+      // ==========================================
+      {
+        id: 'macbook-pro-m5',
+        category: 'mac',
+        badge: 'Nuevo 2026 • Chip M5',
+        title: 'MacBook Pro 14" y 16" (M5 / M5 Pro / M5 Max)',
+        price: 8999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'La estación de trabajo portátil definitiva 2026: arquitectura de 2nm, Thunderbolt 5 de 120 Gb/s y hasta 24 horas de batería.',
+        specs: ['Chips Apple M5, M5 Pro y M5 Max con Neural Engine cuántico de 32 núcleos', 'Pantalla Liquid Retina XDR con opción Nano-Texturizada antirreflejo', 'Puertos Thunderbolt 5, HDMI 2.1 (8K), lector SDXC y MagSafe 3', 'Hasta 128 GB de memoria unificada y Wi-Fi 7 ultrarrápido'],
+        variants: ['14" M5 (16GB/512GB) - $8.999.000', '14" M5 Pro (24GB/1TB) - $10.499.000', '16" M5 Max (48GB/1TB) - $15.999.000']
+      },
+      {
+        id: 'macbook-air-m5',
+        category: 'mac',
+        badge: 'Nuevo 2026 • Ultraligera',
+        title: 'MacBook Air 13" y 15" (Chip M5)',
+        price: 5899000,
+        img: IMG_MACBOOK,
+        shortDesc: 'La laptop más amada del mundo ahora con Chip M5, cámara Center Stage de 12 MP, 16GB de RAM base y hasta 20 horas de autonomía.',
+        specs: ['Chip Apple M5 de 10 núcleos con aceleración de IA para Apple Intelligence 3.0', '16 GB de memoria unificada de serie en todos los modelos', 'Soporte nativo para dos monitores externos 6K con la tapa abierta', 'Colores: Medianoche, Blanco Estelar, Azul Cielo y Plata'],
+        variants: ['13" M5 (16GB/256GB) - $5.899.000', '13" M5 (16GB/512GB) - $6.899.000', '15" M5 (16GB/512GB) - $7.799.000']
+      },
+      {
+        id: 'macbook-pro-m4',
+        category: 'mac',
+        badge: 'Potencia Pro M4',
+        title: 'MacBook Pro 14" y 16" (M4 / M4 Pro / M4 Max)',
+        price: 7999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Rendimiento profesional extraordinario con conectividad Thunderbolt 5, cámara 12MP Center Stage y batería de 24 horas.',
+        specs: ['Chip Apple M4, M4 Pro o M4 Max de hasta 16 núcleos de CPU y 40 de GPU', 'Brillo SDR de hasta 1000 nits en exteriores y 1600 nits HDR', '3 puertos Thunderbolt 5, HDMI, ranura SDXC y carga rápida MagSafe 3', 'Acabados: Negro Espacial (Space Black) y Plata'],
+        variants: ['14" M4 (16GB/512GB) - $7.999.000', '14" M4 Pro (24GB/512GB) - $9.699.000', '16" M4 Max (36GB/1TB) - $14.499.000']
+      },
+      {
+        id: 'macbook-air-m4',
+        category: 'mac',
+        badge: 'Best Seller Portátil',
+        title: 'MacBook Air 13" y 15" (Chip M4)',
+        price: 5199000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Diseño silencioso sin ventilador con chip M4, 16 GB de memoria RAM base y potencia sobrada para universidad y trabajo.',
+        specs: ['Chip Apple M4 de 10 núcleos CPU y 10 núcleos GPU', 'Pantalla Liquid Retina de 13.6" o 15.3" con 500 nits de brillo', 'Cámara 12MP Center Stage con Vista Cenital de escritorio', 'Batería de hasta 18 horas y carga MagSafe 3'],
+        variants: ['13" M4 (16GB/256GB) - $5.199.000', '13" M4 (16GB/512GB) - $6.199.000', '15" M4 (16GB/512GB) - $6.999.000']
+      },
+      {
+        id: 'imac-24-m4',
+        category: 'mac',
+        badge: 'Todo en Uno 4.5K',
+        title: 'iMac 24" Pantalla Retina 4.5K (Chip M4)',
+        price: 6699000,
+        img: IMG_MACBOOK,
+        shortDesc: 'El todo en uno definitivo con chip M4, 16 GB de RAM base, opción de vidrio nano-texturizado y accesorios USB-C a juego.',
+        specs: ['Pantalla Retina 4.5K de 24" con opción Nano-Texturizada antirreflejo', 'Chip Apple M4 y cámara 12MP Center Stage con Encuadre Centrado', 'Incluye Magic Keyboard con Touch ID y Magic Mouse con puerto USB-C', 'Hasta 4 puertos Thunderbolt 4 y Gigabit Ethernet'],
+        variants: ['M4 8-GPU (16GB/256GB) - $6.699.000', 'M4 10-GPU (16GB/512GB) - $7.899.000', 'M4 (24GB/1TB) - $9.199.000']
+      },
+      {
+        id: 'mac-mini-m4',
+        category: 'mac',
+        badge: 'Rediseño Ultracompacto',
+        title: 'Mac mini (Chip M4 y M4 Pro)',
+        price: 2999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Increíblemente pequeño (12.7 x 12.7 cm) y descomunalmente potente con puertos frontales USB-C y Thunderbolt 5 en M4 Pro.',
+        specs: ['Nuevo diseño cuadrado de apenas 12.7 cm por lado con huella de carbono neutra', '16 GB de memoria unificada base (expandible hasta 64 GB en M4 Pro)', '2 puertos USB-C frontales + 3 puertos Thunderbolt 4/5 traseros + HDMI + Ethernet', 'Ideal para desarrolladores, estudios creativos y servidores de IA local'],
+        variants: ['Mac mini M4 (16GB/256GB) - $2.999.000', 'Mac mini M4 (16GB/512GB) - $3.899.000', 'Mac mini M4 Pro (24GB/512GB) - $6.699.000']
+      },
+      {
+        id: 'mac-studio-m4',
+        category: 'mac',
+        badge: 'Supercomputadora IA',
+        title: 'Mac Studio (M4 Max / M4 Ultra)',
+        price: 9999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'La bestia de escritorio para producción cinematográfica 8K, compilación masiva y entrenamiento de modelos LLM locales.',
+        specs: ['Chips M4 Max (16 núcleos CPU) o M4 Ultra (hasta 32 núcleos CPU y 80 GPU)', 'Hasta 256 GB de memoria unificada de ultra alto ancho de banda', '6 puertos Thunderbolt 5, Ethernet de 10 Gb, lector SDXC frontal y HDMI 2.1', 'Sistema térmico silencioso de doble turbina en aluminio extruido'],
+        variants: ['M4 Max (36GB/512GB) - $9.999.000', 'M4 Max (64GB/1TB) - $12.999.000', 'M4 Ultra (128GB/2TB) - $21.999.000']
+      },
       {
         id: 'macbook-pro-m3',
         category: 'mac',
-        badge: 'Potencia Extrema',
+        badge: 'Oportunidad Pro',
         title: 'MacBook Pro 14" y 16" (M3 Pro / Max)',
-        price: 9899000,
+        price: 7299000,
         img: IMG_MACBOOK,
-        shortDesc: 'Pantalla Liquid Retina XDR, hasta 22 horas de batería y todos los puertos profesionales.',
-        specs: ['Chip Apple M3 Pro o M3 Max de hasta 16 núcleos CPU', '18 GB o 36 GB de memoria unificada ultrarrápida', 'Puertos HDMI, lector SDXC, MagSafe 3 y 3x Thunderbolt 4', 'Acabado exclusivo Negro Espacial (Space Black) o Plata'],
-        variants: ['14" M3 Pro (18GB/512GB) - $9.899.000', '14" M3 Max (36GB/1TB) - $14.499.000', '16" M3 Pro (18GB/512GB) - $11.899.000']
+        shortDesc: 'Pantalla Liquid Retina XDR, hasta 22 horas de batería y todos los puertos profesionales a precio especial de liquidación.',
+        specs: ['Chip Apple M3 Pro o M3 Max con trazado de rayos por hardware', '18 GB o 36 GB de memoria unificada ultrarrápida', 'Puertos HDMI, lector SDXC, MagSafe 3 y 3x Thunderbolt 4', 'Acabado Negro Espacial (Space Black) o Plata'],
+        variants: ['14" M3 Pro (18GB/512GB) - $7.299.000', '16" M3 Pro (18GB/512GB) - $8.999.000']
       },
       {
         id: 'macbook-air-m3',
         category: 'mac',
-        badge: 'Ultraligera',
-        title: 'MacBook Air 13" y 15" (Chip M3)',
-        price: 5499000,
+        badge: 'Favorita Estudiantes',
+        title: 'MacBook Air 13" y 15" (Chip M3 / M2)',
+        price: 4299000,
         img: IMG_MACBOOK,
-        shortDesc: 'Súper portátil, soporte para dos monitores externos, Wi-Fi 6E y hasta 18 horas de batería.',
-        specs: ['Chip Apple M3 de 8 núcleos CPU y GPU de hasta 10 núcleos', 'Pantalla Liquid Retina de 13.6" o 15.3" con True Tone', 'Cámara FaceTime HD 1080p y sistema de 4 o 6 altavoces', 'Colores: Medianoche, Blanco Estelar, Gris Espacial y Plata'],
-        variants: ['13" M3 (8GB/256GB) - $5.499.000', '13" M3 (16GB/512GB) - $6.699.000', '15" M3 (16GB/512GB) - $7.499.000']
+        shortDesc: 'El ingreso ideal al mundo MacBook: ultraligera, silenciosa, con Wi-Fi 6E y hasta 18 horas de batería.',
+        specs: ['Chip Apple M3 o M2 de 8 núcleos con diseño delgado de aluminio reciclado', 'Pantalla Liquid Retina de 13.6" o 15.3" con True Tone', 'Cámara FaceTime HD 1080p y Touch ID integrado', 'Colores: Medianoche, Blanco Estelar, Gris Espacial y Plata'],
+        variants: ['13" M2 (8GB/256GB) - $4.299.000', '13" M3 (16GB/256GB) - $4.699.000', '15" M3 (16GB/512GB) - $5.899.000']
       },
+
+      // ==========================================
+      // LÍNEA IPAD (ACTUALIZADA A 2026: M5, M4, MINI A17 PRO)
+      // ==========================================
       {
-        id: 'imac-24-m3',
-        category: 'mac',
-        badge: 'Todo en Uno',
-        title: 'iMac 24" Pantalla Retina 4.5K (M3)',
-        price: 6899000,
-        img: IMG_MACBOOK,
-        shortDesc: 'Diseño icónico de solo 11.5 mm de grosor con pantalla 4.5K de 1.000 millones de colores.',
-        specs: ['Pantalla Retina 4.5K de 24 pulgadas (4480 x 2520)', 'Chip Apple M3 para productividad y diseño gráfico', 'Incluye Magic Keyboard con Touch ID y Magic Mouse', '6 parlantes de alta fidelidad con Audio Espacial'],
-        variants: ['256GB SSD / 8GB - $6.899.000', '512GB SSD / 16GB - $8.199.000']
-      },
-      {
-        id: 'mac-studio-mini',
-        category: 'mac',
-        badge: 'Desktop Pro',
-        title: 'Mac mini & Mac Studio (M2 Pro / Max)',
-        price: 3199000,
-        img: IMG_MACBOOK,
-        shortDesc: 'Escritorios compactos de alto desempeño para estudios de grabación, código y edición 8K.',
-        specs: ['Conectividad Thunderbolt 4, HDMI, Ethernet y USB-A', 'Dimensiones ultracompactas silenciosas', 'Compatible con Studio Display 5K de 27 pulgadas', 'Garantía Oficial Apple Colombia 1 Año'],
-        variants: ['Mac mini M2 (8GB/256GB) - $3.199.000', 'Mac mini M2 Pro (16GB/512GB) - $6.299.000', 'Mac Studio M2 Max (32GB/512GB) - $9.999.000']
+        id: 'ipad-pro-m5',
+        category: 'ipad',
+        badge: 'Nuevo 2026 • Tandem OLED',
+        title: 'iPad Pro 11" y 13" (Chip M5)',
+        price: 6499000,
+        img: IMG_IPAD,
+        shortDesc: 'La cúspide de las tablets en 2026: Chip M5 de 2nm, pantalla Ultra Retina XDR Tandem OLED 2.0 y Wi-Fi 7 en solo 5.0 mm.',
+        specs: ['Pantalla Ultra Retina XDR OLED en tándem con ProMotion 120Hz y opción Nano-Texturizada', 'Chip Apple M5 con 16 GB de RAM base y motor neuronal para Apple Intelligence 3.0', 'Conectividad Thunderbolt 5 / USB 4 y soporte para Apple Pencil Pro', 'Escáner LiDAR de nueva generación y 4 micrófonos con calidad de estudio'],
+        variants: ['11" M5 Wi-Fi 256GB - $6.499.000', '11" M5 Wi-Fi 512GB - $7.499.000', '13" M5 Wi-Fi 256GB - $7.999.000']
       },
       {
         id: 'ipad-pro-m4',
         category: 'ipad',
-        badge: 'Tandem OLED',
+        badge: 'Ultra Fino 5.1mm',
         title: 'iPad Pro 11" y 13" (Chip M4)',
-        price: 5999000,
+        price: 5499000,
         img: IMG_IPAD,
-        shortDesc: 'Pantalla Ultra Retina XDR OLED en tándem y el potente Chip M4 en apenas 5.1 mm de grosor.',
-        specs: ['Pantalla Ultra Retina XDR con ProMotion y True Tone', 'Chip M4 con motor neuronal de 38 billones de ops/s', 'Compatible con Apple Pencil Pro y nuevo Magic Keyboard de aluminio', 'Escáner LiDAR y cámaras 4K ProRes'],
-        variants: ['11" Wi-Fi 256GB - $5.999.000', '11" Wi-Fi 512GB - $6.999.000', '13" Wi-Fi 256GB - $7.599.000']
+        shortDesc: 'Pantalla Ultra Retina XDR OLED en tándem y el potente Chip M4 para diseño 3D, arquitectura y edición de video ProRes.',
+        specs: ['Pantalla Ultra Retina XDR con brillo pico de 1600 nits HDR', 'Chip M4 con motor neuronal de 38 billones de operaciones por segundo', 'Compatible con Apple Pencil Pro y Magic Keyboard de aluminio con trackpad háptico', 'Colores: Negro Espacial y Plata'],
+        variants: ['11" M4 Wi-Fi 256GB - $5.499.000', '11" M4 Wi-Fi 512GB - $6.399.000', '13" M4 Wi-Fi 256GB - $6.999.000']
+      },
+      {
+        id: 'ipad-air-m4',
+        category: 'ipad',
+        badge: 'Nuevo 2026 • 11" y 13"',
+        title: 'iPad Air 11" y 13" (Chip M4)',
+        price: 3599000,
+        img: IMG_IPAD,
+        shortDesc: 'El iPad Air más veloz de la historia ahora con Chip M4, pantalla de alto brillo de 600 nits y soporte completo para Apple Pencil Pro.',
+        specs: ['Chip Apple M4 de 8 núcleos CPU y 10 núcleos GPU con Ray Tracing', 'Disponible en 11 pulgadas portátil y 13 pulgadas de gran formato', 'Cámara frontal ultra gran angular de 12 MP en orientación horizontal', 'Compatible con el nuevo Magic Keyboard y Apple Pencil Pro'],
+        variants: ['11" M4 128GB Wi-Fi - $3.599.000', '11" M4 256GB Wi-Fi - $4.199.000', '13" M4 128GB Wi-Fi - $4.699.000']
       },
       {
         id: 'ipad-air-m2',
         category: 'ipad',
-        badge: 'Nuevo 11" y 13"',
-        title: 'iPad Air con Chip M2',
-        price: 3299000,
+        badge: 'Potencia M2',
+        title: 'iPad Air 11" y 13" (Chip M2)',
+        price: 2999000,
         img: IMG_IPAD,
-        shortDesc: 'Disponible ahora en dos tamaños (11" y 13"), con cámara frontal horizontal y soporte Apple Pencil Pro.',
-        specs: ['Chip Apple M2 casi un 50% más rápido que la generación previa', 'Pantalla Liquid Retina laminada con revestimiento antirreflejo', 'Compatible con Apple Pencil Pro y Magic Keyboard', 'Colores: Azul, Morado, Blanco Estelar y Gris Espacial'],
-        variants: ['11" 128GB Wi-Fi - $3.299.000', '11" 256GB Wi-Fi - $3.899.000', '13" 128GB Wi-Fi - $4.399.000']
+        shortDesc: 'Rendimiento M2 extraordinario en dos tamaños con pantalla Liquid Retina laminada y diseño en aluminio reciclado.',
+        specs: ['Chip Apple M2 con 8 GB de memoria unificada para Apple Intelligence', 'Pantalla Liquid Retina con gama cromática P3 y revestimiento antirreflejo', 'Touch ID integrado en el botón superior y Wi-Fi 6E', 'Colores: Azul, Morado, Blanco Estelar y Gris Espacial'],
+        variants: ['11" M2 128GB Wi-Fi - $2.999.000', '11" M2 256GB Wi-Fi - $3.499.000', '13" M2 128GB Wi-Fi - $3.999.000']
       },
       {
-        id: 'ipad-10-mini',
+        id: 'ipad-mini-a17-pro',
         category: 'ipad',
-        badge: 'Versatilidad Total',
-        title: 'iPad (10.ª Gen) & iPad mini',
-        price: 1999000,
+        badge: 'IA Ultraportátil 8.3"',
+        title: 'iPad mini (7.ª Gen - Chip A17 Pro)',
+        price: 2699000,
         img: IMG_IPAD,
-        shortDesc: 'Diseño todo pantalla colorido ideal para universidad, notas manuscritas, lectura y entretenimiento.',
-        specs: ['Pantalla Liquid Retina de 10.9" (o 8.3" en iPad mini)', 'Conector USB-C y Touch ID en botón superior', 'Cámaras de 12 MP con Encuadre Centrado automático', 'Colores: Azul, Rosa, Amarillo y Plata'],
-        variants: ['iPad 10ª Gen 64GB - $1.999.000', 'iPad 10ª Gen 256GB - $2.699.000', 'iPad mini 64GB - $2.599.000']
+        shortDesc: 'Toda la potencia del Chip A17 Pro y Apple Intelligence en un diseño compacto de 8.3 pulgadas compatible con Apple Pencil Pro.',
+        specs: ['Chip A17 Pro con GPU de 5 núcleos y trazado de rayos por hardware', 'Pantalla Liquid Retina de 8.3 pulgadas con True Tone y gama P3', 'Compatible con Apple Pencil Pro (gesto de apretar y rotación)', 'Puerto USB-C el doble de rápido (10 Gbps) y 128 GB de almacenamiento base'],
+        variants: ['128 GB Wi-Fi - $2.699.000', '256 GB Wi-Fi - $3.199.000', '128 GB Wi-Fi + Cellular - $3.499.000']
+      },
+      {
+        id: 'ipad-11-gen',
+        category: 'ipad',
+        badge: 'Nuevo 2026 • Apple Intelligence',
+        title: 'iPad (11.ª Generación - Chip A16 / A17)',
+        price: 2199000,
+        img: IMG_IPAD,
+        shortDesc: 'El iPad más popular se renueva en 2026 con el doble de almacenamiento base (128 GB), chip preparado para IA y pantalla de 10.9".',
+        specs: ['Pantalla Liquid Retina de 10.9 pulgadas de borde a borde', 'Chip de nueva generación con 8 GB de RAM para multitarea fluida', 'Cámara frontal horizontal de 12 MP con Encuadre Centrado', 'Compatible con Magic Keyboard Folio y Apple Pencil (USB-C)'],
+        variants: ['128 GB Wi-Fi - $2.199.000', '256 GB Wi-Fi - $2.699.000']
+      },
+      {
+        id: 'ipad-10-gen',
+        category: 'ipad',
+        badge: 'Precio Especial',
+        title: 'iPad (10.ª Generación)',
+        price: 1799000,
+        img: IMG_IPAD,
+        shortDesc: 'Diseño moderno todo pantalla colorido ideal para colegio, universidad, lectura, streaming y notas digitales.',
+        specs: ['Pantalla Liquid Retina de 10.9" con True Tone', 'Chip A14 Bionic, conector USB-C y Touch ID en botón superior', 'Cámaras de 12 MP y altavoces estéreo en horizontal', 'Colores vibrantes: Azul, Rosa, Amarillo y Plata'],
+        variants: ['64 GB Wi-Fi - $1.799.000', '256 GB Wi-Fi - $2.399.000']
+      },
+
+      // ==========================================
+      // LÍNEA APPLE WATCH (ACTUALIZADA A 2026: ULTRA 3, SERIES 12, S11, S10, SE 3)
+      // ==========================================
+      {
+        id: 'watch-ultra-3',
+        category: 'watch',
+        badge: 'Nuevo 2026 • Satelital',
+        title: 'Apple Watch Ultra 3 (49mm Titanio)',
+        price: 4499000,
+        img: IMG_WATCH,
+        shortDesc: 'El reloj deportivo y de expedición definitivo 2026: conexión satelital fuera de red, alertas de hipertensión y pantalla OLED de 3500 nits.',
+        specs: ['Caja de titanio aeroespacial de 49 mm (Titanio Natural o Titanio Negro Satinado)', 'Chip S11 SiP con mensajes vía satélite sin necesidad de llevar el iPhone', 'Detección de tendencias de presión arterial (hipertensión) y apnea del sueño', 'Batería extrema de hasta 48 horas de uso normal y 96 horas en modo ahorro'],
+        variants: ['Titanio Natural 49mm - $4.499.000', 'Titanio Negro 49mm - $4.599.000', 'Con Correa Milanese de Titanio - $4.999.000']
+      },
+      {
+        id: 'watch-series-12',
+        category: 'watch',
+        badge: 'Nuevo 2026 • Salud IA',
+        title: 'Apple Watch Series 12 (42mm / 46mm)',
+        price: 2499000,
+        img: IMG_WATCH,
+        shortDesc: 'Nuevo lanzamiento 2026: pantalla Micro-LED/LTPO3 ultrabrillante, sensor de presión arterial y entrenador de salud con Apple Intelligence.',
+        specs: ['Diseño ultradelgado de 9.5 mm con cristal frontal de zafiro o Ion-X reforzado', 'Chip S12 SiP con procesamiento neuronal en la muñeca y gesto de doble toque 2.0', 'Monitoreo continuo de presión arterial, apnea del sueño, ECG y oxígeno en sangre', 'Carga ultrarrápida: de 0 a 80% en apenas 20 minutos'],
+        variants: ['Aluminio 42mm GPS - $2.499.000', 'Aluminio 46mm GPS - $2.699.000', 'Titanio Pulido 46mm GPS+Cell - $3.899.000']
+      },
+      {
+        id: 'watch-series-11',
+        category: 'watch',
+        badge: '5G RedCap & Salud',
+        title: 'Apple Watch Series 11 (42mm / 46mm)',
+        price: 2199000,
+        img: IMG_WATCH,
+        shortDesc: 'Gran pantalla de ángulo amplio, conectividad celular 5G RedCap de bajo consumo y métricas avanzadas de entrenamiento.',
+        specs: ['Pantalla OLED de gran ángulo un 40% más brillante al mirarla de lado', 'Chip S11 SiP con detección de caídas, choques y signos vitales nocturnos', 'Sensores de profundidad y temperatura del agua para snorkel y natación', 'Acabados: Negro Azabache brillante, Oro Rosa, Plata y Titanio'],
+        variants: ['Aluminio 42mm GPS - $2.199.000', 'Aluminio 46mm GPS - $2.399.000', 'Titanio 46mm GPS+Cell - $3.599.000']
       },
       {
         id: 'watch-ultra-2',
         category: 'watch',
-        badge: 'Titanio 49mm',
-        title: 'Apple Watch Ultra 2 (GPS + Cellular)',
-        price: 4199000,
+        badge: 'Titanio Negro & Natural',
+        title: 'Apple Watch Ultra 2 (49mm GPS + Cellular)',
+        price: 3899000,
         img: IMG_WATCH,
-        shortDesc: 'El reloj más robusto y capaz de Apple. Pantalla de 3000 nits, sirena de 86 dB y buceo hasta 40m.',
-        specs: ['Caja de titanio aeroespacial de 49 mm (Natural o Negro)', 'Botón de Acción personalizable en Naranja Internacional', 'Hasta 36 horas de uso normal y 72h en modo ahorro', 'Correas: Alpine Loop, Trail Loop y Ocean Band'],
-        variants: ['Titanio Natural 49mm - $4.199.000', 'Titanio Negro 49mm - $4.299.000']
+        shortDesc: 'Resistencia militar MIL-STD 810H, sirena de 86 decibeles, GPS de doble frecuencia L1+L5 y buceo recreativo hasta 40 metros.',
+        specs: ['Caja de titanio de 49 mm resistente a la corrosión con cristal de zafiro plano', 'Botón de Acción personalizable en Naranja Internacional', 'Hasta 36 horas de autonomía normal y 72 horas en modo bajo consumo', 'Correas: Alpine Loop, Trail Loop, Ocean Band y Milanese de Titanio'],
+        variants: ['Titanio Natural 49mm - $3.899.000', 'Titanio Negro Satinado 49mm - $3.999.000']
       },
       {
         id: 'watch-series-10',
         category: 'watch',
-        badge: 'Nuevo Diseño',
+        badge: 'Diseño Delgado',
         title: 'Apple Watch Series 10 (42mm / 46mm)',
-        price: 2199000,
+        price: 1899000,
         img: IMG_WATCH,
-        shortDesc: 'El Apple Watch más delgado jamás creado con la pantalla OLED de ángulo amplio más grande.',
-        specs: ['Carga rápida: 80% de batería en solo 30 minutos', 'Sensores de temperatura del agua, profundidad y ECG', 'Notificaciones de apnea del sueño y frecuencia cardíaca', 'Acabados: Negro Azabache brillante, Oro Rosa y Plata'],
-        variants: ['Aluminio 42mm GPS - $2.199.000', 'Aluminio 46mm GPS - $2.399.000', 'Titanio 46mm GPS+Cell - $3.699.000']
+        shortDesc: 'El rediseño clásico con pantalla amplia, reproducción de música por el altavoz integrado y carga rápida en 30 minutos.',
+        specs: ['Chip S10 SiP de 4 núcleos neuronales', 'Sensores de temperatura del agua, profundidad, ECG y ciclo menstrual', 'Notificaciones de apnea del sueño y frecuencia cardíaca alta/baja', 'Acabados: Negro Azabache brillante, Oro Rosa y Plata'],
+        variants: ['Aluminio 42mm GPS - $1.899.000', 'Aluminio 46mm GPS - $2.099.000']
+      },
+      {
+        id: 'watch-se-3',
+        category: 'watch',
+        badge: 'Nuevo 2026 • Calidad/Precio',
+        title: 'Apple Watch SE (3.ª Generación - 2026)',
+        price: 1399000,
+        img: IMG_WATCH,
+        shortDesc: 'El reloj inteligente esencial renovado con pantalla más grande de bordes delgados, chip S10 rápido y Detección de Choques.',
+        specs: ['Pantallas actualizadas de 41 mm y 45 mm con mayor área activa', 'Chip S10 SiP ultrarrápido compatible con gestos y Siri en el dispositivo', 'Resistencia al agua 50m, control del sueño y Configuración Familiar para niños', 'Colores: Medianoche, Blanco Estelar, Azul y Plata'],
+        variants: ['41mm GPS - $1.399.000', '45mm GPS - $1.549.000']
       },
       {
         id: 'watch-se-2',
         category: 'watch',
-        badge: 'Calidad / Precio',
+        badge: 'Acceso Apple Watch',
         title: 'Apple Watch SE (2.ª Generación)',
-        price: 1299000,
+        price: 1099000,
         img: IMG_WATCH,
-        shortDesc: 'Todas las funciones esenciales de salud, ejercicio y seguridad con Detección de Choques.',
-        specs: ['Chip S8 SiP de doble núcleo ultrarrápido', 'Resistencia al agua hasta 50 metros para natación', 'Monitoreo de frecuencia cardíaca y fases del sueño', 'Cajas de 40 mm y 44 mm en Medianoche, Estelar y Plata'],
-        variants: ['40mm GPS - $1.299.000', '44mm GPS - $1.449.000']
+        shortDesc: 'La forma más económica de estrenar Apple Watch original con todas las funciones de actividad, salud cardíaca y seguridad.',
+        specs: ['Chip S8 SiP de doble núcleo', 'Resistencia al agua hasta 50 metros para natación', 'Monitoreo de frecuencia cardíaca, fases del sueño y llamadas de emergencia', 'Cajas de 40 mm y 44 mm en Medianoche, Estelar y Plata'],
+        variants: ['40mm GPS - $1.099.000', '44mm GPS - $1.249.000']
       }
     ];
 
@@ -2847,12 +3008,12 @@
         `
       },
       sistemas: {
-        badge: 'Ecosistema de Software',
-        title: 'iOS 18, macOS Sequoia, iPadOS 18 & Apple Intelligence',
+        badge: 'Ecosistema de Software 2026',
+        title: 'iOS 20, macOS 17, iPadOS 20, watchOS 13 & Apple Intelligence 3.0',
         content: `
-          <p class="text-xs text-gray-600 leading-relaxed mb-4">La nueva generación de hardware Apple está diseñada desde el silicio para potenciar Apple Intelligence, brindando herramientas de escritura inteligente, edición generativa de fotos y una Siri completamente renovada con privacidad en el dispositivo.</p>
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">La línea 2026 de hardware Apple (Chips A20 Pro, M5 y S12) está diseñada desde el silicio de 2 nanómetros para potenciar Apple Intelligence 3.0, brindando agentes autónomos en el dispositivo, edición generativa de video 8K y privacidad cuántica total.</p>
           <div class="p-4 rounded-2xl bg-red-50 border border-red-100 text-xs text-gray-800">
-            <strong>Configuración Gratuita en Tienda:</strong> Al comprar tu equipo en RedCover, nuestros especialistas transfieren todos tus datos de tu teléfono anterior y configuran tu iCloud+ sin costo adicional.
+            <strong>Configuración Gratuita en Tienda:</strong> Al comprar tu equipo en RedCover, nuestros especialistas transfieren todos tus datos de tu dispositivo anterior y configuran tu iCloud+ sin costo adicional.
           </div>
         `
       },
@@ -2923,68 +3084,74 @@
         ]
       },
       watch: {
-        categoryTitle: "Explorar Apple Watch",
+        categoryTitle: "Explorar Apple Watch (Línea 2026)",
         primaryLinks: [
-          { name: "Ver todos los modelos de Watch", action: "filterAndScroll('watch')", bold: true },
-          { name: "Apple Watch Ultra 2 (49mm)", action: "openProductModal('watch-ultra-2')" },
-          { name: "Apple Watch Series 10", action: "openProductModal('watch-series-10')" },
-          { name: "Apple Watch SE (2.ª Gen)", action: "openProductModal('watch-se-2')" }
+          { name: "Ver todos los modelos de Watch (7)", action: "filterAndScroll('watch')", bold: true },
+          { name: "Apple Watch Ultra 3 (Nuevo 2026)", action: "openProductModal('watch-ultra-3')" },
+          { name: "Apple Watch Series 12 (Nuevo 2026)", action: "openProductModal('watch-series-12')" },
+          { name: "Apple Watch Series 11 (5G RedCap)", action: "openProductModal('watch-series-11')" },
+          { name: "Apple Watch Ultra 2 & Series 10", action: "openProductModal('watch-ultra-2')" },
+          { name: "Apple Watch SE 3 (2026) & SE 2", action: "openProductModal('watch-se-3')" }
         ],
         secondaryTitle: "Comprar Watch",
         secondaryLinks: [
-          { name: "Comprar Apple Watch", action: "filterAndScroll('watch')" },
-          { name: "Cargadores y Accesorios", href: "#accesorios" },
-          { name: "Financiar Apple Watch al 0%", action: "directFinanceWhatsApp('Apple Watch Ultra 2 / Series 10', 2199000)" }
+          { name: "Comprar Apple Watch 2026", action: "filterAndScroll('watch')" },
+          { name: "Cargadores MagSafe y Correas", href: "#accesorios" },
+          { name: "Plan Canje para Apple Watch", href: "#canje" },
+          { name: "Financiar Apple Watch al 0%", action: "directFinanceWhatsApp('Apple Watch Ultra 3 / Series 12', 2499000)" }
         ],
         tertiaryTitle: "Más para el Apple Watch",
         tertiaryLinks: [
           { name: "Soporte para Apple Watch", action: "openInfoModal('soporte')" },
-          { name: "watchOS 11 y Salud", action: "openInfoModal('sistemas')" },
-          { name: "Garantía Oficial Apple", action: "openInfoModal('garantia')" }
+          { name: "watchOS 13 y Monitoreo Hipertensión", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" }
         ]
       },
       mac: {
-        categoryTitle: "Explorar Mac",
+        categoryTitle: "Explorar Mac (Línea M5 y M4 2026)",
         primaryLinks: [
-          { name: "Ver todos los modelos de Mac", action: "filterAndScroll('mac')", bold: true },
-          { name: "MacBook Pro 14\" y 16\" (M3 Pro/Max)", action: "openProductModal('macbook-pro-m3')" },
-          { name: "MacBook Air 13\" y 15\" (M3)", action: "openProductModal('macbook-air-m3')" },
-          { name: "iMac 24\" Retina 4.5K (M3)", action: "openProductModal('imac-24-m3')" },
-          { name: "Mac mini & Mac Studio", action: "openProductModal('mac-studio-mini')" }
+          { name: "Ver todos los modelos de Mac (9)", action: "filterAndScroll('mac')", bold: true },
+          { name: "MacBook Pro 14\" y 16\" (Chip M5 Max)", action: "openProductModal('macbook-pro-m5')" },
+          { name: "MacBook Air 13\" y 15\" (Chip M5)", action: "openProductModal('macbook-air-m5')" },
+          { name: "MacBook Pro & Air (Serie Chip M4)", action: "openProductModal('macbook-pro-m4')" },
+          { name: "iMac 24\" Retina 4.5K (Chip M4)", action: "openProductModal('imac-24-m4')" },
+          { name: "Mac mini M4 Pro & Mac Studio M4 Ultra", action: "openProductModal('mac-studio-m4')" }
         ],
         secondaryTitle: "Comprar Mac",
         secondaryLinks: [
-          { name: "Ver Catálogo de Mac", action: "filterAndScroll('mac')" },
-          { name: "Accesorios y Carga USB-C", href: "#accesorios" },
+          { name: "Ver Catálogo Completo de Mac (9)", action: "filterAndScroll('mac')" },
+          { name: "Accesorios y Carga USB-C / Thunderbolt 5", href: "#accesorios" },
           { name: "Plan Canje de MacBooks", href: "#canje" },
-          { name: "Financiar MacBook por WhatsApp", action: "directFinanceWhatsApp('MacBook Pro / Air M3', 5499000)" }
+          { name: "Financiar MacBook por WhatsApp", action: "directFinanceWhatsApp('MacBook Pro M5 / Air M5', 5899000)" }
         ],
         tertiaryTitle: "Más para Mac",
         tertiaryLinks: [
           { name: "Soporte técnico Mac", action: "openInfoModal('soporte')" },
-          { name: "macOS Sequoia", action: "openInfoModal('sistemas')" },
+          { name: "macOS 17 y Apple Intelligence 3.0", action: "openInfoModal('sistemas')" },
           { name: "AppleCare+ y Garantía", action: "openInfoModal('garantia')" }
         ]
       },
       ipad: {
-        categoryTitle: "Explorar iPad",
+        categoryTitle: "Explorar iPad (Línea 2026)",
         primaryLinks: [
-          { name: "Ver todos los modelos de iPad", action: "filterAndScroll('ipad')", bold: true },
+          { name: "Ver todos los modelos de iPad (7)", action: "filterAndScroll('ipad')", bold: true },
+          { name: "iPad Pro 11\" y 13\" (Chip M5 OLED)", action: "openProductModal('ipad-pro-m5')" },
           { name: "iPad Pro (Chip M4 Tandem OLED)", action: "openProductModal('ipad-pro-m4')" },
-          { name: "iPad Air 11\" y 13\" (Chip M2)", action: "openProductModal('ipad-air-m2')" },
-          { name: "iPad (10.ª gen) & iPad mini", action: "openProductModal('ipad-10-mini')" }
+          { name: "iPad Air 11\" y 13\" (Chip M4 2026)", action: "openProductModal('ipad-air-m4')" },
+          { name: "iPad mini 7 (Chip A17 Pro IA)", action: "openProductModal('ipad-mini-a17-pro')" },
+          { name: "iPad 11.ª Gen (2026) & iPad 10.ª Gen", action: "openProductModal('ipad-11-gen')" }
         ],
         secondaryTitle: "Comprar iPad",
         secondaryLinks: [
-          { name: "Comprar iPad", action: "filterAndScroll('ipad')" },
-          { name: "Accesorios para iPad", href: "#accesorios" },
+          { name: "Ver Catálogo Completo de iPad (7)", action: "filterAndScroll('ipad')" },
+          { name: "Apple Pencil Pro y Accesorios", href: "#accesorios" },
           { name: "Plan Canje para iPad", href: "#canje" },
-          { name: "Financiar iPad por WhatsApp", action: "directFinanceWhatsApp('iPad Pro M4 / Air M2', 3299000)" }
+          { name: "Financiar iPad por WhatsApp", action: "directFinanceWhatsApp('iPad Pro M5 / iPad Air M4', 3599000)" }
         ],
         tertiaryTitle: "Más para el iPad",
         tertiaryLinks: [
           { name: "Soporte para el iPad", action: "openInfoModal('soporte')" },
-          { name: "iPadOS 18 y Apple Intelligence", action: "openInfoModal('sistemas')" },
+          { name: "iPadOS 20 y Apple Intelligence 3.0", action: "openInfoModal('sistemas')" },
           { name: "Garantía Oficial 1 Año", action: "openInfoModal('garantia')" }
         ]
       },
