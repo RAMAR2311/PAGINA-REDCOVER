@@ -562,10 +562,10 @@
       <!-- Pestañas de Categoría de Dispositivos -->
       <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8" id="device-category-tabs">
         <button type="button" onclick="filterDevices('all')" data-dev-filter="all" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap">
-          Todos los Equipos (16)
+          Todos los Equipos (26)
         </button>
         <button type="button" onclick="filterDevices('iphone')" data-dev-filter="iphone" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (6)
+          <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (16)
         </button>
         <button type="button" onclick="filterDevices('mac')" data-dev-filter="mac" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
           <span class="material-symbols-outlined text-base">laptop_mac</span> Mac & MacBook (4)
@@ -786,11 +786,19 @@
                   <option value="2400000">iPhone 15 (128GB)</option>
                   <option value="2200000">iPhone 14 Pro Max (256GB)</option>
                   <option value="1900000">iPhone 14 Pro (128GB)</option>
-                  <option value="1600000">iPhone 14 (128GB)</option>
+                  <option value="1600000">iPhone 14 Plus (128GB)</option>
+                  <option value="1500000">iPhone 14 (128GB)</option>
+                  <option value="1550000">iPhone 13 Pro Max (128GB)</option>
                   <option value="1450000">iPhone 13 Pro (128GB)</option>
                   <option value="1150000">iPhone 13 (128GB)</option>
+                  <option value="950000">iPhone 13 mini (128GB)</option>
+                  <option value="1050000">iPhone 12 Pro Max (128GB)</option>
                   <option value="980000">iPhone 12 Pro (128GB)</option>
                   <option value="820000">iPhone 12 (64GB)</option>
+                  <option value="720000">iPhone 12 mini (64GB)</option>
+                  <option value="850000">iPhone 11 Pro Max (64GB)</option>
+                  <option value="750000">iPhone 11 Pro (64GB)</option>
+                  <option value="600000">iPhone 11 (64GB)</option>
                   <option value="2700000">MacBook Air M2 (256GB)</option>
                   <option value="1800000">iPad Pro 11 M2 (128GB)</option>
                 </select>
@@ -1633,6 +1641,28 @@
         variants: ['256 GB - $5.199.000', '512 GB - $5.999.000']
       },
       {
+        id: 'iphone-15-pro',
+        category: 'iphone',
+        badge: 'Titanio Pro',
+        title: 'iPhone 15 Pro (128GB - 512GB)',
+        price: 4399000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Estructura liviana de titanio de grado aeroespacial, Botón de Acción y Chip A17 Pro de alto rendimiento.',
+        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz con Dynamic Island', 'Chip A17 Pro de 3 nanómetros con ray tracing gráfico', 'Cámara principal de 48 MP con 7 lentes focales virtuales', 'Conector USB-C universal de alta velocidad'],
+        variants: ['128 GB - $4.399.000', '256 GB - $4.899.000', '512 GB - $5.499.000']
+      },
+      {
+        id: 'iphone-15-plus',
+        category: 'iphone',
+        badge: 'Gran Batería',
+        title: 'iPhone 15 Plus (128GB)',
+        price: 3899000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Gran pantalla de 6.7 pulgadas, Dynamic Island, batería de larguísima duración y puerto USB-C.',
+        specs: ['Pantalla Super Retina XDR de 6.7"', 'Chip A16 Bionic de 6 núcleos', 'Cámara gran angular de 48 MP con teleobjetivo 2x de calidad óptica', 'Batería con hasta 26 horas de reproducción de video'],
+        variants: ['128 GB - $3.899.000', '256 GB - $4.399.000']
+      },
+      {
         id: 'iphone-15',
         category: 'iphone',
         badge: 'Best Seller',
@@ -1644,15 +1674,180 @@
         variants: ['128 GB - $3.499.000', '256 GB - $3.999.000']
       },
       {
-        id: 'iphone-14-13',
+        id: 'iphone-14-pro-max',
         category: 'iphone',
-        badge: 'Oportunidad',
-        title: 'iPhone 14 & iPhone 13 (128GB)',
-        price: 2499000,
+        badge: 'Dynamic Island Pro',
+        title: 'iPhone 14 Pro Max (128GB - 512GB)',
+        price: 4199000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El primer iPhone con Dynamic Island, pantalla siempre activa y cámara Pro de 48 MP.',
+        specs: ['Pantalla Super Retina XDR de 6.7" ProMotion Always-On', 'Chip A16 Bionic de alta eficiencia', 'Cámara de 48 MP con sensor quad-pixel y Photonic Engine', 'Detección de choques y Emergencia SOS vía satélite'],
+        variants: ['128 GB - $4.199.000', '256 GB - $4.699.000', '512 GB - $5.199.000']
+      },
+      {
+        id: 'iphone-14-pro',
+        category: 'iphone',
+        badge: 'Cámara Pro 48MP',
+        title: 'iPhone 14 Pro (128GB - 256GB)',
+        price: 3699000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Dynamic Island interactiva en formato compacto de 6.1", acero inoxidable quirúrgico y modo Acción.',
+        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz', 'Chip A16 Bionic ultrarrápido', 'Grabación de video en Modo Cine 4K HDR a 30 fps', 'Acabados: Morado Oscuro, Oro, Plata y Negro Espacial'],
+        variants: ['128 GB - $3.699.000', '256 GB - $4.099.000']
+      },
+      {
+        id: 'iphone-14-plus',
+        category: 'iphone',
+        badge: '6.7 Pulgadas',
+        title: 'iPhone 14 Plus (128GB)',
+        price: 2999000,
         img: IMG_IPHONE_16,
-        shortDesc: 'El ingreso ideal al ecosistema Apple con pantalla OLED Super Retina XDR, 5G y cámaras avanzadas.',
-        specs: ['Pantalla OLED de 6.1" con Ceramic Shield', 'Modo Cine en 4K Dolby Vision y Modo Acción', 'Autonomía para todo el día y carga MagSafe', 'Garantía Oficial Apple de 1 año en Colombia'],
-        variants: ['iPhone 13 128GB - $2.299.000', 'iPhone 14 128GB - $2.699.000']
+        shortDesc: 'Gran pantalla de 6.7 pulgadas con una de las baterías más rendidoras y ligeras jamás creadas por Apple.',
+        specs: ['Pantalla Super Retina XDR de 6.7" OLED', 'Chip A15 Bionic con GPU de 5 núcleos', 'Modo Acción para videos estables sin estabilizador', 'Batería de larga duración de hasta 26 horas'],
+        variants: ['128 GB - $2.999.000', '256 GB - $3.399.000']
+      },
+      {
+        id: 'iphone-14',
+        category: 'iphone',
+        badge: 'Potencia & Estilo',
+        title: 'iPhone 14 (128GB)',
+        price: 2699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Excelente equilibrio entre rendimiento, cámara avanzada con Photonic Engine y seguridad vial con Detección de Choques.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED con Ceramic Shield', 'Chip A15 Bionic con GPU de 5 núcleos', 'Cámara dual de 12 MP con Modo Cine en 4K y Photonic Engine', 'Conectividad 5G ultrarrápida y soporte eSIM / MagSafe'],
+        variants: ['128 GB - $2.699.000', '256 GB - $3.099.000']
+      },
+      {
+        id: 'iphone-13-pro-max',
+        category: 'iphone',
+        badge: 'ProMotion 120Hz',
+        title: 'iPhone 13 Pro Max (128GB)',
+        price: 3399000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'La legendaria autonomía y pantalla ProMotion de 120Hz con triple cámara Pro macro y teleobjetivo 3x.',
+        specs: ['Pantalla Super Retina XDR de 6.7" con ProMotion fluida', 'Chip A15 Bionic de 6 núcleos y GPU de 5 núcleos', 'Fotografía macro y zoom óptico 3x con escáner LiDAR', 'Chasis de acero inoxidable quirúrgico'],
+        variants: ['128 GB - $3.399.000', '256 GB - $3.799.000']
+      },
+      {
+        id: 'iphone-13-pro',
+        category: 'iphone',
+        badge: 'Pro Clásico',
+        title: 'iPhone 13 Pro (128GB)',
+        price: 2999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Pantalla ProMotion de 120Hz, cámara triple profesional con grabación ProRes y macrofotografía.',
+        specs: ['Pantalla Super Retina XDR de 6.1" ProMotion', 'Chip A15 Bionic con GPU de 5 núcleos', 'Grabación de video ProRes y Modo Cine', 'Acabados: Azul Sierra, Grafito, Oro y Plata'],
+        variants: ['128 GB - $2.999.000', '256 GB - $3.399.000']
+      },
+      {
+        id: 'iphone-13',
+        category: 'iphone',
+        badge: 'Favorito Calidad/Precio',
+        title: 'iPhone 13 (128GB)',
+        price: 2299000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El iPhone más vendido por su fiabilidad: cámaras en diagonal con estabilización óptica por desplazamiento de sensor.',
+        specs: ['Pantalla Super Retina XDR de 6.1" brillante de 800 nits', 'Chip A15 Bionic eficiente y potente', 'Sistema de cámara dual con Modo Cine 1080p a 30 fps', 'Hasta 19 horas de reproducción de video continua'],
+        variants: ['128 GB - $2.299.000', '256 GB - $2.699.000']
+      },
+      {
+        id: 'iphone-13-mini',
+        category: 'iphone',
+        badge: 'Compacto 5.4"',
+        title: 'iPhone 13 mini (128GB)',
+        price: 2099000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Toda la potencia Pro en un diseño ultracompacto y ligero que cabe en la palma de tu mano.',
+        specs: ['Pantalla Super Retina XDR de 5.4" OLED', 'Chip A15 Bionic idéntico al iPhone 13', 'Cámara dual avanzada con modo Noche y Modo Cine', 'Peso pluma de solo 140 gramos con Ceramic Shield'],
+        variants: ['128 GB - $2.099.000', '256 GB - $2.499.000']
+      },
+      {
+        id: 'iphone-12-pro-max',
+        category: 'iphone',
+        badge: 'Primer 5G Pro Max',
+        title: 'iPhone 12 Pro Max (128GB)',
+        price: 2599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El primer iPhone con 5G, diseño de bordes planos y escáner LiDAR para retratos en modo noche.',
+        specs: ['Pantalla Super Retina XDR de 6.7"', 'Chip A14 Bionic con arquitectura de 5nm', 'Cámara Pro con zoom óptico 2.5x y Apple ProRAW', 'Estructura de acero inoxidable y Ceramic Shield'],
+        variants: ['128 GB - $2.599.000', '256 GB - $2.899.000']
+      },
+      {
+        id: 'iphone-12-pro',
+        category: 'iphone',
+        badge: 'Acero Inoxidable',
+        title: 'iPhone 12 Pro (128GB)',
+        price: 2299000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Triple cámara trasera, sensor LiDAR para realidad aumentada y grabación Dolby Vision HDR.',
+        specs: ['Pantalla Super Retina XDR de 6.1"', 'Chip A14 Bionic', 'Triple cámara de 12 MP con zoom 2x y Modo Noche en todas las lentes', 'MagSafe magnético para accesorios y carga inalámbrica rápida'],
+        variants: ['128 GB - $2.299.000', '256 GB - $2.599.000']
+      },
+      {
+        id: 'iphone-12',
+        category: 'iphone',
+        badge: 'Pionero 5G',
+        title: 'iPhone 12 (64GB - 128GB)',
+        price: 1699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Diseño icónico con bordes planos de aluminio aeroespacial, pantalla OLED Super Retina XDR y MagSafe.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED de alta resolución', 'Chip A14 Bionic con Neural Engine de 16 núcleos', 'Cámara dual de 12 MP con Modo Noche y Deep Fusion', 'Resistencia al agua IP68 y tecnología MagSafe'],
+        variants: ['64 GB - $1.699.000', '128 GB - $1.899.000']
+      },
+      {
+        id: 'iphone-12-mini',
+        category: 'iphone',
+        badge: 'Mini Ultraligero',
+        title: 'iPhone 12 mini (64GB - 128GB)',
+        price: 1499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El teléfono 5G más pequeño, fino y ligero del mundo con toda la potencia del chip A14.',
+        specs: ['Pantalla Super Retina XDR de 5.4" OLED', 'Chip A14 Bionic', 'Cámara dual de 12 MP con grabación en 4K Dolby Vision', 'Ecosistema de accesorios MagSafe'],
+        variants: ['64 GB - $1.499.000', '128 GB - $1.699.000']
+      },
+      {
+        id: 'iphone-11-pro-max',
+        category: 'iphone',
+        badge: 'Triple Cámara Max',
+        title: 'iPhone 11 Pro Max (64GB - 256GB)',
+        price: 1999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El primer iPhone Pro con sistema de triple cámara, acabado de vidrio mate texturizado y batería colosal.',
+        specs: ['Pantalla Super Retina XDR de 6.5" OLED con contraste de 2.000.000:1', 'Chip A13 Bionic con arquitectura Fusion de 64 bits', 'Triple cámara de 12 MP: Ultra Gran Angular, Gran Angular y Teleobjetivo', 'Autonomía de larga duración con carga rápida'],
+        variants: ['64 GB - $1.999.000', '256 GB - $2.299.000']
+      },
+      {
+        id: 'iphone-11-pro',
+        category: 'iphone',
+        badge: 'Primer iPhone Pro',
+        title: 'iPhone 11 Pro (64GB - 256GB)',
+        price: 1799000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Diseño prémium en acero inoxidable, triple cámara con modo Noche y pantalla Super Retina XDR de 5.8 pulgadas.',
+        specs: ['Pantalla Super Retina XDR de 5.8" OLED compacta', 'Chip A13 Bionic con motor neuronal de 3ª generación', 'Cámaras Ultra Gran Angular, Gran Angular y Teleobjetivo de 12 MP', 'Resistencia al agua hasta 4 metros por 30 minutos (IP68)'],
+        variants: ['64 GB - $1.799.000', '256 GB - $2.099.000']
+      },
+      {
+        id: 'iphone-11',
+        category: 'iphone',
+        badge: 'Acceso Económico Apple',
+        title: 'iPhone 11 (64GB - 128GB)',
+        price: 1399000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'La mejor puerta de entrada al ecosistema iOS con pantalla Liquid Retina de 6.1", chip A13 Bionic y cámara dual.',
+        specs: ['Pantalla Liquid Retina HD de 6.1" LCD con True Tone', 'Chip A13 Bionic con rendimiento sólido para todas tus apps', 'Sistema de dos cámaras de 12 MP con modo Noche automático', 'Face ID seguro, batería para todo el día y certificación oficial RedCover'],
+        variants: ['64 GB - $1.399.000', '128 GB - $1.599.000']
+      },
+      {
+        id: 'iphone-se-3',
+        category: 'iphone',
+        badge: 'Touch ID Clásico',
+        title: 'iPhone SE (3.ª Generación - 2022)',
+        price: 1499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Diseño icónico con botón de inicio Touch ID, conexión 5G y el potente chip A15 Bionic del iPhone 13.',
+        specs: ['Pantalla Retina HD de 4.7" con amplia gama cromática (P3)', 'Chip A15 Bionic de 6 núcleos ultrarrápido', 'Botón de inicio con sensor de huellas Touch ID', 'Cámara avanzada de 12 MP con Estilos Fotográficos y Deep Fusion'],
+        variants: ['64 GB - $1.499.000', '128 GB - $1.699.000']
       },
       {
         id: 'macbook-pro-m3',
