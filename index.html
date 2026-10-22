@@ -96,7 +96,7 @@
   <!-- Promo Top Bar -->
   <div class="bg-gradient-to-r from-zinc-900 via-neutral-900 to-zinc-900 text-white text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2 border-b border-zinc-800">
     <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-    <span>Hasta 24 cuotas sin interés con Bancolombia, Davivienda y Banco de Bogotá. Envíos gratis a toda Colombia.</span>
+    <span id="cms-promo-topbar">Hasta 24 cuotas sin interés con Bancolombia, Davivienda y Banco de Bogotá. Envíos gratis a toda Colombia.</span>
   </div>
 
   <!-- TopNavBar -->
@@ -151,6 +151,12 @@
           <span class="material-symbols-outlined text-[22px]">search</span>
         </button>
 
+        <!-- Admin Profile / CMS Button -->
+        <button type="button" onclick="openAdminPanel()" id="admin-nav-btn" title="Perfil de Administrador (Editar Tienda)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-primary text-white text-xs font-bold transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[17px]">admin_panel_settings</span>
+          <span class="hidden lg:inline">Admin</span>
+        </button>
+
         <!-- Cart button with counter -->
         <button id="cart-btn" aria-label="Bolsa de compras" class="relative w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors">
           <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
@@ -183,10 +189,13 @@
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, AirPods Pro 3)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras 4 Tiendas en Colombia</a>
-      <div class="pt-2 border-t border-gray-100 flex items-center justify-between">
+      <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
         <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" href="#ofertas" class="w-full text-center py-2.5 rounded-full crimson-btn text-white text-sm font-semibold">
           Ver Ofertas Especiales
         </a>
+        <button type="button" onclick="document.getElementById('mobile-menu').classList.add('hidden'); openAdminPanel()" class="w-full text-center py-2.5 rounded-full bg-zinc-900 text-white text-xs font-bold flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">admin_panel_settings</span> Perfil de Administrador (Editar Web)
+        </button>
       </div>
     </div>
   </header>
@@ -236,7 +245,7 @@
       <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 text-xs font-semibold text-primary shadow-sm">
           <span class="w-2 h-2 rounded-full bg-primary badge-pulse"></span>
-          Distribuidor Autorizado Apple en Colombia
+          <span id="cms-hero-auth-badge">Distribuidor Autorizado Apple en Colombia</span>
         </div>
 
         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-sm backdrop-blur-md">
@@ -249,60 +258,56 @@
             <div class="flex text-amber-500 font-bold tracking-tighter">
               ★★★★★
             </div>
-            <span class="font-extrabold text-gray-900">+10.000 clientes satisfechos</span>
-            <span class="text-[11px] text-gray-500 hidden sm:inline">• 4.9/5 en Colombia</span>
+            <span class="font-extrabold text-gray-900" id="cms-hero-clients-badge">+10.000 clientes satisfechos</span>
+            <span class="text-[11px] text-gray-500 hidden sm:inline" id="cms-hero-rating-badge">• 4.9/5 en Colombia</span>
           </div>
         </div>
       </div>
 
       <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight max-w-4xl text-gray-900 mb-6 leading-tight">
-        iPhone 18 Pro. <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-neutral-700 to-primary">
+        <span id="cms-hero-title-main">iPhone 18 Pro.</span> <br>
+        <span id="cms-hero-title-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-neutral-700 to-primary">
           Titanio Líquido. Potencia Chip A20 Pro & Neural Quantum.
         </span>
       </h1>
 
-      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mb-8 leading-relaxed font-normal">
+      <p id="cms-hero-description" class="text-base sm:text-lg text-gray-600 max-w-2xl mb-8 leading-relaxed font-normal">
         Bienvenido al futuro de Apple. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 con procesamiento cuántico local y zoom óptico periscópico continuo de 10x.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row items-center gap-4 mb-14 w-full sm:w-auto">
         <a class="w-full sm:w-auto px-8 py-4 rounded-full crimson-btn text-white font-semibold text-sm shadow-lg flex items-center justify-center gap-2" href="#catalogo-dispositivos" onclick="filterDevices('iphone')">
-          <span>Reservar iPhone 18 Pro</span>
+          <span id="cms-hero-cta1">Reservar iPhone 18 Pro</span>
           <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
         <a class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-gray-300 text-gray-800 font-semibold text-sm hover:border-primary hover:text-primary transition-all shadow-sm flex items-center justify-center gap-2" href="#canje">
           <span class="material-symbols-outlined text-sm">swap_horiz</span>
-          <span>Entregar mi iPhone en Plan Canje</span>
+          <span id="cms-hero-cta2">Entregar mi iPhone en Plan Canje</span>
         </a>
       </div>
 
       <!-- Cinematic Hero Card -->
       <div class="relative w-full rounded-3xl overflow-hidden glass-card p-2 crimson-glow border border-gray-200 bg-white">
         <div class="relative h-[380px] sm:h-[480px] md:h-[580px] w-full rounded-2xl overflow-hidden bg-zinc-950">
-          <img class="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700" alt="iPhone 18 Pro en acabado Titanio Carmesí Profundo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk">
+          <img id="cms-hero-banner-img" class="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700" alt="iPhone 18 Pro en acabado Titanio Carmesí Profundo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk">
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
           
           <div class="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-left">
             <div>
-              <span class="inline-block px-3 py-1 rounded-full bg-red-600/90 text-white text-[11px] uppercase tracking-wider font-bold mb-2">Lanzamiento Mundial • Próxima Generación</span>
-              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">iPhone 18 Pro Max • Desde $6.499.000 COP</h3>
-              <p class="text-sm text-zinc-300 font-medium">Hasta 24 cuotas sin interés de $270.791 COP con bancos aliados y 1 año de garantía oficial Apple</p>
+              <span id="cms-hero-banner-badge" class="inline-block px-3 py-1 rounded-full bg-red-600/90 text-white text-[11px] uppercase tracking-wider font-bold mb-2">Lanzamiento Mundial • Próxima Generación</span>
+              <h3 id="cms-hero-banner-price" class="text-2xl sm:text-3xl font-bold text-white tracking-tight">iPhone 18 Pro Max • Desde $6.499.000 COP</h3>
+              <p id="cms-hero-banner-sub" class="text-sm text-zinc-300 font-medium">Hasta 24 cuotas sin interés de $270.791 COP con bancos aliados y 1 año de garantía oficial Apple</p>
             </div>
             <div class="flex items-center gap-3">
               <button onclick="openProductModal('iphone-18-pro')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                 <span class="material-symbols-outlined text-base">tune</span>
-                Ficha Técnica iPhone 18 Pro
+                <span id="cms-hero-banner-btn1">Ficha Técnica iPhone 18 Pro</span>
               </button>
               <a href="iphone-16-pro.html" class="inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white hover:underline bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/20">
-                Ver iPhone 16 Pro <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                <span id="cms-hero-banner-btn2">Ver iPhone 16 Pro</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
             </div>
           </div>
         </div>
@@ -311,7 +316,7 @@
 
     <!-- Quick Category Bar -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+      <div id="quick-categories-bar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
         <a href="#catalogo-dispositivos" onclick="filterCatalogCategory('iphone')" class="p-3 bg-white border border-gray-200 rounded-xl hover:border-primary hover:shadow-sm transition-all flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-lg bg-red-50 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
             <span class="material-symbols-outlined text-xl">phone_iphone</span>
@@ -387,7 +392,7 @@
       </div>
 
       <!-- Bento Grid Layout -->
-      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div id="bento-ecosystem-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         
         <!-- Card 1: Apple Watch Ultra 3 (Span 2) -->
         <div id="watch" class="md:col-span-2 rounded-3xl bg-white p-7 sm:p-8 flex flex-col justify-between relative overflow-hidden group border border-gray-200/90 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
@@ -600,18 +605,18 @@
           <div>
             <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
               <span class="material-symbols-outlined text-sm">local_fire_department</span>
-              Ofertas Exclusivas por Tiempo Limitado
+              <span id="cms-ofertas-badge">Ofertas Exclusivas por Tiempo Limitado</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Promociones y Combos RedCover</h2>
-            <p class="text-sm text-zinc-400 mt-1">Aprovecha precios con descuento directo de distribuidor o financia a 24 cuotas sin interés.</p>
+            <h2 id="cms-ofertas-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight">Promociones y Combos RedCover</h2>
+            <p id="cms-ofertas-subtitle" class="text-sm text-zinc-400 mt-1">Aprovecha precios con descuento directo de distribuidor o financia a 24 cuotas sin interés.</p>
           </div>
           <div class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            Unidades disponibles con envío inmediato hoy
+            <span id="cms-ofertas-stock">Unidades disponibles con envío inmediato hoy</span>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+        <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           <!-- Oferta 1 -->
           <div class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-5 flex flex-col justify-between hover:border-red-500/60 transition-all">
             <div>
@@ -738,12 +743,12 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <span class="px-3.5 py-1.5 rounded-full bg-red-50 text-xs font-bold text-primary border border-red-200 uppercase tracking-wider">Plan Canje RedCover</span>
+            <span id="cms-canje-badge" class="px-3.5 py-1.5 rounded-full bg-red-50 text-xs font-bold text-primary border border-red-200 uppercase tracking-wider">Plan Canje RedCover</span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-4 mb-4 leading-tight tracking-tight">
-              Renueva tu dispositivo y recibe hasta <span class="text-primary">$3.450.000 COP</span>
+              <span id="cms-canje-title">Renueva tu dispositivo y recibe hasta</span> <span id="cms-canje-max" class="text-primary">$4.900.000 COP</span>
             </h2>
-            <p class="text-base text-gray-600 mb-6 leading-relaxed">
-              Entrega tu iPhone, iPad o Mac actual como parte de pago. Cotiza en segundos de forma instantánea y recibe el abono directo a tu nuevo dispositivo Apple.
+            <p id="cms-canje-desc" class="text-base text-gray-600 mb-6 leading-relaxed">
+              Entrega tu iPhone, iPad, Watch o Mac actual como parte de pago. Cotiza en segundos de forma instantánea y recibe el abono directo a tu nuevo dispositivo Apple.
             </p>
 
             <ul class="space-y-4 mb-8 text-sm text-gray-700">
@@ -1214,7 +1219,7 @@
         <p class="text-sm text-gray-600 mt-2">Visítanos, prueba los equipos en persona y vive la asesoría técnica especializada.</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div id="stores-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Store 1: Bogotá -->
         <div class="bg-white p-6 rounded-2xl border border-gray-200/90 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
           <div>
@@ -1552,6 +1557,107 @@
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- BARRA FLOTANTE DE MODO EDICIÓN EN VIVO      -->
+  <!-- ========================================== -->
+  <div id="admin-floating-bar" class="fixed bottom-6 left-6 z-50 hidden bg-zinc-900/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-red-500/50 items-center gap-3">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+      <span class="text-xs font-extrabold uppercase tracking-wider text-red-400">Modo Admin Activo</span>
+    </div>
+    <button type="button" onclick="openAdminPanel()" class="px-3 py-1.5 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1">
+      <span class="material-symbols-outlined text-sm">dashboard_customize</span> Panel CMS
+    </button>
+    <button type="button" onclick="toggleInlineTextEditing()" id="inline-edit-toggle-btn" class="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 flex items-center gap-1">
+      <span class="material-symbols-outlined text-sm">edit_note</span> <span id="inline-edit-status">Edición Textos: OFF</span>
+    </button>
+    <button type="button" onclick="exitAdminMode()" class="px-2.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-red-900/60 text-zinc-300 text-xs font-semibold" title="Salir de modo admin">
+      <span class="material-symbols-outlined text-sm">logout</span>
+    </button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PERFIL DE ADMINISTRADOR / PANEL CMS TOTAL  -->
+  <!-- ========================================== -->
+  <div id="admin-cms-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-6xl w-full shadow-2xl border border-gray-200 overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Top Header Admin -->
+      <div class="bg-zinc-900 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400">
+            <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base sm:text-lg font-extrabold tracking-tight">Perfil de Administrador • RedCover CMS</h3>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold uppercase">Edición Total en Tiempo Real</span>
+            </div>
+            <p class="text-[11px] text-zinc-400">Edita productos, categorías, imágenes, ofertas, accesorios, Plan Canje, banners y tiendas.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="enableLiveEditOverlays()" class="px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold border border-zinc-700 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm text-emerald-400">visibility</span>
+            Editar sobre la Página
+          </button>
+          <button type="button" onclick="exportAllStoreData()" class="px-3 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 flex items-center gap-1" title="Descargar copia de seguridad JSON">
+            <span class="material-symbols-outlined text-sm">download</span> Exportar
+          </button>
+          <label class="px-3 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold border border-zinc-700 flex items-center gap-1 cursor-pointer" title="Importar archivo JSON">
+            <span class="material-symbols-outlined text-sm">upload</span> Importar
+            <input type="file" accept=".json" onchange="importAllStoreData(event)" class="hidden">
+          </label>
+          <button type="button" onclick="resetStoreToFactoryDefaults()" class="px-3 py-2 rounded-xl bg-red-950/80 hover:bg-red-900 text-red-300 text-xs font-semibold border border-red-800/60 flex items-center gap-1" title="Restaurar datos originales">
+            <span class="material-symbols-outlined text-sm">restart_alt</span> Restaurar
+          </button>
+          <button type="button" onclick="closeAdminPanel()" class="w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-300">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs del Administrador -->
+      <div class="bg-gray-50 border-b border-gray-200 px-6 py-2.5 flex items-center gap-2 overflow-x-auto shrink-0" id="admin-tabs-bar">
+        <button type="button" onclick="switchAdminTab('devices')" data-admin-tab="devices" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+          <span class="material-symbols-outlined text-base">devices</span> 1. Productos (<span id="adm-count-devices">47</span>)
+        </button>
+        <button type="button" onclick="switchAdminTab('offers')" data-admin-tab="offers" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary flex items-center gap-1.5 whitespace-nowrap">
+          <span class="material-symbols-outlined text-base">local_fire_department</span> 2. Ofertas y Combos (<span id="adm-count-offers">4</span>)
+        </button>
+        <button type="button" onclick="switchAdminTab('accessories')" data-admin-tab="accessories" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary flex items-center gap-1.5 whitespace-nowrap">
+          <span class="material-symbols-outlined text-base">headphones</span> 3. Accesorios (<span id="adm-count-accessories">12</span>)
+        </button>
+        <button type="button" onclick="switchAdminTab('categories')" data-admin-tab="categories" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary flex items-center gap-1.5 whitespace-nowrap">
+          <span class="material-symbols-outlined text-base">category</span> 4. Categorías
+        </button>
+        <button type="button" onclick="switchAdminTab('hero')" data-admin-tab="hero" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary flex items-center gap-1.5 whitespace-nowrap">
+          <span class="material-symbols-outlined text-base">Burst_mode</span> 5. Publicidad Hero & Bento
+        </button>
+        <button type="button" onclick="switchAdminTab('canje')" data-admin-tab="canje" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary flex items-center gap-1.5 whitespace-nowrap">
+          <span class="material-symbols-outlined text-base">swap_horiz</span> 6. Plan Canje & Tiendas
+        </button>
+      </div>
+
+      <!-- Body Content del Administrador -->
+      <div id="admin-tab-content" class="p-6 overflow-y-auto flex-1 bg-[#FAFAFC]">
+        <!-- Renderizado dinámicamente por JS -->
+      </div>
+
+      <!-- Footer Admin -->
+      <div class="bg-white border-t border-gray-200 px-6 py-3 flex items-center justify-between text-xs text-gray-500 shrink-0">
+        <span class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-emerald-600 text-base">cloud_done</span>
+          Todos los cambios se guardan automáticamente en el navegador y actualizan la tienda al instante.
+        </span>
+        <button type="button" onclick="closeAdminPanel()" class="px-5 py-2 rounded-full bg-zinc-900 hover:bg-primary text-white font-bold text-xs transition-colors">
+          Cerrar y Ver Tienda
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden bg-zinc-900 text-white px-5 py-3 rounded-full text-xs font-semibold shadow-2xl items-center gap-2 border border-zinc-700">
     <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
@@ -1579,6 +1685,9 @@
           <a class="hover:text-primary transition-colors" href="#tiendas">Tiendas Físicas</a>
           <button type="button" onclick="openInfoModal('terminos')" class="hover:text-primary transition-colors">Términos y Condiciones</button>
           <button type="button" onclick="openInfoModal('soporte')" class="hover:text-primary transition-colors">Soporte Técnico</button>
+          <button type="button" onclick="openAdminPanel()" class="text-primary hover:underline font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">admin_panel_settings</span> Perfil Administrador
+          </button>
           <span class="text-primary font-bold">🇨🇴 Colombia</span>
         </div>
       </div>
@@ -1612,7 +1721,7 @@
     const IMG_MAGSAFE = "https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48";
     const IMG_CASE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we";
 
-    const allCatalogDevices = [
+    let allCatalogDevices = [
       // ==========================================
       // LÍNEA IPHONE 18 (NUEVA GENERACIÓN INSIGNIA)
       // ==========================================
@@ -2271,7 +2380,11 @@
     // ==========================================
     // RENDERIZADO DEL CATÁLOGO DE DISPOSITIVOS
     // ==========================================
-    function renderDevicesCatalog(filterCategory = 'all') {
+    let currentCatalogCategoryFilter = 'all';
+    let adminModeActive = false;
+
+    function renderDevicesCatalog(filterCategory = currentCatalogCategoryFilter) {
+      currentCatalogCategoryFilter = filterCategory;
       const grid = document.getElementById('full-devices-grid');
       if (!grid) return;
 
@@ -2279,16 +2392,23 @@
         ? allCatalogDevices
         : allCatalogDevices.filter(d => d.category === filterCategory);
 
-      grid.innerHTML = filtered.map(dev => `
-        <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/60 transition-all shadow-sm hover:shadow-md">
+      grid.innerHTML = filtered.map((dev) => {
+        const realIdx = allCatalogDevices.findIndex(item => item.id === dev.id);
+        return `
+        <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/60 transition-all shadow-sm hover:shadow-md relative">
+          ${adminModeActive ? `
+            <button type="button" onclick="openAdminEditDevice(${realIdx})" class="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-zinc-900/95 hover:bg-primary text-white text-[10px] font-bold shadow-lg flex items-center gap-1 border border-white/20">
+              <span class="material-symbols-outlined text-xs">edit</span> Editar Producto
+            </button>
+          ` : ''}
           <div>
             <div class="relative h-48 rounded-2xl overflow-hidden bg-zinc-950 mb-4 flex items-center justify-center cursor-pointer" onclick="openProductModal('${dev.id}')">
               <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full bg-red-600/90 text-[10px] font-bold text-white uppercase">${dev.badge}</span>
               <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${dev.title}" src="${dev.img}">
             </div>
             <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 uppercase">
-              <span>Garantía 1 Año Apple</span>
-              <span class="text-emerald-600 font-bold">● En Stock</span>
+              <span>${dev.warranty || 'Garantía 1 Año Apple'}</span>
+              <span class="text-emerald-600 font-bold">${dev.stockStatus || '● En Stock'}</span>
             </div>
             <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug cursor-pointer hover:text-primary transition-colors" onclick="openProductModal('${dev.id}')">${dev.title}</h3>
             <p class="text-xs text-gray-500 mt-1 line-clamp-2">${dev.shortDesc}</p>
@@ -2316,7 +2436,8 @@
             </button>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function filterDevices(category) {
@@ -2455,7 +2576,8 @@
       }
 
       msg += `%0A¿Me indican los pasos para el estudio de crédito inmediato?`;
-      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+      const waPhone = (typeof cmsData !== 'undefined' && cmsData.whatsappNumber) ? cmsData.whatsappNumber : '573001234567';
+      window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
     }
 
     // ==========================================
@@ -2792,7 +2914,8 @@
         `✨ Estado estético: ${encodeURIComponent(currentConditionLabel)}%0A` +
         `💰 Bono estimado de canje: ${encodeURIComponent(bonusText)}%0A%0A` +
         `¿Podrían confirmarme los pasos para entregarlo y adquirir mi nuevo Apple?`;
-      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+      const waPhone = (typeof cmsData !== 'undefined' && cmsData.whatsappNumber) ? cmsData.whatsappNumber : '573001234567';
+      window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
     }
 
     // Filtros de categoría de accesorios
@@ -2865,7 +2988,8 @@
       }
 
       msg += `%0A¿Me ayudan con la aprobación inmediata de mi crédito?`;
-      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+      const waPhone = (typeof cmsData !== 'undefined' && cmsData.whatsappNumber) ? cmsData.whatsappNumber : '573001234567';
+      window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
     }
 
     function openCheckoutModal() {
@@ -2968,7 +3092,8 @@
         `🚚 *Entrega:* ${encodeURIComponent(o.customer.delivery)} - ${encodeURIComponent(o.customer.address)}%0A` +
         `💳 *Pago:* ${encodeURIComponent(o.method)} (${encodeURIComponent(formatCOP(o.total))})%0A%0A` +
         `Quedo atento a mi guía de despacho asegurado y factura DIAN.`;
-      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+      const waPhone = (typeof cmsData !== 'undefined' && cmsData.whatsappNumber) ? cmsData.whatsappNumber : '573001234567';
+      window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
     }
 
     // ==========================================
@@ -3324,12 +3449,1839 @@
         closeProductModal();
         closeCheckoutModal();
         closeInfoModal();
+        closeAdminPanel();
       }
     });
 
-    // Inicializar Catálogo y Carrito al cargar la página
+    // ============================================================================
+    // SISTEMA CMS DE ADMINISTRADOR EN TIEMPO REAL (PRODUCTOS, OFERTAS, IMÁGENES, CATEGORÍAS)
+    // ============================================================================
+    const CMS_STORAGE_KEY = 'redcover_cms_state_v1';
+    const factoryCatalogDevices = JSON.parse(JSON.stringify(allCatalogDevices));
+
+    const defaultCMSData = {
+      whatsappNumber: '573001234567',
+      topbarText: '🇨🇴 Lanzamiento 2026: Nuevo iPhone 18 Pro & 18 Pro Max (Chip A20 Pro) • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
+      hero: {
+        authBadge: 'Apple Authorized Reseller • Colombia',
+        clientsBadge: '+10.000 Clientes Satisfechos',
+        ratingBadge: '4.9/5 Estrellas',
+        titleMain: 'iPhone 18 Pro',
+        titleGradient: 'Titanio Grado Aeroespacial. Chip A20 Pro.',
+        description: 'El salto más grande en la historia del iPhone. Nuevo Chip A20 Pro de 2nm, triple cámara de 48 MP con Teleobjetivo Periscopio 10x, Face ID invisible bajo pantalla y Apple Intelligence 2.0. Fináncialo hoy al 0% de interés por WhatsApp.',
+        cta1Text: 'Reservar / Comprar iPhone 18 Pro',
+        cta2Text: 'Cotizar mi iPhone en Plan Canje',
+        bannerImg: IMG_IPHONE_PRO,
+        bannerBadge: 'Nuevo Buque Insignia 2026 • Chip A20 Pro',
+        bannerPrice: 'Desde $5.999.000 COP • o 24 cuotas de $249.958 sin interés',
+        bannerSub: 'Recibimos tu iPhone 11, 12, 13, 14, 15, 16 o 17 en parte de pago',
+        bannerBtn1Text: 'Añadir a la Bolsa ($5.999.000)',
+        bannerBtn2Text: 'Financiar por WhatsApp'
+      },
+      bentoCards: [
+        {
+          id: 'bento-1',
+          colSpan: 'md:col-span-7',
+          badge: 'Serie Completa: iPhone 11 al nuevo iPhone 18 Pro Max',
+          title: 'iPhone 18 Pro, 17, 16, 15, 14, 13, 12 y 11',
+          desc: 'Explora los 24 modelos disponibles en Colombia: desde el revolucionario iPhone 18 Pro Max con Chip A20 Pro hasta el iPhone 11 al mejor precio.',
+          priceText: 'Desde $1.599.000 COP',
+          btnText: 'Ver los 24 Modelos',
+          categoryTarget: 'iphone',
+          productIdTarget: 'iphone-18-pro-max',
+          img: IMG_IPHONE_16,
+          darkTheme: false
+        },
+        {
+          id: 'bento-2',
+          colSpan: 'md:col-span-5',
+          badge: 'Potencia Extrema 2026',
+          title: 'MacBook Pro M5 Max & Air M5',
+          desc: 'Nuevos chips M5 de 2nm con Thunderbolt 5, pantalla Liquid Retina XDR y hasta 24 horas de batería.',
+          priceText: 'Desde $4.199.000 COP',
+          btnText: 'Ver 9 Modelos Mac',
+          categoryTarget: 'mac',
+          productIdTarget: 'macbook-pro-m5',
+          img: IMG_MACBOOK,
+          darkTheme: false
+        },
+        {
+          id: 'bento-3',
+          colSpan: 'md:col-span-5',
+          badge: 'Ultra Retina XDR OLED',
+          title: 'iPad Pro M5 & iPad Air M4',
+          desc: 'El iPad más delgado de la historia ahora con el poder del chip M5, Wi-Fi 7 y compatibilidad total con Apple Pencil Pro.',
+          priceText: 'Desde $1.799.000 COP',
+          btnText: 'Ver 7 Modelos iPad',
+          categoryTarget: 'ipad',
+          productIdTarget: 'ipad-pro-m5',
+          img: IMG_IPAD,
+          darkTheme: false
+        },
+        {
+          id: 'bento-4',
+          colSpan: 'md:col-span-7',
+          badge: 'Salud + Satélite + 5G',
+          title: 'Apple Watch Ultra 3 & Series 12',
+          desc: 'Monitoreo de tendencia de hipertensión, apnea del sueño, conexión satelital de emergencia y nuevo Chip S12.',
+          priceText: 'Desde $1.149.000 COP',
+          btnText: 'Ver los 7 Relojes',
+          categoryTarget: 'watch',
+          productIdTarget: 'watch-ultra-3',
+          img: IMG_WATCH,
+          darkTheme: true
+        }
+      ],
+      deviceCategories: [
+        { id: 'iphone', name: 'iPhone (11 al 18 Pro)', shortName: 'iPhone', subtitle: 'Del 11 al 18 Pro', icon: 'smartphone' },
+        { id: 'watch', name: 'Apple Watch (Línea 2026)', shortName: 'Apple Watch', subtitle: 'Ultra 3, S12 y SE 3', icon: 'watch' },
+        { id: 'mac', name: 'Mac & MacBook (M5 / M4)', shortName: 'Mac & MacBook', subtitle: 'Chips M5, M4 y M3', icon: 'laptop_mac' },
+        { id: 'ipad', name: 'iPad (M5, M4, Air y Mini)', shortName: 'iPad', subtitle: 'Pro M5, Air M4 y Mini', icon: 'tablet_mac' }
+      ],
+      accessoryCategories: [
+        { id: 'magsafe', name: 'Carga & MagSafe' },
+        { id: 'fundas', name: 'Fundas Oficiales' },
+        { id: 'audio', name: 'AirPods & Audio' },
+        { id: 'cables', name: 'Cables, Pencil & AirTag' }
+      ],
+      offersHeader: {
+        badge: '🔥 Ofertas Relámpago Colombia',
+        title: 'Precios Especiales y Combos RedCover',
+        subtitle: 'Descuentos directos aplicados en carrito o financiados a 0% de interés por WhatsApp.',
+        stockAlert: 'Unidades Limitadas con Envío Hoy'
+      },
+      offers: [
+        {
+          id: 'offer-1',
+          discountBadge: '-18% OFF',
+          topTag: 'Envío Gratis Hoy',
+          title: 'Combo iPhone 16 Pro (256GB) + Funda MagSafe + Adaptador 20W',
+          desc: 'Lleva el paquete completo listo para usar con protección de grado militar y carga rápida original Apple.',
+          price: 5499000,
+          oldPrice: 6699000,
+          progressPercent: 82,
+          stockLeftText: 'Quedan 4 combos',
+          img: IMG_IPHONE_PRO
+        },
+        {
+          id: 'offer-2',
+          discountBadge: '-15% OFF',
+          topTag: 'Especial Estudiantes y Creativos',
+          title: 'Combo MacBook Air M4 13" (16GB/256GB) + AirPods Pro 2 USB-C',
+          desc: 'Potencia todo tu flujo de trabajo y estudio con el chip M4 e inteligencia artificial con cancelación activa de ruido.',
+          price: 5699000,
+          oldPrice: 6698000,
+          progressPercent: 75,
+          stockLeftText: 'Quedan 6 combos',
+          img: IMG_MACBOOK
+        },
+        {
+          id: 'offer-3',
+          discountBadge: '-22% OFF',
+          topTag: 'Pack Ecosistema Pro',
+          title: 'Kit MagSafe Total: Cargador MagSafe + Batería Externa + AirTag',
+          desc: 'Energía magnética todo el día y localización precisa en la red Encontrar de Apple.',
+          price: 799000,
+          oldPrice: 1029000,
+          progressPercent: 90,
+          stockLeftText: 'Últimas 3 unidades',
+          img: IMG_AIRPODS
+        },
+        {
+          id: 'offer-4',
+          discountBadge: '-14% OFF',
+          topTag: 'Estudio Digital Pro',
+          title: 'Combo iPad Air M4 (11") + Apple Pencil Pro Magnético',
+          desc: 'El lienzo definitivo para diseño, arquitectura, notas universitarias e ilustración profesional.',
+          price: 3999000,
+          oldPrice: 4648000,
+          progressPercent: 68,
+          stockLeftText: 'Quedan 7 combos',
+          img: IMG_IPAD
+        }
+      ],
+      accessories: [
+        {
+          id: 'acc-1',
+          category: 'audio',
+          badge: 'Audio Pro',
+          badgeColor: 'bg-red-600/90',
+          title: 'AirPods Pro (2.ª gen) con MagSafe USB-C',
+          desc: 'Cancelación activa de ruido hasta 2x superior y Audio Adaptativo.',
+          price: 1149000,
+          img: IMG_AIRPODS,
+          modalProductId: 'airpods-pro-2'
+        },
+        {
+          id: 'acc-2',
+          category: 'audio',
+          badge: 'Nuevo 2026',
+          badgeColor: 'bg-zinc-900/90',
+          title: 'AirPods 4 con Cancelación Activa de Ruido',
+          desc: 'Diseño ergonómico abierto con ANC, chip H2 y estuche USB-C inalámbrico.',
+          price: 849000,
+          img: IMG_AIRPODS
+        },
+        {
+          id: 'acc-3',
+          category: 'audio',
+          badge: 'Alta Fidelidad',
+          badgeColor: 'bg-red-600/90',
+          title: 'AirPods Max (Edición USB-C Medianoche)',
+          desc: 'Audio computacional de estudio, almohadillas con memoria acústica y ANC líder.',
+          price: 2599000,
+          img: IMG_AIRPODS
+        },
+        {
+          id: 'acc-4',
+          category: 'magsafe',
+          badge: 'MagSafe 25W',
+          badgeColor: 'bg-emerald-600/90',
+          title: 'Cargador MagSafe Oficial Apple (25W / 1m)',
+          desc: 'Alineación magnética perfecta y carga inalámbrica ultrarrápida Qi2.',
+          price: 229000,
+          img: IMG_IPHONE_PRO
+        },
+        {
+          id: 'acc-5',
+          category: 'magsafe',
+          badge: 'Energía Portátil',
+          badgeColor: 'bg-emerald-600/90',
+          title: 'Batería Externa MagSafe 5.000 mAh Ultra Slim',
+          desc: 'Se acopla magnéticamente a tu iPhone sin cables y extiende tu día al 100%.',
+          price: 389000,
+          img: IMG_IPHONE_16
+        },
+        {
+          id: 'acc-6',
+          category: 'magsafe',
+          badge: 'Carga Rápida',
+          badgeColor: 'bg-zinc-900/90',
+          title: 'Adaptador de Corriente USB-C de 35W Doble Puerto',
+          desc: 'Carga tu iPhone y tu MacBook Air o Apple Watch al mismo tiempo.',
+          price: 279000,
+          img: IMG_MACBOOK
+        },
+        {
+          id: 'acc-7',
+          category: 'fundas',
+          badge: 'Carbono Real',
+          badgeColor: 'bg-red-600/90',
+          title: 'Funda RedCover Carbon Armor con MagSafe (iPhone 18/17/16)',
+          desc: 'Fibra de aramida aeroespacial, bordes elevados para cámaras y anillo N52.',
+          price: 199000,
+          img: IMG_IPHONE_PRO
+        },
+        {
+          id: 'acc-8',
+          category: 'fundas',
+          badge: 'Original Apple',
+          badgeColor: 'bg-zinc-900/90',
+          title: 'Funda de Silicona con MagSafe y Control de Cámara',
+          desc: 'Interior de microfibra suave, botón de cristal de zafiro conductivo.',
+          price: 249000,
+          img: IMG_IPHONE_16
+        },
+        {
+          id: 'acc-9',
+          category: 'fundas',
+          badge: 'MagSafe Wallet',
+          badgeColor: 'bg-red-600/90',
+          title: 'Billetera de Trenzado Fino con MagSafe y Rastreo Encontrar',
+          desc: 'Guarda hasta 3 tarjetas con blindaje magnético y alerta si se separa de tu iPhone.',
+          price: 269000,
+          img: IMG_IPHONE_PRO
+        },
+        {
+          id: 'acc-10',
+          category: 'cables',
+          badge: 'iPad Pro & Air',
+          badgeColor: 'bg-red-600/90',
+          title: 'Apple Pencil Pro (Gesto Apretar + Giro + Respuesta Háptica)',
+          desc: 'Precisión milimétrica, baja latencia y enlace magnético para iPad Pro M5/M4 y Air M4.',
+          price: 649000,
+          img: IMG_IPAD
+        },
+        {
+          id: 'acc-11',
+          category: 'cables',
+          badge: 'Rastreo Preciso',
+          badgeColor: 'bg-zinc-900/90',
+          title: 'Paquete de 4 AirTag Oficiales Apple',
+          desc: 'Localiza tus llaves, maletas, mochila y bicicleta en todo el mundo con Ultra Banda Ancha.',
+          price: 499000,
+          img: IMG_WATCH
+        },
+        {
+          id: 'acc-12',
+          category: 'cables',
+          badge: 'Trenzado 240W',
+          badgeColor: 'bg-emerald-600/90',
+          title: 'Cable de Carga Trenzado USB-C a USB-C (2 metros / 240W)',
+          desc: 'Diseño de nylon trenzado ultra resistente para iPhone, iPad y MacBook Pro.',
+          price: 149000,
+          img: IMG_MACBOOK
+        }
+      ],
+      canjeConfig: {
+        badge: 'Renovación Inteligente RedCover',
+        title: 'Plan Canje Oficial:',
+        maxText: 'Recibe hasta $4.200.000 COP.',
+        desc: 'Calcula en segundos cuánto te damos por tu equipo actual según su modelo, porcentaje de batería y estado físico. El bono se descuenta inmediatamente de tu carrito o financiación.',
+        devices: [
+          { name: 'iPhone 17 Pro Max (256GB - 1TB)', value: 4200000 },
+          { name: 'iPhone 17 Pro (128GB - 512GB)', value: 3800000 },
+          { name: 'iPhone 16 Pro Max (256GB - 1TB)', value: 3450000 },
+          { name: 'iPhone 16 Pro (128GB - 512GB)', value: 3100000 },
+          { name: 'iPhone 16 / 16 Plus', value: 2550000 },
+          { name: 'iPhone 15 Pro Max (256GB - 512GB)', value: 2950000 },
+          { name: 'iPhone 15 Pro (128GB - 256GB)', value: 2600000 },
+          { name: 'iPhone 15 / 15 Plus', value: 2100000 },
+          { name: 'iPhone 14 Pro Max', value: 2350000 },
+          { name: 'iPhone 14 Pro', value: 2050000 },
+          { name: 'iPhone 14 / 14 Plus', value: 1650000 },
+          { name: 'iPhone 13 Pro Max / 13 Pro', value: 1800000 },
+          { name: 'iPhone 13 / 12 Pro Max', value: 1350000 },
+          { name: 'iPhone 12 / iPhone 11', value: 950000 },
+          { name: 'MacBook Pro / Air (Chip M1, M2, M3 o M4)', value: 3200000 },
+          { name: 'iPad Pro / iPad Air (Chip M1, M2 o M4)', value: 2100000 },
+          { name: 'Apple Watch Ultra / Series 8, 9, 10 o 11', value: 1200000 }
+        ]
+      },
+      stores: [
+        {
+          id: 'store-1',
+          city: 'Bogotá D.C.',
+          badge: 'Tienda Principal + Lab Técnico',
+          address: 'C.C. Andino • Local 204 (Cra. 11 #82-71)',
+          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 6:00 PM',
+          phone: '(601) 745-8900'
+        },
+        {
+          id: 'store-2',
+          city: 'Medellín',
+          badge: 'Showroom & Plan Canje',
+          address: 'C.C. El Tesoro • Local 1210 (Poblado)',
+          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 7:00 PM',
+          phone: '(604) 604-3210'
+        },
+        {
+          id: 'store-3',
+          city: 'Cali',
+          badge: 'Experiencia Apple & Servicio',
+          address: 'C.C. Jardín Plaza • Local 142 (Sur)',
+          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 6:00 PM',
+          phone: '(602) 489-1120'
+        },
+        {
+          id: 'store-4',
+          city: 'Barranquilla',
+          badge: 'Tienda Oficial & Accesorios',
+          address: 'C.C. Buenavista II • Local 210',
+          hours: 'Lun - Sáb: 10:00 AM - 8:00 PM | Dom: 11:00 AM - 6:00 PM',
+          phone: '(605) 385-4400'
+        }
+      ]
+    };
+
+    let cmsData = JSON.parse(JSON.stringify(defaultCMSData));
+    let currentAdminTab = 'devices';
+    let selectedAdminDeviceIndex = 0;
+    let selectedAdminOfferIndex = 0;
+    let selectedAdminAccessoryIndex = 0;
+    let adminDeviceSearchQuery = '';
+    let adminDeviceCategoryFilter = 'all';
+    let currentAccCategoryFilter = 'all';
+    let inlineTextEditingEnabled = false;
+
+    function loadCMSState() {
+      try {
+        const raw = localStorage.getItem(CMS_STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
+          allCatalogDevices = parsed.devices;
+        }
+        if (parsed.cmsData) {
+          cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+        }
+      } catch (err) {
+        console.warn('Error cargando estado CMS:', err);
+      }
+    }
+
+    function saveCMSState() {
+      try {
+        localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify({
+          devices: allCatalogDevices,
+          cmsData: cmsData
+        }));
+        updateAdminCounters();
+      } catch (err) {
+        showToast('Imagen muy pesada para el almacenamiento local. Usa una imagen más ligera o URL.');
+      }
+    }
+
+    function updateAdminCounters() {
+      const cDev = document.getElementById('adm-count-devices');
+      const cOff = document.getElementById('adm-count-offers');
+      const cAcc = document.getElementById('adm-count-accessories');
+      if (cDev) cDev.innerText = allCatalogDevices.length;
+      if (cOff) cOff.innerText = cmsData.offers.length;
+      if (cAcc) cAcc.innerText = cmsData.accessories.length;
+    }
+
+    // Renderizar toda la página a partir de los datos del CMS
+    function renderAllCMSContent() {
+      renderCMSHeroAndTopbar();
+      renderCMSCategories();
+      renderDevicesCatalog(currentCatalogCategoryFilter);
+      renderCMSOffers();
+      renderCMSAccessories(currentAccCategoryFilter);
+      renderCMSCanjeAndStores();
+      updateAdminCounters();
+    }
+
+    function renderCMSHeroAndTopbar() {
+      const topbar = document.getElementById('cms-promo-topbar');
+      if (topbar) topbar.innerText = cmsData.topbarText;
+
+      const h = cmsData.hero;
+      const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+      setTxt('cms-hero-auth-badge', h.authBadge);
+      setTxt('cms-hero-clients-badge', h.clientsBadge);
+      setTxt('cms-hero-rating-badge', h.ratingBadge);
+      setTxt('cms-hero-title-main', h.titleMain);
+      setTxt('cms-hero-title-gradient', h.titleGradient);
+      setTxt('cms-hero-description', h.description);
+      setTxt('cms-hero-cta1', h.cta1Text);
+      setTxt('cms-hero-cta2', h.cta2Text);
+      setTxt('cms-hero-banner-badge', h.bannerBadge);
+      setTxt('cms-hero-banner-price', h.bannerPrice);
+      setTxt('cms-hero-banner-sub', h.bannerSub);
+      setTxt('cms-hero-banner-btn1', h.bannerBtn1Text);
+      setTxt('cms-hero-banner-btn2', h.bannerBtn2Text);
+
+      const bannerImg = document.getElementById('cms-hero-banner-img');
+      if (bannerImg && h.bannerImg) bannerImg.src = h.bannerImg;
+
+      const bentoGrid = document.getElementById('bento-ecosystem-grid');
+      if (bentoGrid && Array.isArray(cmsData.bentoCards)) {
+        bentoGrid.innerHTML = cmsData.bentoCards.map((card, idx) => `
+          <div class="${card.colSpan || 'md:col-span-6'} rounded-3xl ${card.darkTheme ? 'bg-zinc-900 text-white border-zinc-800' : 'bg-white text-gray-900 border-gray-200'} p-6 sm:p-8 border shadow-sm hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden relative group">
+            ${adminModeActive ? `
+              <button type="button" onclick="openAdminTabTo('hero')" class="absolute top-3 right-3 z-30 px-3 py-1 rounded-full bg-primary text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">edit</span> Editar Banner #${idx + 1}
+              </button>
+            ` : ''}
+            <div class="z-10 max-w-md space-y-2">
+              <span class="px-3 py-1 rounded-full ${card.darkTheme ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-red-50 text-primary border border-red-100'} text-[10px] font-bold uppercase tracking-wider inline-block">${card.badge}</span>
+              <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight">${card.title}</h3>
+              <p class="text-xs sm:text-sm ${card.darkTheme ? 'text-zinc-300' : 'text-gray-600'} leading-relaxed">${card.desc}</p>
+            </div>
+            <div class="my-5 rounded-2xl overflow-hidden h-48 sm:h-56 bg-zinc-950 flex items-center justify-center relative cursor-pointer" onclick="filterAndScroll('${card.categoryTarget}')">
+              <img src="${card.img}" alt="${card.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="z-10 flex flex-wrap items-center justify-between gap-3 pt-3 border-t ${card.darkTheme ? 'border-zinc-800' : 'border-gray-100'}">
+              <span class="text-sm font-extrabold ${card.darkTheme ? 'text-white' : 'text-gray-900'}">${card.priceText}</span>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="filterAndScroll('${card.categoryTarget}')" class="px-4 py-2 rounded-full crimson-btn text-white text-xs font-bold flex items-center gap-1">
+                  ${card.btnText} <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function renderCMSCategories() {
+      const quickBar = document.getElementById('quick-categories-bar');
+      if (quickBar) {
+        const catItems = cmsData.deviceCategories.map(cat => {
+          const count = allCatalogDevices.filter(d => d.category === cat.id).length;
+          return `
+            <button type="button" onclick="filterAndScroll('${cat.id}')" class="group p-3.5 rounded-2xl bg-white border border-gray-200 hover:border-primary hover:shadow-md transition-all flex items-center gap-3 text-left">
+              <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined">${cat.icon || 'devices'}</span>
+              </div>
+              <div>
+                <span class="text-xs font-extrabold text-gray-900 block">${cat.shortName || cat.name} (${count})</span>
+                <span class="text-[10px] text-gray-500">${cat.subtitle || 'Ver modelos'}</span>
+              </div>
+            </button>
+          `;
+        }).join('');
+
+        quickBar.innerHTML = catItems + `
+          <a href="#ofertas" class="group p-3.5 rounded-2xl bg-white border border-gray-200 hover:border-primary hover:shadow-md transition-all flex items-center gap-3 text-left">
+            <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+              <span class="material-symbols-outlined">local_fire_department</span>
+            </div>
+            <div>
+              <span class="text-xs font-extrabold text-gray-900 block">Ofertas (${cmsData.offers.length})</span>
+              <span class="text-[10px] text-gray-500">Combos en promo</span>
+            </div>
+          </a>
+          <a href="#canje" class="group p-3.5 rounded-2xl bg-white border border-gray-200 hover:border-primary hover:shadow-md transition-all flex items-center gap-3 text-left">
+            <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+              <span class="material-symbols-outlined">swap_horiz</span>
+            </div>
+            <div>
+              <span class="text-xs font-extrabold text-gray-900 block">Plan Canje</span>
+              <span class="text-[10px] text-gray-500">Recibimos tu Apple</span>
+            </div>
+          </a>
+        `;
+      }
+
+      const devTabs = document.getElementById('device-category-tabs');
+      if (devTabs) {
+        const allActive = currentCatalogCategoryFilter === 'all';
+        let tabsHTML = `
+          <button type="button" onclick="filterDevices('all')" data-dev-filter="all" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs ${allActive ? 'font-bold bg-primary text-white shadow-sm' : 'font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary'} transition-all whitespace-nowrap">
+            Todos los Equipos (${allCatalogDevices.length})
+          </button>
+        `;
+        tabsHTML += cmsData.deviceCategories.map(cat => {
+          const count = allCatalogDevices.filter(d => d.category === cat.id).length;
+          const isAct = currentCatalogCategoryFilter === cat.id;
+          return `
+            <button type="button" onclick="filterDevices('${cat.id}')" data-dev-filter="${cat.id}" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs ${isAct ? 'font-bold bg-primary text-white shadow-sm' : 'font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary'} transition-all whitespace-nowrap flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">${cat.icon || 'devices'}</span> ${cat.name} (${count})
+            </button>
+          `;
+        }).join('');
+        devTabs.innerHTML = tabsHTML;
+      }
+
+      const accFilters = document.getElementById('accessory-filters');
+      if (accFilters) {
+        const allAccActive = currentAccCategoryFilter === 'all';
+        let accHTML = `
+          <button onclick="renderCMSAccessories('all')" class="filter-acc-btn px-5 py-2 rounded-full text-xs ${allAccActive ? 'font-bold bg-primary text-white' : 'font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary'} transition-all">
+            Todos (${cmsData.accessories.length})
+          </button>
+        `;
+        accHTML += cmsData.accessoryCategories.map(c => {
+          const isAct = currentAccCategoryFilter === c.id;
+          const cnt = cmsData.accessories.filter(a => a.category === c.id).length;
+          return `
+            <button onclick="renderCMSAccessories('${c.id}')" class="filter-acc-btn px-5 py-2 rounded-full text-xs ${isAct ? 'font-bold bg-primary text-white' : 'font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary'} transition-all">
+              ${c.name} (${cnt})
+            </button>
+          `;
+        }).join('');
+        accFilters.innerHTML = accHTML;
+      }
+    }
+
+    function renderCMSOffers() {
+      const oh = cmsData.offersHeader;
+      const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+      setTxt('cms-ofertas-badge', oh.badge);
+      setTxt('cms-ofertas-title', oh.title);
+      setTxt('cms-ofertas-subtitle', oh.subtitle);
+      setTxt('cms-ofertas-stock', oh.stockAlert);
+
+      const grid = document.getElementById('offers-grid');
+      if (!grid) return;
+
+      grid.innerHTML = cmsData.offers.map((off, idx) => `
+        <div class="rounded-3xl bg-white border border-red-200 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col sm:flex-row gap-5 items-center relative">
+          ${adminModeActive ? `
+            <button type="button" onclick="openAdminEditOffer(${idx})" class="absolute top-3 right-3 z-30 px-3 py-1 rounded-full bg-zinc-900 hover:bg-primary text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">edit</span> Editar Oferta
+            </button>
+          ` : ''}
+          <div class="w-full sm:w-44 h-44 rounded-2xl bg-zinc-950 overflow-hidden shrink-0 relative flex items-center justify-center">
+            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase">${off.discountBadge}</span>
+            <img src="${off.img}" alt="${off.title}" class="w-full h-full object-cover">
+          </div>
+          <div class="flex-1 space-y-2.5 w-full">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono uppercase text-primary font-bold bg-red-50 px-2.5 py-0.5 rounded-full border border-red-100">${off.topTag}</span>
+              <span class="text-[11px] font-bold text-amber-600">${off.stockLeftText}</span>
+            </div>
+            <h3 class="text-base font-extrabold text-gray-900 leading-snug">${off.title}</h3>
+            <p class="text-xs text-gray-600 leading-relaxed">${off.desc}</p>
+            <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-primary h-full rounded-full" style="width: ${off.progressPercent || 80}%"></div>
+            </div>
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <span class="text-xs text-gray-400 line-through block">${formatCOP(off.oldPrice)}</span>
+                <span class="text-lg font-extrabold text-primary">${formatCOP(off.price)}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="addToCart('${off.title.replace(/'/g, "\\'")}', ${off.price}, '${off.img}')" class="px-4 py-2 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">shopping_bag</span> Aprovechar Oferta
+                </button>
+                <button type="button" onclick="directFinanceWhatsApp('${off.title.replace(/'/g, "\\'")}', ${off.price})" class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 transition-colors" title="Financiar Oferta por WhatsApp">
+                  <span class="material-symbols-outlined text-base">chat</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderCMSAccessories(filterCat = 'all') {
+      currentAccCategoryFilter = filterCat;
+      renderCMSCategories();
+      const grid = document.getElementById('accessories-grid');
+      if (!grid) return;
+
+      const list = filterCat === 'all'
+        ? cmsData.accessories
+        : cmsData.accessories.filter(a => a.category === filterCat);
+
+      grid.innerHTML = list.map(acc => {
+        const realIdx = cmsData.accessories.findIndex(item => item.id === acc.id);
+        return `
+          <div class="acc-card rounded-2xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm relative" data-category="${acc.category}">
+            ${adminModeActive ? `
+              <button type="button" onclick="openAdminEditAccessory(${realIdx})" class="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-zinc-900 hover:bg-primary text-white text-[10px] font-bold shadow-lg flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">edit</span> Editar
+              </button>
+            ` : ''}
+            <div>
+              <div class="relative h-44 rounded-xl overflow-hidden bg-zinc-900 mb-4 flex items-center justify-center">
+                <span class="absolute top-2 left-2 z-10 px-2.5 py-0.5 rounded-full ${acc.badgeColor || 'bg-red-600/90'} text-[10px] font-bold text-white uppercase">${acc.badge}</span>
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${acc.title}" src="${acc.img}">
+              </div>
+              <h3 class="text-sm font-bold text-gray-900">${acc.title}</h3>
+              <p class="text-xs text-gray-500 mt-1">${acc.desc}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+              <span class="text-sm font-extrabold text-gray-900">${formatCOP(acc.price)}</span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="addToCart('${acc.title.replace(/'/g, "\\'")}', ${acc.price}, '${acc.img}')" class="px-3 py-1.5 rounded-lg crimson-btn text-white text-xs font-bold transition-all">Agregar</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderCMSCanjeAndStores() {
+      const c = cmsData.canjeConfig;
+      const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+      setTxt('cms-canje-badge', c.badge);
+      setTxt('cms-canje-title', c.title);
+      setTxt('cms-canje-max', c.maxText);
+      setTxt('cms-canje-desc', c.desc);
+
+      const sel = document.getElementById('device-select');
+      if (sel && Array.isArray(c.devices) && c.devices.length > 0) {
+        sel.innerHTML = c.devices.map(d => `<option value="${d.value}">${d.name} — Hasta ${formatCOP(d.value)}</option>`).join('');
+        recalculateCanje();
+      }
+
+      const storesGrid = document.getElementById('stores-grid');
+      if (storesGrid && Array.isArray(cmsData.stores)) {
+        storesGrid.innerHTML = cmsData.stores.map((st, idx) => `
+          <div class="rounded-2xl bg-white p-5 border border-gray-200 shadow-sm hover:border-primary transition-all space-y-3 relative">
+            ${adminModeActive ? `
+              <button type="button" onclick="openAdminTabTo('canje')" class="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full bg-zinc-900 hover:bg-primary text-white text-[10px] font-bold">
+                ✏️ Editar
+              </button>
+            ` : ''}
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-primary text-[10px] font-bold uppercase">${st.badge}</span>
+              <span class="material-symbols-outlined text-primary text-xl">storefront</span>
+            </div>
+            <h3 class="text-base font-extrabold text-gray-900">${st.city}</h3>
+            <p class="text-xs text-gray-600 font-medium">${st.address}</p>
+            <p class="text-[11px] text-gray-500">${st.hours}</p>
+            <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-gray-800">${st.phone}</span>
+              <a href="https://wa.me/${cmsData.whatsappNumber}?text=Hola%20RedCover%2C%20quiero%20visitar%20la%20tienda%20de%20${encodeURIComponent(st.city)}" target="_blank" class="text-primary font-bold hover:underline flex items-center gap-0.5">
+                Agendar <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // ==========================================
+    // FUNCIONES DE APERTURA Y EDICIÓN DEL PANEL ADMIN
+    // ==========================================
+    function openAdminPanel(initialTab = null) {
+      closeMegaMenu();
+      adminModeActive = true;
+      const floatBar = document.getElementById('admin-floating-bar');
+      if (floatBar) {
+        floatBar.classList.remove('hidden');
+        floatBar.classList.add('flex');
+      }
+      renderAllCMSContent();
+
+      if (initialTab) currentAdminTab = initialTab;
+      switchAdminTab(currentAdminTab);
+
+      const modal = document.getElementById('admin-cms-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeAdminPanel() {
+      const modal = document.getElementById('admin-cms-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function enableLiveEditOverlays() {
+      adminModeActive = true;
+      closeAdminPanel();
+      renderAllCMSContent();
+      showToast('Modo Edición en Vivo activado: Haz clic en "Editar" sobre cualquier producto o sección.');
+    }
+
+    function exitAdminMode() {
+      adminModeActive = false;
+      if (inlineTextEditingEnabled) toggleInlineTextEditing();
+      const floatBar = document.getElementById('admin-floating-bar');
+      if (floatBar) {
+        floatBar.classList.add('hidden');
+        floatBar.classList.remove('flex');
+      }
+      closeAdminPanel();
+      renderAllCMSContent();
+      showToast('Modo Administrador desactivado');
+    }
+
+    function toggleInlineTextEditing() {
+      inlineTextEditingEnabled = !inlineTextEditingEnabled;
+      const statusEl = document.getElementById('inline-edit-status');
+      const editableNodes = document.querySelectorAll('h1, h2, h3, p, span');
+      editableNodes.forEach(node => {
+        if (!node.closest('#admin-cms-modal') && !node.closest('#admin-floating-bar')) {
+          node.contentEditable = inlineTextEditingEnabled ? 'true' : 'false';
+          if (inlineTextEditingEnabled) {
+            node.classList.add('hover:outline-dashed', 'hover:outline-1', 'hover:outline-red-400', ' rounded');
+          } else {
+            node.classList.remove('hover:outline-dashed', 'hover:outline-1', 'hover:outline-red-400');
+          }
+        }
+      });
+      if (statusEl) {
+        statusEl.innerText = inlineTextEditingEnabled ? 'Edición Textos: ON (Clic en cualquier texto)' : 'Edición Textos: OFF';
+      }
+      showToast(inlineTextEditingEnabled ? 'Ahora puedes hacer clic sobre cualquier texto de la página para escribir directamente' : 'Edición directa de textos desactivada');
+    }
+
+    function openAdminEditDevice(index) {
+      selectedAdminDeviceIndex = index;
+      openAdminPanel('devices');
+    }
+
+    function openAdminEditOffer(index) {
+      selectedAdminOfferIndex = index;
+      openAdminPanel('offers');
+    }
+
+    function openAdminEditAccessory(index) {
+      selectedAdminAccessoryIndex = index;
+      openAdminPanel('accessories');
+    }
+
+    function openAdminTabTo(tab) {
+      openAdminPanel(tab);
+    }
+
+    // Subida de imágenes desde la PC del Administrador (Base64 instantáneo)
+    function handleAdminImageUpload(fileInput, targetInputId, previewImgId) {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const dataUrl = evt.target.result;
+        const urlInput = document.getElementById(targetInputId);
+        const previewImg = document.getElementById(previewImgId);
+        if (urlInput) urlInput.value = dataUrl;
+        if (previewImg) previewImg.src = dataUrl;
+        showToast('Imagen cargada correctamente. Recuerda hacer clic en Guardar.');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function switchAdminTab(tab) {
+      currentAdminTab = tab;
+      document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-admin-tab') === tab) {
+          btn.className = "admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white shadow-sm flex items-center gap-1.5 whitespace-nowrap";
+        } else {
+          btn.className = "admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary flex items-center gap-1.5 whitespace-nowrap";
+        }
+      });
+
+      const container = document.getElementById('admin-tab-content');
+      if (!container) return;
+
+      if (tab === 'devices') renderAdminDevicesTab(container);
+      else if (tab === 'offers') renderAdminOffersTab(container);
+      else if (tab === 'accessories') renderAdminAccessoriesTab(container);
+      else if (tab === 'categories') renderAdminCategoriesTab(container);
+      else if (tab === 'hero') renderAdminHeroTab(container);
+      else if (tab === 'canje') renderAdminCanjeTab(container);
+    }
+
+    // ==========================================
+    // TAB 1: GESTIÓN DE PRODUCTOS (CATÁLOGO PRINCIPAL)
+    // ==========================================
+    function renderAdminDevicesTab(container) {
+      if (selectedAdminDeviceIndex >= allCatalogDevices.length) selectedAdminDeviceIndex = 0;
+      const dev = allCatalogDevices[selectedAdminDeviceIndex] || allCatalogDevices[0];
+
+      const filteredList = allCatalogDevices.map((d, idx) => ({ ...d, idx })).filter(item => {
+        const matchesCat = adminDeviceCategoryFilter === 'all' || item.category === adminDeviceCategoryFilter;
+        const matchesQ = adminDeviceSearchQuery.trim() === '' ||
+          item.title.toLowerCase().includes(adminDeviceSearchQuery.toLowerCase()) ||
+          item.badge.toLowerCase().includes(adminDeviceSearchQuery.toLowerCase());
+        return matchesCat && matchesQ;
+      });
+
+      container.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Columna Izquierda: Lista de Productos -->
+          <div class="lg:col-span-5 bg-white rounded-2xl border border-gray-200 p-4 flex flex-col h-[68vh]">
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <h4 class="text-sm font-extrabold text-gray-900">Catálogo de Productos (${filteredList.length})</h4>
+              <button type="button" onclick="createNewAdminDevice()" class="px-3 py-1.5 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">add</span> Nuevo Producto
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+              <input type="text" placeholder="Buscar producto..." value="${adminDeviceSearchQuery}" oninput="adminDeviceSearchQuery=this.value; renderAdminDevicesTab(document.getElementById('admin-tab-content'))" class="px-3 py-2 rounded-xl border border-gray-300 text-xs">
+              <select onchange="adminDeviceCategoryFilter=this.value; renderAdminDevicesTab(document.getElementById('admin-tab-content'))" class="px-3 py-2 rounded-xl border border-gray-300 text-xs font-semibold bg-white">
+                <option value="all" ${adminDeviceCategoryFilter === 'all' ? 'selected' : ''}>Todas las Categorías</option>
+                ${cmsData.deviceCategories.map(c => `<option value="${c.id}" ${adminDeviceCategoryFilter === c.id ? 'selected' : ''}>${c.name}</option>`).join('')}
+              </select>
+            </div>
+
+            <div class="flex-1 overflow-y-auto space-y-2 pr-1">
+              ${filteredList.map(item => `
+                <div onclick="selectedAdminDeviceIndex=${item.idx}; renderAdminDevicesTab(document.getElementById('admin-tab-content'))" class="p-2.5 rounded-xl border ${item.idx === selectedAdminDeviceIndex ? 'border-primary bg-red-50/60 ring-1 ring-primary' : 'border-gray-200 hover:bg-gray-50'} flex items-center justify-between gap-2.5 cursor-pointer transition-all">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <img src="${item.img}" class="w-11 h-11 rounded-lg object-cover bg-zinc-900 shrink-0">
+                    <div class="min-w-0">
+                      <span class="text-[10px] font-bold uppercase text-primary block">${item.category.toUpperCase()} • ${item.badge}</span>
+                      <h5 class="text-xs font-bold text-gray-900 truncate">${item.title}</h5>
+                      <p class="text-[11px] font-extrabold text-gray-600">${formatCOP(item.price)}</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-gray-400 text-base">chevron_right</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Formulario de Edición Completa -->
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-gray-200 p-5 overflow-y-auto h-[68vh]">
+            ${dev ? `
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-gray-200">
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-primary">Editando Producto #${selectedAdminDeviceIndex + 1}</span>
+                  <h4 class="text-base font-extrabold text-gray-900">${dev.title}</h4>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="duplicateAdminDevice(${selectedAdminDeviceIndex})" class="px-3 py-1.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">content_copy</span> Duplicar
+                  </button>
+                  <button type="button" onclick="deleteAdminDevice(${selectedAdminDeviceIndex})" class="px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-sm">delete</span> Eliminar
+                  </button>
+                </div>
+              </div>
+
+              <div class="space-y-4 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Nombre / Modelo del Producto *</label>
+                    <input id="adm-dev-title" type="text" value="${dev.title.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold">
+                  </div>
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Categoría *</label>
+                    <select id="adm-dev-category" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold bg-white">
+                      ${cmsData.deviceCategories.map(c => `<option value="${c.id}" ${dev.category === c.id ? 'selected' : ''}>${c.name}</option>`).join('')}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Precio Contado (COP) *</label>
+                    <input id="adm-dev-price" type="number" step="1000" value="${dev.price}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-primary">
+                  </div>
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Etiqueta Superior (Badge)</label>
+                    <input id="adm-dev-badge" type="text" value="${dev.badge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                  </div>
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Estado de Stock</label>
+                    <input id="adm-dev-stock" type="text" value="${(dev.stockStatus || '● En Stock').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-emerald-700 font-bold">
+                  </div>
+                </div>
+
+                <!-- Imagen con Vista Previa y Subida de Archivo -->
+                <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row items-center gap-4">
+                  <img id="adm-dev-img-preview" src="${dev.img}" class="w-24 h-24 rounded-xl object-cover bg-zinc-950 shrink-0 border border-gray-300">
+                  <div class="flex-1 w-full space-y-2">
+                    <label class="block font-bold text-gray-700">Imagen del Producto (URL o Subir desde tu PC)</label>
+                    <input id="adm-dev-img" type="text" value="${dev.img}" oninput="document.getElementById('adm-dev-img-preview').src=this.value" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white text-[11px]" placeholder="https://...">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">upload_file</span> Subir Foto desde PC
+                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-dev-img', 'adm-dev-img-preview')">
+                      </label>
+                      <button type="button" onclick="document.getElementById('adm-dev-img').value=IMG_IPHONE_PRO; document.getElementById('adm-dev-img-preview').src=IMG_IPHONE_PRO;" class="px-2.5 py-1 rounded-lg bg-white border border-gray-300 text-[10px] font-semibold">Usar Foto iPhone Pro</button>
+                      <button type="button" onclick="document.getElementById('adm-dev-img').value=IMG_MACBOOK; document.getElementById('adm-dev-img-preview').src=IMG_MACBOOK;" class="px-2.5 py-1 rounded-lg bg-white border border-gray-300 text-[10px] font-semibold">Usar Foto Mac</button>
+                      <button type="button" onclick="document.getElementById('adm-dev-img').value=IMG_IPAD; document.getElementById('adm-dev-img-preview').src=IMG_IPAD;" class="px-2.5 py-1 rounded-lg bg-white border border-gray-300 text-[10px] font-semibold">Usar Foto iPad</button>
+                      <button type="button" onclick="document.getElementById('adm-dev-img').value=IMG_WATCH; document.getElementById('adm-dev-img-preview').src=IMG_WATCH;" class="px-2.5 py-1 rounded-lg bg-white border border-gray-300 text-[10px] font-semibold">Usar Foto Watch</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block font-bold text-gray-700 mb-1">Descripción Corta</label>
+                  <textarea id="adm-dev-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${dev.shortDesc}</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Especificaciones (1 por línea)</label>
+                    <textarea id="adm-dev-specs" rows="4" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono text-[11px]">${(dev.specs || []).join('\n')}</textarea>
+                  </div>
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Versiones / Capacidades / Colores (1 por línea)</label>
+                    <textarea id="adm-dev-variants" rows="4" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono text-[11px]">${(dev.variants || []).join('\n')}</textarea>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-t border-gray-200 flex items-center justify-end gap-3">
+                  <button type="button" onclick="saveAdminDeviceChanges(${selectedAdminDeviceIndex})" class="px-6 py-3 rounded-full crimson-btn text-white text-xs font-extrabold uppercase tracking-wider shadow-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base">save</span> Guardar Cambios del Producto
+                  </button>
+                </div>
+              </div>
+            ` : '<p class="text-xs text-gray-500">Selecciona o crea un producto.</p>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAdminDeviceChanges(idx) {
+      const dev = allCatalogDevices[idx];
+      if (!dev) return;
+      dev.title = document.getElementById('adm-dev-title').value.trim() || dev.title;
+      dev.category = document.getElementById('adm-dev-category').value;
+      dev.price = parseInt(document.getElementById('adm-dev-price').value, 10) || 0;
+      dev.badge = document.getElementById('adm-dev-badge').value.trim() || 'Apple Oficial';
+      dev.stockStatus = document.getElementById('adm-dev-stock').value.trim() || '● En Stock';
+      dev.img = document.getElementById('adm-dev-img').value.trim() || IMG_IPHONE_PRO;
+      dev.shortDesc = document.getElementById('adm-dev-desc').value.trim();
+      dev.specs = document.getElementById('adm-dev-specs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      dev.variants = document.getElementById('adm-dev-variants').value.split('\n').map(s => s.trim()).filter(Boolean);
+
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminDevicesTab(document.getElementById('admin-tab-content'));
+      showToast(`¡Producto "${dev.title}" actualizado correctamente!`);
+    }
+
+    function createNewAdminDevice() {
+      const newDev = {
+        id: 'producto-' + Date.now(),
+        category: adminDeviceCategoryFilter === 'all' ? 'iphone' : adminDeviceCategoryFilter,
+        badge: 'Nuevo 2026',
+        title: 'Nuevo Producto Apple 2026',
+        price: 3999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Descripción del nuevo producto oficial Apple con garantía de 1 año en Colombia.',
+        specs: ['Chip de última generación Apple', 'Pantalla Retina XDR', 'Garantía Oficial 1 Año en Colombia'],
+        variants: ['128GB - Negro Espacial - $3.999.000', '256GB - Plata - $4.499.000']
+      };
+      allCatalogDevices.unshift(newDev);
+      selectedAdminDeviceIndex = 0;
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminDevicesTab(document.getElementById('admin-tab-content'));
+      showToast('Nuevo producto creado. Edita sus campos y guarda.');
+    }
+
+    function duplicateAdminDevice(idx) {
+      const orig = allCatalogDevices[idx];
+      if (!orig) return;
+      const copy = JSON.parse(JSON.stringify(orig));
+      copy.id = orig.id + '-copy-' + Date.now();
+      copy.title = orig.title + ' (Copia)';
+      allCatalogDevices.splice(idx + 1, 0, copy);
+      selectedAdminDeviceIndex = idx + 1;
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminDevicesTab(document.getElementById('admin-tab-content'));
+      showToast('Producto duplicado correctamente');
+    }
+
+    function deleteAdminDevice(idx) {
+      if (allCatalogDevices.length <= 1) {
+        showToast('Debe existir al menos 1 producto en el catálogo');
+        return;
+      }
+      const removed = allCatalogDevices.splice(idx, 1)[0];
+      selectedAdminDeviceIndex = Math.max(0, idx - 1);
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminDevicesTab(document.getElementById('admin-tab-content'));
+      showToast(`Producto "${removed.title}" eliminado`);
+    }
+
+    // ==========================================
+    // TAB 2: GESTIÓN DE OFERTAS Y COMBOS
+    // ==========================================
+    function renderAdminOffersTab(container) {
+      if (selectedAdminOfferIndex >= cmsData.offers.length) selectedAdminOfferIndex = 0;
+      const off = cmsData.offers[selectedAdminOfferIndex];
+      const oh = cmsData.offersHeader;
+
+      container.innerHTML = `
+        <div class="space-y-6">
+          <!-- Encabezado de la Sección de Ofertas -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-4">
+            <h4 class="text-xs font-extrabold uppercase text-primary mb-3">Textos del Encabezado de la Sección Ofertas</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Badge Superior</label>
+                <input id="adm-oh-badge" type="text" value="${oh.badge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Título de Sección</label>
+                <input id="adm-oh-title" type="text" value="${oh.title.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Subtítulo</label>
+                <input id="adm-oh-sub" type="text" value="${oh.subtitle.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+              </div>
+              <div class="flex items-end gap-2">
+                <div class="flex-1">
+                  <label class="font-bold text-gray-700 block mb-1">Alerta de Stock</label>
+                  <input id="adm-oh-stock" type="text" value="${oh.stockAlert.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                </div>
+                <button type="button" onclick="saveAdminOffersHeader()" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-primary text-white text-xs font-bold">Guardar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Lista de Ofertas -->
+            <div class="lg:col-span-5 bg-white rounded-2xl border border-gray-200 p-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-sm font-extrabold text-gray-900">Ofertas Activas (${cmsData.offers.length})</h4>
+                <button type="button" onclick="createNewAdminOffer()" class="px-3 py-1.5 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">add</span> Nueva Oferta
+                </button>
+              </div>
+              <div class="space-y-2 max-h-96 overflow-y-auto">
+                ${cmsData.offers.map((item, idx) => `
+                  <div onclick="selectedAdminOfferIndex=${idx}; renderAdminOffersTab(document.getElementById('admin-tab-content'))" class="p-3 rounded-xl border ${idx === selectedAdminOfferIndex ? 'border-primary bg-red-50/60' : 'border-gray-200 hover:bg-gray-50'} flex items-center gap-3 cursor-pointer">
+                    <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover bg-zinc-900 shrink-0">
+                    <div class="min-w-0 flex-1">
+                      <span class="text-[10px] font-extrabold text-white bg-red-600 px-2 py-0.5 rounded-full">${item.discountBadge}</span>
+                      <h5 class="text-xs font-bold text-gray-900 truncate mt-1">${item.title}</h5>
+                      <p class="text-xs font-extrabold text-primary">${formatCOP(item.price)} <span class="text-gray-400 line-through font-normal text-[10px]">${formatCOP(item.oldPrice)}</span></p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Editor de la Oferta Seleccionada -->
+            <div class="lg:col-span-7 bg-white rounded-2xl border border-gray-200 p-5">
+              ${off ? `
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-gray-200">
+                  <h4 class="text-sm font-extrabold text-gray-900">Editar Oferta #${selectedAdminOfferIndex + 1}</h4>
+                  <button type="button" onclick="deleteAdminOffer(${selectedAdminOfferIndex})" class="px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-xs font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">delete</span> Eliminar Oferta
+                  </button>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                  <div>
+                    <label class="font-bold text-gray-700 block mb-1">Título del Combo / Oferta *</label>
+                    <input id="adm-off-title" type="text" value="${off.title.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold">
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label class="font-bold text-gray-700 block mb-1">Badge Descuento (ej. -20% OFF)</label>
+                      <input id="adm-off-badge" type="text" value="${off.discountBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-red-600">
+                    </div>
+                    <div>
+                      <label class="font-bold text-gray-700 block mb-1">Etiqueta Superior</label>
+                      <input id="adm-off-tag" type="text" value="${off.topTag.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                    </div>
+                    <div>
+                      <label class="font-bold text-gray-700 block mb-1">Texto Unidades Restantes</label>
+                      <input id="adm-off-stock" type="text" value="${off.stockLeftText.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label class="font-bold text-gray-700 block mb-1">Precio Oferta (COP) *</label>
+                      <input id="adm-off-price" type="number" step="1000" value="${off.price}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-extrabold text-primary">
+                    </div>
+                    <div>
+                      <label class="font-bold text-gray-700 block mb-1">Precio Anterior Tachado (COP)</label>
+                      <input id="adm-off-oldprice" type="number" step="1000" value="${off.oldPrice}" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-gray-500">
+                    </div>
+                    <div>
+                      <label class="font-bold text-gray-700 block mb-1">% Barra de Demanda (1-100)</label>
+                      <input id="adm-off-prog" type="number" min="5" max="100" value="${off.progressPercent || 80}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                    </div>
+                  </div>
+
+                  <div class="p-3 rounded-2xl bg-gray-50 border border-gray-200 flex items-center gap-3">
+                    <img id="adm-off-img-prev" src="${off.img}" class="w-20 h-20 rounded-xl object-cover bg-zinc-900 shrink-0">
+                    <div class="flex-1 space-y-1.5">
+                      <label class="font-bold text-gray-700 block">Imagen de la Oferta (URL o Subir de tu PC)</label>
+                      <input id="adm-off-img" type="text" value="${off.img}" oninput="document.getElementById('adm-off-img-prev').src=this.value" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 bg-white">
+                      <label class="px-3 py-1 rounded-lg bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">upload_file</span> Subir Imagen desde PC
+                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-off-img', 'adm-off-img-prev')">
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="font-bold text-gray-700 block mb-1">Descripción de la Oferta</label>
+                    <textarea id="adm-off-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${off.desc}</textarea>
+                  </div>
+
+                  <div class="pt-2 flex justify-end">
+                    <button type="button" onclick="saveAdminOfferItem(${selectedAdminOfferIndex})" class="px-6 py-2.5 rounded-full crimson-btn text-white text-xs font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-base">save</span> Guardar Oferta
+                    </button>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAdminOffersHeader() {
+      cmsData.offersHeader.badge = document.getElementById('adm-oh-badge').value;
+      cmsData.offersHeader.title = document.getElementById('adm-oh-title').value;
+      cmsData.offersHeader.subtitle = document.getElementById('adm-oh-sub').value;
+      cmsData.offersHeader.stockAlert = document.getElementById('adm-oh-stock').value;
+      saveCMSState();
+      renderCMSOffers();
+      showToast('Encabezado de ofertas actualizado');
+    }
+
+    function saveAdminOfferItem(idx) {
+      const off = cmsData.offers[idx];
+      if (!off) return;
+      off.title = document.getElementById('adm-off-title').value;
+      off.discountBadge = document.getElementById('adm-off-badge').value;
+      off.topTag = document.getElementById('adm-off-tag').value;
+      off.stockLeftText = document.getElementById('adm-off-stock').value;
+      off.price = parseInt(document.getElementById('adm-off-price').value, 10) || 0;
+      off.oldPrice = parseInt(document.getElementById('adm-off-oldprice').value, 10) || 0;
+      off.progressPercent = parseInt(document.getElementById('adm-off-prog').value, 10) || 80;
+      off.img = document.getElementById('adm-off-img').value;
+      off.desc = document.getElementById('adm-off-desc').value;
+      saveCMSState();
+      renderCMSOffers();
+      renderAdminOffersTab(document.getElementById('admin-tab-content'));
+      showToast('¡Oferta guardada y actualizada en la tienda!');
+    }
+
+    function createNewAdminOffer() {
+      cmsData.offers.unshift({
+        id: 'offer-' + Date.now(),
+        discountBadge: '-20% OFF',
+        topTag: 'Nueva Promoción Especial',
+        title: 'Nuevo Combo Apple en Oferta',
+        desc: 'Descripción de la promoción especial con envío asegurado gratis.',
+        price: 2999000,
+        oldPrice: 3699000,
+        progressPercent: 85,
+        stockLeftText: 'Quedan 5 unidades',
+        img: IMG_IPHONE_PRO
+      });
+      selectedAdminOfferIndex = 0;
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminOffersTab(document.getElementById('admin-tab-content'));
+      showToast('Nueva oferta creada');
+    }
+
+    function deleteAdminOffer(idx) {
+      if (cmsData.offers.length <= 1) {
+        showToast('Debe haber al menos 1 oferta activa');
+        return;
+      }
+      cmsData.offers.splice(idx, 1);
+      selectedAdminOfferIndex = Math.max(0, idx - 1);
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminOffersTab(document.getElementById('admin-tab-content'));
+      showToast('Oferta eliminada');
+    }
+
+    // ==========================================
+    // TAB 3: GESTIÓN DE ACCESORIOS
+    // ==========================================
+    function renderAdminAccessoriesTab(container) {
+      if (selectedAdminAccessoryIndex >= cmsData.accessories.length) selectedAdminAccessoryIndex = 0;
+      const acc = cmsData.accessories[selectedAdminAccessoryIndex];
+
+      container.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 bg-white rounded-2xl border border-gray-200 p-4 flex flex-col h-[65vh]">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="text-sm font-extrabold text-gray-900">Accesorios (${cmsData.accessories.length})</h4>
+              <button type="button" onclick="createNewAdminAccessory()" class="px-3 py-1.5 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">add</span> Nuevo Accesorio
+              </button>
+            </div>
+            <div class="flex-1 overflow-y-auto space-y-2 pr-1">
+              ${cmsData.accessories.map((item, idx) => `
+                <div onclick="selectedAdminAccessoryIndex=${idx}; renderAdminAccessoriesTab(document.getElementById('admin-tab-content'))" class="p-2.5 rounded-xl border ${idx === selectedAdminAccessoryIndex ? 'border-primary bg-red-50/60' : 'border-gray-200 hover:bg-gray-50'} flex items-center gap-3 cursor-pointer">
+                  <img src="${item.img}" class="w-11 h-11 rounded-lg object-cover bg-zinc-900 shrink-0">
+                  <div class="min-w-0 flex-1">
+                    <span class="text-[10px] font-bold uppercase text-primary">${item.category} • ${item.badge}</span>
+                    <h5 class="text-xs font-bold text-gray-900 truncate">${item.title}</h5>
+                    <p class="text-xs font-extrabold text-gray-700">${formatCOP(item.price)}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-gray-200 p-5">
+            ${acc ? `
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-gray-200">
+                <h4 class="text-sm font-extrabold text-gray-900">Editar Accesorio #${selectedAdminAccessoryIndex + 1}</h4>
+                <button type="button" onclick="deleteAdminAccessory(${selectedAdminAccessoryIndex})" class="px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-xs font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">delete</span> Eliminar Accesorio
+                </button>
+              </div>
+              <div class="space-y-4 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="font-bold text-gray-700 block mb-1">Nombre del Accesorio *</label>
+                    <input id="adm-acc-title" type="text" value="${acc.title.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold">
+                  </div>
+                  <div>
+                    <label class="font-bold text-gray-700 block mb-1">Categoría de Accesorio *</label>
+                    <select id="adm-acc-cat" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold bg-white">
+                      ${cmsData.accessoryCategories.map(c => `<option value="${c.id}" ${acc.category === c.id ? 'selected' : ''}>${c.name}</option>`).join('')}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="font-bold text-gray-700 block mb-1">Precio (COP) *</label>
+                    <input id="adm-acc-price" type="number" step="1000" value="${acc.price}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-extrabold text-primary">
+                  </div>
+                  <div>
+                    <label class="font-bold text-gray-700 block mb-1">Etiqueta Superior (Badge)</label>
+                    <input id="adm-acc-badge" type="text" value="${acc.badge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                  </div>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-gray-50 border border-gray-200 flex items-center gap-3">
+                  <img id="adm-acc-img-prev" src="${acc.img}" class="w-20 h-20 rounded-xl object-cover bg-zinc-900 shrink-0">
+                  <div class="flex-1 space-y-1.5">
+                    <label class="font-bold text-gray-700 block">Imagen del Accesorio (URL o Subir desde PC)</label>
+                    <input id="adm-acc-img" type="text" value="${acc.img}" oninput="document.getElementById('adm-acc-img-prev').src=this.value" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 bg-white">
+                    <label class="px-3 py-1 rounded-lg bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1">
+                      <span class="material-symbols-outlined text-sm">upload_file</span> Subir Foto desde PC
+                      <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-acc-img', 'adm-acc-img-prev')">
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Descripción del Accesorio</label>
+                  <textarea id="adm-acc-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${acc.desc}</textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end">
+                  <button type="button" onclick="saveAdminAccessoryItem(${selectedAdminAccessoryIndex})" class="px-6 py-2.5 rounded-full crimson-btn text-white text-xs font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-base">save</span> Guardar Accesorio
+                  </button>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAdminAccessoryItem(idx) {
+      const acc = cmsData.accessories[idx];
+      if (!acc) return;
+      acc.title = document.getElementById('adm-acc-title').value;
+      acc.category = document.getElementById('adm-acc-cat').value;
+      acc.price = parseInt(document.getElementById('adm-acc-price').value, 10) || 0;
+      acc.badge = document.getElementById('adm-acc-badge').value;
+      acc.img = document.getElementById('adm-acc-img').value;
+      acc.desc = document.getElementById('adm-acc-desc').value;
+      saveCMSState();
+      renderCMSAccessories(currentAccCategoryFilter);
+      renderAdminAccessoriesTab(document.getElementById('admin-tab-content'));
+      showToast('¡Accesorio actualizado correctamente!');
+    }
+
+    function createNewAdminAccessory() {
+      cmsData.accessories.unshift({
+        id: 'acc-' + Date.now(),
+        category: 'magsafe',
+        badge: 'Nuevo Accesorio',
+        badgeColor: 'bg-red-600/90',
+        title: 'Nuevo Accesorio Oficial Apple',
+        desc: 'Descripción del accesorio original con garantía.',
+        price: 199000,
+        img: IMG_AIRPODS
+      });
+      selectedAdminAccessoryIndex = 0;
+      saveCMSState();
+      renderCMSAccessories(currentAccCategoryFilter);
+      renderAdminAccessoriesTab(document.getElementById('admin-tab-content'));
+      showToast('Nuevo accesorio añadido');
+    }
+
+    function deleteAdminAccessory(idx) {
+      if (cmsData.accessories.length <= 1) return;
+      cmsData.accessories.splice(idx, 1);
+      selectedAdminAccessoryIndex = Math.max(0, idx - 1);
+      saveCMSState();
+      renderCMSAccessories(currentAccCategoryFilter);
+      renderAdminAccessoriesTab(document.getElementById('admin-tab-content'));
+      showToast('Accesorio eliminado');
+    }
+
+    // ==========================================
+    // TAB 4: GESTIÓN DE CATEGORÍAS
+    // ==========================================
+    function renderAdminCategoriesTab(container) {
+      container.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
+          <!-- Categorías de Dispositivos -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-extrabold text-gray-900">Categorías Principales de Productos</h4>
+                <p class="text-[11px] text-gray-500">Se muestran en las pestañas del catálogo y en la barra rápida superior.</p>
+              </div>
+              <button type="button" onclick="addDeviceCategory()" class="px-3 py-1.5 rounded-xl crimson-btn text-white font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">add</span> Añadir Categoría
+              </button>
+            </div>
+
+            <div class="space-y-3">
+              ${cmsData.deviceCategories.map((cat, idx) => `
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 uppercase">ID / Slug</label>
+                      <input id="adm-dcat-id-${idx}" type="text" value="${cat.id}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-mono">
+                    </div>
+                    <div class="sm:col-span-2">
+                      <label class="text-[10px] font-bold text-gray-500 uppercase">Nombre en Pestaña del Catálogo</label>
+                      <input id="adm-dcat-name-${idx}" type="text" value="${cat.name.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-end">
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 uppercase">Nombre Corto</label>
+                      <input id="adm-dcat-short-${idx}" type="text" value="${(cat.shortName || cat.name).replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                    </div>
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500 uppercase">Subtítulo Barra Rápida</label>
+                      <input id="adm-dcat-sub-${idx}" type="text" value="${(cat.subtitle || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <button type="button" onclick="saveDeviceCategory(${idx})" class="flex-1 py-1.5 px-3 rounded-lg bg-zinc-900 hover:bg-primary text-white font-bold">Guardar</button>
+                      <button type="button" onclick="deleteDeviceCategory(${idx})" class="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white">
+                        <span class="material-symbols-outlined text-sm">delete</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Categorías de Accesorios -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-extrabold text-gray-900">Categorías de Accesorios</h4>
+                <p class="text-[11px] text-gray-500">Filtros interactivos en la sección de Accesorios Originales.</p>
+              </div>
+              <button type="button" onclick="addAccessoryCategory()" class="px-3 py-1.5 rounded-xl crimson-btn text-white font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">add</span> Añadir Filtro
+              </button>
+            </div>
+
+            <div class="space-y-2.5">
+              ${cmsData.accessoryCategories.map((cat, idx) => `
+                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-2">
+                  <input id="adm-acat-id-${idx}" type="text" value="${cat.id}" class="w-28 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-mono" placeholder="slug">
+                  <input id="adm-acat-name-${idx}" type="text" value="${cat.name.replace(/"/g, '&quot;')}" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold" placeholder="Nombre visible">
+                  <button type="button" onclick="saveAccessoryCategory(${idx})" class="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-primary text-white font-bold">Guardar</button>
+                  <button type="button" onclick="deleteAccessoryCategory(${idx})" class="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white">
+                    <span class="material-symbols-outlined text-sm">delete</span>
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveDeviceCategory(idx) {
+      const cat = cmsData.deviceCategories[idx];
+      if (!cat) return;
+      cat.id = document.getElementById(`adm-dcat-id-${idx}`).value.trim().toLowerCase();
+      cat.name = document.getElementById(`adm-dcat-name-${idx}`).value.trim();
+      cat.shortName = document.getElementById(`adm-dcat-short-${idx}`).value.trim();
+      cat.subtitle = document.getElementById(`adm-dcat-sub-${idx}`).value.trim();
+      saveCMSState();
+      renderAllCMSContent();
+      showToast('Categoría actualizada');
+    }
+
+    function addDeviceCategory() {
+      cmsData.deviceCategories.push({
+        id: 'nueva-cat-' + (cmsData.deviceCategories.length + 1),
+        name: 'Nueva Categoría Apple',
+        shortName: 'Nueva Cat',
+        subtitle: 'Explorar línea',
+        icon: 'devices_other'
+      });
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminCategoriesTab(document.getElementById('admin-tab-content'));
+    }
+
+    function deleteDeviceCategory(idx) {
+      if (cmsData.deviceCategories.length <= 1) return;
+      cmsData.deviceCategories.splice(idx, 1);
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminCategoriesTab(document.getElementById('admin-tab-content'));
+    }
+
+    function saveAccessoryCategory(idx) {
+      const cat = cmsData.accessoryCategories[idx];
+      if (!cat) return;
+      cat.id = document.getElementById(`adm-acat-id-${idx}`).value.trim().toLowerCase();
+      cat.name = document.getElementById(`adm-acat-name-${idx}`).value.trim();
+      saveCMSState();
+      renderAllCMSContent();
+      showToast('Categoría de accesorio actualizada');
+    }
+
+    function addAccessoryCategory() {
+      cmsData.accessoryCategories.push({
+        id: 'acc-cat-' + (cmsData.accessoryCategories.length + 1),
+        name: 'Nueva Categoría'
+      });
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminCategoriesTab(document.getElementById('admin-tab-content'));
+    }
+
+    function deleteAccessoryCategory(idx) {
+      if (cmsData.accessoryCategories.length <= 1) return;
+      cmsData.accessoryCategories.splice(idx, 1);
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminCategoriesTab(document.getElementById('admin-tab-content'));
+    }
+
+    // ==========================================
+    // TAB 5: PUBLICIDAD HERO & BENTO ECOSISTEMA
+    // ==========================================
+    function renderAdminHeroTab(container) {
+      const h = cmsData.hero;
+      container.innerHTML = `
+        <div class="space-y-6 text-xs">
+          <!-- Publicidad Principal Hero -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+              <div>
+                <h4 class="text-sm font-extrabold text-gray-900">Banner Principal de Inicio (Hero) y Barra Superior</h4>
+                <p class="text-[11px] text-gray-500">Modifica el producto estrella anunciado al abrir la página.</p>
+              </div>
+              <button type="button" onclick="saveAdminHeroConfig()" class="px-5 py-2.5 rounded-full crimson-btn text-white font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">save</span> Guardar Publicidad Hero
+              </button>
+            </div>
+
+            <div>
+              <label class="font-bold text-gray-700 block mb-1">Texto Barra Roja Superior (Topbar)</label>
+              <input id="adm-hero-topbar" type="text" value="${cmsData.topbarText.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Badge Autorizado</label>
+                <input id="adm-hero-auth" type="text" value="${h.authBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Badge Clientes Satisfechos</label>
+                <input id="adm-hero-clients" type="text" value="${h.clientsBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-emerald-700 font-bold">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Badge Calificación</label>
+                <input id="adm-hero-rating" type="text" value="${h.ratingBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Título Gigante Principal (ej. iPhone 18 Pro)</label>
+                <input id="adm-hero-title1" type="text" value="${h.titleMain.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-extrabold text-base">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Subtítulo con Gradiente Rojo</label>
+                <input id="adm-hero-title2" type="text" value="${h.titleGradient.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-primary">
+              </div>
+            </div>
+
+            <div>
+              <label class="font-bold text-gray-700 block mb-1">Párrafo Descriptivo Principal</label>
+              <textarea id="adm-hero-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${h.description}</textarea>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row items-center gap-4">
+              <img id="adm-hero-img-prev" src="${h.bannerImg}" class="w-28 h-24 rounded-xl object-cover bg-zinc-950 shrink-0">
+              <div class="flex-1 w-full space-y-2">
+                <label class="font-bold text-gray-700 block">Imagen del Banner Principal Hero (URL o Subir desde PC)</label>
+                <input id="adm-hero-img" type="text" value="${h.bannerImg}" oninput="document.getElementById('adm-hero-img-prev').src=this.value" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 bg-white">
+                <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">upload_file</span> Subir Imagen Banner desde PC
+                  <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-hero-img', 'adm-hero-img-prev')">
+                </label>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Etiqueta dentro del Banner</label>
+                <input id="adm-hero-bbadge" type="text" value="${h.bannerBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Precio y Cuotas en Banner</label>
+                <input id="adm-hero-bprice" type="text" value="${h.bannerPrice.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Subtexto Plan Canje en Banner</label>
+                <input id="adm-hero-bsub" type="text" value="${h.bannerSub.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjetas Bento del Ecosistema -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <h4 class="text-sm font-extrabold text-gray-900">Tarjetas Destacadas del Ecosistema (Bento Grid)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${cmsData.bentoCards.map((card, idx) => `
+                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-2.5">
+                  <div class="flex items-center justify-between">
+                    <span class="font-extrabold text-primary uppercase">Tarjeta Bento #${idx + 1}</span>
+                    <button type="button" onclick="saveAdminBentoCard(${idx})" class="px-3 py-1 rounded-lg bg-zinc-900 hover:bg-primary text-white font-bold">Guardar Tarjeta</button>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500">Etiqueta Superior</label>
+                      <input id="adm-bento-badge-${idx}" type="text" value="${card.badge.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                    </div>
+                    <div>
+                      <label class="text-[10px] font-bold text-gray-500">Precio Visible</label>
+                      <input id="adm-bento-price-${idx}" type="text" value="${card.priceText.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-gray-500">Título</label>
+                    <input id="adm-bento-title-${idx}" type="text" value="${card.title.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-gray-500">Descripción</label>
+                    <textarea id="adm-bento-desc-${idx}" rows="2" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">${card.desc}</textarea>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <img id="adm-bento-prev-${idx}" src="${card.img}" class="w-12 h-12 rounded-lg object-cover bg-zinc-900 shrink-0">
+                    <input id="adm-bento-img-${idx}" type="text" value="${card.img}" oninput="document.getElementById('adm-bento-prev-${idx}').src=this.value" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                    <label class="px-2.5 py-1.5 rounded-lg bg-zinc-900 text-white cursor-pointer font-bold shrink-0">
+                      Subir
+                      <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-bento-img-${idx}', 'adm-bento-prev-${idx}')">
+                    </label>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAdminHeroConfig() {
+      cmsData.topbarText = document.getElementById('adm-hero-topbar').value;
+      const h = cmsData.hero;
+      h.authBadge = document.getElementById('adm-hero-auth').value;
+      h.clientsBadge = document.getElementById('adm-hero-clients').value;
+      h.ratingBadge = document.getElementById('adm-hero-rating').value;
+      h.titleMain = document.getElementById('adm-hero-title1').value;
+      h.titleGradient = document.getElementById('adm-hero-title2').value;
+      h.description = document.getElementById('adm-hero-desc').value;
+      h.bannerImg = document.getElementById('adm-hero-img').value;
+      h.bannerBadge = document.getElementById('adm-hero-bbadge').value;
+      h.bannerPrice = document.getElementById('adm-hero-bprice').value;
+      h.bannerSub = document.getElementById('adm-hero-bsub').value;
+
+      saveCMSState();
+      renderCMSHeroAndTopbar();
+      showToast('¡Publicidad principal Hero actualizada!');
+    }
+
+    function saveAdminBentoCard(idx) {
+      const card = cmsData.bentoCards[idx];
+      if (!card) return;
+      card.badge = document.getElementById(`adm-bento-badge-${idx}`).value;
+      card.priceText = document.getElementById(`adm-bento-price-${idx}`).value;
+      card.title = document.getElementById(`adm-bento-title-${idx}`).value;
+      card.desc = document.getElementById(`adm-bento-desc-${idx}`).value;
+      card.img = document.getElementById(`adm-bento-img-${idx}`).value;
+      saveCMSState();
+      renderCMSHeroAndTopbar();
+      showToast(`Tarjeta Bento #${idx + 1} actualizada`);
+    }
+
+    // ==========================================
+    // TAB 6: PLAN CANJE, WHATSAPP Y TIENDAS FÍSICAS
+    // ==========================================
+    function renderAdminCanjeTab(container) {
+      const c = cmsData.canjeConfig;
+      container.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
+          <!-- Configuración Plan Canje -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <h4 class="text-sm font-extrabold text-gray-900">Cotizador Plan Canje & WhatsApp Oficial</h4>
+              <button type="button" onclick="saveAdminCanjeTexts()" class="px-4 py-2 rounded-xl crimson-btn text-white font-bold">Guardar Textos</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Número WhatsApp (con indicativo 57)</label>
+                <input id="adm-wa-num" type="text" value="${cmsData.whatsappNumber}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono font-bold text-emerald-700">
+              </div>
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Monto Máximo Destacado</label>
+                <input id="adm-canje-max" type="text" value="${c.maxText.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-primary">
+              </div>
+            </div>
+
+            <div>
+              <label class="font-bold text-gray-700 block mb-1">Descripción de Plan Canje</label>
+              <textarea id="adm-canje-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${c.desc}</textarea>
+            </div>
+
+            <div class="pt-3 border-t border-gray-200 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-extrabold text-gray-900">Equipos Recibidos y Valor Base Máximo (COP)</span>
+                <button type="button" onclick="addCanjeDeviceOption()" class="px-2.5 py-1 rounded-lg bg-zinc-900 text-white font-bold">+ Agregar Equipo</button>
+              </div>
+              <div class="max-h-64 overflow-y-auto space-y-2 pr-1">
+                ${c.devices.map((dev, idx) => `
+                  <div class="flex items-center gap-2">
+                    <input id="adm-cdev-name-${idx}" type="text" value="${dev.name.replace(/"/g, '&quot;')}" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300">
+                    <input id="adm-cdev-val-${idx}" type="number" step="50000" value="${dev.value}" class="w-32 px-2.5 py-1.5 rounded-lg border border-gray-300 font-bold text-primary">
+                    <button type="button" onclick="saveCanjeDeviceOption(${idx})" class="px-2.5 py-1.5 rounded-lg bg-zinc-900 text-white font-bold">OK</button>
+                    <button type="button" onclick="deleteCanjeDeviceOption(${idx})" class="p-1.5 rounded-lg bg-red-50 text-red-600">
+                      <span class="material-symbols-outlined text-sm">delete</span>
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Tiendas Físicas -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <h4 class="text-sm font-extrabold text-gray-900">Tiendas Físicas Oficiales (${cmsData.stores.length})</h4>
+              <button type="button" onclick="addAdminStore()" class="px-3 py-1.5 rounded-xl crimson-btn text-white font-bold">+ Añadir Sede</button>
+            </div>
+            <div class="space-y-3 max-h-[52vh] overflow-y-auto pr-1">
+              ${cmsData.stores.map((st, idx) => `
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
+                  <div class="grid grid-cols-2 gap-2">
+                    <input id="adm-st-city-${idx}" type="text" value="${st.city.replace(/"/g, '&quot;')}" class="px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold" placeholder="Ciudad">
+                    <input id="adm-st-badge-${idx}" type="text" value="${st.badge.replace(/"/g, '&quot;')}" class="px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white text-primary font-semibold" placeholder="Especialidad">
+                  </div>
+                  <input id="adm-st-addr-${idx}" type="text" value="${st.address.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white" placeholder="Dirección / Centro Comercial">
+                  <div class="grid grid-cols-2 gap-2">
+                    <input id="adm-st-hours-${idx}" type="text" value="${st.hours.replace(/"/g, '&quot;')}" class="px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white" placeholder="Horarios">
+                    <div class="flex items-center gap-1.5">
+                      <input id="adm-st-phone-${idx}" type="text" value="${st.phone.replace(/"/g, '&quot;')}" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold" placeholder="Teléfono">
+                      <button type="button" onclick="saveAdminStore(${idx})" class="px-3 py-1.5 rounded-lg bg-zinc-900 text-white font-bold">Guardar</button>
+                      <button type="button" onclick="deleteAdminStore(${idx})" class="p-1.5 rounded-lg bg-red-50 text-red-600">
+                        <span class="material-symbols-outlined text-sm">delete</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAdminCanjeTexts() {
+      cmsData.whatsappNumber = document.getElementById('adm-wa-num').value.trim() || '573001234567';
+      cmsData.canjeConfig.maxText = document.getElementById('adm-canje-max').value;
+      cmsData.canjeConfig.desc = document.getElementById('adm-canje-desc').value;
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      showToast('Configuración de Plan Canje y WhatsApp guardada');
+    }
+
+    function saveCanjeDeviceOption(idx) {
+      const item = cmsData.canjeConfig.devices[idx];
+      if (!item) return;
+      item.name = document.getElementById(`adm-cdev-name-${idx}`).value;
+      item.value = parseInt(document.getElementById(`adm-cdev-val-${idx}`).value, 10) || 1000000;
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      showToast('Valor de equipo en Plan Canje actualizado');
+    }
+
+    function addCanjeDeviceOption() {
+      cmsData.canjeConfig.devices.unshift({
+        name: 'Nuevo Modelo Apple para Canje',
+        value: 2500000
+      });
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      renderAdminCanjeTab(document.getElementById('admin-tab-content'));
+    }
+
+    function deleteCanjeDeviceOption(idx) {
+      if (cmsData.canjeConfig.devices.length <= 1) return;
+      cmsData.canjeConfig.devices.splice(idx, 1);
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      renderAdminCanjeTab(document.getElementById('admin-tab-content'));
+    }
+
+    function saveAdminStore(idx) {
+      const st = cmsData.stores[idx];
+      if (!st) return;
+      st.city = document.getElementById(`adm-st-city-${idx}`).value;
+      st.badge = document.getElementById(`adm-st-badge-${idx}`).value;
+      st.address = document.getElementById(`adm-st-addr-${idx}`).value;
+      st.hours = document.getElementById(`adm-st-hours-${idx}`).value;
+      st.phone = document.getElementById(`adm-st-phone-${idx}`).value;
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      showToast(`Tienda ${st.city} actualizada`);
+    }
+
+    function addAdminStore() {
+      cmsData.stores.push({
+        id: 'store-' + Date.now(),
+        city: 'Nueva Ciudad',
+        badge: 'Tienda Oficial RedCover',
+        address: 'Centro Comercial Principal • Local 101',
+        hours: 'Lun - Sáb: 10:00 AM - 8:00 PM',
+        phone: '(601) 000-0000'
+      });
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      renderAdminCanjeTab(document.getElementById('admin-tab-content'));
+    }
+
+    function deleteAdminStore(idx) {
+      if (cmsData.stores.length <= 1) return;
+      cmsData.stores.splice(idx, 1);
+      saveCMSState();
+      renderCMSCanjeAndStores();
+      renderAdminCanjeTab(document.getElementById('admin-tab-content'));
+    }
+
+    // ==========================================
+    // EXPORTAR / IMPORTAR / RESTAURAR FÁBRICA
+    // ==========================================
+    function exportAllStoreData() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        devices: allCatalogDevices,
+        cmsData: cmsData
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'redcover-colombia-catalogo-completo.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Copia de seguridad JSON descargada');
+    }
+
+    function importAllStoreData(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.devices && Array.isArray(data.devices)) allCatalogDevices = data.devices;
+          if (data.cmsData) cmsData = data.cmsData;
+          saveCMSState();
+          renderAllCMSContent();
+          switchAdminTab(currentAdminTab);
+          showToast('¡Datos importados y aplicados con éxito!');
+        } catch (err) {
+          showToast('Archivo JSON inválido');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetStoreToFactoryDefaults() {
+      localStorage.removeItem(CMS_STORAGE_KEY);
+      allCatalogDevices = JSON.parse(JSON.stringify(factoryCatalogDevices));
+      cmsData = JSON.parse(JSON.stringify(defaultCMSData));
+      renderAllCMSContent();
+      switchAdminTab(currentAdminTab);
+      showToast('Catálogo y configuración restaurados a los valores originales de fábrica');
+    }
+
+    // Inicializar Catálogo, CMS y Carrito al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
-      renderDevicesCatalog('all');
+      loadCMSState();
+      renderAllCMSContent();
       updateCartUI();
       if (window.location.hash) {
         const h = window.location.hash.replace('#', '');
