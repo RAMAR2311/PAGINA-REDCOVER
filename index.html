@@ -1723,358 +1723,411 @@
 
     let allCatalogDevices = [
       // ==========================================
-      // LÍNEA IPHONE 18 (NUEVA GENERACIÓN INSIGNIA)
+      // GAMA IPHONE 18 (2026) — 3 MODELOS
       // ==========================================
+      {
+        id: 'iphone-duo-fold',
+        category: 'iphone',
+        badge: 'Gama 2026 • Primer Plegable Apple',
+        title: 'iPhone Duo (Primer Smartphone Plegable de Apple)',
+        price: 8999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Revolución histórica 2026: El primer smartphone plegable de Apple con bisagra de Metal Líquido sin pliegue visible, pantalla desplegable Tandem OLED de 7.9" y Chip A20 Pro.',
+        specs: ['Doble pantalla: Externa 6.3" Super Retina XDR + Interna Plegable 7.9" Tandem OLED 120Hz', 'Bisagra aeroespacial de Titanio y Metal Líquido con pliegue cero autorreparable', 'Chip A20 Pro de 2nm con multitarea dividida estilo iPadOS y Apple Intelligence 3.0', 'Sistema de triple cámara Pro de 48 MP + Face ID dual en ambas pantallas'],
+        variants: ['512 GB - Titanio Negro Espacial - $8.999.000', '1 TB - Titanio Plata - $10.199.000', '2 TB - Edición Especial Duo - $11.499.000']
+      },
       {
         id: 'iphone-18-pro-max',
         category: 'iphone',
-        badge: 'Nuevo Buque Insignia 2026',
+        badge: 'Gama iPhone 18 (2026)',
         title: 'iPhone 18 Pro Max (256GB - 2TB)',
         price: 6999000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'La máxima expresión tecnológica: Chasis de Titanio Líquido, Chip A20 Pro Cuántico y zoom periscópico continuo de 10x.',
-        specs: ['Pantalla Super Retina XDR 6.9" ProMotion 240Hz sin marcos', 'Chip A20 Pro a 2nm con Neural Engine de 64 núcleos para IA en tiempo real', 'Cámara Ultra Fusión de 108 MP + Teleobjetivo periscópico continuo 10x', 'Batería de Grafeno de hasta 38 horas de reproducción continua', 'Conectividad Satelital Bidireccional de banda ancha'],
+        shortDesc: 'La máxima expresión tecnológica 2026: Chasis de Titanio Grado 5, Chip A20 Pro de 2nm, cámara con apertura mecánica variable y zoom periscópico 10x.',
+        specs: ['Pantalla Super Retina XDR 6.9" ProMotion 120Hz con Face ID bajo pantalla', 'Chip A20 Pro a 2nm con Neural Engine de 64 núcleos y 12 GB de RAM', 'Triple cámara trasera de 48 MP con apertura variable y Teleobjetivo 10x', 'Batería de alta densidad con hasta 38 horas de reproducción de video'],
         variants: ['256 GB - $6.999.000', '512 GB - $7.999.000', '1 TB - $9.199.000', '2 TB - $10.499.000']
       },
       {
         id: 'iphone-18-pro',
         category: 'iphone',
-        badge: 'Titanio Líquido',
+        badge: 'Gama iPhone 18 (2026)',
         title: 'iPhone 18 Pro (256GB - 1TB)',
         price: 5999000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Potencia Pro en 6.3": Chasis aeroespacial ultraliviano, Face ID bajo pantalla y Apple Intelligence 3.0.',
-        specs: ['Pantalla Super Retina XDR 6.3" ProMotion 240Hz con Face ID invisible', 'Chip A20 Pro con GPU cuántica para gaming de consola 120fps nativo', 'Grabación de video holográfico Spatial Pro 8K para Apple Vision Pro', 'Carga ultrarrápida MagSafe 3 de 45W (50% en 15 minutos)'],
+        shortDesc: 'Potencia Pro insignia de 2026 en 6.3": Chasis de titanio aeroespacial, Face ID bajo pantalla, Chip A20 Pro y grabación Spatial Video 8K.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion con Dynamic Island ultrarreducida', 'Chip A20 Pro de 2nm con trazado de rayos por hardware de 3.ª generación', 'Sistema de cámaras Pro 48 MP en los 3 sensores + Control de Cámara háptico', 'Carga ultrarrápida MagSafe de 45W y conectividad Wi-Fi 7 + Satélite'],
         variants: ['256 GB - $5.999.000', '512 GB - $6.999.000', '1 TB - $8.199.000']
-      },
-      {
-        id: 'iphone-18',
-        category: 'iphone',
-        badge: 'Próxima Generación',
-        title: 'iPhone 18 & 18 Plus (128GB - 512GB)',
-        price: 4999000,
-        img: IMG_IPHONE_16,
-        shortDesc: 'Revolución en diseño con chasis de cristal cerámico ultrarresistente, Chip A20 y cámara Fusion de 64 MP.',
-        specs: ['Pantalla Super Retina XDR 6.1" (o 6.7" en Plus) con 120Hz ProMotion', 'Chip A20 Bionic con arquitectura de 2 nanómetros ultraeficiente', 'Botón de Acción Capacitivo de 2ª generación con sensor de gestos', 'Colores: Carmesí Titanio, Blanco Perla, Azul Cósmico, Verde Aurora'],
-        variants: ['iPhone 18 128GB - $4.999.000', 'iPhone 18 256GB - $5.499.000', 'iPhone 18 Plus 256GB - $5.999.000']
-      },
-      {
-        id: 'iphone-18-air',
-        category: 'iphone',
-        badge: 'Diseño Ultradelgado 5mm',
-        title: 'iPhone 18 Air (Ultra Slim)',
-        price: 5499000,
-        img: IMG_IPHONE_16,
-        shortDesc: 'El iPhone más delgado jamás concebido: apenas 5.2 mm de grosor con rendimiento Pro y chasis de titanio.',
-        specs: ['Chasis monocasco de titanio de solo 5.2 mm de grosor', 'Pantalla OLED ultrafina de 6.6 pulgadas y 120Hz', 'Chip A20 Bionic optimizado para disipación pasiva de calor', 'Cámara individual de 48 MP con sensor de gran tamaño'],
-        variants: ['256 GB - $5.499.000', '512 GB - $6.299.000']
       },
 
       // ==========================================
-      // LÍNEA IPHONE 17
+      // GAMA IPHONE 17 (2025 / 2026) — 5 MODELOS
       // ==========================================
       {
         id: 'iphone-17-pro-max',
         category: 'iphone',
-        badge: 'Potencia Extrema 17',
+        badge: 'Gama iPhone 17 (2025/2026)',
         title: 'iPhone 17 Pro Max (256GB - 1TB)',
-        price: 6399000,
+        price: 6299000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Chip A19 Pro a 2nm, 12 GB de RAM unificada para modelos locales de IA y teleobjetivo de 48 MP con zoom óptico 5x.',
-        specs: ['Pantalla Super Retina XDR 6.9" antirreflejo con Ceramic Shield 2.0', 'Chip A19 Pro con trazado de rayos por hardware 3x más veloz', 'Triple cámara trasera de 48 MP en todos los sensores (Gran angular, Ultra gran angular y Tele)', 'Batería optimizada para hasta 35 horas de video'],
-        variants: ['256 GB - $6.399.000', '512 GB - $7.399.000', '1 TB - $8.599.000']
+        shortDesc: 'Chip A19 Pro, 12 GB de RAM para Apple Intelligence avanzada y triple cámara trasera íntegramente de 48 MP con zoom óptico 5x.',
+        specs: ['Pantalla Super Retina XDR 6.9" antirreflejo con Ceramic Shield de nueva generación', 'Chip A19 Pro con cámara de vapor térmica y 12 GB de RAM', 'Tres cámaras traseras de 48 MP (Principal, Ultra Gran Angular y Teleobjetivo 5x) + Frontal 24 MP', 'Hasta 35 horas de reproducción continua de video'],
+        variants: ['256 GB - $6.299.000', '512 GB - $7.299.000', '1 TB - $8.499.000']
       },
       {
         id: 'iphone-17-pro',
         category: 'iphone',
-        badge: 'Pro 17',
-        title: 'iPhone 17 Pro (128GB - 1TB)',
+        badge: 'Gama iPhone 17 (2025/2026)',
+        title: 'iPhone 17 Pro (256GB - 1TB)',
         price: 5399000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Estructura Pro de titanio pulido con cámara frontal de 24 MP de 6 elementos con estabilización óptica.',
-        specs: ['Pantalla Super Retina XDR 6.3" ProMotion Always-On', 'Chip A19 Pro de alto rendimiento con 12GB de memoria RAM', 'Grabación ProRes 4K a 120fps y video espacial para Vision Pro', 'Acabados: Titanio Azul Marino, Titanio Plata, Titanio Negro'],
-        variants: ['128 GB - $5.399.000', '256 GB - $5.899.000', '512 GB - $7.099.000', '1 TB - $8.199.000']
+        shortDesc: 'Diseño Pro de 6.3" con triple sensor de 48 MP, cámara selfie TrueDepth de 24 MP y toda la potencia del Chip A19 Pro.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion Always-On 120Hz', 'Chip A19 Pro con 12 GB de memoria unificada', 'Grabación ProRes 4K a 120 fps y Audio Espacial de estudio', 'Acabados: Titanio Azul Oscuro, Titanio Natural, Titanio Plata y Negro'],
+        variants: ['256 GB - $5.399.000', '512 GB - $6.399.000', '1 TB - $7.599.000']
       },
       {
-        id: 'iphone-17-slim',
+        id: 'iphone-air',
         category: 'iphone',
-        badge: 'Innovación Slim',
-        title: 'iPhone 17 Slim / Air (128GB - 512GB)',
+        badge: 'Gama iPhone 17 • Ultra Delgado',
+        title: 'iPhone Air (256GB - 512GB)',
         price: 4899000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Diseño prémium superdelgado con pantalla de 6.6 pulgadas y cuerpo de aluminio aeroespacial refinado.',
-        specs: ['Pantalla OLED de 6.6" con tasa de refresco adaptativa ProMotion', 'Chip A19 de alta eficiencia', 'Cámara única de 48 MP con IA de fusión computacional avanzada', 'Dynamic Island reducida y altavoces estéreo espaciales'],
-        variants: ['128 GB - $4.899.000', '256 GB - $5.399.000', '512 GB - $6.199.000']
+        shortDesc: 'El iPhone más delgado de la historia (5.5 mm): diseño ultraligero revolucionario con pantalla ProMotion de 6.6" y Chip A19.',
+        specs: ['Chasis ultradelgado de 5.5 mm en aleación de titanio y aluminio aeroespacial', 'Pantalla OLED Super Retina XDR de 6.6" con ProMotion 120Hz', 'Chip A19 + módem 5G diseñado por Apple de ultra bajo consumo', 'Cámara Fusion de 48 MP con teleobjetivo óptico 2x integrado y frontal de 24 MP'],
+        variants: ['256 GB - Plata Estelar - $4.899.000', '512 GB - Negro Espacial - $5.599.000']
       },
       {
         id: 'iphone-17',
         category: 'iphone',
-        badge: 'Apple Intelligence 2.0',
-        title: 'iPhone 17 & 17 Plus (128GB - 256GB)',
-        price: 4499000,
+        badge: 'Gama iPhone 17 (2025/2026)',
+        title: 'iPhone 17 (128GB - 512GB)',
+        price: 4399000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Toda la familia 17 incorpora pantalla ProMotion de 120Hz por primera vez, chip A19 y cámara selfie de 24 MP.',
-        specs: ['Pantalla Super Retina XDR de 6.1" y 6.7" ahora con 120Hz ProMotion', 'Chip Apple A19 con arquitectura térmica de grafito', 'Cámara Fusion de 48 MP con sensor avanzado y modo noche mejorado', 'Colores: Verde Menta, Rosa Cuarzo, Azul Hielo, Negro Mate'],
-        variants: ['iPhone 17 128GB - $4.499.000', 'iPhone 17 256GB - $4.999.000', 'iPhone 17 Plus 128GB - $4.999.000']
+        shortDesc: 'Por primera vez con pantalla ProMotion de 120Hz en el modelo base, nuevo tamaño de 6.3", Chip A19 y cámara frontal de 24 MP.',
+        specs: ['Pantalla Super Retina XDR de 6.3" con tecnología ProMotion 120Hz Always-On', 'Chip Apple A19 de 3nm de tercera generación', 'Sistema de cámara Dual Fusion de 48 MP + cámara selfie de 24 MP', 'Colores: Verde Salvia, Lavanda, Azul Bruma, Blanco y Negro'],
+        variants: ['128 GB - $4.399.000', '256 GB - $4.899.000', '512 GB - $5.599.000']
+      },
+      {
+        id: 'iphone-17e',
+        category: 'iphone',
+        badge: 'Gama iPhone 17 (2026)',
+        title: 'iPhone 17e (128GB - 256GB)',
+        price: 3499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El miembro más accesible de la familia 17 con Chip A19, Apple Intelligence completa, Face ID y extraordinaria autonomía.',
+        specs: ['Pantalla Super Retina XDR OLED de 6.1" con Dynamic Island', 'Chip A19 compatible al 100% con Apple Intelligence', 'Cámara Fusion 2 en 1 de 48 MP con teleobjetivo 2x y USB-C', 'Batería para todo el día y resistencia al agua IP68'],
+        variants: ['128 GB - Blanco / Negro - $3.499.000', '256 GB - Blanco / Negro - $3.999.000']
       },
 
       // ==========================================
-      // LÍNEA IPHONE 16
+      // LANZAMIENTOS DE 2024 / 2025 (GAMA IPHONE 16) — 5 MODELOS
       // ==========================================
-      {
-        id: 'iphone-16-pro',
-        category: 'iphone',
-        badge: 'Buque Insignia',
-        title: 'iPhone 16 Pro (128GB - 1TB)',
-        price: 4999000,
-        img: IMG_IPHONE_PRO,
-        shortDesc: 'Chasis de Titanio Grado 5, Chip A18 Pro, Control de Cámara táctil y grabación 4K 120 fps.',
-        specs: ['Pantalla Super Retina XDR 6.3" ProMotion 120Hz', 'Chip A18 Pro de 3nm (GPU 6 núcleos)', 'Sistema de cámaras Pro 48MP + Zoom Óptico 5x', 'Acabados: Titanio Desierto, Natural, Blanco y Negro'],
-        variants: ['128 GB - $4.999.000', '256 GB - $5.599.000', '512 GB - $6.799.000', '1 TB - $7.999.000'],
-        configUrl: 'iphone-16-pro.html'
-      },
       {
         id: 'iphone-16-pro-max',
         category: 'iphone',
-        badge: 'Máxima Autonomía',
+        badge: 'Lanzamiento 2024/2025',
         title: 'iPhone 16 Pro Max (256GB - 1TB)',
-        price: 5899000,
+        price: 5699000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'La pantalla más grande de 6.9", hasta 33 horas de video y teleobjetivo tetraprisma 5x.',
-        specs: ['Pantalla Super Retina XDR 6.9" bordes ultrafinos', 'Chip A18 Pro optimizado para Apple Intelligence', 'Hasta 33 horas de reproducción continua de video', 'Acabados: Titanio Desierto, Natural, Blanco y Negro'],
-        variants: ['256 GB - $5.899.000', '512 GB - $7.099.000', '1 TB - $8.299.000'],
+        shortDesc: 'Pantalla gigante de 6.9", chasis de Titanio Grado 5, Chip A18 Pro, Control de Cámara y teleobjetivo tetraprisma 5x.',
+        specs: ['Pantalla Super Retina XDR 6.9" con los bordes más finos', 'Chip A18 Pro de 3nm optimizado para Apple Intelligence', 'Cámara Fusion 48 MP + Ultra Gran Angular 48 MP + Teleobjetivo 5x', 'Acabados: Titanio Desierto, Titanio Natural, Blanco y Negro'],
+        variants: ['256 GB - $5.699.000', '512 GB - $6.799.000', '1 TB - $7.899.000'],
         configUrl: 'iphone-16-pro.html'
+      },
+      {
+        id: 'iphone-16-pro',
+        category: 'iphone',
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 Pro (128GB - 1TB)',
+        price: 4899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Chasis de Titanio Grado 5, Chip A18 Pro, botón Control de Cámara táctil y grabación 4K a 120 fps en Dolby Vision.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion 120Hz', 'Chip A18 Pro (GPU de 6 núcleos y Neural Engine de 16 núcleos)', 'Sistema de cámaras Pro 48 MP + Zoom Óptico 5x tetraprisma', '4 micrófonos con calidad de estudio y Mezcla de Audio'],
+        variants: ['128 GB - $4.899.000', '256 GB - $5.399.000', '512 GB - $6.399.000', '1 TB - $7.499.000'],
+        configUrl: 'iphone-16-pro.html'
+      },
+      {
+        id: 'iphone-16-plus',
+        category: 'iphone',
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 Plus (128GB - 512GB)',
+        price: 4399000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Gran pantalla de 6.7 pulgadas con batería colosal, Chip A18, Botón de Acción y nuevo Control de Cámara lateral.',
+        specs: ['Pantalla Super Retina XDR de 6.7" hasta 2000 nits en exteriores', 'Chip A18 con salto de dos generaciones para Apple Intelligence', 'Cámara Fusion de 48 MP + Fotografía Macro y Espacial', 'Hasta 27 horas de reproducción de video'],
+        variants: ['128 GB - $4.399.000', '256 GB - $4.899.000', '512 GB - $5.599.000']
       },
       {
         id: 'iphone-16',
         category: 'iphone',
-        badge: 'Apple Intelligence',
-        title: 'iPhone 16 & 16 Plus (128GB)',
-        price: 4299000,
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 (128GB - 512GB)',
+        price: 3999000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Nuevo Chip A18, Botón de Acción personalizable, Control de Cámara y colores vibrantes.',
-        specs: ['Pantalla Super Retina XDR de 6.1" (o 6.7" en Plus)', 'Chip A18 de última generación', 'Cámara Fusion de 48 MP + Ultra Gran Angular Macro', 'Colores: Ultramarino, Verde Azulado, Rosa, Blanco, Negro'],
-        variants: ['iPhone 16 128GB - $4.299.000', 'iPhone 16 256GB - $4.799.000', 'iPhone 16 Plus 128GB - $4.799.000']
+        shortDesc: 'Diseñado para Apple Intelligence con Chip A18, Botón de Acción personalizable, Control de Cámara y colores vibrantes.',
+        specs: ['Pantalla Super Retina XDR de 6.1" con Ceramic Shield', 'Chip A18 de alto rendimiento y eficiencia energética', 'Cámara Fusion de 48 MP con teleobjetivo 2x de calidad óptica', 'Colores: Ultramarino, Verde Azulado, Rosa, Blanco y Negro'],
+        variants: ['128 GB - $3.999.000', '256 GB - $4.499.000', '512 GB - $5.199.000']
       },
+      {
+        id: 'iphone-16e',
+        category: 'iphone',
+        badge: 'Lanzamiento 2025 • Chip A18',
+        title: 'iPhone 16e (128GB - 512GB)',
+        price: 2999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Potencia del Chip A18 y Apple Intelligence a un precio extraordinario, con pantalla OLED de 6.1", Face ID, Botón de Acción y módem Apple C1.',
+        specs: ['Pantalla Super Retina XDR OLED de 6.1" de borde a borde con Face ID', 'Chip A18 + Primer módem celular Apple C1 con la mejor batería en 6.1"', 'Sistema de cámara 2 en 1 Fusion de 48 MP con teleobjetivo 2x integrado', 'Botón de Acción, puerto USB-C y emergencia SOS vía satélite'],
+        variants: ['128 GB - Negro Mate / Blanco - $2.999.000', '256 GB - $3.499.000', '512 GB - $4.199.000']
+      },
+
+      // ==========================================
+      // IPHONE 15 (2023) — 4 MODELOS
+      // ==========================================
       {
         id: 'iphone-15-pro-max',
         category: 'iphone',
-        badge: 'Titanio Aeroespacial',
-        title: 'iPhone 15 Pro Max (256GB)',
-        price: 5199000,
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 Pro Max (256GB - 1TB)',
+        price: 4999000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Chip A17 Pro, conector USB-C con velocidad USB 3 y zoom óptico 5x en diseño de titanio.',
-        specs: ['Pantalla Super Retina XDR 6.7" ProMotion', 'Chip A17 Pro con trazado de rayos por hardware', 'Cámara principal 48 MP con teleobjetivo 5x', 'Compatible 100% con Apple Intelligence'],
-        variants: ['256 GB - $5.199.000', '512 GB - $5.999.000']
+        shortDesc: 'Forjado en titanio aeroespacial con el Chip A17 Pro, conector USB-C con velocidad USB 3 y zoom óptico 5x.',
+        specs: ['Pantalla Super Retina XDR 6.7" ProMotion 120Hz Always-On', 'Chip A17 Pro de 3nm compatible con Apple Intelligence', 'Cámara principal 48 MP con teleobjetivo tetraprisma 5x (120 mm)', 'Botón de Acción personalizable y chasis de Titanio Grado 5'],
+        variants: ['256 GB - $4.999.000', '512 GB - $5.799.000', '1 TB - $6.599.000']
       },
       {
         id: 'iphone-15-pro',
         category: 'iphone',
-        badge: 'Titanio Pro',
+        badge: 'Serie iPhone 15 (2023)',
         title: 'iPhone 15 Pro (128GB - 512GB)',
-        price: 4399000,
+        price: 4299000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Estructura liviana de titanio de grado aeroespacial, Botón de Acción y Chip A17 Pro de alto rendimiento.',
-        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz con Dynamic Island', 'Chip A17 Pro de 3 nanómetros con ray tracing gráfico', 'Cámara principal de 48 MP con 7 lentes focales virtuales', 'Conector USB-C universal de alta velocidad'],
-        variants: ['128 GB - $4.399.000', '256 GB - $4.899.000', '512 GB - $5.499.000']
+        shortDesc: 'El Pro más ligero en titanio aeroespacial de 6.1", con Botón de Acción, Chip A17 Pro y puerto USB-C 3.0.',
+        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz con Dynamic Island', 'Chip A17 Pro compatible con Apple Intelligence y juegos de consola', 'Cámara Pro de 48 MP con 7 distancias focales y zoom óptico 3x', 'Conector USB-C con transferencia de hasta 10 Gb/s'],
+        variants: ['128 GB - $4.299.000', '256 GB - $4.799.000', '512 GB - $5.399.000']
       },
       {
         id: 'iphone-15-plus',
         category: 'iphone',
-        badge: 'Gran Batería',
-        title: 'iPhone 15 Plus (128GB)',
-        price: 3899000,
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 Plus (128GB - 256GB)',
+        price: 3699000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Gran pantalla de 6.7 pulgadas, Dynamic Island, batería de larguísima duración y puerto USB-C.',
-        specs: ['Pantalla Super Retina XDR de 6.7"', 'Chip A16 Bionic de 6 núcleos', 'Cámara gran angular de 48 MP con teleobjetivo 2x de calidad óptica', 'Batería con hasta 26 horas de reproducción de video'],
-        variants: ['128 GB - $3.899.000', '256 GB - $4.399.000']
+        shortDesc: 'Gran pantalla de 6.7 pulgadas con Dynamic Island, cámara de 48 MP, vidrio con infusión de color y enorme batería.',
+        specs: ['Pantalla Super Retina XDR de 6.7" hasta 2000 nits', 'Chip A16 Bionic de 6 núcleos de alta eficiencia', 'Cámara gran angular de 48 MP con teleobjetivo 2x de calidad óptica', 'Puerto USB-C y hasta 26 horas de reproducción de video'],
+        variants: ['128 GB - $3.699.000', '256 GB - $4.199.000']
       },
       {
         id: 'iphone-15',
         category: 'iphone',
-        badge: 'Best Seller',
-        title: 'iPhone 15 (128GB)',
-        price: 3499000,
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 (128GB - 256GB)',
+        price: 3299000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Dynamic Island, cámara gran angular de 48 MP con teleobjetivo 2x y puerto USB-C.',
-        specs: ['Pantalla Super Retina XDR de 6.1" hasta 2000 nits', 'Chip A16 Bionic ultrarrápido y eficiente', 'Vidrio trasero con infusión de color mate', 'Colores: Negro, Azul, Verde, Amarillo, Rosa'],
-        variants: ['128 GB - $3.499.000', '256 GB - $3.999.000']
+        shortDesc: 'Dynamic Island, cámara principal de 48 MP con retratos de última generación, Chip A16 Bionic y conector USB-C.',
+        specs: ['Pantalla Super Retina XDR de 6.1" con Dynamic Island', 'Chip A16 Bionic ultrarrápido', 'Vidrio trasero mate con infusión de color y bordes contorneados', 'Colores: Negro, Azul, Verde, Amarillo y Rosa'],
+        variants: ['128 GB - $3.299.000', '256 GB - $3.799.000']
       },
+
+      // ==========================================
+      // LANZAMIENTOS DE 2022 (IPHONE 14 + SE 3.ª GEN) — 5 MODELOS
+      // ==========================================
       {
         id: 'iphone-14-pro-max',
         category: 'iphone',
-        badge: 'Dynamic Island Pro',
+        badge: 'Lanzamiento 2022',
         title: 'iPhone 14 Pro Max (128GB - 512GB)',
-        price: 4199000,
+        price: 3999000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'El primer iPhone con Dynamic Island, pantalla siempre activa y cámara Pro de 48 MP.',
-        specs: ['Pantalla Super Retina XDR de 6.7" ProMotion Always-On', 'Chip A16 Bionic de alta eficiencia', 'Cámara de 48 MP con sensor quad-pixel y Photonic Engine', 'Detección de choques y Emergencia SOS vía satélite'],
-        variants: ['128 GB - $4.199.000', '256 GB - $4.699.000', '512 GB - $5.199.000']
+        shortDesc: 'El debut de Dynamic Island y la pantalla siempre activa en 6.7", con cámara Pro de 48 MP y acero inoxidable.',
+        specs: ['Pantalla Super Retina XDR de 6.7" ProMotion Always-On', 'Chip A16 Bionic de 4 nanómetros', 'Cámara Pro de 48 MP con sensor quad-pixel y Photonic Engine', 'Detección de Choques y Emergencia SOS vía satélite'],
+        variants: ['128 GB - $3.999.000', '256 GB - $4.499.000', '512 GB - $4.999.000']
       },
       {
         id: 'iphone-14-pro',
         category: 'iphone',
-        badge: 'Cámara Pro 48MP',
+        badge: 'Lanzamiento 2022',
         title: 'iPhone 14 Pro (128GB - 256GB)',
-        price: 3699000,
+        price: 3499000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Dynamic Island interactiva en formato compacto de 6.1", acero inoxidable quirúrgico y modo Acción.',
-        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz', 'Chip A16 Bionic ultrarrápido', 'Grabación de video en Modo Cine 4K HDR a 30 fps', 'Acabados: Morado Oscuro, Oro, Plata y Negro Espacial'],
-        variants: ['128 GB - $3.699.000', '256 GB - $4.099.000']
+        shortDesc: 'Dynamic Island interactiva en 6.1", cámara principal de 48 MP ProRAW y grabación Modo Cine en 4K HDR.',
+        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz Always-On', 'Chip A16 Bionic con GPU de 5 núcleos', 'Triple cámara Pro de 48 MP + Teleobjetivo 3x + Escáner LiDAR', 'Acabados: Morado Oscuro, Oro, Plata y Negro Espacial'],
+        variants: ['128 GB - $3.499.000', '256 GB - $3.899.000']
       },
       {
         id: 'iphone-14-plus',
         category: 'iphone',
-        badge: '6.7 Pulgadas',
-        title: 'iPhone 14 Plus (128GB)',
-        price: 2999000,
+        badge: 'Lanzamiento 2022',
+        title: 'iPhone 14 Plus (128GB - 256GB)',
+        price: 2899000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Gran pantalla de 6.7 pulgadas con una de las baterías más rendidoras y ligeras jamás creadas por Apple.',
-        specs: ['Pantalla Super Retina XDR de 6.7" OLED', 'Chip A15 Bionic con GPU de 5 núcleos', 'Modo Acción para videos estables sin estabilizador', 'Batería de larga duración de hasta 26 horas'],
-        variants: ['128 GB - $2.999.000', '256 GB - $3.399.000']
+        shortDesc: 'Pantalla grande de 6.7 pulgadas en un cuerpo de aluminio ligero con modo Acción y batería para todo el día.',
+        specs: ['Pantalla Super Retina XDR OLED de 6.7"', 'Chip A15 Bionic con GPU de 5 núcleos', 'Cámara dual avanzada con Photonic Engine y Modo Acción', 'Hasta 26 horas de reproducción de video'],
+        variants: ['128 GB - $2.899.000', '256 GB - $3.299.000']
       },
       {
         id: 'iphone-14',
         category: 'iphone',
-        badge: 'Potencia & Estilo',
-        title: 'iPhone 14 (128GB)',
-        price: 2699000,
+        badge: 'Lanzamiento 2022',
+        title: 'iPhone 14 (128GB - 256GB)',
+        price: 2599000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Excelente equilibrio entre rendimiento, cámara avanzada con Photonic Engine y seguridad vial con Detección de Choques.',
-        specs: ['Pantalla Super Retina XDR de 6.1" OLED con Ceramic Shield', 'Chip A15 Bionic con GPU de 5 núcleos', 'Cámara dual de 12 MP con Modo Cine en 4K y Photonic Engine', 'Conectividad 5G ultrarrápida y soporte eSIM / MagSafe'],
-        variants: ['128 GB - $2.699.000', '256 GB - $3.099.000']
+        shortDesc: 'Equilibrio ideal de tamaño de 6.1", cámaras mejoradas en baja luz con Photonic Engine y Detección de Choques.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED con Ceramic Shield', 'Chip A15 Bionic con GPU de 5 núcleos', 'Cámara dual de 12 MP con Modo Cine en 4K Dolby Vision', 'Conectividad 5G y accesorios magnéticos MagSafe'],
+        variants: ['128 GB - $2.599.000', '256 GB - $2.999.000']
       },
+      {
+        id: 'iphone-se-3',
+        category: 'iphone',
+        badge: 'Lanzamiento 2022 • Touch ID',
+        title: 'iPhone SE (3.ª generación - 2022)',
+        price: 1599000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El clásico botón de inicio con Touch ID potenciado con el Chip A15 Bionic del iPhone 13 y conectividad 5G.',
+        specs: ['Pantalla Retina HD de 4.7" compacta y cómoda en mano', 'Chip A15 Bionic de 6 núcleos con conectividad 5G', 'Botón de inicio con sensor de huella Touch ID seguro', 'Cámara de 12 MP con Deep Fusion, HDR Inteligente 4 y Estilos Fotográficos'],
+        variants: ['64 GB - Medianoche / Blanco Estelar / (PRODUCT)RED - $1.599.000', '128 GB - $1.799.000']
+      },
+
+      // ==========================================
+      // IPHONE 13 (2021) — 4 MODELOS
+      // ==========================================
       {
         id: 'iphone-13-pro-max',
         category: 'iphone',
-        badge: 'ProMotion 120Hz',
-        title: 'iPhone 13 Pro Max (128GB)',
-        price: 3399000,
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 Pro Max (128GB - 256GB)',
+        price: 3299000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'La legendaria autonomía y pantalla ProMotion de 120Hz con triple cámara Pro macro y teleobjetivo 3x.',
-        specs: ['Pantalla Super Retina XDR de 6.7" con ProMotion fluida', 'Chip A15 Bionic de 6 núcleos y GPU de 5 núcleos', 'Fotografía macro y zoom óptico 3x con escáner LiDAR', 'Chasis de acero inoxidable quirúrgico'],
-        variants: ['128 GB - $3.399.000', '256 GB - $3.799.000']
+        shortDesc: 'Legendario por su batería y fluidez: pantalla ProMotion de 120Hz de 6.7", fotografía macro y teleobjetivo 3x.',
+        specs: ['Pantalla Super Retina XDR de 6.7" con ProMotion de 120Hz', 'Chip A15 Bionic con GPU de 5 núcleos', 'Sistema de cámaras Pro con Macro, Teleobjetivo 3x y LiDAR', 'Chasis de acero inoxidable quirúrgico y Ceramic Shield'],
+        variants: ['128 GB - $3.299.000', '256 GB - $3.699.000']
       },
       {
         id: 'iphone-13-pro',
         category: 'iphone',
-        badge: 'Pro Clásico',
-        title: 'iPhone 13 Pro (128GB)',
-        price: 2999000,
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 Pro (128GB - 256GB)',
+        price: 2899000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Pantalla ProMotion de 120Hz, cámara triple profesional con grabación ProRes y macrofotografía.',
-        specs: ['Pantalla Super Retina XDR de 6.1" ProMotion', 'Chip A15 Bionic con GPU de 5 núcleos', 'Grabación de video ProRes y Modo Cine', 'Acabados: Azul Sierra, Grafito, Oro y Plata'],
-        variants: ['128 GB - $2.999.000', '256 GB - $3.399.000']
+        shortDesc: 'Pantalla ProMotion de 120Hz en 6.1", triple cámara profesional con grabación ProRes y fotografía macro.',
+        specs: ['Pantalla Super Retina XDR de 6.1" ProMotion 120Hz', 'Chip A15 Bionic con GPU de 5 núcleos', 'Grabación de video ProRes y Modo Cine con enfoque dinámico', 'Acabados: Azul Sierra, Verde Alpino, Grafito, Oro y Plata'],
+        variants: ['128 GB - $2.899.000', '256 GB - $3.299.000']
       },
       {
         id: 'iphone-13',
         category: 'iphone',
-        badge: 'Favorito Calidad/Precio',
-        title: 'iPhone 13 (128GB)',
-        price: 2299000,
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 (128GB - 256GB)',
+        price: 2199000,
         img: IMG_IPHONE_16,
-        shortDesc: 'El iPhone más vendido por su fiabilidad: cámaras en diagonal con estabilización óptica por desplazamiento de sensor.',
-        specs: ['Pantalla Super Retina XDR de 6.1" brillante de 800 nits', 'Chip A15 Bionic eficiente y potente', 'Sistema de cámara dual con Modo Cine 1080p a 30 fps', 'Hasta 19 horas de reproducción de video continua'],
-        variants: ['128 GB - $2.299.000', '256 GB - $2.699.000']
+        shortDesc: 'Uno de los iPhones más populares de la historia: cámara dual en diagonal con Sensor-Shift OIS y gran autonomía.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED brillante', 'Chip A15 Bionic rápido y eficiente con 5G', 'Cámara dual de 12 MP con estabilización por desplazamiento de sensor', 'Modo Cine 1080p y compatibilidad total con MagSafe'],
+        variants: ['128 GB - $2.199.000', '256 GB - $2.599.000']
       },
       {
         id: 'iphone-13-mini',
         category: 'iphone',
-        badge: 'Compacto 5.4"',
-        title: 'iPhone 13 mini (128GB)',
-        price: 2099000,
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 mini (128GB - 256GB)',
+        price: 1999000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Toda la potencia Pro en un diseño ultracompacto y ligero que cabe en la palma de tu mano.',
-        specs: ['Pantalla Super Retina XDR de 5.4" OLED', 'Chip A15 Bionic idéntico al iPhone 13', 'Cámara dual avanzada con modo Noche y Modo Cine', 'Peso pluma de solo 140 gramos con Ceramic Shield'],
-        variants: ['128 GB - $2.099.000', '256 GB - $2.499.000']
+        shortDesc: 'El último mini de Apple: toda la potencia del Chip A15 Bionic y pantalla OLED en un tamaño compacto de 5.4".',
+        specs: ['Pantalla Super Retina XDR de 5.4" OLED de borde a borde', 'Chip A15 Bionic idéntico al iPhone 13', 'Cámara dual con Modo Cine y Modo Noche', 'Ultrahoja de 140 gramos con resistencia IP68 y MagSafe'],
+        variants: ['128 GB - $1.999.000', '256 GB - $2.399.000']
       },
+
+      // ==========================================
+      // LANZAMIENTOS DE 2020 (IPHONE 12 + SE 2.ª GEN) — 5 MODELOS
+      // ==========================================
       {
         id: 'iphone-12-pro-max',
         category: 'iphone',
-        badge: 'Primer 5G Pro Max',
-        title: 'iPhone 12 Pro Max (128GB)',
-        price: 2599000,
+        badge: 'Lanzamiento 2020',
+        title: 'iPhone 12 Pro Max (128GB - 256GB)',
+        price: 2499000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'El primer iPhone con 5G, diseño de bordes planos y escáner LiDAR para retratos en modo noche.',
-        specs: ['Pantalla Super Retina XDR de 6.7"', 'Chip A14 Bionic con arquitectura de 5nm', 'Cámara Pro con zoom óptico 2.5x y Apple ProRAW', 'Estructura de acero inoxidable y Ceramic Shield'],
-        variants: ['128 GB - $2.599.000', '256 GB - $2.899.000']
+        shortDesc: 'El primer Pro Max con 5G, bordes planos en acero inoxidable, pantalla de 6.7" y escáner LiDAR.',
+        specs: ['Pantalla Super Retina XDR de 6.7" OLED', 'Chip A14 Bionic (primer chip de 5 nanómetros)', 'Triple cámara Pro con zoom óptico 2.5x y Apple ProRAW', 'Tecnología MagSafe y frente de Ceramic Shield'],
+        variants: ['128 GB - $2.499.000', '256 GB - $2.799.000']
       },
       {
         id: 'iphone-12-pro',
         category: 'iphone',
-        badge: 'Acero Inoxidable',
-        title: 'iPhone 12 Pro (128GB)',
-        price: 2299000,
+        badge: 'Lanzamiento 2020',
+        title: 'iPhone 12 Pro (128GB - 256GB)',
+        price: 2199000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Triple cámara trasera, sensor LiDAR para realidad aumentada y grabación Dolby Vision HDR.',
-        specs: ['Pantalla Super Retina XDR de 6.1"', 'Chip A14 Bionic', 'Triple cámara de 12 MP con zoom 2x y Modo Noche en todas las lentes', 'MagSafe magnético para accesorios y carga inalámbrica rápida'],
-        variants: ['128 GB - $2.299.000', '256 GB - $2.599.000']
+        shortDesc: 'Diseño en acero inoxidable quirúrgico de 6.1", triple cámara con sensor LiDAR y grabación HDR en Dolby Vision.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED', 'Chip A14 Bionic con conectividad 5G', 'Triple cámara de 12 MP con retratos en Modo Noche asistidos por LiDAR', 'Acabados: Azul Pacífico, Grafito, Oro y Plata'],
+        variants: ['128 GB - $2.199.000', '256 GB - $2.499.000']
       },
       {
         id: 'iphone-12',
         category: 'iphone',
-        badge: 'Pionero 5G',
+        badge: 'Lanzamiento 2020',
         title: 'iPhone 12 (64GB - 128GB)',
         price: 1699000,
         img: IMG_IPHONE_16,
-        shortDesc: 'Diseño icónico con bordes planos de aluminio aeroespacial, pantalla OLED Super Retina XDR y MagSafe.',
-        specs: ['Pantalla Super Retina XDR de 6.1" OLED de alta resolución', 'Chip A14 Bionic con Neural Engine de 16 núcleos', 'Cámara dual de 12 MP con Modo Noche y Deep Fusion', 'Resistencia al agua IP68 y tecnología MagSafe'],
+        shortDesc: 'Pionero del diseño de bordes planos con pantalla OLED Super Retina XDR de 6.1", 5G y accesorios MagSafe.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED con Ceramic Shield', 'Chip A14 Bionic de alto desempeño', 'Cámara dual de 12 MP con Modo Noche en ultra gran angular y frontal', 'Carga inalámbrica magnética MagSafe'],
         variants: ['64 GB - $1.699.000', '128 GB - $1.899.000']
       },
       {
         id: 'iphone-12-mini',
         category: 'iphone',
-        badge: 'Mini Ultraligero',
+        badge: 'Lanzamiento 2020',
         title: 'iPhone 12 mini (64GB - 128GB)',
         price: 1499000,
         img: IMG_IPHONE_16,
-        shortDesc: 'El teléfono 5G más pequeño, fino y ligero del mundo con toda la potencia del chip A14.',
-        specs: ['Pantalla Super Retina XDR de 5.4" OLED', 'Chip A14 Bionic', 'Cámara dual de 12 MP con grabación en 4K Dolby Vision', 'Ecosistema de accesorios MagSafe'],
+        shortDesc: 'Compacto de 5.4 pulgadas con pantalla OLED de borde a borde, conectividad 5G, MagSafe y Chip A14 Bionic.',
+        specs: ['Pantalla Super Retina XDR de 5.4" OLED', 'Chip A14 Bionic con Neural Engine de 16 núcleos', 'Cámara dual de 12 MP con grabación 4K Dolby Vision', 'Resistencia al agua IP68 y Ceramic Shield'],
         variants: ['64 GB - $1.499.000', '128 GB - $1.699.000']
       },
       {
+        id: 'iphone-se-2',
+        category: 'iphone',
+        badge: 'Lanzamiento 2020 • Touch ID',
+        title: 'iPhone SE (2.ª generación - 2020)',
+        price: 1099000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El diseño clásico de 4.7 pulgadas con botón Touch ID y el corazón del iPhone 11 Pro (Chip A13 Bionic) al precio más económico.',
+        specs: ['Pantalla Retina HD de 4.7" con True Tone y Haptic Touch', 'Chip A13 Bionic de 64 bits con Neural Engine de 3.ª generación', 'Botón de inicio de cristal de zafiro con Touch ID', 'Modo Retrato con control de profundidad, carga inalámbrica Qi y resistencia IP67'],
+        variants: ['64 GB - Negro / Blanco / (PRODUCT)RED - $1.099.000', '128 GB - $1.249.000']
+      },
+
+      // ==========================================
+      // IPHONE 11 (2019) — 3 MODELOS
+      // ==========================================
+      {
         id: 'iphone-11-pro-max',
         category: 'iphone',
-        badge: 'Triple Cámara Max',
+        badge: 'Serie iPhone 11 (2019)',
         title: 'iPhone 11 Pro Max (64GB - 256GB)',
-        price: 1999000,
+        price: 1899000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'El primer iPhone Pro con sistema de triple cámara, acabado de vidrio mate texturizado y batería colosal.',
-        specs: ['Pantalla Super Retina XDR de 6.5" OLED con contraste de 2.000.000:1', 'Chip A13 Bionic con arquitectura Fusion de 64 bits', 'Triple cámara de 12 MP: Ultra Gran Angular, Gran Angular y Teleobjetivo', 'Autonomía de larga duración con carga rápida'],
-        variants: ['64 GB - $1.999.000', '256 GB - $2.299.000']
+        shortDesc: 'El primer Pro Max de Apple con triple cámara de 12 MP, pantalla OLED de 6.5" y vidrio mate texturizado.',
+        specs: ['Pantalla Super Retina XDR de 6.5" OLED', 'Chip A13 Bionic con motor neuronal de 8 núcleos', 'Triple cámara: Ultra Gran Angular, Gran Angular y Teleobjetivo 2x', 'Acero inoxidable quirúrgico y resistencia al agua IP68 (4 metros)'],
+        variants: ['64 GB - Verde Medianoche / Gris Espacial / Oro / Plata - $1.899.000', '256 GB - $2.199.000']
       },
       {
         id: 'iphone-11-pro',
         category: 'iphone',
-        badge: 'Primer iPhone Pro',
+        badge: 'Serie iPhone 11 (2019)',
         title: 'iPhone 11 Pro (64GB - 256GB)',
-        price: 1799000,
+        price: 1699000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Diseño prémium en acero inoxidable, triple cámara con modo Noche y pantalla Super Retina XDR de 5.8 pulgadas.',
-        specs: ['Pantalla Super Retina XDR de 5.8" OLED compacta', 'Chip A13 Bionic con motor neuronal de 3ª generación', 'Cámaras Ultra Gran Angular, Gran Angular y Teleobjetivo de 12 MP', 'Resistencia al agua hasta 4 metros por 30 minutos (IP68)'],
-        variants: ['64 GB - $1.799.000', '256 GB - $2.099.000']
+        shortDesc: 'Formato Pro compacto de 5.8 pulgadas con pantalla Super Retina XDR OLED, acero inoxidable y triple cámara.',
+        specs: ['Pantalla Super Retina XDR de 5.8" OLED con HDR10 y Dolby Vision', 'Chip A13 Bionic de alto rendimiento', 'Sistema de triple cámara de 12 MP con Modo Noche y Deep Fusion', 'Face ID rápido y grabación 4K a 60 fps en todas las cámaras'],
+        variants: ['64 GB - $1.699.000', '256 GB - $1.999.000']
       },
       {
         id: 'iphone-11',
         category: 'iphone',
-        badge: 'Acceso Económico Apple',
+        badge: 'Serie iPhone 11 (2019)',
         title: 'iPhone 11 (64GB - 128GB)',
-        price: 1399000,
+        price: 1349000,
         img: IMG_IPHONE_16,
-        shortDesc: 'La mejor puerta de entrada al ecosistema iOS con pantalla Liquid Retina de 6.1", chip A13 Bionic y cámara dual.',
-        specs: ['Pantalla Liquid Retina HD de 6.1" LCD con True Tone', 'Chip A13 Bionic con rendimiento sólido para todas tus apps', 'Sistema de dos cámaras de 12 MP con modo Noche automático', 'Face ID seguro, batería para todo el día y certificación oficial RedCover'],
-        variants: ['64 GB - $1.399.000', '128 GB - $1.599.000']
-      },
-      {
-        id: 'iphone-se-3',
-        category: 'iphone',
-        badge: 'Touch ID Clásico',
-        title: 'iPhone SE (3.ª Generación - 2022)',
-        price: 1499000,
-        img: IMG_IPHONE_16,
-        shortDesc: 'Diseño icónico con botón de inicio Touch ID, conexión 5G y el potente chip A15 Bionic del iPhone 13.',
-        specs: ['Pantalla Retina HD de 4.7" con amplia gama cromática (P3)', 'Chip A15 Bionic de 6 núcleos ultrarrápido', 'Botón de inicio con sensor de huellas Touch ID', 'Cámara avanzada de 12 MP con Estilos Fotográficos y Deep Fusion'],
-        variants: ['64 GB - $1.499.000', '128 GB - $1.699.000']
+        shortDesc: 'Clásico imbatible: pantalla Liquid Retina de 6.1", cámara dual con Ultra Gran Angular y Modo Noche, Face ID y Chip A13 Bionic.',
+        specs: ['Pantalla Liquid Retina HD de 6.1" con True Tone', 'Chip A13 Bionic fluido y confiable en iOS', 'Cámara dual de 12 MP (Gran Angular y Ultra Gran Angular 120°)', 'Colores: Negro, Blanco, Morado, Verde, Amarillo y (PRODUCT)RED'],
+        variants: ['64 GB - $1.349.000', '128 GB - $1.549.000']
       },
       // ==========================================
       // LÍNEA MAC & MACBOOK (ACTUALIZADA A 2026: M5, M4 Y M3)
@@ -3182,23 +3235,23 @@
     // ==========================================
     const megaMenuData = {
       iphone: {
-        categoryTitle: "Explorar iPhone",
+        categoryTitle: "Explorar iPhone (34 Modelos)",
         primaryLinks: [
-          { name: "Ver todos los modelos de iPhone", action: "filterAndScroll('iphone')", bold: true },
-          { name: "iPhone 18 Pro & Pro Max (Nuevo)", action: "openProductModal('iphone-18-pro-max')" },
-          { name: "iPhone 18 & 18 Air", action: "openProductModal('iphone-18')" },
-          { name: "iPhone 17 Pro & 17 Slim", action: "openProductModal('iphone-17-pro-max')" },
-          { name: "iPhone 16 Pro & Pro Max", href: "iphone-16-pro.html" },
-          { name: "iPhone 16, 15, 14, 13, 12 y 11", action: "filterAndScroll('iphone')" }
+          { name: "Ver los 34 modelos de iPhone", action: "filterAndScroll('iphone')", bold: true },
+          { name: "iPhone Duo (Primer Plegable Apple 2026)", action: "openProductModal('iphone-duo-fold')" },
+          { name: "iPhone 18 Pro & 18 Pro Max (2026)", action: "openProductModal('iphone-18-pro-max')" },
+          { name: "iPhone 17, Air, 17 Pro, Pro Max & 17e", action: "openProductModal('iphone-air')" },
+          { name: "iPhone 16, 16 Plus, 16 Pro, Pro Max & 16e", action: "openProductModal('iphone-16e')" },
+          { name: "iPhone 15, 14, 13, 12, 11 y SE (2.ª y 3.ª gen)", action: "filterAndScroll('iphone')" }
         ],
         secondaryTitle: "Comprar iPhone",
         secondaryLinks: [
-          { name: "Reservar iPhone 18 Pro", action: "openProductModal('iphone-18-pro')" },
-          { name: "Personalizar iPhone 16 Pro", href: "iphone-16-pro.html" },
-          { name: "Ver Catálogo Completo (24 modelos)", action: "filterAndScroll('iphone')" },
+          { name: "Reservar iPhone Duo Plegable", action: "openProductModal('iphone-duo-fold')" },
+          { name: "Comprar iPhone 18 Pro / Pro Max", action: "openProductModal('iphone-18-pro')" },
+          { name: "Ver Catálogo Completo (34 modelos)", action: "filterAndScroll('iphone')" },
           { name: "Accesorios MagSafe para iPhone", href: "#accesorios" },
           { name: "Plan Canje para iPhone", href: "#canje" },
-          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / 16 Pro', 5999000)" }
+          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / iPhone Duo', 5999000)" }
         ],
         tertiaryTitle: "Más para el iPhone",
         tertiaryLinks: [
@@ -3456,19 +3509,19 @@
     // ============================================================================
     // SISTEMA CMS DE ADMINISTRADOR EN TIEMPO REAL (PRODUCTOS, OFERTAS, IMÁGENES, CATEGORÍAS)
     // ============================================================================
-    const CMS_STORAGE_KEY = 'redcover_cms_state_v1';
+    const CMS_STORAGE_KEY = 'redcover_cms_state_v2';
     const factoryCatalogDevices = JSON.parse(JSON.stringify(allCatalogDevices));
 
     const defaultCMSData = {
       whatsappNumber: '573001234567',
-      topbarText: '🇨🇴 Lanzamiento 2026: Nuevo iPhone 18 Pro & 18 Pro Max (Chip A20 Pro) • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
+      topbarText: '🇨🇴 Lanzamiento 2026: Nuevo iPhone 18 Pro, 18 Pro Max & iPhone Duo Plegable • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
       hero: {
         authBadge: 'Apple Authorized Reseller • Colombia',
         clientsBadge: '+10.000 Clientes Satisfechos',
         ratingBadge: '4.9/5 Estrellas',
         titleMain: 'iPhone 18 Pro',
         titleGradient: 'Titanio Grado Aeroespacial. Chip A20 Pro.',
-        description: 'El salto más grande en la historia del iPhone. Nuevo Chip A20 Pro de 2nm, triple cámara de 48 MP con Teleobjetivo Periscopio 10x, Face ID invisible bajo pantalla y Apple Intelligence 2.0. Fináncialo hoy al 0% de interés por WhatsApp.',
+        description: 'El salto más grande en la historia del iPhone junto al revolucionario iPhone Duo plegable. Nuevo Chip A20 Pro de 2nm, triple cámara de 48 MP con Teleobjetivo Periscopio 10x, Face ID bajo pantalla y Apple Intelligence 3.0. Fináncialo hoy al 0% de interés por WhatsApp.',
         cta1Text: 'Reservar / Comprar iPhone 18 Pro',
         cta2Text: 'Cotizar mi iPhone en Plan Canje',
         bannerImg: IMG_IPHONE_PRO,
@@ -3482,11 +3535,11 @@
         {
           id: 'bento-1',
           colSpan: 'md:col-span-7',
-          badge: 'Serie Completa: iPhone 11 al nuevo iPhone 18 Pro Max',
-          title: 'iPhone 18 Pro, 17, 16, 15, 14, 13, 12 y 11',
-          desc: 'Explora los 24 modelos disponibles en Colombia: desde el revolucionario iPhone 18 Pro Max con Chip A20 Pro hasta el iPhone 11 al mejor precio.',
-          priceText: 'Desde $1.599.000 COP',
-          btnText: 'Ver los 24 Modelos',
+          badge: 'Colección Completa 2019–2026: iPhone 11 al iPhone 18 Pro Max & iPhone Duo',
+          title: 'iPhone 18 Pro, iPhone Duo, 17, Air, 16, 15, 14, 13, 12, 11 y SE',
+          desc: 'Explora los 34 modelos exactos de iPhone disponibles en Colombia: desde el primer plegable iPhone Duo y la gama 18 Pro hasta las series 17 (Air/17e), 16 (16e), 15, 14, 13, 12, 11 y SE.',
+          priceText: 'Desde $1.099.000 COP',
+          btnText: 'Ver los 34 Modelos',
           categoryTarget: 'iphone',
           productIdTarget: 'iphone-18-pro-max',
           img: IMG_IPHONE_16,
