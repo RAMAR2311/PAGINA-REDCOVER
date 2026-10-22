@@ -206,9 +206,14 @@
     <!-- Top Guarantee Ribbon -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-6">
       <div class="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 shadow-sm">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 flex-wrap">
           <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
           <span class="font-medium">Distribuidor Autorizado Oficial Apple Colombia • Factura legal con IVA y DIAN</span>
+          <span class="hidden sm:inline text-gray-300">•</span>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-50 text-gray-900 border border-red-100 font-bold text-[11px]">
+            <span class="text-amber-500 font-bold">★★★★★</span>
+            <span>+10.000 clientes satisfechos</span>
+          </div>
         </div>
         <div class="flex items-center gap-4 font-mono text-[11px]">
           <span class="flex items-center gap-1.5 font-semibold text-gray-700"><span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span> Stock disponible en Bogotá, Medellín y Cali</span>
@@ -416,8 +421,8 @@
           </div>
         </div>
 
-        <!-- 4. PLAN CANJE REDCOVER (TRADE-IN) -->
-        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-3 shadow-sm">
+        <!-- 4. PLAN CANJE REDCOVER (TRADE-IN CON BATERÍA Y ESTADO) -->
+        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-4 shadow-sm" id="tradein-section">
           <div class="flex items-start justify-between">
             <div class="flex items-center gap-2">
               <div class="w-8 h-8 rounded-lg bg-red-50 text-primary flex items-center justify-center">
@@ -430,7 +435,7 @@
             </span>
           </div>
           <p class="text-xs text-gray-600 leading-relaxed">
-            Entrega tu smartphone actual (iPhone 11 a 15 Pro) y te descontamos su valor de inmediato en el checkout.
+            Entrega tu smartphone actual y te descontamos su valor de inmediato según su modelo, salud de batería y estado cosmético.
           </p>
           <div class="grid grid-cols-2 gap-2.5 pt-1">
             <button class="py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center" id="tradein-yes" onclick="toggleTradeIn(true)" type="button">
@@ -440,41 +445,142 @@
               Sin canje por ahora
             </button>
           </div>
-          <!-- Trade-in selector drawer (hidden by default) -->
-          <div class="hidden pt-3 border-t border-gray-100 space-y-2" id="tradein-drawer">
-            <label class="block text-xs text-gray-700 font-bold">Selecciona tu modelo actual:</label>
-            <select class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-xs text-gray-900 font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none" onchange="applyTradeInValue(this.value)">
-              <option value="0">Seleccionar dispositivo...</option>
-              <option value="2000000">iPhone 15 Pro Max (Buen estado) — Descuento -$2.000.000 COP</option>
-              <option value="1650000">iPhone 15 Pro (Buen estado) — Descuento -$1.650.000 COP</option>
-              <option value="1250000">iPhone 14 Pro Max — Descuento -$1.250.000 COP</option>
-              <option value="950000">iPhone 13 Pro — Descuento -$950.000 COP</option>
-              <option value="600000">Otro modelo (Sujeto a peritaje físico)</option>
-            </select>
+
+          <!-- Trade-in selector drawer (Esquema completo con Batería y Estado) -->
+          <div class="hidden pt-4 border-t border-gray-100 space-y-4" id="tradein-drawer">
+            <!-- 1. Modelo actual -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">1. Selecciona tu teléfono actual:</label>
+              <select id="tradein-device-select" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-xs text-gray-900 font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none" onchange="calculateTradeInDiscount()">
+                <option value="0">Seleccionar dispositivo...</option>
+                <option value="2000000">iPhone 15 Pro Max (256GB) — Hasta -$2.000.000 COP</option>
+                <option value="1650000">iPhone 15 Pro (128GB) — Hasta -$1.650.000 COP</option>
+                <option value="1400000">iPhone 15 (128GB) — Hasta -$1.400.000 COP</option>
+                <option value="1250000">iPhone 14 Pro Max (256GB) — Hasta -$1.250.000 COP</option>
+                <option value="1100000">iPhone 14 Pro (128GB) — Hasta -$1.100.000 COP</option>
+                <option value="950000">iPhone 14 (128GB) — Hasta -$950.000 COP</option>
+                <option value="900000">iPhone 13 Pro (128GB) — Hasta -$900.000 COP</option>
+                <option value="750000">iPhone 13 (128GB) — Hasta -$750.000 COP</option>
+                <option value="650000">iPhone 12 Pro (128GB) — Hasta -$650.000 COP</option>
+                <option value="550000">iPhone 12 (64GB) — Hasta -$550.000 COP</option>
+              </select>
+            </div>
+
+            <!-- 2. Condición de Batería -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700">2. Condición de la Batería</label>
+                <span id="tradein-battery-tag" class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">≥ 85% (Óptima)</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2" id="tradein-battery-group">
+                <button type="button" data-bfactor="1.0" data-blabel="≥ 85% (Óptima)" class="tradein-battery-btn p-2 rounded-xl border-2 border-primary bg-white text-primary text-xs font-bold flex flex-col items-center gap-1 shadow-sm transition-all" onclick="selectTradeInBattery(this, 1.0, '≥ 85% (Óptima)')">
+                  <span class="material-symbols-outlined text-base text-emerald-500">battery_full</span>
+                  <span>≥ 85%</span>
+                  <span class="text-[9px] text-gray-500 font-normal">Óptima</span>
+                </button>
+                <button type="button" data-bfactor="0.92" data-blabel="80% - 84% (Normal)" class="tradein-battery-btn p-2 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-medium flex flex-col items-center gap-1 hover:border-primary transition-all" onclick="selectTradeInBattery(this, 0.92, '80% - 84% (Normal)')">
+                  <span class="material-symbols-outlined text-base text-amber-500">battery_5_bar</span>
+                  <span>80% - 84%</span>
+                  <span class="text-[9px] text-gray-500 font-normal">Normal</span>
+                </button>
+                <button type="button" data-bfactor="0.80" data-blabel="< 80% (Mantenimiento)" class="tradein-battery-btn p-2 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-medium flex flex-col items-center gap-1 hover:border-primary transition-all" onclick="selectTradeInBattery(this, 0.80, '< 80% (Mantenimiento)')">
+                  <span class="material-symbols-outlined text-base text-red-500">battery_alert</span>
+                  <span>< 80%</span>
+                  <span class="text-[9px] text-gray-500 font-normal">Servicio</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Estado del Equipo -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700">3. Estado del Equipo</label>
+                <span id="tradein-condition-tag" class="text-[11px] font-semibold text-primary bg-red-50 px-2 py-0.5 rounded-md border border-red-200">Impecable</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2" id="tradein-condition-group">
+                <button type="button" data-cfactor="1.0" data-clabel="Impecable" class="tradein-cond-btn p-2 rounded-xl border-2 border-primary bg-white text-primary text-xs font-bold flex flex-col items-center gap-1 shadow-sm transition-all" onclick="selectTradeInCondition(this, 1.0, 'Impecable')">
+                  <span class="material-symbols-outlined text-base text-emerald-500">verified</span>
+                  <span>Impecable</span>
+                  <span class="text-[9px] text-gray-500 font-normal">Sin rayones</span>
+                </button>
+                <button type="button" data-cfactor="0.85" data-clabel="Marcas leves" class="tradein-cond-btn p-2 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-medium flex flex-col items-center gap-1 hover:border-primary transition-all" onclick="selectTradeInCondition(this, 0.85, 'Marcas leves')">
+                  <span class="material-symbols-outlined text-base text-blue-500">check_circle</span>
+                  <span>Marcas leves</span>
+                  <span class="text-[9px] text-gray-500 font-normal">Uso normal</span>
+                </button>
+                <button type="button" data-cfactor="0.70" data-clabel="Detalle visible" class="tradein-cond-btn p-2 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-medium flex flex-col items-center gap-1 hover:border-primary transition-all" onclick="selectTradeInCondition(this, 0.70, 'Detalle visible')">
+                  <span class="material-symbols-outlined text-base text-amber-500">warning</span>
+                  <span>Detalle</span>
+                  <span class="text-[9px] text-gray-500 font-normal">Chasis / Vidrio</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Resultado del bono en tiempo real -->
+            <div class="p-3 bg-red-50/70 border border-red-200 rounded-xl flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-gray-500 block">Bono de canje aplicado:</span>
+                <span class="text-sm font-extrabold text-primary" id="tradein-applied-badge">-$0 COP</span>
+              </div>
+              <span class="text-[10px] text-emerald-700 bg-white px-2 py-1 rounded-lg border border-emerald-200 font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">check</span> Descuento directo
+              </span>
+            </div>
           </div>
         </div>
 
-        <!-- 5. FINANCING OPTIONS (0% INTERÉS) -->
-        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-2 shadow-sm">
+        <!-- 5. FINANCING OPTIONS (0% INTERÉS) & SELECTOR DE FORMA DE PAGO -->
+        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-3 shadow-sm">
           <div class="flex items-center justify-between">
             <span class="text-sm text-gray-900 font-bold flex items-center gap-1.5">
               <span class="material-symbols-outlined text-[18px] text-primary">account_balance</span>
-              Financiamiento 0% Interés
+              Forma de Pago
             </span>
-            <span class="text-xs text-emerald-600 font-bold font-mono">24 cuotas fijas</span>
+            <span class="text-xs text-emerald-600 font-bold font-mono">24 cuotas al 0%</span>
           </div>
-          <p class="text-xs text-gray-600">
-            Paga en cuotas mensuales sin interés con tarjetas de crédito aliadas:
-          </p>
-          <div class="flex flex-wrap items-center gap-2 pt-1 text-xs font-mono">
-            <span class="px-2.5 py-1 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Bancolombia</span>
-            <span class="px-2.5 py-1 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Davivienda</span>
-            <span class="px-2.5 py-1 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Nu Colombia</span>
-            <span class="px-2.5 py-1 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Banco de Bogotá</span>
+
+          <!-- Selector de Modo: Contado vs Financiado -->
+          <div class="grid grid-cols-2 gap-2.5">
+            <button type="button" id="pay-mode-cash" onclick="setPaymentMode('cash')" class="p-3 rounded-xl border-2 border-primary bg-white text-primary text-xs font-bold transition-all text-left flex flex-col justify-between crimson-border-glow shadow-sm">
+              <div class="flex items-center justify-between w-full">
+                <span>Pago Contado / PSE</span>
+                <span class="material-symbols-outlined text-base" id="icon-check-cash">check_circle</span>
+              </div>
+              <span class="text-[10px] text-gray-500 font-normal mt-1">Tarjeta de crédito o débito</span>
+            </button>
+
+            <button type="button" id="pay-mode-financing" onclick="setPaymentMode('financing')" class="p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between hover:border-emerald-500">
+              <div class="flex items-center justify-between w-full">
+                <span class="text-emerald-700 font-bold">Financiación 0%</span>
+                <span class="material-symbols-outlined text-base text-emerald-600 hidden" id="icon-check-financing">check_circle</span>
+              </div>
+              <span class="text-[10px] text-gray-500 font-normal mt-1">Hasta 24 cuotas sin interés</span>
+            </button>
           </div>
-          <p class="text-xs text-primary pt-1 font-medium" id="monthly-installment-calc">
-            Tu cuota estimada: <strong class="text-gray-900 font-bold">$208.291 COP / mes</strong> a 24 meses.
-          </p>
+
+          <!-- Información bancaria y cuota -->
+          <div class="pt-2 text-xs text-gray-600 space-y-2">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+              <span class="px-2.5 py-0.5 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Bancolombia</span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Davivienda</span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Nu Colombia</span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-gray-100 border border-gray-200 text-gray-800 font-medium">Banco de Bogotá</span>
+            </div>
+            <p class="text-xs text-primary pt-1 font-medium" id="monthly-installment-calc">
+              Tu cuota estimada: <strong class="text-gray-900 font-bold">$208.291 COP / mes</strong> a 24 meses.
+            </p>
+            
+            <!-- Aviso cuando se elige Financiación -->
+            <div id="financing-notice-box" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs space-y-1">
+              <div class="flex items-center gap-1.5 font-bold text-emerald-800">
+                <span class="material-symbols-outlined text-base text-emerald-600">chat</span>
+                <span>Financiación Express por WhatsApp</span>
+              </div>
+              <p class="text-[11px] leading-relaxed text-emerald-800">
+                Al solicitar financiación, se abrirá WhatsApp con los detalles de tu equipo y cuotas calculadas para estudio y aprobación en menos de 10 minutos.
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- 6. FINAL SUMMARY & CHECKOUT BLOCK -->
@@ -492,17 +598,28 @@
             </div>
           </div>
 
-          <!-- CTA Buttons -->
+          <!-- Dynamic Action Button: Changes dynamically between Cash / Financing WhatsApp -->
           <div class="space-y-3">
-            <button class="w-full py-4 px-6 rounded-full crimson-btn text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider" onclick="addToBag()" type="button">
-              <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-              <span>Añadir a la bolsa RedCover</span>
+            <button id="primary-action-btn" class="w-full py-4 px-6 rounded-full crimson-btn text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all" onclick="handlePrimaryAction()" type="button">
+              <span class="material-symbols-outlined text-[20px]" id="primary-action-icon">shopping_bag</span>
+              <span id="primary-action-text">Añadir a la bolsa RedCover</span>
             </button>
-            <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20quiero%20asesor%C3%ADa%20sobre%20el%20iPhone%2016%20Pro" target="_blank" class="w-full py-3 px-6 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-800 text-xs font-bold transition-all flex items-center justify-center gap-2">
+
+            <button type="button" onclick="sendCustomWhatsAppQuote()" class="w-full py-3 px-6 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-800 text-xs font-bold transition-all flex items-center justify-center gap-2">
               <span class="material-symbols-outlined text-[18px] text-emerald-500">chat</span>
-              <span>Asesoría personalizada por WhatsApp</span>
-            </a>
+              <span>Hablar con un Asesor por WhatsApp</span>
+            </button>
           </div>
+
+          <!-- Shipping Delivery Estimator -->
+          <div class="pt-3 border-t border-gray-100 space-y-1.5 text-xs text-gray-600">
+            <div class="flex items-center gap-2 text-gray-900 font-medium">
+              <span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+              <span><strong>Envío express asegurado:</strong> Llega mañana a Bogotá D.C.</span>
+            </div>
+            <p class="text-[11px] pl-6 text-gray-500">O retira sin costo en nuestras tiendas autorizadas Andino, El Tesoro (Medellín) o Jardín Plaza (Cali).</p>
+          </div>
+        </div>
 
           <!-- Shipping Delivery Estimator -->
           <div class="pt-3 border-t border-gray-100 space-y-1.5 text-xs text-gray-600">
@@ -820,9 +937,15 @@
             <span class="font-bold text-gray-900">Total estimado:</span>
             <span id="cart-total" class="font-extrabold text-lg text-primary">$4.999.000 COP</span>
           </div>
-          <button onclick="alert('¡Gracias por elegir RedCover Colombia! Redirigiendo a pasarela segura de pago con PSE y 0% interés.')" class="w-full py-3.5 rounded-full crimson-btn text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider">
-            <span>Iniciar Compra Segura</span>
-            <span class="material-symbols-outlined text-sm">lock</span>
+          <div class="p-2.5 rounded-xl bg-white border border-gray-200 flex items-center justify-between text-xs">
+            <label class="flex items-center gap-2 cursor-pointer text-gray-700 font-medium">
+              <input type="checkbox" id="drawer-financing-checkbox" onchange="toggleDrawerFinancing(this.checked)" class="rounded text-primary focus:ring-primary h-4 w-4">
+              <span>¿Deseas financiar a 24 cuotas sin interés?</span>
+            </label>
+          </div>
+          <button onclick="handleCheckoutFromDrawer()" id="drawer-checkout-btn" class="w-full py-3.5 rounded-full crimson-btn text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider">
+            <span id="drawer-checkout-text">Iniciar Compra Segura</span>
+            <span class="material-symbols-outlined text-sm" id="drawer-checkout-icon">lock</span>
           </button>
         </div>
       </div>
@@ -839,6 +962,17 @@
       storage: 128,
       basePrice: 4999000,
       tradeInDiscount: 0,
+      paymentMode: 'cash', // 'cash' | 'financing'
+      tradeIn: {
+        active: false,
+        deviceText: '',
+        baseValue: 0,
+        batteryFactor: 1.0,
+        batteryLabel: '≥ 85% (Óptima)',
+        conditionFactor: 1.0,
+        conditionLabel: 'Impecable',
+        finalDiscount: 0
+      },
       bagItems: [
         {
           name: 'iPhone 16 Pro (128GB, Titanio Desierto)',
@@ -985,29 +1119,199 @@
       updatePrices();
     }
 
+    // ==========================================
+    // PLAN CANJE CON BATERÍA Y ESTADO DEL EQUIPO
+    // ==========================================
     function toggleTradeIn(enable) {
       const drawer = document.getElementById('tradein-drawer');
       const yesBtn = document.getElementById('tradein-yes');
       const noBtn = document.getElementById('tradein-no');
 
+      productState.tradeIn.active = enable;
       if (enable) {
         drawer.classList.remove('hidden');
         yesBtn.className = "py-2.5 px-3 rounded-xl border-2 border-primary bg-white text-xs text-primary font-bold transition-all text-center crimson-border-glow shadow-sm";
         noBtn.className = "py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center";
+        calculateTradeInDiscount();
       } else {
         drawer.classList.add('hidden');
         productState.tradeInDiscount = 0;
+        productState.tradeIn.finalDiscount = 0;
         noBtn.className = "py-2.5 px-3 rounded-xl border-2 border-primary bg-white text-xs text-primary font-bold transition-all text-center crimson-border-glow shadow-sm";
         yesBtn.className = "py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center";
         updatePrices();
       }
     }
 
-    function applyTradeInValue(val) {
-      productState.tradeInDiscount = parseInt(val, 10) || 0;
+    function selectTradeInBattery(btnEl, factor, label) {
+      document.querySelectorAll('.tradein-battery-btn').forEach(b => {
+        b.classList.remove('border-primary', 'text-primary', 'border-2', 'bg-white', 'shadow-sm');
+        b.classList.add('border-gray-200', 'bg-gray-50', 'text-gray-700', 'border');
+      });
+      btnEl.classList.remove('border-gray-200', 'bg-gray-50', 'text-gray-700', 'border');
+      btnEl.classList.add('border-primary', 'text-primary', 'border-2', 'bg-white', 'shadow-sm');
+
+      productState.tradeIn.batteryFactor = factor;
+      productState.tradeIn.batteryLabel = label;
+      document.getElementById('tradein-battery-tag').innerText = label;
+      calculateTradeInDiscount();
+    }
+
+    function selectTradeInCondition(btnEl, factor, label) {
+      document.querySelectorAll('.tradein-cond-btn').forEach(b => {
+        b.classList.remove('border-primary', 'text-primary', 'border-2', 'bg-white', 'shadow-sm');
+        b.classList.add('border-gray-200', 'bg-gray-50', 'text-gray-700', 'border');
+      });
+      btnEl.classList.remove('border-gray-200', 'bg-gray-50', 'text-gray-700', 'border');
+      btnEl.classList.add('border-primary', 'text-primary', 'border-2', 'bg-white', 'shadow-sm');
+
+      productState.tradeIn.conditionFactor = factor;
+      productState.tradeIn.conditionLabel = label;
+      document.getElementById('tradein-condition-tag').innerText = label;
+      calculateTradeInDiscount();
+    }
+
+    function calculateTradeInDiscount() {
+      const select = document.getElementById('tradein-device-select');
+      const baseVal = parseInt(select.value, 10) || 0;
+      productState.tradeIn.baseValue = baseVal;
+      productState.tradeIn.deviceText = select.options[select.selectedIndex].text;
+
+      if (baseVal > 0 && productState.tradeIn.active) {
+        const discount = Math.round(baseVal * productState.tradeIn.batteryFactor * productState.tradeIn.conditionFactor);
+        productState.tradeInDiscount = discount;
+        productState.tradeIn.finalDiscount = discount;
+        document.getElementById('tradein-applied-badge').innerText = `-${formatCOP(discount)}`;
+        showToast("Plan Canje Actualizado", `Descuento de ${formatCOP(discount)} aplicado por tu equipo.`);
+      } else {
+        productState.tradeInDiscount = 0;
+        productState.tradeIn.finalDiscount = 0;
+        document.getElementById('tradein-applied-badge').innerText = `-$0 COP`;
+      }
       updatePrices();
-      if (productState.tradeInDiscount > 0) {
-        showToast("Plan Canje aplicado", `Ahorras ${formatCOP(productState.tradeInDiscount)} en tu compra.`);
+    }
+
+    // ==========================================
+    // FORMA DE PAGO: CONTADO VS FINANCIACIÓN
+    // ==========================================
+    function setPaymentMode(mode) {
+      productState.paymentMode = mode;
+      const cashBtn = document.getElementById('pay-mode-cash');
+      const financingBtn = document.getElementById('pay-mode-financing');
+      const checkCash = document.getElementById('icon-check-cash');
+      const checkFinancing = document.getElementById('icon-check-financing');
+      const noticeBox = document.getElementById('financing-notice-box');
+      const actionBtn = document.getElementById('primary-action-btn');
+      const actionText = document.getElementById('primary-action-text');
+      const actionIcon = document.getElementById('primary-action-icon');
+
+      if (mode === 'financing') {
+        cashBtn.className = "p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between";
+        financingBtn.className = "p-3 rounded-xl border-2 border-emerald-600 bg-white text-emerald-700 text-xs font-bold transition-all text-left flex flex-col justify-between shadow-sm";
+        checkCash.classList.add('hidden');
+        checkFinancing.classList.remove('hidden');
+        noticeBox.classList.remove('hidden');
+
+        // Change CTA button to direct to WhatsApp
+        actionBtn.className = "w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all transform hover:scale-[1.01]";
+        actionText.innerText = "Solicitar Financiación por WhatsApp (24 Cuotas)";
+        actionIcon.innerText = "chat";
+        showToast("Financiación seleccionada", "Tu compra será canalizada vía WhatsApp con cuotas al 0% de interés.");
+      } else {
+        cashBtn.className = "p-3 rounded-xl border-2 border-primary bg-white text-primary text-xs font-bold transition-all text-left flex flex-col justify-between crimson-border-glow shadow-sm";
+        financingBtn.className = "p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between hover:border-emerald-500";
+        checkCash.classList.remove('hidden');
+        checkFinancing.classList.add('hidden');
+        noticeBox.classList.add('hidden');
+
+        actionBtn.className = "w-full py-4 px-6 rounded-full crimson-btn text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
+        actionText.innerText = "Añadir a la bolsa RedCover";
+        actionIcon.innerText = "shopping_bag";
+      }
+    }
+
+    // Acción principal: Si se financia -> WhatsApp; si es de contado -> Añadir a la bolsa
+    function handlePrimaryAction() {
+      if (productState.paymentMode === 'financing') {
+        sendFinancingWhatsAppRequest();
+      } else {
+        addToBag();
+      }
+    }
+
+    // Arma mensaje para WhatsApp al financiar
+    function sendFinancingWhatsAppRequest() {
+      const modelTitle = productState.model === 'pro' ? 'iPhone 16 Pro' : 'iPhone 16 Pro Max';
+      const finalPrice = Math.max(0, productState.basePrice - productState.tradeInDiscount);
+      const installmentStr = calculateInstallment(finalPrice);
+
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN a 0% de interés* para mi nuevo celular:%0A%0A` +
+        `📱 *Equipo:* ${encodeURIComponent(modelTitle)}%0A` +
+        `💾 *Capacidad:* ${productState.storage} GB%0A` +
+        `🎨 *Acabado:* ${encodeURIComponent(productState.color)}%0A` +
+        `💰 *Valor total:* ${encodeURIComponent(formatCOP(finalPrice))}%0A` +
+        `💳 *Cuota estimada:* ${encodeURIComponent(installmentStr)} (24 cuotas fijas)%0A`;
+
+      if (productState.tradeIn.active && productState.tradeInDiscount > 0) {
+        msg += `%0A🔄 *Plan Canje Incluido:*%0A` +
+          `• Entregando: ${encodeURIComponent(productState.tradeIn.deviceText)}%0A` +
+          `• Batería: ${encodeURIComponent(productState.tradeIn.batteryLabel)}%0A` +
+          `• Estado: ${encodeURIComponent(productState.tradeIn.conditionLabel)}%0A` +
+          `• Descuento aplicado: -${encodeURIComponent(formatCOP(productState.tradeInDiscount))}%0A`;
+      }
+
+      msg += `%0A¿Podrían indicarme los requisitos y bancos aliados para el estudio inmediato? Muchas gracias.`;
+
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    function sendCustomWhatsAppQuote() {
+      const modelTitle = productState.model === 'pro' ? 'iPhone 16 Pro' : 'iPhone 16 Pro Max';
+      const finalPrice = Math.max(0, productState.basePrice - productState.tradeInDiscount);
+      const msg = `Hola RedCover Colombia 👋 Deseo asesoría personalizada para adquirir el *${encodeURIComponent(modelTitle)}* (${productState.storage}GB, ${encodeURIComponent(productState.color)}) con valor de ${encodeURIComponent(formatCOP(finalPrice))}.`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    function toggleDrawerFinancing(checked) {
+      const text = document.getElementById('drawer-checkout-text');
+      const icon = document.getElementById('drawer-checkout-icon');
+      const btn = document.getElementById('drawer-checkout-btn');
+
+      if (checked) {
+        btn.className = "w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
+        text.innerText = "Financiar Orden por WhatsApp";
+        icon.innerText = "chat";
+      } else {
+        btn.className = "w-full py-3.5 rounded-full crimson-btn text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider";
+        text.innerText = "Iniciar Compra Segura";
+        icon.innerText = "lock";
+      }
+    }
+
+    function handleCheckoutFromDrawer() {
+      const isFinancing = document.getElementById('drawer-financing-checkbox') && document.getElementById('drawer-financing-checkbox').checked;
+      if (productState.bagItems.length === 0) {
+        alert('Tu bolsa de compras está vacía.');
+        return;
+      }
+
+      if (isFinancing || productState.paymentMode === 'financing') {
+        let total = 0;
+        let itemsSummary = productState.bagItems.map(item => {
+          total += item.price * item.qty;
+          return `• ${item.name} (x${item.qty}) - ${formatCOP(item.price * item.qty)}`;
+        }).join('%0A');
+
+        const installmentStr = calculateInstallment(total);
+        const msg = `Hola RedCover Colombia 👋 Quiero solicitar *FINANCIACIÓN a 24 cuotas sin interés* para mi orden:%0A%0A` +
+          `${itemsSummary}%0A%0A` +
+          `💰 *Total de la orden:* ${encodeURIComponent(formatCOP(total))}%0A` +
+          `💳 *Cuota mensual estimada:* ${encodeURIComponent(installmentStr)}%0A%0A` +
+          `¿Me ayudan con la aprobación inmediata de mi crédito?`;
+
+        window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+      } else {
+        alert('¡Gracias por elegir RedCover Colombia! Redirigiendo a pasarela segura de pago con PSE y tarjetas.');
       }
     }
 

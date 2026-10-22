@@ -220,10 +220,27 @@
         <div class="w-[500px] h-[500px] bg-red-100 rounded-full blur-[140px]"></div>
       </div>
 
-      <!-- Badge Authorized -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 mb-6 text-xs font-semibold text-primary shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-primary badge-pulse"></span>
-        Distribuidor Autorizado Apple en Colombia
+      <!-- Badges: Authorized & +10,000 Satisfied Customers -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 text-xs font-semibold text-primary shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-primary badge-pulse"></span>
+          Distribuidor Autorizado Apple en Colombia
+        </div>
+
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-sm backdrop-blur-md">
+          <div class="flex -space-x-2 overflow-hidden">
+            <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop" alt="Cliente">
+            <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop" alt="Cliente">
+            <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop" alt="Cliente">
+          </div>
+          <div class="flex items-center gap-1.5 text-xs">
+            <div class="flex text-amber-500 font-bold tracking-tighter">
+              ★★★★★
+            </div>
+            <span class="font-extrabold text-gray-900">+10.000 clientes satisfechos</span>
+            <span class="text-[11px] text-gray-500 hidden sm:inline">• 4.9/5 en Colombia</span>
+          </div>
+        </div>
       </div>
 
       <!-- Headline -->
@@ -538,48 +555,94 @@
               <span class="material-symbols-outlined text-primary">calculate</span>
               Cotizador Express de Canje
             </h3>
-            <p class="text-xs text-gray-500 mb-6">Calcula el valor que descontaremos de tu nuevo Apple hoy</p>
+            <p class="text-xs text-gray-500 mb-6">Calcula el valor exacto según el modelo, batería y estado estético</p>
 
             <div class="space-y-5">
+              <!-- 1. Device Select -->
               <div>
-                <label for="device-select" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Selecciona tu dispositivo actual</label>
+                <label for="device-select" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">1. Selecciona tu dispositivo actual</label>
                 <select id="device-select" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 text-sm font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm">
                   <option value="3250000">iPhone 15 Pro Max (256GB)</option>
                   <option value="2850000">iPhone 15 Pro (128GB)</option>
                   <option value="2400000">iPhone 15 (128GB)</option>
                   <option value="2200000">iPhone 14 Pro Max (256GB)</option>
                   <option value="1900000">iPhone 14 Pro (128GB)</option>
+                  <option value="1600000">iPhone 14 (128GB)</option>
                   <option value="1450000">iPhone 13 Pro (128GB)</option>
                   <option value="1150000">iPhone 13 (128GB)</option>
+                  <option value="980000">iPhone 12 Pro (128GB)</option>
+                  <option value="820000">iPhone 12 (64GB)</option>
                   <option value="2700000">MacBook Air M2 (256GB)</option>
                   <option value="1800000">iPad Pro 11 M2 (128GB)</option>
                 </select>
               </div>
 
+              <!-- 2. Battery Health -->
               <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Estado cosmético y funcional</label>
-                <div class="grid grid-cols-3 gap-2.5" id="condition-buttons">
-                  <button type="button" data-factor="1.0" class="condition-btn px-3 py-2.5 rounded-xl bg-white border-2 border-primary text-primary text-xs font-bold text-center shadow-sm transition-all">
-                    Impecable
+                <div class="flex items-center justify-between mb-2">
+                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-700">2. Condición de la Batería</label>
+                  <span id="battery-tag" class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Óptima (≥ 85%)</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5" id="battery-buttons">
+                  <button type="button" data-battery-factor="1.0" data-label="Óptima (≥ 85%)" class="battery-btn px-2.5 py-3 rounded-xl bg-white border-2 border-primary text-primary text-xs font-bold text-center shadow-sm transition-all flex flex-col items-center gap-1">
+                    <span class="material-symbols-outlined text-lg text-emerald-500">battery_full</span>
+                    <span class="font-bold">≥ 85%</span>
+                    <span class="text-[10px] text-gray-500 font-normal">Óptima</span>
                   </button>
-                  <button type="button" data-factor="0.85" class="condition-btn px-3 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all">
-                    Marcas leves
+                  <button type="button" data-battery-factor="0.92" data-label="Normal (80% - 84%)" class="battery-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
+                    <span class="material-symbols-outlined text-lg text-amber-500">battery_5_bar</span>
+                    <span class="font-bold">80% - 84%</span>
+                    <span class="text-[10px] text-gray-500 font-normal">Normal</span>
                   </button>
-                  <button type="button" data-factor="0.70" class="condition-btn px-3 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all">
-                    Detalle visible
+                  <button type="button" data-battery-factor="0.80" data-label="Mantenimiento (< 80%)" class="battery-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
+                    <span class="material-symbols-outlined text-lg text-red-500">battery_alert</span>
+                    <span class="font-bold">< 80%</span>
+                    <span class="text-[10px] text-gray-500 font-normal">Servicio</span>
                   </button>
                 </div>
               </div>
 
+              <!-- 3. Cosmetic & Functional Condition -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-700">3. Estado del Equipo</label>
+                  <span id="condition-tag" class="text-[11px] font-semibold text-primary bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200">Impecable (Sin detalles)</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5" id="condition-buttons">
+                  <button type="button" data-condition-factor="1.0" data-label="Impecable (Sin detalles)" class="condition-btn px-2.5 py-3 rounded-xl bg-white border-2 border-primary text-primary text-xs font-bold text-center shadow-sm transition-all flex flex-col items-center gap-1">
+                    <span class="material-symbols-outlined text-lg text-emerald-500">verified</span>
+                    <span class="font-bold">Impecable</span>
+                    <span class="text-[10px] text-gray-500 font-normal">Sin rayones</span>
+                  </button>
+                  <button type="button" data-condition-factor="0.85" data-label="Marcas leves" class="condition-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
+                    <span class="material-symbols-outlined text-lg text-blue-500">check_circle</span>
+                    <span class="font-bold">Marcas leves</span>
+                    <span class="text-[10px] text-gray-500 font-normal">Uso normal</span>
+                  </button>
+                  <button type="button" data-condition-factor="0.70" data-label="Detalle visible" class="condition-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
+                    <span class="material-symbols-outlined text-lg text-amber-500">warning</span>
+                    <span class="font-bold">Detalle visible</span>
+                    <span class="text-[10px] text-gray-500 font-normal">Chasis / Pantalla</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Output & CTAs -->
               <div class="pt-5 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <span class="text-xs text-gray-500 font-medium block">Bono de canje estimado:</span>
                   <span id="calculated-bonus" class="text-2xl font-extrabold text-primary">$3.250.000 COP</span>
                 </div>
-                <button id="apply-canje-btn" class="w-full sm:w-auto px-6 py-3 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2">
-                  <span class="material-symbols-outlined text-sm">verified</span>
-                  Aplicar Bono
-                </button>
+                <div class="flex items-center gap-2">
+                  <button id="apply-canje-btn" class="w-full sm:w-auto px-5 py-3 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">verified</span>
+                    <span>Aplicar Bono</span>
+                  </button>
+                  <button id="canje-whatsapp-btn" onclick="sendCanjeToWhatsApp()" class="w-full sm:w-auto px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1">
+                    <span class="material-symbols-outlined text-sm">chat</span>
+                    <span>Cotizar</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -587,72 +650,270 @@
       </div>
     </section>
 
-    <!-- Essential Accessories Section -->
+    <!-- Essential Accessories Section (Catálogo Completo de Accesorios) -->
     <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto" id="accesorios">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <span class="text-xs font-bold text-primary uppercase tracking-wider bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Complementos Originales</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-2 tracking-tight">Accesorios Esenciales RedCover</h2>
+          <span class="text-xs font-bold text-primary uppercase tracking-wider bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Catálogo Oficial Completo</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-2 tracking-tight">Todos los Accesorios Apple Originales</h2>
+          <p class="text-xs sm:text-sm text-gray-600 mt-1">Garantía oficial de 1 año, compatibilidad 100% y entrega rápida en toda Colombia.</p>
         </div>
-        <a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="#">
-          Ver catálogo completo <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold text-gray-500 hidden sm:inline">Filtrar por:</span>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Accessory 1 -->
-        <div class="rounded-3xl bg-white p-6 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md">
-          <div class="relative h-64 rounded-2xl overflow-hidden bg-zinc-950 mb-5">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cargador MagSafe 1m" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48">
-          </div>
+      <!-- Categories Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" id="accessory-filters">
+        <button type="button" data-filter="all" class="filter-acc-btn active px-4 py-2 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap">
+          Todos los Accesorios
+        </button>
+        <button type="button" data-filter="audio" class="filter-acc-btn px-4 py-2 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap">
+          AirPods & Audio
+        </button>
+        <button type="button" data-filter="carga" class="filter-acc-btn px-4 py-2 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap">
+          Carga & MagSafe
+        </button>
+        <button type="button" data-filter="fundas" class="filter-acc-btn px-4 py-2 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap">
+          Fundas & Protección
+        </button>
+        <button type="button" data-filter="cables" class="filter-acc-btn px-4 py-2 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap">
+          Cables & Adaptadores
+        </button>
+        <button type="button" data-filter="otros" class="filter-acc-btn px-4 py-2 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap">
+          AirTag & Otros
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="accessories-grid">
+        <!-- 1. AirPods Pro 2 -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="audio">
           <div>
-            <span class="text-[11px] font-bold text-primary uppercase tracking-wider">Carga Inalámbrica</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">Cargador MagSafe Oficial (1m / 25W)</h3>
-            <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">Alineación magnética perfecta para carga inalámbrica de hasta 25W en el nuevo iPhone 16.</p>
-            <div class="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-lg font-extrabold text-gray-900">$249.000 COP</span>
-              <button onclick="addToCart('Cargador MagSafe Oficial 1m', 249000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48')" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">add</span> Añadir
-              </button>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Cancelación Pro</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="AirPods Pro 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi">
             </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Audio Espacial</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">AirPods Pro 2 (USB-C MagSafe)</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Cancelación activa de ruido 2x más potente, modo ambiente adaptativo y estuche con altavoz.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$1.299.000 COP</span>
+            <button onclick="addToCart('AirPods Pro 2 con USB-C MagSafe', 1299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
           </div>
         </div>
 
-        <!-- Accessory 2 -->
-        <div class="rounded-3xl bg-white p-6 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md">
-          <div class="relative h-64 rounded-2xl overflow-hidden bg-zinc-950 mb-5">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Funda Carbon Armor Pro iPhone 16 Pro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we">
-          </div>
+        <!-- 2. Cargador MagSafe Oficial -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="carga">
           <div>
-            <span class="text-[11px] font-bold text-primary uppercase tracking-wider">Protección Militar</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">Funda Carbon Armor Pro MagSafe</h3>
-            <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">Fibra de aramida aeroespacial con bisel carmesí anodizado para proteger los lentes de cámara.</p>
-            <div class="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-lg font-extrabold text-gray-900">$320.000 COP</span>
-              <button onclick="addToCart('Funda Carbon Armor Pro iPhone 16 Pro', 320000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we')" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">add</span> Añadir
-              </button>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">25W MagSafe</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Cargador MagSafe 1m" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48">
             </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Carga Inalámbrica</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Cargador MagSafe Oficial (1m / 25W)</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Alineación magnética perfecta para carga rápida de hasta 25W en iPhone 16 y 15.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$249.000 COP</span>
+            <button onclick="addToCart('Cargador MagSafe Oficial 1m', 249000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
           </div>
         </div>
 
-        <!-- Accessory 3 -->
-        <div class="rounded-3xl bg-white p-6 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md">
-          <div class="relative h-64 rounded-2xl overflow-hidden bg-zinc-950 mb-5">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Adaptador USB-C 35W Dual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbwBzQVb6XWK3Dlp7KLsZMwGc7-7icNjP42vRWnaaKQ56dhLZ4sJBqgsq2TS9ym99HaLbuFuw5imbmR0k9AtAdSgqloEtO3MYUZuQuKMn4NSwW1xiQxTeQ8YVHsEw82aDymRMHTr5_-6vBo3i_r_MrPCtED1_XoweC7wGx2rn-svDU6qt98SMSQ90XdGQw6A_H0YfgLLT26FMfQofuK8jNS0TrM70qzU4_-e6c2iZKG7otdA8f_Zh3">
-          </div>
+        <!-- 3. Funda Carbon Armor Pro -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="fundas">
           <div>
-            <span class="text-[11px] font-bold text-primary uppercase tracking-wider">Carga Rápida Dual</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">Adaptador de Corriente USB-C 35W Dual</h3>
-            <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">Carga dos dispositivos en simultáneo: iPhone y Apple Watch a la máxima velocidad y seguridad.</p>
-            <div class="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-lg font-extrabold text-gray-900">$299.000 COP</span>
-              <button onclick="addToCart('Adaptador USB-C 35W Doble Puerto Apple', 299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCbwBzQVb6XWK3Dlp7KLsZMwGc7-7icNjP42vRWnaaKQ56dhLZ4sJBqgsq2TS9ym99HaLbuFuw5imbmR0k9AtAdSgqloEtO3MYUZuQuKMn4NSwW1xiQxTeQ8YVHsEw82aDymRMHTr5_-6vBo3i_r_MrPCtED1_XoweC7wGx2rn-svDU6qt98SMSQ90XdGQw6A_H0YfgLLT26FMfQofuK8jNS0TrM70qzU4_-e6c2iZKG7otdA8f_Zh3')" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">add</span> Añadir
-              </button>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900 text-[10px] font-bold text-white uppercase">Aramida Aeroespacial</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Funda Carbon Armor Pro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we">
             </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Protección Extrema</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Funda Carbon Armor Pro MagSafe</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Bisel carmesí anodizado, protección contra caídas de 3 metros y compatibilidad MagSafe completa.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$320.000 COP</span>
+            <button onclick="addToCart('Funda Carbon Armor Pro iPhone 16 Pro', 320000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
           </div>
         </div>
+
+        <!-- 4. Adaptador Dual USB-C 35W -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="cables">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Doble Puerto</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Adaptador USB-C 35W Dual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbwBzQVb6XWK3Dlp7KLsZMwGc7-7icNjP42vRWnaaKQ56dhLZ4sJBqgsq2TS9ym99HaLbuFuw5imbmR0k9AtAdSgqloEtO3MYUZuQuKMn4NSwW1xiQxTeQ8YVHsEw82aDymRMHTr5_-6vBo3i_r_MrPCtED1_XoweC7wGx2rn-svDU6qt98SMSQ90XdGQw6A_H0YfgLLT26FMfQofuK8jNS0TrM70qzU4_-e6c2iZKG7otdA8f_Zh3">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Carga Rápida</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Adaptador USB-C 35W Dual Oficial</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Carga dos dispositivos en simultáneo: iPhone y Apple Watch con balance de potencia inteligente.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$299.000 COP</span>
+            <button onclick="addToCart('Adaptador USB-C 35W Doble Puerto Apple', 299000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCbwBzQVb6XWK3Dlp7KLsZMwGc7-7icNjP42vRWnaaKQ56dhLZ4sJBqgsq2TS9ym99HaLbuFuw5imbmR0k9AtAdSgqloEtO3MYUZuQuKMn4NSwW1xiQxTeQ8YVHsEw82aDymRMHTr5_-6vBo3i_r_MrPCtED1_XoweC7wGx2rn-svDU6qt98SMSQ90XdGQw6A_H0YfgLLT26FMfQofuK8jNS0TrM70qzU4_-e6c2iZKG7otdA8f_Zh3')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Batería MagSafe Apple -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="carga">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-emerald-50 text-[10px] font-bold text-emerald-700 border border-emerald-200 uppercase">PowerBank Oficial</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Batería Externa MagSafe Apple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Energía Portátil</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Batería Externa MagSafe Apple</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Se adhiere con un clic a la parte posterior de tu iPhone para hasta un 70% extra de autonomía.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$459.000 COP</span>
+            <button onclick="addToCart('Batería Externa MagSafe Apple', 459000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Adaptador 20W Original -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="cables">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-blue-50 text-[10px] font-bold text-blue-700 border border-blue-200 uppercase">Carga Rápida</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Adaptador 20W USB-C" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbwBzQVb6XWK3Dlp7KLsZMwGc7-7icNjP42vRWnaaKQ56dhLZ4sJBqgsq2TS9ym99HaLbuFuw5imbmR0k9AtAdSgqloEtO3MYUZuQuKMn4NSwW1xiQxTeQ8YVHsEw82aDymRMHTr5_-6vBo3i_r_MrPCtED1_XoweC7wGx2rn-svDU6qt98SMSQ90XdGQw6A_H0YfgLLT26FMfQofuK8jNS0TrM70qzU4_-e6c2iZKG7otdA8f_Zh3">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Cargador de Pared</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Adaptador de Corriente USB-C 20W</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Llega al 50% de batería en apenas 30 minutos. Compatible con toda la línea iPhone y iPad.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$129.000 COP</span>
+            <button onclick="addToCart('Adaptador de Corriente USB-C 20W Original', 129000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuCbwBzQVb6XWK3Dlp7KLsZMwGc7-7icNjP42vRWnaaKQ56dhLZ4sJBqgsq2TS9ym99HaLbuFuw5imbmR0k9AtAdSgqloEtO3MYUZuQuKMn4NSwW1xiQxTeQ8YVHsEw82aDymRMHTr5_-6vBo3i_r_MrPCtED1_XoweC7wGx2rn-svDU6qt98SMSQ90XdGQw6A_H0YfgLLT26FMfQofuK8jNS0TrM70qzU4_-e6c2iZKG7otdA8f_Zh3')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 7. Apple AirTag Pack 1 -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="otros">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-emerald-50 text-[10px] font-bold text-emerald-700 border border-emerald-200 uppercase">Find My</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Apple AirTag" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Localización</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Apple AirTag (Pack 1 unidad)</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Rastreo de precisión mediante chip U1/U2. Localiza tus llaves, bolso o maleta al centímetro.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$169.000 COP</span>
+            <button onclick="addToCart('Apple AirTag 1 unidad', 169000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 8. Funda de Silicona Oficial Apple con MagSafe -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="fundas">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Original Apple</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Funda de Silicona Apple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Tacto Suave</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Funda de Silicona con MagSafe</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Acabado sedoso al tacto con interior de suave microfibra y total integración para Camera Control.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$269.000 COP</span>
+            <button onclick="addToCart('Funda de Silicona Oficial Apple MagSafe', 269000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 9. AirPods Max (USB-C) -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="audio">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900 text-[10px] font-bold text-white uppercase">Hi-Fi Studio</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="AirPods Max USB-C" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Alta Fidelidad</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">AirPods Max con USB-C</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Transductor dinámico diseñado por Apple, audio espacial personalizado y almohadillas viscoelásticas.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$2.899.000 COP</span>
+            <button onclick="addToCart('AirPods Max USB-C', 2899000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 10. Cable USB-C Tejido 60W -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="cables">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-gray-100 text-[10px] font-bold text-gray-700 uppercase">Tejido 1m</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Cable USB-C Tejido" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Conectividad</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Cable de Carga Tejido USB-C (1m / 60W)</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Diseño trenzado ultrarresistente para carga y sincronización de alta velocidad.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$99.000 COP</span>
+            <button onclick="addToCart('Cable USB-C Tejido Oficial (1m)', 99000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 11. Billetera FineWoven MagSafe -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="otros">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-amber-50 text-[10px] font-bold text-amber-800 border border-amber-200 uppercase">FineWoven</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Billetera FineWoven MagSafe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Elegancia MagSafe</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Cartera FineWoven con MagSafe</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Blindaje para tarjetas de crédito, compatible con Find My si se separa de tu iPhone.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$289.000 COP</span>
+            <button onclick="addToCart('Cartera FineWoven MagSafe Apple', 289000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
+        <!-- 12. Apple AirTag Pack 4 -->
+        <div class="acc-card rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-sm hover:shadow-md" data-category="otros">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden bg-gray-50 mb-4 p-2 flex items-center justify-center">
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-50 text-[10px] font-bold text-primary border border-red-100 uppercase">Pack Familiar</span>
+              <img class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500" alt="Apple AirTag Pack 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi">
+            </div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Localización</span>
+            <h3 class="text-base font-bold text-gray-900 mt-1 leading-snug">Apple AirTag (Pack de 4 unidades)</h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">Protege todo lo importante: morrales, maletas de viaje, vehículos y llaves con la red Apple.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-base font-extrabold text-gray-900">$549.000 COP</span>
+            <button onclick="addToCart('Apple AirTag Pack 4 Unidades', 549000, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all text-xs font-bold text-gray-900 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Añadir
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1044,21 +1305,44 @@
       }
     });
 
-    // Plan Canje Calculator
+    // Plan Canje Calculator con Batería y Estado
     const deviceSelect = document.getElementById('device-select');
+    const batteryButtons = document.querySelectorAll('.battery-btn');
     const conditionButtons = document.querySelectorAll('.condition-btn');
     const calculatedBonus = document.getElementById('calculated-bonus');
     const applyCanjeBtn = document.getElementById('apply-canje-btn');
+    const batteryTag = document.getElementById('battery-tag');
+    const conditionTag = document.getElementById('condition-tag');
 
-    let currentFactor = 1.0;
+    let currentBatteryFactor = 1.0;
+    let currentBatteryLabel = 'Óptima (≥ 85%)';
+    let currentConditionFactor = 1.0;
+    let currentConditionLabel = 'Impecable (Sin detalles)';
 
     function recalculateCanje() {
       const baseValue = parseFloat(deviceSelect.value);
-      const finalValue = Math.round(baseValue * currentFactor);
+      const finalValue = Math.round(baseValue * currentConditionFactor * currentBatteryFactor);
       calculatedBonus.innerText = formatCOP(finalValue);
     }
 
-    deviceSelect.addEventListener('change', recalculateCanje);
+    if (deviceSelect) {
+      deviceSelect.addEventListener('change', recalculateCanje);
+    }
+
+    batteryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        batteryButtons.forEach(b => {
+          b.classList.remove('border-primary', 'text-primary', 'border-2', 'font-bold');
+          b.classList.add('border-gray-300', 'text-gray-600', 'border');
+        });
+        btn.classList.remove('border-gray-300', 'text-gray-600', 'border');
+        btn.classList.add('border-primary', 'text-primary', 'border-2', 'font-bold');
+        currentBatteryFactor = parseFloat(btn.getAttribute('data-battery-factor'));
+        currentBatteryLabel = btn.getAttribute('data-label') || '≥ 85%';
+        if (batteryTag) batteryTag.innerText = currentBatteryLabel;
+        recalculateCanje();
+      });
+    });
 
     conditionButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1068,19 +1352,59 @@
         });
         btn.classList.remove('border-gray-300', 'text-gray-600', 'border');
         btn.classList.add('border-primary', 'text-primary', 'border-2', 'font-bold');
-        currentFactor = parseFloat(btn.getAttribute('data-factor'));
+        currentConditionFactor = parseFloat(btn.getAttribute('data-condition-factor'));
+        currentConditionLabel = btn.getAttribute('data-label') || 'Impecable';
+        if (conditionTag) conditionTag.innerText = currentConditionLabel;
         recalculateCanje();
       });
     });
 
-    applyCanjeBtn.addEventListener('click', () => {
+    if (applyCanjeBtn) {
+      applyCanjeBtn.addEventListener('click', () => {
+        const deviceText = deviceSelect.options[deviceSelect.selectedIndex].text;
+        const bonusText = calculatedBonus.innerText;
+        showToast(`¡Bono de ${bonusText} aplicado a tu cotización!`);
+        setTimeout(() => {
+          openCart();
+        }, 700);
+      });
+    }
+
+    function sendCanjeToWhatsApp() {
       const deviceText = deviceSelect.options[deviceSelect.selectedIndex].text;
       const bonusText = calculatedBonus.innerText;
-      showToast(`¡Bono de ${bonusText} aplicado a tu cotización!`);
-      // Scroll to hero or show checkout
-      setTimeout(() => {
-        openCart();
-      }, 700);
+      const msg = `Hola RedCover Colombia 👋 Quiero cotizar el Plan Canje para renovar mi equipo:%0A` +
+        `📱 Dispositivo a entregar: ${encodeURIComponent(deviceText)}%0A` +
+        `🔋 Condición de Batería: ${encodeURIComponent(currentBatteryLabel)}%0A` +
+        `✨ Estado estético: ${encodeURIComponent(currentConditionLabel)}%0A` +
+        `💰 Bono estimado de canje: ${encodeURIComponent(bonusText)}%0A%0A` +
+        `¿Podrían confirmarme los pasos para entregarlo y adquirir mi nuevo Apple?`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    // Filtros de categoría de accesorios
+    const filterAccButtons = document.querySelectorAll('.filter-acc-btn');
+    const accCards = document.querySelectorAll('.acc-card');
+
+    filterAccButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        filterAccButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-white', 'font-bold', 'active');
+          b.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-700', 'font-medium');
+        });
+        btn.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-700', 'font-medium');
+        btn.classList.add('bg-primary', 'text-white', 'font-bold', 'active');
+
+        accCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
     });
 
     // Checkout button
