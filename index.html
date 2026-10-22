@@ -113,10 +113,13 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Links con Mega Menú Apple -->
-      <nav class="hidden md:flex items-center gap-7" id="nav-container">
+      <!-- Desktop Navigation Links con Mega Menú Apple & Samsung -->
+      <nav class="hidden md:flex items-center gap-5 lg:gap-6" id="nav-container">
         <button class="nav-item-btn text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="iphone">
           iPhone
+        </button>
+        <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="airpods">
+          AirPods
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="watch">
           Watch
@@ -126,6 +129,9 @@
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="ipad">
           iPad
+        </button>
+        <button class="nav-item-btn text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="samsung">
+          Samsung
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="accesorios">
           Accesorios
@@ -182,11 +188,13 @@
       <div class="border-b border-gray-100 pb-2">
         <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos 2026</span>
       </div>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (18 Pro, 18, 17 Pro, 16 Pro, 15, 14, 13, 12, 11)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (18 Pro, Duo, 17, Air, 16, 15, 14, 13, 12, 11)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('airpods')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">AirPods (Pro 3 2026, Max 2, AirPods 4 ANC, Pro 2)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('watch')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">Apple Watch (Ultra 3, Series 12, Series 11, SE 3, Ultra 2)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('mac')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">MacBook & Mac (Pro M5 Max, Air M5, Studio M4 Ultra, iMac M4)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('ipad')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">iPad (Pro M5 OLED, Air M4, mini A17 Pro, 11ª Gen)</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, AirPods Pro 3)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('samsung')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">Samsung Galaxy (S26 Ultra, Z Fold 7, S25 Ultra, S24 Ultra)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, Cargadores)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras 4 Tiendas en Colombia</a>
       <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
@@ -2252,6 +2260,278 @@
         shortDesc: 'La forma más económica de estrenar Apple Watch original con todas las funciones de actividad, salud cardíaca y seguridad.',
         specs: ['Chip S8 SiP de doble núcleo', 'Resistencia al agua hasta 50 metros para natación', 'Monitoreo de frecuencia cardíaca, fases del sueño y llamadas de emergencia', 'Cajas de 40 mm y 44 mm en Medianoche, Estelar y Plata'],
         variants: ['40mm GPS - $1.099.000', '44mm GPS - $1.249.000']
+      },
+
+      // ==========================================
+      // LÍNEA AIRPODS (NUEVA CATEGORÍA 2026 • 7 MODELOS)
+      // ==========================================
+      {
+        id: 'airpods-pro-3',
+        category: 'airpods',
+        badge: 'Nuevo 2026 • Chip H3 + Salud',
+        title: 'AirPods Pro 3 (Estuche MagSafe USB-C con Pantalla Táctil)',
+        price: 1399000,
+        img: IMG_AIRPODS,
+        shortDesc: 'La nueva generación 2026 con Chip H3, Cancelación Activa de Ruido 4x superior, sensor de frecuencia cardíaca y temperatura en oído, y traducción en vivo con Apple Intelligence.',
+        specs: ['Nuevo Chip H3 de ultra baja latencia y Audio Lossless inalámbrico', 'Sensores biométricos de ritmo cardíaco y temperatura corporal integrados', 'Cancelación Activa de Ruido (ANC) 4x y Modo Audífono Clínico 2.0', 'Estuche MagSafe USB-C con altavoz, chip U2 de rastreo milimétrico y 36h de batería'],
+        variants: ['AirPods Pro 3 (USB-C MagSafe 2026) - $1.399.000']
+      },
+      {
+        id: 'airpods-max-2',
+        category: 'airpods',
+        badge: 'Nuevo 2026 • Studio Hi-Fi',
+        title: 'AirPods Max 2 (Chip H3 + Audio Lossless USB-C)',
+        price: 2899000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Diadema de alta fidelidad rediseñada en 2026: 30% más ligeros, Chip H3 dual en cada casco, Audio Adaptativo, Audio sin pérdida por USB-C y nuevos acabados en Titanio.',
+        specs: ['Doble Chip H3 (uno en cada auricular) con ecualización computacional de 10 bandas', 'Audio Lossless de 24 bits / 48 kHz sin latencia y Audio Espacial con seguimiento dinámico', 'Cancelación Activa de Ruido profesional de nueva generación', 'Colores 2026: Negro Titanio, Plata Estelar, Carmesí, Azul Medianoche y Morado'],
+        variants: ['Negro Titanio - $2.899.000', 'Plata Estelar - $2.899.000', 'Azul Medianoche - $2.899.000', 'Carmesí Especial - $2.999.000']
+      },
+      {
+        id: 'airpods-4-anc',
+        category: 'airpods',
+        badge: 'Best Seller • Diseño Abierto ANC',
+        title: 'AirPods 4 con Cancelación Activa de Ruido (ANC)',
+        price: 899000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Por primera vez, Cancelación Activa de Ruido, Audio Adaptativo y Modo Ambiente en un diseño abierto sin almohadillas de silicona.',
+        specs: ['Chip H2 con Cancelación Activa de Ruido y Aislamiento de Voz en llamadas', 'Estuche de carga inalámbrica compatible con MagSafe, Apple Watch y USB-C con altavoz', 'Audio Espacial personalizado con seguimiento dinámico de la cabeza', 'Resistencia al polvo, al sudor y al agua (IP54) con hasta 30 horas de batería'],
+        variants: ['AirPods 4 con ANC (Estuche Inalámbrico USB-C) - $899.000']
+      },
+      {
+        id: 'airpods-4',
+        category: 'airpods',
+        badge: 'Gama Actual • Chip H2',
+        title: 'AirPods 4 (Con Estuche de Carga USB-C)',
+        price: 679000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Contorno ergonómico totalmente rediseñado para ofrecer comodidad todo el día, acústica superior con Chip H2 y llamadas nítidas.',
+        specs: ['Chip H2 diseñado por Apple con graves profundos y agudos cristalinos', 'Audio Espacial personalizado y gestos con la cabeza para responder a Siri', 'Estuche de carga compacto USB-C con hasta 30 horas de autonomía total', 'Certificación IP54 contra agua, sudor y polvo'],
+        variants: ['AirPods 4 Estándar (USB-C) - $679.000']
+      },
+      {
+        id: 'airpods-pro-2',
+        category: 'airpods',
+        badge: 'Audio Pro • USB-C',
+        title: 'AirPods Pro (2.ª Generación) con MagSafe USB-C',
+        price: 1129000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Cancelación Activa de Ruido de referencia, Audio Adaptativo, Detección de Conversación y funciones certificadas de Salud Auditiva.',
+        specs: ['Chip H2 con arquitectura acústica a medida y control táctil de volumen en el vástago', 'Cuatro tamaños de almohadillas de silicona (XS, S, M, L) para sellado acústico', 'Estuche de carga MagSafe (USB-C) con Rastreo Preciso y enganche para correa', 'Protección IP54 y hasta 6 horas de escucha con una sola carga'],
+        variants: ['AirPods Pro 2 (Estuche MagSafe USB-C) - $1.129.000']
+      },
+      {
+        id: 'airpods-max-usbc',
+        category: 'airpods',
+        badge: 'Alta Fidelidad • USB-C',
+        title: 'AirPods Max (Edición USB-C)',
+        price: 2499000,
+        img: IMG_AIRPODS,
+        shortDesc: 'La experiencia definitiva de auriculares de diadema con transductores dinámicos diseñados por Apple, malla transpirable y aluminio anodizado.',
+        specs: ['Transductor dinámico de 40 mm con doble imán de neodimio sin distorsión', '9 micrófonos para Cancelación Activa de Ruido líder y Modo Ambiente', 'Digital Crown para control preciso de volumen, pistas y llamadas', 'Colores: Medianoche, Blanco Estelar, Azul, Morado y Naranja'],
+        variants: ['Medianoche USB-C - $2.499.000', 'Blanco Estelar USB-C - $2.499.000', 'Azul USB-C - $2.499.000']
+      },
+      {
+        id: 'airpods-3',
+        category: 'airpods',
+        badge: 'Clásico MagSafe',
+        title: 'AirPods (3.ª Generación) con Estuche MagSafe',
+        price: 589000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Audio Espacial con seguimiento dinámico de la cabeza, ecualización adaptativa y sensor de presión en un formato ligero.',
+        specs: ['Ecualización Adaptativa que ajusta la música en tiempo real a tu oído', 'Audio Espacial tridimensional para música, películas y llamadas FaceTime', 'Resistencia al agua y al sudor (IPX4) en auriculares y estuche', 'Hasta 6 horas de reproducción continua y 30 horas con el estuche MagSafe'],
+        variants: ['AirPods 3.ª Gen (Estuche MagSafe) - $589.000']
+      },
+
+      // ==========================================
+      // LÍNEA SAMSUNG GALAXY (DESDE S24 HASTA GAMA 2026 • 17 MODELOS)
+      // ==========================================
+      {
+        id: 'samsung-s26-ultra',
+        category: 'samsung',
+        badge: 'Gama 2026 • Buque Insignia Galaxy',
+        title: 'Samsung Galaxy S26 Ultra 5G (256GB - 1TB • S-Pen)',
+        price: 6499000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El nuevo rey Android de 2026: Chasis de Titanio Grado 5 con esquinas ergonómicas, procesador Snapdragon 8 Elite Gen 2 for Galaxy, cámara cuádruple de 200 MP + Periscopio 50 MP y Galaxy AI 3.0.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.9" QHD+ 120Hz con Gorilla Glass Armor 2 antirreflejo', 'Procesador Snapdragon 8 Elite Gen 2 for Galaxy (2nm) con 16 GB de RAM', 'Sistema Cuádruple: Principal 200 MP + Ultra Gran Angular 50 MP + Tele 50 MP (5x) + Tele 50 MP (3x)', 'S-Pen integrado con Bluetooth, batería de 5.500 mAh con carga de 65W y 7 años de actualizaciones'],
+        variants: ['256 GB / 16GB RAM - Titanio Negro - $6.499.000', '512 GB / 16GB RAM - Titanio Plata - $7.199.000', '1 TB / 16GB RAM - Titanio Azul - $8.199.000']
+      },
+      {
+        id: 'samsung-s26-plus',
+        category: 'samsung',
+        badge: 'Gama 2026 • Gran Pantalla QHD+',
+        title: 'Samsung Galaxy S26+ 5G (256GB - 512GB)',
+        price: 5199000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Pantalla inmersiva QHD+ de 6.7 pulgadas con biseles ultradelgados, batería de 5.000 mAh de silicio-carbono y toda la suite Galaxy AI 3.0.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" QHD+ de hasta 2.800 nits y 1-120Hz', 'Procesador de 2 nanómetros con cámara de vapor un 40% mayor y 12 GB de RAM', 'Triple cámara ProVisual Engine de 50 MP con Nightography 2026 y grabación 8K', 'Carga superrápida de 45W, carga inalámbrica Qi2 y certificación IP68'],
+        variants: ['256 GB - Azul Hielo / Negro / Plata - $5.199.000', '512 GB - $5.799.000']
+      },
+      {
+        id: 'samsung-s26',
+        category: 'samsung',
+        badge: 'Gama 2026 • Compacto Flagship',
+        title: 'Samsung Galaxy S26 5G (256GB - 512GB)',
+        price: 4299000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Potencia de buque insignia en un formato compacto y ligero de 6.2", con 12 GB de RAM base, Armor Aluminum y funciones completas de Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.2" FHD+ LTPO 1-120Hz', 'Procesador de nueva generación de 2nm con 12 GB de memoria RAM', 'Triple cámara trasera de 50 MP + Teleobjetivo óptico 3x + Ultra Gran Angular 12 MP', 'Batería de 4.300 mAh de alta densidad y resistencia al agua IP68'],
+        variants: ['256 GB - Negro Ónix / Menta / Plata - $4.299.000', '512 GB - $4.799.000']
+      },
+      {
+        id: 'samsung-s26-slim',
+        category: 'samsung',
+        badge: 'Gama 2026 • Ultra Delgado 5.6mm',
+        title: 'Samsung Galaxy S26 Slim / Edge 5G (256GB - 512GB)',
+        price: 5599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Ingeniería extrema en solo 5.6 mm de grosor con cámara principal de 200 MP, marco de titanio cepillado y pantalla de 6.7 pulgadas.',
+        specs: ['Chasis ultradelgado de 5.6 mm y solo 162 gramos con estructura de Titanio', 'Pantalla Dynamic AMOLED 2X de 6.7" 120Hz con Gorilla Glass Ceramic', 'Cámara principal ISOCELL de 200 MP con zoom de calidad óptica 2x y 4x', 'Procesador Snapdragon 8 Elite Gen 2 y Galaxy AI integrada'],
+        variants: ['256 GB - Titanio Plata / Titanio Carbón - $5.599.000', '512 GB - $6.199.000']
+      },
+      {
+        id: 'samsung-z-fold-7',
+        category: 'samsung',
+        badge: 'Plegable Insignia 2026',
+        title: 'Samsung Galaxy Z Fold 7 5G (256GB - 1TB)',
+        price: 8299000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El plegable más delgado y potente de Samsung: pantalla interna de 8.0" sin pliegue perceptible, cámara Ultra de 200 MP y multitarea de escritorio DeX.',
+        specs: ['Pantalla principal desplegable de 8.0" Dynamic AMOLED 2X + Externa de 6.5" formato 21:9', 'Grosor plegado de apenas 8.9 mm con bisagra FlexHinge de titanio', 'Cámara principal de 200 MP heredada de la línea Ultra + 12 GB / 16 GB de RAM', 'Compatibilidad con S-Pen Fold Edition, resistencia IP48 y Galaxy AI para pantallas grandes'],
+        variants: ['256 GB - Plata Sombra / Negro - $8.299.000', '512 GB - $8.999.000', '1 TB - $9.999.000']
+      },
+      {
+        id: 'samsung-z-flip-7',
+        category: 'samsung',
+        badge: 'Plegable Compacto 2026',
+        title: 'Samsung Galaxy Z Flip 7 5G (256GB - 512GB)',
+        price: 4999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Estilo icónico de bolsillo con nueva pantalla externa FlexWindow de borde a borde de 4.0", cámara FlexCam de 50 MP con IA y batería de 4.300 mAh.',
+        specs: ['Pantalla externa Super AMOLED de 4.0" 120Hz + Interna plegable de 6.8" FHD+ 120Hz', 'Cámara principal de 50 MP con Auto Zoom inteligente para manos libres en FlexCam', 'Batería ampliada de 4.300 mAh y procesador de 3nm de alto rendimiento', 'Colores: Azul Hielo, Verde Menta, Plata Sombra y Grafito'],
+        variants: ['256 GB - $4.999.000', '512 GB - $5.499.000']
+      },
+      {
+        id: 'samsung-s25-ultra',
+        category: 'samsung',
+        badge: 'Gama S25 (2025) • Titanio',
+        title: 'Samsung Galaxy S25 Ultra 5G (256GB - 1TB • S-Pen)',
+        price: 5599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Diseño de titanio con bordes redondeados, procesador Snapdragon 8 Elite for Galaxy, nueva cámara Ultra Gran Angular de 50 MP + Principal de 200 MP y S-Pen.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.9" QHD+ con Corning Gorilla Armor 2 antirreflejo', 'Procesador Snapdragon 8 Elite for Galaxy (3nm) con NPU un 40% más rápida', 'Cámara 200 MP + Nuevo Ultra Gran Angular 50 MP Macro + Teleobjetivos 50 MP (5x) y 10 MP (3x)', 'Grabación de video Log profesional de 10 bits, Audio Eraser con IA y S-Pen integrado'],
+        variants: ['256 GB - Azul Titanio / Negro Titanio / Gris Titanio - $5.599.000', '512 GB - $6.199.000', '1 TB - $7.199.000']
+      },
+      {
+        id: 'samsung-s25-edge',
+        category: 'samsung',
+        badge: 'Gama S25 (2025) • 5.8mm Titanio',
+        title: 'Samsung Galaxy S25 Edge 5G (256GB - 512GB)',
+        price: 4899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El Galaxy S25 ultradelgado de 5.8 mm y 163 gramos con chasis de titanio, pantalla QHD+ de 6.7" y sensor principal de 200 MP.',
+        specs: ['Perfil ultradelgado de 5.8 mm con marco de Titanio y Gorilla Glass Ceramic 2', 'Pantalla Dynamic AMOLED 2X de 6.7" QHD+ 120Hz', 'Cámara principal de 200 MP con Nightography y Snapdragon 8 Elite for Galaxy', '12 GB de RAM y todas las funciones de agentes multimodales Galaxy AI'],
+        variants: ['256 GB - Plata Titanio / Negro Jet / Azul Hielo - $4.899.000', '512 GB - $5.399.000']
+      },
+      {
+        id: 'samsung-s25-plus',
+        category: 'samsung',
+        badge: 'Gama S25 (2025)',
+        title: 'Samsung Galaxy S25+ 5G (256GB - 512GB)',
+        price: 4499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Gran pantalla QHD+ de 6.7 pulgadas con ProScaler AI, procesador Snapdragon 8 Elite for Galaxy, 12 GB de RAM y batería de 4.900 mAh.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" QHD+ (3120 x 1440) 120Hz', 'Snapdragon 8 Elite for Galaxy en todas las versiones con 12 GB de RAM', 'Triple cámara de 50 MP con motor ProVisual de nueva generación', 'Carga rápida de 45W, Wi-Fi 7 y cuerpo de Armor Aluminum'],
+        variants: ['256 GB - Azul Marino / Menta / Bruma / Plata - $4.499.000', '512 GB - $4.999.000']
+      },
+      {
+        id: 'samsung-s25',
+        category: 'samsung',
+        badge: 'Gama S25 (2025)',
+        title: 'Samsung Galaxy S25 5G (128GB - 256GB)',
+        price: 3699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Compacto, ultraligero (162g) y potentísimo gracias al chip Snapdragon 8 Elite for Galaxy y 12 GB de RAM de serie para Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.2" FHD+ 1-120Hz de 2.600 nits', 'Chip Snapdragon 8 Elite for Galaxy + 12 GB de memoria RAM', 'Cámara triple: 50 MP Principal + 12 MP Ultra Gran Angular + 10 MP Teleobjetivo 3x', 'Funciones Now Brief, Circle to Search y Traducción Simultánea de llamadas'],
+        variants: ['128 GB - $3.699.000', '256 GB - $3.999.000']
+      },
+      {
+        id: 'samsung-s25-fe',
+        category: 'samsung',
+        badge: 'Gama S25 • Fan Edition',
+        title: 'Samsung Galaxy S25 FE 5G (128GB - 256GB)',
+        price: 2999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'La edición para fans con diseño más delgado, pantalla Dynamic AMOLED 2X de 6.7", cámara de 50 MP con teleobjetivo óptico 3x y Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" 120Hz con Vision Booster', 'Triple cámara de 50 MP con OIS y zoom óptico 3x', 'Batería de 4.700 mAh para todo el día y certificación IP68', 'Experiencia completa de Galaxy AI y One UI 7 / 8'],
+        variants: ['128 GB - $2.999.000', '256 GB - $3.299.000']
+      },
+      {
+        id: 'samsung-z-fold-6',
+        category: 'samsung',
+        badge: 'Plegable 2024/2025',
+        title: 'Samsung Galaxy Z Fold 6 5G (256GB - 512GB)',
+        price: 6499000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Productividad sin límites en una pantalla desplegable de 7.6 pulgadas de 2.600 nits con Note Assist, Intérprete en doble pantalla y Snapdragon 8 Gen 3.',
+        specs: ['Pantalla interna de 7.6" QXGA+ 120Hz + Pantalla externa de 6.3" 120Hz', 'Procesador Snapdragon 8 Gen 3 for Galaxy con 12 GB de RAM', 'Triple cámara trasera de 50 MP + cámara bajo pantalla (UDC)', 'Diseño simétrico de bordes rectos con certificación IP48 y Armor Aluminum'],
+        variants: ['256 GB - Plata Sombra / Azul Marino / Rosa - $6.499.000', '512 GB - $6.999.000']
+      },
+      {
+        id: 'samsung-z-flip-6',
+        category: 'samsung',
+        badge: 'Plegable 2024/2025',
+        title: 'Samsung Galaxy Z Flip 6 5G (256GB - 512GB)',
+        price: 3999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Plegable compacto con cámara mejorada de 50 MP, cámara de vapor por primera vez en un Flip, 12 GB de RAM y batería de 4.000 mAh.',
+        specs: ['Pantalla plegable de 6.7" Dynamic AMOLED 2X + Externa FlexWindow de 3.4"', 'Snapdragon 8 Gen 3 for Galaxy con 12 GB de RAM y cámara de vapor', 'Cámara principal de 50 MP + Ultra Gran Angular de 12 MP con Nightography', 'Batería de 4.000 mAh y resistencia IP48'],
+        variants: ['256 GB - Azul / Amarillo / Menta / Plata - $3.999.000', '512 GB - $4.399.000']
+      },
+      {
+        id: 'samsung-s24-ultra',
+        category: 'samsung',
+        badge: 'Gama S24 (2024) • Best Seller Titanio',
+        title: 'Samsung Galaxy S24 Ultra 5G (256GB - 1TB • S-Pen)',
+        price: 4599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El favorito en calidad/precio Pro: exterior de Titanio, pantalla plana de 6.8" QHD+ antirreflejo, S-Pen integrado, cámara de 200 MP y Snapdragon 8 Gen 3.',
+        specs: ['Pantalla plana Dynamic AMOLED 2X de 6.8" QHD+ 120Hz con Corning Gorilla Armor', 'Procesador Snapdragon 8 Gen 3 for Galaxy con 12 GB de RAM', 'Cuádruple cámara: 200 MP + Teleobjetivo 50 MP (5x) + Tele 10 MP (3x) + Ultra Gran Angular 12 MP', 'S-Pen incluido, batería de 5.000 mAh (45W) y Galaxy AI completa'],
+        variants: ['256 GB - Gris Titanio / Negro Titanio / Violeta Titanio - $4.599.000', '512 GB - $5.099.000', '1 TB - $5.799.000']
+      },
+      {
+        id: 'samsung-s24-plus',
+        category: 'samsung',
+        badge: 'Gama S24 (2024)',
+        title: 'Samsung Galaxy S24+ 5G (256GB - 512GB)',
+        price: 3699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Resolución QHD+ de máxima nitidez en 6.7 pulgadas, 12 GB de memoria RAM, batería de 4.900 mAh y todas las herramientas de Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" QHD+ LTPO 1-120Hz (2.600 nits)', '12 GB de RAM y 256 GB / 512 GB de almacenamiento ultrarrápido', 'Triple cámara de 50 MP con Zoom con IA y Super HDR', 'Batería de 4.900 mAh con carga superrápida de 45W e IP68'],
+        variants: ['256 GB - Negro Ónix / Gris Mármol / Violeta Cobalto - $3.699.000', '512 GB - $4.099.000']
+      },
+      {
+        id: 'samsung-s24',
+        category: 'samsung',
+        badge: 'Gama S24 (2024)',
+        title: 'Samsung Galaxy S24 5G (128GB - 256GB)',
+        price: 2999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Diseño compacto de 6.2 pulgadas con acabado satinado en Armor Aluminum, pantalla de 2.600 nits, cámara triple con zoom óptico 3x y Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.2" FHD+ LTPO 1-120Hz con biseles mínimos', 'Triple cámara: 50 MP Principal + 10 MP Teleobjetivo 3x + 12 MP Ultra Gran Angular', 'Batería de 4.000 mAh optimizada por IA y resistencia al agua IP68', 'Circle to Search, Live Translate y Edición Generativa de Fotos'],
+        variants: ['128 GB - $2.999.000', '256 GB - $3.299.000']
+      },
+      {
+        id: 'samsung-s24-fe',
+        category: 'samsung',
+        badge: 'Gama S24 (2024) • Fan Edition',
+        title: 'Samsung Galaxy S24 FE 5G (128GB - 256GB)',
+        price: 2499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'La entrada ideal a la serie S24 y Galaxy AI con gran pantalla de 6.7 pulgadas, cámara ProVisual Engine de 50 MP y batería de 4.700 mAh.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" FHD+ 120Hz Gorilla Glass Victus+', 'Sistema de triple cámara de 50 MP con OIS y zoom óptico 3x de 8 MP', 'Batería de 4.700 mAh, carga inalámbrica y certificación IP68', 'Colores: Azul, Grafito, Menta y Amarillo'],
+        variants: ['128 GB - $2.499.000', '256 GB - $2.799.000']
       }
     ];
 
@@ -3121,6 +3401,55 @@
           { name: "Comparar modelos de iPhone", href: "iphone-16-pro.html#comparativa" }
         ]
       },
+      airpods: {
+        categoryTitle: "Explorar AirPods (Línea 2026)",
+        primaryLinks: [
+          { name: "Ver todos los modelos de AirPods (7)", action: "filterAndScroll('airpods')", bold: true },
+          { name: "AirPods Pro 3 (Nuevo 2026 • Chip H3 + Salud)", action: "openProductModal('airpods-pro-3')" },
+          { name: "AirPods Max 2 (Nuevo 2026 • Lossless USB-C)", action: "openProductModal('airpods-max-2')" },
+          { name: "AirPods 4 con Cancelación Activa (ANC)", action: "openProductModal('airpods-4-anc')" },
+          { name: "AirPods 4 (Estándar • Chip H2)", action: "openProductModal('airpods-4')" },
+          { name: "AirPods Pro 2 (USB-C) & AirPods 3.ª Gen", action: "openProductModal('airpods-pro-2')" }
+        ],
+        secondaryTitle: "Comprar AirPods",
+        secondaryLinks: [
+          { name: "Reservar AirPods Pro 3 (2026)", action: "openProductModal('airpods-pro-3')" },
+          { name: "Comprar AirPods Max 2 Hi-Fi", action: "openProductModal('airpods-max-2')" },
+          { name: "Ver Catálogo de AirPods (7 modelos)", action: "filterAndScroll('airpods')" },
+          { name: "Financiar AirPods al 0% por WhatsApp", action: "directFinanceWhatsApp('AirPods Pro 3 / AirPods Max 2', 1399000)" }
+        ],
+        tertiaryTitle: "Más para AirPods",
+        tertiaryLinks: [
+          { name: "Audio Espacial y Lossless H3", action: "openInfoModal('sistemas')" },
+          { name: "Salud Auditiva y Sensores Biométricos", action: "openInfoModal('soporte')" },
+          { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" }
+        ]
+      },
+      samsung: {
+        categoryTitle: "Explorar Samsung Galaxy (S24 a S26 2026)",
+        primaryLinks: [
+          { name: "Ver todos los Samsung Galaxy (17)", action: "filterAndScroll('samsung')", bold: true },
+          { name: "Galaxy S26 Ultra, S26+, S26 & S26 Slim (2026)", action: "openProductModal('samsung-s26-ultra')" },
+          { name: "Plegables Galaxy Z Fold 7 & Z Flip 7 (2026)", action: "openProductModal('samsung-z-fold-7')" },
+          { name: "Galaxy S25 Ultra, S25 Edge, S25+, S25 & S25 FE", action: "openProductModal('samsung-s25-ultra')" },
+          { name: "Plegables Galaxy Z Fold 6 & Z Flip 6", action: "openProductModal('samsung-z-fold-6')" },
+          { name: "Galaxy S24 Ultra, S24+, S24 & S24 FE", action: "openProductModal('samsung-s24-ultra')" }
+        ],
+        secondaryTitle: "Comprar Samsung Galaxy",
+        secondaryLinks: [
+          { name: "Comprar Galaxy S26 Ultra 5G", action: "openProductModal('samsung-s26-ultra')" },
+          { name: "Comprar Galaxy S25 Ultra / S24 Ultra", action: "openProductModal('samsung-s25-ultra')" },
+          { name: "Ver los 17 Modelos Samsung Galaxy", action: "filterAndScroll('samsung')" },
+          { name: "Plan Canje: Recibimos tu Galaxy o iPhone", href: "#canje" },
+          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('Samsung Galaxy S26 Ultra / S25 Ultra', 5599000)" }
+        ],
+        tertiaryTitle: "Respaldo Oficial Samsung",
+        tertiaryLinks: [
+          { name: "Garantía Oficial 1 Año en Colombia", action: "openInfoModal('garantia')" },
+          { name: "Galaxy AI 3.0 & One UI 8", action: "openInfoModal('sistemas')" },
+          { name: "Servicio Técnico Especializado", action: "openInfoModal('soporte')" }
+        ]
+      },
       watch: {
         categoryTitle: "Explorar Apple Watch (Línea 2026)",
         primaryLinks: [
@@ -3369,12 +3698,12 @@
     // ============================================================================
     // SISTEMA CMS DE ADMINISTRADOR EN TIEMPO REAL (PRODUCTOS, OFERTAS, IMÁGENES, CATEGORÍAS)
     // ============================================================================
-    const CMS_STORAGE_KEY = 'redcover_cms_state_v3';
+    const CMS_STORAGE_KEY = 'redcover_cms_state_v4';
     const factoryCatalogDevices = JSON.parse(JSON.stringify(allCatalogDevices));
 
     const defaultCMSData = {
       whatsappNumber: '573001234567',
-      topbarText: '🇨🇴 Lanzamiento 2026: Nuevo iPhone 18 Pro, 18 Pro Max & iPhone Duo Plegable • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
+      topbarText: '🇨🇴 Lanzamiento 2026: iPhone 18 Pro, AirPods Pro 3 & Samsung Galaxy S26 Ultra • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
       hero: {
         authBadge: 'Apple Authorized Reseller • Colombia',
         clientsBadge: '+10.000 Clientes Satisfechos',
@@ -3450,10 +3779,12 @@
         }
       ],
       deviceCategories: [
-        { id: 'iphone', name: 'iPhone (11 al 18 Pro)', shortName: 'iPhone', subtitle: 'Del 11 al 18 Pro', icon: 'smartphone' },
+        { id: 'iphone', name: 'iPhone (11 al 18 Pro & Duo)', shortName: 'iPhone', subtitle: '34 Modelos Oficiales', icon: 'smartphone' },
+        { id: 'airpods', name: 'AirPods (Línea 2026)', shortName: 'AirPods', subtitle: 'Pro 3, Max 2 y AirPods 4', icon: 'headphones' },
         { id: 'watch', name: 'Apple Watch (Línea 2026)', shortName: 'Apple Watch', subtitle: 'Ultra 3, S12 y SE 3', icon: 'watch' },
         { id: 'mac', name: 'Mac & MacBook (M5 / M4)', shortName: 'Mac & MacBook', subtitle: 'Chips M5, M4 y M3', icon: 'laptop_mac' },
-        { id: 'ipad', name: 'iPad (M5, M4, Air y Mini)', shortName: 'iPad', subtitle: 'Pro M5, Air M4 y Mini', icon: 'tablet_mac' }
+        { id: 'ipad', name: 'iPad (M5, M4, Air y Mini)', shortName: 'iPad', subtitle: 'Pro M5, Air M4 y Mini', icon: 'tablet_mac' },
+        { id: 'samsung', name: 'Samsung Galaxy (S24 al S26)', shortName: 'Samsung Galaxy', subtitle: 'S26, Z Fold 7, S25 y S24', icon: 'phone_android' }
       ],
       accessoryCategories: [
         { id: 'magsafe', name: 'Carga & MagSafe' },
@@ -3662,7 +3993,9 @@
           { name: 'iPhone 12 / iPhone 11', value: 950000 },
           { name: 'MacBook Pro / Air (Chip M1, M2, M3 o M4)', value: 3200000 },
           { name: 'iPad Pro / iPad Air (Chip M1, M2 o M4)', value: 2100000 },
-          { name: 'Apple Watch Ultra / Series 8, 9, 10 o 11', value: 1200000 }
+          { name: 'Apple Watch Ultra / Series 8, 9, 10 o 11', value: 1200000 },
+          { name: 'Samsung Galaxy S25 Ultra / Z Fold 6', value: 3400000 },
+          { name: 'Samsung Galaxy S24 Ultra / S24+', value: 2600000 }
         ]
       },
       stores: [
@@ -5227,7 +5560,7 @@
       updateCartUI();
       if (window.location.hash) {
         const h = window.location.hash.replace('#', '');
-        if (['iphone', 'mac', 'ipad', 'watch'].includes(h)) {
+        if (['iphone', 'airpods', 'mac', 'ipad', 'watch', 'samsung'].includes(h)) {
           filterDevices(h);
         }
       }
