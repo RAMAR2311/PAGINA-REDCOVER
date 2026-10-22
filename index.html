@@ -176,7 +176,7 @@
       <div class="border-b border-gray-100 pb-2">
         <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos</span>
       </div>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (16 Pro, 16, 15 Pro, 15, 14, 13)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (18 Pro, 18, 17 Pro, 16 Pro, 15, 14, 13, 12, 11)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('watch')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">Apple Watch (Ultra 2, Series 10, SE)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('mac')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">MacBook & Mac (Pro M3, Air M3, iMac, Studio)</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('ipad')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">iPad (Pro M4, Air M2, 10ª Gen, mini)</a>
@@ -205,10 +205,12 @@
       </div>
       <div class="relative">
         <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
-        <input type="text" id="search-input" placeholder="Busca 'iPhone 16 Pro', 'MacBook', 'AirPods', 'iPad', 'Watch', 'MagSafe'..." class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm text-gray-900" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Busca 'iPhone 18', 'iPhone 17', 'iPhone 16 Pro', 'MacBook', 'AirPods'..." class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm text-gray-900" autocomplete="off">
       </div>
       <div class="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-gray-500">
         <span class="font-semibold text-gray-700 mr-1">Búsquedas rápidas:</span>
+        <button type="button" onclick="triggerQuickSearch('iPhone 18')" class="px-2.5 py-1 rounded-full bg-red-50 text-primary border border-red-200 hover:bg-primary hover:text-white transition-colors font-bold">✨ iPhone 18 Pro</button>
+        <button type="button" onclick="triggerQuickSearch('iPhone 17')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPhone 17</button>
         <button type="button" onclick="triggerQuickSearch('iPhone 16')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">iPhone 16 Pro</button>
         <button type="button" onclick="triggerQuickSearch('MacBook')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">MacBook M3</button>
         <button type="button" onclick="triggerQuickSearch('AirPods')" class="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-primary transition-colors font-medium">AirPods Pro 2</button>
@@ -256,48 +258,52 @@
 
       <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight max-w-4xl text-gray-900 mb-6 leading-tight">
-        iPhone 16 Pro. <br>
+        iPhone 18 Pro. <br>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-neutral-700 to-primary">
-          Titanio puro. Poder A18 Pro.
+          Titanio Líquido. Potencia Chip A20 Pro & Neural Quantum.
         </span>
       </h1>
 
       <p class="text-base sm:text-lg text-gray-600 max-w-2xl mb-8 leading-relaxed font-normal">
-        Diseñado con titanio de grado aeroespacial. Control de Cámara avanzado. Una autonomía extraordinaria y el chip más potente jamás visto en un smartphone.
+        Bienvenido al futuro de Apple. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 con procesamiento cuántico local y zoom óptico periscópico continuo de 10x.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row items-center gap-4 mb-14 w-full sm:w-auto">
-        <a class="w-full sm:w-auto px-8 py-4 rounded-full crimson-btn text-white font-semibold text-sm shadow-lg flex items-center justify-center gap-2" href="iphone-16-pro.html">
-          <span>Comprar Ahora</span>
+        <a class="w-full sm:w-auto px-8 py-4 rounded-full crimson-btn text-white font-semibold text-sm shadow-lg flex items-center justify-center gap-2" href="#catalogo-dispositivos" onclick="filterDevices('iphone')">
+          <span>Reservar iPhone 18 Pro</span>
           <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
         <a class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-gray-300 text-gray-800 font-semibold text-sm hover:border-primary hover:text-primary transition-all shadow-sm flex items-center justify-center gap-2" href="#canje">
           <span class="material-symbols-outlined text-sm">swap_horiz</span>
-          <span>Cotizar Plan Canje</span>
+          <span>Entregar mi iPhone en Plan Canje</span>
         </a>
       </div>
 
       <!-- Cinematic Hero Card -->
       <div class="relative w-full rounded-3xl overflow-hidden glass-card p-2 crimson-glow border border-gray-200 bg-white">
         <div class="relative h-[380px] sm:h-[480px] md:h-[580px] w-full rounded-2xl overflow-hidden bg-zinc-950">
-          <img class="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700" alt="iPhone 16 Pro en acabado Titanio Natural" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk">
+          <img class="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700" alt="iPhone 18 Pro en acabado Titanio Carmesí Profundo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk">
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
           
           <div class="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-left">
             <div>
-              <span class="inline-block px-3 py-1 rounded-full bg-red-600/90 text-white text-[11px] uppercase tracking-wider font-bold mb-2">Novedad Exclusiva</span>
-              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Desde $4.999.000 COP</h3>
-              <p class="text-sm text-zinc-300 font-medium">Hasta 24 cuotas sin interés de $208.291 COP con bancos aliados</p>
+              <span class="inline-block px-3 py-1 rounded-full bg-red-600/90 text-white text-[11px] uppercase tracking-wider font-bold mb-2">Lanzamiento Mundial • Próxima Generación</span>
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">iPhone 18 Pro Max • Desde $6.499.000 COP</h3>
+              <p class="text-sm text-zinc-300 font-medium">Hasta 24 cuotas sin interés de $270.791 COP con bancos aliados y 1 año de garantía oficial Apple</p>
             </div>
             <div class="flex items-center gap-3">
-              <a href="iphone-16-pro.html" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+              <button onclick="openProductModal('iphone-18-pro')" class="crimson-btn text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                 <span class="material-symbols-outlined text-base">tune</span>
-                Personalizar & Comprar
-              </a>
+                Ficha Técnica iPhone 18 Pro
+              </button>
               <a href="iphone-16-pro.html" class="inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white hover:underline bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/20">
-                Ficha técnica <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                Ver iPhone 16 Pro <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </a>
+            </div>
+          </div>
+        </div>
+      </div>
             </div>
           </div>
         </div>
@@ -313,7 +319,7 @@
           </div>
           <div>
             <div class="text-xs font-bold text-gray-900">iPhone</div>
-            <div class="text-[11px] text-gray-500">Serie 16 y 15 (6)</div>
+            <div class="text-[11px] text-gray-500">Serie 18 a 11 (24)</div>
           </div>
         </a>
 
@@ -562,10 +568,10 @@
       <!-- Pestañas de Categoría de Dispositivos -->
       <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8" id="device-category-tabs">
         <button type="button" onclick="filterDevices('all')" data-dev-filter="all" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all whitespace-nowrap">
-          Todos los Equipos (26)
+          Todos los Equipos (34)
         </button>
         <button type="button" onclick="filterDevices('iphone')" data-dev-filter="iphone" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (16)
+          <span class="material-symbols-outlined text-base">phone_iphone</span> iPhone (24)
         </button>
         <button type="button" onclick="filterDevices('mac')" data-dev-filter="mac" class="dev-tab-btn px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
           <span class="material-symbols-outlined text-base">laptop_mac</span> Mac & MacBook (4)
@@ -781,6 +787,12 @@
               <div>
                 <label for="device-select" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">1. Selecciona tu dispositivo actual</label>
                 <select id="device-select" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 text-sm font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm">
+                  <option value="4200000">iPhone 17 Pro Max (256GB) — Hasta $4.200.000 COP</option>
+                  <option value="3700000">iPhone 17 Pro (128GB) — Hasta $3.700.000 COP</option>
+                  <option value="3300000">iPhone 17 (128GB) — Hasta $3.300.000 COP</option>
+                  <option value="3500000">iPhone 16 Pro Max (256GB) — Hasta $3.500.000 COP</option>
+                  <option value="3100000">iPhone 16 Pro (128GB) — Hasta $3.100.000 COP</option>
+                  <option value="2600000">iPhone 16 (128GB) — Hasta $2.600.000 COP</option>
                   <option value="3250000">iPhone 15 Pro Max (256GB)</option>
                   <option value="2850000">iPhone 15 Pro (128GB)</option>
                   <option value="2400000">iPhone 15 (128GB)</option>
@@ -1594,6 +1606,105 @@
     const IMG_CASE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we";
 
     const allCatalogDevices = [
+      // ==========================================
+      // LÍNEA IPHONE 18 (NUEVA GENERACIÓN INSIGNIA)
+      // ==========================================
+      {
+        id: 'iphone-18-pro-max',
+        category: 'iphone',
+        badge: 'Nuevo Buque Insignia 2026',
+        title: 'iPhone 18 Pro Max (256GB - 2TB)',
+        price: 6999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'La máxima expresión tecnológica: Chasis de Titanio Líquido, Chip A20 Pro Cuántico y zoom periscópico continuo de 10x.',
+        specs: ['Pantalla Super Retina XDR 6.9" ProMotion 240Hz sin marcos', 'Chip A20 Pro a 2nm con Neural Engine de 64 núcleos para IA en tiempo real', 'Cámara Ultra Fusión de 108 MP + Teleobjetivo periscópico continuo 10x', 'Batería de Grafeno de hasta 38 horas de reproducción continua', 'Conectividad Satelital Bidireccional de banda ancha'],
+        variants: ['256 GB - $6.999.000', '512 GB - $7.999.000', '1 TB - $9.199.000', '2 TB - $10.499.000']
+      },
+      {
+        id: 'iphone-18-pro',
+        category: 'iphone',
+        badge: 'Titanio Líquido',
+        title: 'iPhone 18 Pro (256GB - 1TB)',
+        price: 5999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Potencia Pro en 6.3": Chasis aeroespacial ultraliviano, Face ID bajo pantalla y Apple Intelligence 3.0.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion 240Hz con Face ID invisible', 'Chip A20 Pro con GPU cuántica para gaming de consola 120fps nativo', 'Grabación de video holográfico Spatial Pro 8K para Apple Vision Pro', 'Carga ultrarrápida MagSafe 3 de 45W (50% en 15 minutos)'],
+        variants: ['256 GB - $5.999.000', '512 GB - $6.999.000', '1 TB - $8.199.000']
+      },
+      {
+        id: 'iphone-18',
+        category: 'iphone',
+        badge: 'Próxima Generación',
+        title: 'iPhone 18 & 18 Plus (128GB - 512GB)',
+        price: 4999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Revolución en diseño con chasis de cristal cerámico ultrarresistente, Chip A20 y cámara Fusion de 64 MP.',
+        specs: ['Pantalla Super Retina XDR 6.1" (o 6.7" en Plus) con 120Hz ProMotion', 'Chip A20 Bionic con arquitectura de 2 nanómetros ultraeficiente', 'Botón de Acción Capacitivo de 2ª generación con sensor de gestos', 'Colores: Carmesí Titanio, Blanco Perla, Azul Cósmico, Verde Aurora'],
+        variants: ['iPhone 18 128GB - $4.999.000', 'iPhone 18 256GB - $5.499.000', 'iPhone 18 Plus 256GB - $5.999.000']
+      },
+      {
+        id: 'iphone-18-air',
+        category: 'iphone',
+        badge: 'Diseño Ultradelgado 5mm',
+        title: 'iPhone 18 Air (Ultra Slim)',
+        price: 5499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El iPhone más delgado jamás concebido: apenas 5.2 mm de grosor con rendimiento Pro y chasis de titanio.',
+        specs: ['Chasis monocasco de titanio de solo 5.2 mm de grosor', 'Pantalla OLED ultrafina de 6.6 pulgadas y 120Hz', 'Chip A20 Bionic optimizado para disipación pasiva de calor', 'Cámara individual de 48 MP con sensor de gran tamaño'],
+        variants: ['256 GB - $5.499.000', '512 GB - $6.299.000']
+      },
+
+      // ==========================================
+      // LÍNEA IPHONE 17
+      // ==========================================
+      {
+        id: 'iphone-17-pro-max',
+        category: 'iphone',
+        badge: 'Potencia Extrema 17',
+        title: 'iPhone 17 Pro Max (256GB - 1TB)',
+        price: 6399000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Chip A19 Pro a 2nm, 12 GB de RAM unificada para modelos locales de IA y teleobjetivo de 48 MP con zoom óptico 5x.',
+        specs: ['Pantalla Super Retina XDR 6.9" antirreflejo con Ceramic Shield 2.0', 'Chip A19 Pro con trazado de rayos por hardware 3x más veloz', 'Triple cámara trasera de 48 MP en todos los sensores (Gran angular, Ultra gran angular y Tele)', 'Batería optimizada para hasta 35 horas de video'],
+        variants: ['256 GB - $6.399.000', '512 GB - $7.399.000', '1 TB - $8.599.000']
+      },
+      {
+        id: 'iphone-17-pro',
+        category: 'iphone',
+        badge: 'Pro 17',
+        title: 'iPhone 17 Pro (128GB - 1TB)',
+        price: 5399000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Estructura Pro de titanio pulido con cámara frontal de 24 MP de 6 elementos con estabilización óptica.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion Always-On', 'Chip A19 Pro de alto rendimiento con 12GB de memoria RAM', 'Grabación ProRes 4K a 120fps y video espacial para Vision Pro', 'Acabados: Titanio Azul Marino, Titanio Plata, Titanio Negro'],
+        variants: ['128 GB - $5.399.000', '256 GB - $5.899.000', '512 GB - $7.099.000', '1 TB - $8.199.000']
+      },
+      {
+        id: 'iphone-17-slim',
+        category: 'iphone',
+        badge: 'Innovación Slim',
+        title: 'iPhone 17 Slim / Air (128GB - 512GB)',
+        price: 4899000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Diseño prémium superdelgado con pantalla de 6.6 pulgadas y cuerpo de aluminio aeroespacial refinado.',
+        specs: ['Pantalla OLED de 6.6" con tasa de refresco adaptativa ProMotion', 'Chip A19 de alta eficiencia', 'Cámara única de 48 MP con IA de fusión computacional avanzada', 'Dynamic Island reducida y altavoces estéreo espaciales'],
+        variants: ['128 GB - $4.899.000', '256 GB - $5.399.000', '512 GB - $6.199.000']
+      },
+      {
+        id: 'iphone-17',
+        category: 'iphone',
+        badge: 'Apple Intelligence 2.0',
+        title: 'iPhone 17 & 17 Plus (128GB - 256GB)',
+        price: 4499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Toda la familia 17 incorpora pantalla ProMotion de 120Hz por primera vez, chip A19 y cámara selfie de 24 MP.',
+        specs: ['Pantalla Super Retina XDR de 6.1" y 6.7" ahora con 120Hz ProMotion', 'Chip Apple A19 con arquitectura térmica de grafito', 'Cámara Fusion de 48 MP con sensor avanzado y modo noche mejorado', 'Colores: Verde Menta, Rosa Cuarzo, Azul Hielo, Negro Mate'],
+        variants: ['iPhone 17 128GB - $4.499.000', 'iPhone 17 256GB - $4.999.000', 'iPhone 17 Plus 128GB - $4.999.000']
+      },
+
+      // ==========================================
+      // LÍNEA IPHONE 16
+      // ==========================================
       {
         id: 'iphone-16-pro',
         category: 'iphone',
@@ -2788,26 +2899,27 @@
         categoryTitle: "Explorar iPhone",
         primaryLinks: [
           { name: "Ver todos los modelos de iPhone", action: "filterAndScroll('iphone')", bold: true },
+          { name: "iPhone 18 Pro & Pro Max (Nuevo)", action: "openProductModal('iphone-18-pro-max')" },
+          { name: "iPhone 18 & 18 Air", action: "openProductModal('iphone-18')" },
+          { name: "iPhone 17 Pro & 17 Slim", action: "openProductModal('iphone-17-pro-max')" },
           { name: "iPhone 16 Pro & Pro Max", href: "iphone-16-pro.html" },
-          { name: "iPhone 16 & 16 Plus", action: "openProductModal('iphone-16')" },
-          { name: "iPhone 15 Pro Max", action: "openProductModal('iphone-15-pro-max')" },
-          { name: "iPhone 15", action: "openProductModal('iphone-15')" },
-          { name: "iPhone 14 & iPhone 13", action: "openProductModal('iphone-14-13')" }
+          { name: "iPhone 16, 15, 14, 13, 12 y 11", action: "filterAndScroll('iphone')" }
         ],
         secondaryTitle: "Comprar iPhone",
         secondaryLinks: [
+          { name: "Reservar iPhone 18 Pro", action: "openProductModal('iphone-18-pro')" },
           { name: "Personalizar iPhone 16 Pro", href: "iphone-16-pro.html" },
-          { name: "Ver Catálogo de iPhone", action: "filterAndScroll('iphone')" },
+          { name: "Ver Catálogo Completo (24 modelos)", action: "filterAndScroll('iphone')" },
           { name: "Accesorios MagSafe para iPhone", href: "#accesorios" },
           { name: "Plan Canje para iPhone", href: "#canje" },
-          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('iPhone 16 Pro', 4999000)" }
+          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / 16 Pro', 5999000)" }
         ],
         tertiaryTitle: "Más para el iPhone",
         tertiaryLinks: [
           { name: "Soporte técnico para iPhone", action: "openInfoModal('soporte')" },
-          { name: "iOS 18 y Apple Intelligence", action: "openInfoModal('sistemas')" },
+          { name: "iOS 18 / iOS 19 y Apple Intelligence", action: "openInfoModal('sistemas')" },
           { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" },
-          { name: "Comparar modelos de iPhone", href: "iphone-16-pro.html" }
+          { name: "Comparar modelos de iPhone", href: "iphone-16-pro.html#comparativa" }
         ]
       },
       watch: {
