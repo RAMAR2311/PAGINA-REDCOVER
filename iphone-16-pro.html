@@ -102,6 +102,49 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #A1A1AA;
     }
+
+    /* ==========================================
+       SISTEMA DE MODO OSCURO COMPLETO (html.dark)
+       ========================================== */
+    html.dark body {
+      background-color: #09090B !important;
+      color: #F4F4F5 !important;
+    }
+    html.dark .glass-tier-1 {
+      background: rgba(15, 15, 18, 0.90) !important;
+      border-color: #27272A !important;
+    }
+    html.dark .glass-tier-2 {
+      background: #18181B !important;
+      border-color: #27272A !important;
+    }
+    html.dark .bg-white,
+    html.dark .bg-white\/90,
+    html.dark .bg-white\/95 {
+      background-color: #18181B !important;
+    }
+    html.dark .bg-gray-50,
+    html.dark .bg-gray-100 {
+      background-color: #27272A !important;
+    }
+    html.dark .text-gray-900,
+    html.dark .text-gray-800 {
+      color: #F4F4F5 !important;
+    }
+    html.dark .text-gray-700,
+    html.dark .text-gray-600 {
+      color: #A1A1AA !important;
+    }
+    html.dark .text-gray-500 {
+      color: #71717A !important;
+    }
+    html.dark .border-gray-200,
+    html.dark .border-gray-200\/80,
+    html.dark .border-gray-200\/90,
+    html.dark .border-gray-300,
+    html.dark .border-gray-100 {
+      border-color: #27272A !important;
+    }
   </style>
 </head>
 
@@ -131,10 +174,13 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation con Mega Menú desplegable Apple -->
-      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8" id="nav-container">
+      <!-- Desktop Navigation con Mega Menú desplegable Apple & Samsung -->
+      <nav class="hidden md:flex items-center space-x-5 lg:space-x-7" id="nav-container">
         <button class="nav-item-btn text-sm font-semibold text-primary transition-colors py-2 flex items-center gap-1" data-menu="iphone">
           iPhone
+        </button>
+        <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="airpods">
+          AirPods
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="watch">
           Watch
@@ -144,6 +190,9 @@
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="ipad">
           iPad
+        </button>
+        <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="samsung">
+          Samsung
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="accesorios">
           Accesorios
@@ -156,8 +205,8 @@
         </button>
       </nav>
 
-      <!-- Trailing Action: Ofertas + Icons -->
-      <div class="flex items-center gap-3 lg:gap-4">
+      <!-- Trailing Action: Ofertas + Dark Mode + Icons -->
+      <div class="flex items-center gap-2.5 lg:gap-3.5">
         <a class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full crimson-btn text-white text-xs font-semibold shadow-sm" href="index.html#ofertas">
           <span class="material-symbols-outlined text-sm">local_fire_department</span>
           Ofertas
@@ -165,6 +214,9 @@
         <a href="index.html" class="text-xs font-semibold text-gray-600 hover:text-primary border border-gray-200 px-3 py-1.5 rounded-full hidden lg:inline-flex items-center gap-1 bg-white shadow-sm">
           <span class="material-symbols-outlined text-sm">home</span> Inicio
         </a>
+        <button aria-label="Alternar Modo Oscuro" id="dark-mode-toggle-btn" onclick="toggleDarkMode()" class="text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100 border border-gray-200/80" type="button" title="Alternar Modo Oscuro / Claro">
+          <span class="material-symbols-outlined text-[20px]" id="dark-mode-icon">dark_mode</span>
+        </button>
         <button aria-label="Bolsa de compras" class="relative text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100" onclick="openCartDrawer()" type="button">
           <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
           <span class="absolute top-0 right-0 w-5 h-5 rounded-full bg-primary text-white text-[10px] flex items-center justify-center font-bold border-2 border-white" id="bag-badge">1</span>
@@ -185,7 +237,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-baseline gap-3">
         <h1 class="text-base sm:text-lg font-bold text-gray-900 tracking-tight" id="sticky-title">iPhone 16 Pro</h1>
-        <span class="hidden sm:inline-block text-[11px] font-mono px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">Titanio Grado 5</span>
+        <span class="hidden sm:inline-block text-[11px] font-mono px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200" id="sticky-badge">Titanio Grado 5</span>
       </div>
       <div class="flex items-center gap-4 sm:gap-6">
         <div class="text-right">
@@ -208,7 +260,7 @@
       <div class="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 shadow-sm">
         <div class="flex items-center gap-2 flex-wrap">
           <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
-          <span class="font-medium">Distribuidor Autorizado Oficial Apple Colombia • Factura legal con IVA y DIAN</span>
+          <span class="font-medium">Distribuidor Autorizado Oficial Apple &amp; Samsung Colombia • Factura legal DIAN</span>
           <span class="hidden sm:inline text-gray-300">•</span>
           <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-50 text-gray-900 border border-red-100 font-bold text-[11px]">
             <span class="text-amber-500 font-bold">★★★★★</span>
@@ -216,7 +268,7 @@
           </div>
         </div>
         <div class="flex items-center gap-4 font-mono text-[11px]">
-          <span class="flex items-center gap-1.5 font-semibold text-gray-700"><span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span> Stock disponible en Bogotá, Medellín y Cali</span>
+          <span class="flex items-center gap-1.5 font-semibold text-gray-700"><span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span> Stock en Bogotá: San Andresito de la 38 C.C. Caribe (Locales 136 y 197)</span>
           <span class="hidden md:inline text-gray-300">•</span>
           <span class="hidden md:flex items-center gap-1 text-emerald-600 font-semibold"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Envío Exprés Gratis</span>
         </div>
@@ -224,12 +276,12 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- 3. HERO INTERACTIVO + CONFIGURADOR DE PRODUCTO -->
+    <!-- 3. HERO INTERACTIVO + CONFIGURADOR UNIVERSAL DE PRODUCTOS -->
     <!-- ========================================== -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       
       <!-- LEFT COLUMN: CINEMATIC HARDWARE STAGE (7 COLS) -->
-      <div class="lg:col-span-7 sticky top-36 space-y-6">
+      <div class="lg:col-span-7 lg:sticky lg:top-36 space-y-6">
         
         <!-- Hero Device Stage con fondo claro premium -->
         <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-3xl glass-tier-2 flex flex-col items-center justify-center p-6 overflow-hidden group bg-gradient-to-b from-gray-50/80 via-white to-gray-50/50 border border-gray-200/90 shadow-sm">
@@ -238,13 +290,13 @@
 
           <!-- Live Spec Badges overlay -->
           <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 text-[11px] font-mono text-gray-800 shadow-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 text-[11px] font-mono text-gray-800 shadow-sm" id="hero-stock-pill">
               <span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span>
               En Stock Colombia
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/90 backdrop-blur-md border border-red-200 text-[11px] font-semibold text-primary shadow-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/90 backdrop-blur-md border border-red-200 text-[11px] font-semibold text-primary shadow-sm" id="hero-badge-pill">
               <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
-              Apple Intelligence Ready
+              <span id="hero-badge-text">Apple Intelligence Ready</span>
             </span>
           </div>
 
@@ -257,37 +309,22 @@
 
           <!-- Main Interactive Device Presentation -->
           <div class="relative z-10 w-full h-full flex items-center justify-center transition-all duration-500 transform group-hover:scale-[1.02]">
-            <img class="max-h-[380px] sm:max-h-[440px] w-auto object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300" id="hero-main-device-image" alt="iPhone 16 Pro en acabado Titanio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM"/>
+            <img class="max-h-[360px] sm:max-h-[420px] w-auto object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 rounded-2xl" id="hero-main-device-image" alt="Dispositivo RedCover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM"/>
           </div>
 
-          <!-- Camera Control Highlight Pip -->
+          <!-- Highlight Pip at bottom of stage -->
           <div class="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between px-4 py-2.5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200 text-xs shadow-sm">
-            <div class="flex items-center gap-2 text-gray-800">
-              <span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
-              <span>Nuevo Botón <strong>Control de Cámara</strong> háptico de zafiro</span>
+            <div class="flex items-center gap-2 text-gray-800 truncate pr-2">
+              <span class="material-symbols-outlined text-primary text-[18px] shrink-0">verified</span>
+              <span id="hero-bottom-spec-1" class="truncate font-medium">Equipo 100% Original Sellado con Garantía Oficial</span>
             </div>
-            <span class="text-gray-500 hidden sm:inline font-medium">Zoom 5x Óptico en ambos modelos</span>
+            <span class="text-primary hidden sm:inline font-bold shrink-0" id="hero-bottom-spec-2">Factura Electrónica DIAN</span>
           </div>
         </div>
 
-        <!-- Thumbnail Gallery Strip -->
-        <div class="grid grid-cols-4 gap-3">
-          <button class="gallery-thumb active border-2 border-primary rounded-2xl p-2 bg-white transition-all shadow-sm text-center" onclick="changeHeroImage(0, 'Titanio Desierto')">
-            <img class="w-full h-16 object-contain rounded-xl bg-gray-50" alt="iPhone 16 Pro Desierto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO3c0BU_eK_1flLPj06L_Ft-49lrOuqgZIPRAh_vKPxBZnHkdlUboR61RhEYuKj81Bc1zrCjShT_KUsq8_OnuEQ3ka3YSas_3WyO_chLu-p4Lgd6bQIymjBRbkLf3hnlovL10aOdnxWubIQENUe2V1JSjsr0Yughog1zI4FIHpO-Dew7PweB5HYJhAygehpsqmUKHWIJbIFkoiFCkA9BAxP6PZpfTihSU3RehGlYNZlnmhzbm_D6fr"/>
-            <span class="block text-center text-[10px] font-mono text-gray-800 mt-1.5 font-bold truncate">Desierto</span>
-          </button>
-          <button class="gallery-thumb border border-gray-200 rounded-2xl p-2 bg-white transition-all hover:border-primary shadow-sm text-center" onclick="changeHeroImage(1, 'Titanio Natural')">
-            <img class="w-full h-16 object-contain rounded-xl bg-gray-50" alt="iPhone 16 Pro Natural" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9Vbp8i7NcqJPqqwjnib7N5kojQ12qGEvJgIy1wgV3-32WO0IHIp3LcK4Ii52b8UHFqKq4nvW7NQozR1cqvE9Qi9YJvFMfEglIWYtutmYXcOCAHk7kKQ1fAZlk8G6cnyTsgxyq8-axeHjd0Kz_VsZNFP_I2DfY1IYtOchlgLNey5Za6e4zt0u21jvBsIQptmckP2q5sEk66EL0qAqhSdjjneDIX9ws4Uhh05RrKjuOfyasw9Bl-f51"/>
-            <span class="block text-center text-[10px] font-mono text-gray-600 mt-1.5 font-medium truncate">Natural</span>
-          </button>
-          <button class="gallery-thumb border border-gray-200 rounded-2xl p-2 bg-white transition-all hover:border-primary shadow-sm text-center" onclick="changeHeroImage(2, 'Titanio Blanco')">
-            <img class="w-full h-16 object-contain rounded-xl bg-gray-50" alt="iPhone 16 Pro Blanco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKpi-7626i_BJoAesODslUPkoHF04It4WQfIRb2gDCzY-XPTt0M4AWO3WivVPvllUKPqKO1qhdw_EkyK6IsQgqWFmrYCyz666iavAdl6p3SM5Rd7J82vr0lZhy3YDHo9sPYN5PQUCyWDPW9pdYh6VzFQp3QVDOIaAfKgJXAz2givYj5_BDYXPsmJsCXvxGgS-JuiYI6ziK3EGAf1dO_3gPjpA3eRj_FrcGJ__DTBAC1ChH96IN4DBt"/>
-            <span class="block text-center text-[10px] font-mono text-gray-600 mt-1.5 font-medium truncate">Blanco</span>
-          </button>
-          <button class="gallery-thumb border border-gray-200 rounded-2xl p-2 bg-white transition-all hover:border-primary shadow-sm text-center" onclick="changeHeroImage(3, 'Titanio Negro')">
-            <img class="w-full h-16 object-contain rounded-xl bg-gray-50" alt="iPhone 16 Pro Negro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMv6ybGEqgj4q7JB0905STGqvKkmeSjkOwJKHIsW3lZQs4t7J9z3Amool_EzZPhTuq47-VhCiR1KPVV_-avHCio8xc3fr8wI60m9tDqXziuhwgWSjPM1LTVzemNhlB7eDtEfWXuEjN91U0oRvU3KQv-a9Q-5xFxWdZlqEEJzeVWzKrhgXeEuRV3YEQMRl6YOAUBssA02c0rygPJNmzDND3-L9BBigYBXR_GsW5GtkuUN7mn8VyrNqi"/>
-            <span class="block text-center text-[10px] font-mono text-gray-600 mt-1.5 font-medium truncate">Negro</span>
-          </button>
+        <!-- Thumbnail Gallery Strip (Dinámico según acabados del producto) -->
+        <div class="grid grid-cols-4 gap-3" id="gallery-thumbs-container">
+          <!-- Renderizado dinámicamente por JS -->
         </div>
 
         <!-- Value Badges Bento Box -->
@@ -297,17 +334,17 @@
               <span class="material-symbols-outlined text-[22px]">verified_user</span>
             </div>
             <div>
-              <p class="text-xs font-bold text-gray-900">Garantía 1 Año</p>
-              <p class="text-[11px] text-gray-500">Oficial Apple Colombia</p>
+              <p class="text-xs font-bold text-gray-900" id="value-warranty-title">Garantía 1 Año</p>
+              <p class="text-[11px] text-gray-500">Oficial en Colombia</p>
             </div>
           </div>
           <div class="p-4 rounded-2xl bg-white border border-gray-200 flex items-center gap-3 shadow-sm">
             <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-[22px]">rocket_launch</span>
+              <span class="material-symbols-outlined text-[22px]">storefront</span>
             </div>
             <div>
-              <p class="text-xs font-bold text-gray-900">Entrega 24 Horas</p>
-              <p class="text-[11px] text-gray-500">Bogotá y Medellín</p>
+              <p class="text-xs font-bold text-gray-900">2 Sedes en Bogotá</p>
+              <p class="text-[11px] text-gray-500">C.C. Caribe Loc. 136 y 197</p>
             </div>
           </div>
           <div class="p-4 rounded-2xl bg-white border border-gray-200 flex items-center gap-3 shadow-sm">
@@ -324,40 +361,36 @@
       </div>
 
       <!-- RIGHT COLUMN: PRODUCT CONFIGURATOR (5 COLS) -->
-      <div class="lg:col-span-5 space-y-7" id="configurador">
-        <!-- Header & Baseline Price -->
-        <div>
-          <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Configuración Personalizada</span>
-          <h2 class="text-3xl font-extrabold text-gray-900 mt-3 tracking-tight">Elige tu nuevo iPhone.</h2>
-          <p class="text-sm text-gray-600 mt-1">Diseñado para Apple Intelligence. Forjado en titanio ultraligero.</p>
+      <div class="lg:col-span-5 space-y-6" id="configurador">
+        <!-- Selector Rápido para cambiar de Producto sin salir de la página -->
+        <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="quick-device-switcher" class="text-[11px] font-mono uppercase tracking-wider text-gray-500 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm text-primary">devices</span> Cambiar Equipo a Configurar:
+            </label>
+            <a href="index.html#catalogo-dispositivos" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-0.5">
+              Ver los 64 equipos <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+          <select id="quick-device-switcher" onchange="switchConfiguredProduct(this.value)" class="w-full rounded-xl border-gray-300 bg-gray-50 text-xs font-bold text-gray-900 py-2.5 px-3 focus:border-primary focus:ring-primary">
+            <!-- Poblado dinámicamente con los productos de la tienda -->
+          </select>
         </div>
 
-        <!-- 1. MODEL SELECTION -->
-        <div class="space-y-3">
+        <!-- Header & Baseline Price -->
+        <div>
+          <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100" id="config-category-tag">Configuración Personalizada</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-3 tracking-tight" id="config-main-title">Elige tu nuevo iPhone 16 Pro.</h2>
+          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed" id="config-short-desc">Diseñado para Apple Intelligence. Forjado en titanio ultraligero.</p>
+        </div>
+
+        <!-- 1. MODEL FAMILY SWITCHER (Opcional: Modelos hermanos de la misma serie) -->
+        <div class="space-y-3" id="sibling-models-section">
           <label class="block text-sm text-gray-900 font-bold">
-            1. Modelo. <span class="text-gray-500 font-normal">¿Cuál es tu tamaño ideal?</span>
+            1. Modelo de la Serie. <span class="text-gray-500 font-normal">¿Cuál versión prefieres?</span>
           </label>
-          <div class="grid grid-cols-2 gap-3">
-            <!-- Pro 6.3" -->
-            <button class="relative p-4 rounded-2xl border-2 border-primary bg-white text-left transition-all crimson-border-glow shadow-sm" id="model-pro-btn" onclick="selectModel('pro')" type="button">
-              <span class="absolute top-3 right-3 text-primary material-symbols-outlined text-[20px]" id="check-pro">check_circle</span>
-              <p class="text-base font-bold text-gray-900">iPhone 16 Pro</p>
-              <p class="text-xs text-gray-500 mt-0.5">Pantalla Super Retina XDR de 6.3″</p>
-              <div class="mt-3 pt-2.5 border-t border-gray-100 flex justify-between items-baseline">
-                <span class="text-xs text-gray-500">Desde</span>
-                <span class="text-sm font-extrabold text-gray-900">$4.999.000</span>
-              </div>
-            </button>
-            <!-- Pro Max 6.9" -->
-            <button class="relative p-4 rounded-2xl border border-gray-200 bg-white text-left transition-all hover:border-gray-400 shadow-sm" id="model-promax-btn" onclick="selectModel('promax')" type="button">
-              <span class="absolute top-3 right-3 text-primary material-symbols-outlined text-[20px] hidden" id="check-promax">check_circle</span>
-              <p class="text-base font-bold text-gray-900">iPhone 16 Pro Max</p>
-              <p class="text-xs text-gray-500 mt-0.5">Pantalla Super Retina XDR de 6.9″</p>
-              <div class="mt-3 pt-2.5 border-t border-gray-100 flex justify-between items-baseline">
-                <span class="text-xs text-gray-500">Desde</span>
-                <span class="text-sm font-extrabold text-gray-900">$5.899.000</span>
-              </div>
-            </button>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sibling-models-container">
+            <!-- Poblado dinámicamente por JS -->
           </div>
         </div>
 
@@ -365,59 +398,21 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <label class="text-sm text-gray-900 font-bold">
-              2. Acabado. <span class="text-primary font-semibold" id="selected-color-name">Titanio Desierto</span>
+              2. Color / Acabado. <span class="text-primary font-semibold" id="selected-color-name">Titanio Desierto</span>
             </label>
           </div>
-          <div class="grid grid-cols-4 gap-2.5">
-            <!-- Desert -->
-            <button class="flex flex-col items-center p-3 rounded-2xl border-2 border-primary bg-white transition-all text-center crimson-border-glow shadow-sm" id="swatch-0" onclick="selectColor('Titanio Desierto', '#C5B29F', 0)" type="button">
-              <span class="w-8 h-8 rounded-full border border-gray-300 shadow-inner mb-1.5" style="background-color: #C5B29F;"></span>
-              <span class="text-[11px] font-mono text-gray-900 font-bold truncate w-full">Desierto</span>
-            </button>
-            <!-- Natural -->
-            <button class="flex flex-col items-center p-3 rounded-2xl border border-gray-200 bg-white hover:border-gray-400 transition-all text-center shadow-sm" id="swatch-1" onclick="selectColor('Titanio Natural', '#9B968F', 1)" type="button">
-              <span class="w-8 h-8 rounded-full border border-gray-300 shadow-inner mb-1.5" style="background-color: #9B968F;"></span>
-              <span class="text-[11px] font-mono text-gray-700 font-medium truncate w-full">Natural</span>
-            </button>
-            <!-- White -->
-            <button class="flex flex-col items-center p-3 rounded-2xl border border-gray-200 bg-white hover:border-gray-400 transition-all text-center shadow-sm" id="swatch-2" onclick="selectColor('Titanio Blanco', '#E8E8E6', 2)" type="button">
-              <span class="w-8 h-8 rounded-full border border-gray-300 shadow-inner mb-1.5" style="background-color: #E8E8E6;"></span>
-              <span class="text-[11px] font-mono text-gray-700 font-medium truncate w-full">Blanco</span>
-            </button>
-            <!-- Black -->
-            <button class="flex flex-col items-center p-3 rounded-2xl border border-gray-200 bg-white hover:border-gray-400 transition-all text-center shadow-sm" id="swatch-3" onclick="selectColor('Titanio Negro', '#343332', 3)" type="button">
-              <span class="w-8 h-8 rounded-full border border-gray-300 shadow-inner mb-1.5" style="background-color: #343332;"></span>
-              <span class="text-[11px] font-mono text-gray-700 font-medium truncate w-full">Negro</span>
-            </button>
+          <div class="grid grid-cols-4 gap-2.5" id="swatches-container">
+            <!-- Poblado dinámicamente por JS -->
           </div>
         </div>
 
-        <!-- 3. STORAGE CAPACITY -->
+        <!-- 3. STORAGE CAPACITY / VERSION -->
         <div class="space-y-3">
           <label class="block text-sm text-gray-900 font-bold">
-            3. Almacenamiento. <span class="text-gray-500 font-normal">¿Cuánto espacio necesitas?</span>
+            3. Capacidad y Versión. <span class="text-gray-500 font-normal">Elige la configuración ideal</span>
           </label>
-          <div class="grid grid-cols-2 gap-3" id="storage-container">
-            <!-- 128 GB (solo para Pro) -->
-            <button class="storage-btn p-4 rounded-2xl border-2 border-primary bg-white text-left transition-all crimson-border-glow shadow-sm" id="storage-128" onclick="selectStorage(128)" type="button">
-              <p class="text-base font-bold text-gray-900">128 GB</p>
-              <p class="text-xs text-primary font-bold mt-1" id="storage-price-128">$4.999.000 COP</p>
-            </button>
-            <!-- 256 GB -->
-            <button class="storage-btn p-4 rounded-2xl border border-gray-200 bg-white text-left hover:border-gray-400 transition-all shadow-sm" id="storage-256" onclick="selectStorage(256)" type="button">
-              <p class="text-base font-bold text-gray-900">256 GB</p>
-              <p class="text-xs text-gray-600 font-medium mt-1" id="storage-price-256">$5.599.000 COP</p>
-            </button>
-            <!-- 512 GB -->
-            <button class="storage-btn p-4 rounded-2xl border border-gray-200 bg-white text-left hover:border-gray-400 transition-all shadow-sm" id="storage-512" onclick="selectStorage(512)" type="button">
-              <p class="text-base font-bold text-gray-900">512 GB</p>
-              <p class="text-xs text-gray-600 font-medium mt-1" id="storage-price-512">$6.799.000 COP</p>
-            </button>
-            <!-- 1 TB -->
-            <button class="storage-btn p-4 rounded-2xl border border-gray-200 bg-white text-left hover:border-gray-400 transition-all shadow-sm" id="storage-1024" onclick="selectStorage(1024)" type="button">
-              <p class="text-base font-bold text-gray-900">1 TB</p>
-              <p class="text-xs text-gray-600 font-medium mt-1" id="storage-price-1024">$7.999.000 COP</p>
-            </button>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="storage-container">
+            <!-- Poblado dinámicamente por JS -->
           </div>
         </div>
 
@@ -624,9 +619,9 @@
           <div class="pt-3 border-t border-gray-100 space-y-1.5 text-xs text-gray-600">
             <div class="flex items-center gap-2 text-gray-900 font-medium">
               <span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
-              <span><strong>Envío express asegurado:</strong> Llega mañana a Bogotá D.C.</span>
+              <span><strong>Envío express asegurado:</strong> Llega mañana a Bogotá D.C. y principales ciudades.</span>
             </div>
-            <p class="text-[11px] pl-6 text-gray-500">O retira sin costo en nuestras tiendas autorizadas Andino, El Tesoro (Medellín) o Jardín Plaza (Cali).</p>
+            <p class="text-[11px] pl-6 text-gray-500">O retira sin costo en nuestras 2 tiendas en Bogotá: <strong>San Andresito de la 38, Centro Comercial Caribe, Locales 136 y 197</strong>.</p>
           </div>
         </div>
 
@@ -639,66 +634,17 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- 4. KEY ENGINEERING HIGHLIGHTS (BENTO GRID) -->
+    <!-- 4. KEY ENGINEERING HIGHLIGHTS (BENTO GRID DINÁMICO) -->
     <!-- ========================================== -->
     <section id="ingenieria" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8 scroll-mt-28">
       <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Ingeniería Apple sin precedentes</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Titanio. Rendimiento A18 Pro. Máxima potencia.</h3>
-        <p class="text-sm text-gray-600">Diseñado milimétricamente para profesionales que exigen la cúspide de la tecnología móvil.</p>
+        <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100" id="eng-badge">Ingeniería sin precedentes</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight" id="eng-title">Especificaciones Técnicas Destacadas</h3>
+        <p class="text-sm text-gray-600" id="eng-subtitle">Diseñado milimétricamente para quienes exigen la cúspide de la tecnología.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Card 1: Chip A18 Pro -->
-        <div class="bg-white p-7 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-red-50 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-[26px]">memory</span>
-            </div>
-            <h4 class="text-lg font-bold text-gray-900">Chip A18 Pro</h4>
-            <p class="text-xs text-gray-600 leading-relaxed">
-              GPU de 6 núcleos con trazado de rayos por hardware 2x más veloz. Motor neuronal de 16 núcleos optimizado para flujos complejos de inteligencia generativa y edición ProRes 4K a 120 fps.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100 flex items-baseline justify-between text-xs font-mono text-gray-800">
-            <span class="text-gray-500">Rendimiento CPU</span>
-            <span class="text-primary font-bold">+20% vs A17 Pro</span>
-          </div>
-        </div>
-
-        <!-- Card 2: Camera Control & Fusion 48MP -->
-        <div class="bg-white p-7 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-red-50 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-[26px]">camera</span>
-            </div>
-            <h4 class="text-lg font-bold text-gray-900">Cámara Fusión 48 MP</h4>
-            <p class="text-xs text-gray-600 leading-relaxed">
-              Sensor quad-pixel de 2ª generación sin retraso de obturador, ultra gran angular de 48 MP con autoenfoque macro, y teleobjetivo tetraprisma de 5x tanto en el Pro como en el Pro Max.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100 flex items-baseline justify-between text-xs font-mono text-gray-800">
-            <span class="text-gray-500">Video Cinema</span>
-            <span class="text-primary font-bold">4K Dolby Vision 120 fps</span>
-          </div>
-        </div>
-
-        <!-- Card 3: Grade 5 Titanium Chassis -->
-        <div class="bg-white p-7 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-          <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-red-50 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-[26px]">shield</span>
-            </div>
-            <h4 class="text-lg font-bold text-gray-900">Titanio Grado 5</h4>
-            <p class="text-xs text-gray-600 leading-relaxed">
-              Estructura subyacente de aluminio 100% reciclado soldado por difusión térmica. Bordes los más delgados jamás vistos en un producto Apple y vidrio Ceramic Shield de última generación.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-gray-100 flex items-baseline justify-between text-xs font-mono text-gray-800">
-            <span class="text-gray-500">Batería Pro Max</span>
-            <span class="text-primary font-bold">Hasta 33 horas de video</span>
-          </div>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" id="engineering-specs-grid">
+        <!-- Poblado dinámicamente desde dev.specs -->
       </div>
     </section>
 
@@ -708,56 +654,22 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- 5. DIRECT COMPARISON (iPhone 16 Pro vs iPhone 15 Pro) -->
+    <!-- 5. EXPLORAR OTROS EQUIPOS DE LA MISMA CATEGORÍA -->
     <!-- ========================================== -->
     <section id="comparativa" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-8 scroll-mt-28">
-      <div class="text-center max-w-xl mx-auto space-y-2">
-        <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Comparativa Generacional</span>
-        <h3 class="text-2xl font-bold text-gray-900">iPhone 16 Pro vs. iPhone 15 Pro</h3>
-        <p class="text-xs text-gray-600">Mira todas las razones para actualizar tu dispositivo hoy mismo con RedCover.</p>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Comparar y Explorar</span>
+          <h3 class="text-2xl font-bold text-gray-900 mt-2" id="related-category-title">Otros modelos que te pueden interesar</h3>
+          <p class="text-xs text-gray-600">Haz clic en cualquier equipo para cargar su configurador de capacidad, color y financiación.</p>
+        </div>
+        <a class="text-xs text-primary hover:underline underline-offset-4 flex items-center gap-1 font-bold" href="index.html#catalogo-dispositivos">
+          Ver catálogo completo <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
       </div>
 
-      <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm">
-        <div class="grid grid-cols-3 p-4 sm:p-6 bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-900">
-          <div class="text-gray-500">Característica</div>
-          <div class="text-primary flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-primary"></span>
-            iPhone 16 Pro
-          </div>
-          <div class="text-gray-500">iPhone 15 Pro</div>
-        </div>
-        <div class="divide-y divide-gray-100 text-xs">
-          <div class="grid grid-cols-3 p-4 sm:p-6 hover:bg-gray-50/50 transition-colors">
-            <div class="font-semibold text-gray-900">Pantalla Super Retina XDR</div>
-            <div class="text-gray-900 font-bold">6.3″ y 6.9″ (Bordes ultrafinos)</div>
-            <div class="text-gray-500">6.1″ y 6.7″</div>
-          </div>
-          <div class="grid grid-cols-3 p-4 sm:p-6 hover:bg-gray-50/50 transition-colors">
-            <div class="font-semibold text-gray-900">Procesador</div>
-            <div class="text-primary font-bold">Chip A18 Pro (3nm 2ª gen)</div>
-            <div class="text-gray-500">Chip A17 Pro (3nm)</div>
-          </div>
-          <div class="grid grid-cols-3 p-4 sm:p-6 hover:bg-gray-50/50 transition-colors">
-            <div class="font-semibold text-gray-900">Control de Cámara</div>
-            <div class="text-primary font-bold">Botón háptico táctil dedicado</div>
-            <div class="text-gray-400">No disponible</div>
-          </div>
-          <div class="grid grid-cols-3 p-4 sm:p-6 hover:bg-gray-50/50 transition-colors">
-            <div class="font-semibold text-gray-900">Cámara Ultra Gran Angular</div>
-            <div class="text-gray-900 font-bold">48 MP con fotografía macro</div>
-            <div class="text-gray-500">12 MP</div>
-          </div>
-          <div class="grid grid-cols-3 p-4 sm:p-6 hover:bg-gray-50/50 transition-colors">
-            <div class="font-semibold text-gray-900">Teleobjetivo Óptico</div>
-            <div class="text-gray-900 font-bold">5x en Pro y Pro Max</div>
-            <div class="text-gray-500">3x en Pro / 5x solo en Max</div>
-          </div>
-          <div class="grid grid-cols-3 p-4 sm:p-6 hover:bg-gray-50/50 transition-colors">
-            <div class="font-semibold text-gray-900">Autonomía de Batería</div>
-            <div class="text-emerald-600 font-bold">Hasta 4 horas más de reproducción</div>
-            <div class="text-gray-500">Rendimiento estándar</div>
-          </div>
-        </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="related-devices-grid">
+        <!-- Poblado dinámicamente por JS -->
       </div>
     </section>
 
@@ -774,7 +686,7 @@
         <div>
           <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100">Ecosistema Completo</span>
           <h3 class="text-2xl font-bold text-gray-900 mt-2">Accesorios recomendados</h3>
-          <p class="text-xs text-gray-600">Protege y potencia al máximo tu nuevo iPhone 16 Pro desde el primer día.</p>
+          <p class="text-xs text-gray-600">Protege y potencia al máximo tu nuevo equipo desde el primer día (se agregan directo a la bolsa).</p>
         </div>
         <a class="text-xs text-primary hover:underline underline-offset-4 flex items-center gap-1 font-bold" href="index.html#accesorios">
           Ver todos los accesorios <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -834,7 +746,7 @@
             <div>
               <span class="text-[11px] font-mono text-gray-500 font-semibold">Carga Rápida</span>
               <h4 class="text-base font-bold text-gray-900 mt-0.5">Adaptador GaN 65W Dual USB-C</h4>
-              <p class="text-xs text-gray-600 mt-1">Carga tu iPhone 16 Pro al 50% en solo 25 minutos y alimenta tu Mac o iPad.</p>
+              <p class="text-xs text-gray-600 mt-1">Carga tu equipo al 50% en solo 25 minutos y alimenta tu Mac o iPad.</p>
             </div>
           </div>
           <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
@@ -847,12 +759,29 @@
       </div>
     </section>
 
-    <!-- WhatsApp Floating Action Button (Solo icono circular) -->
-    <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20quiero%20asesor%C3%ADa%20sobre%20el%20iPhone%2016%20Pro" target="_blank" class="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Chat en WhatsApp" aria-label="Chat en WhatsApp">
-      <svg class="w-7 h-7 fill-current transition-transform group-hover:scale-105" viewBox="0 0 24 24">
-        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-      </svg>
-    </a>
+    <!-- Floating Social Buttons (TikTok, Instagram, WhatsApp) -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
+      <!-- TikTok Button -->
+      <a href="https://www.tiktok.com/@redcover.colombia" target="_blank" rel="noopener noreferrer" class="bg-zinc-900 hover:bg-black text-white w-12 h-12 rounded-full shadow-xl border border-white/15 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Síguenos en TikTok" aria-label="Síguenos en TikTok">
+        <svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+        </svg>
+      </a>
+
+      <!-- Instagram Button -->
+      <a href="https://www.instagram.com/redcover.colombia" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white w-12 h-12 rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Síguenos en Instagram" aria-label="Síguenos en Instagram">
+        <svg class="w-6 h-6 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+
+      <!-- WhatsApp Button -->
+      <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20quiero%20asesor%C3%ADa%20sobre%20un%20equipo" target="_blank" class="bg-[#25D366] hover:bg-[#20bd5a] text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group" title="Chat en WhatsApp" aria-label="Chat en WhatsApp">
+        <svg class="w-7 h-7 fill-current transition-transform group-hover:scale-105" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+      </a>
+    </div>
   </main>
 
   <!-- ========================================== -->
@@ -866,18 +795,20 @@
             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
           </div>
           <span class="text-base font-bold text-gray-900">RedCover Colombia</span>
-          <span class="text-[10px] font-mono text-primary font-semibold px-2 py-0.5 rounded bg-red-50 border border-red-200">Distribuidor Autorizado Apple</span>
+          <span class="text-[10px] font-mono text-primary font-semibold px-2 py-0.5 rounded bg-red-50 border border-red-200">Distribuidor Autorizado Apple &amp; Samsung</span>
         </div>
         <div class="flex items-center gap-4 text-xs font-medium">
-          <span class="flex items-center gap-1 text-gray-800"><span class="material-symbols-outlined text-[16px] text-primary">public</span> Colombia (Español)</span>
+          <span class="flex items-center gap-1 text-gray-800"><span class="material-symbols-outlined text-[16px] text-primary">public</span> Bogotá D.C., Colombia</span>
         </div>
       </div>
 
       <div class="flex flex-wrap gap-x-6 gap-y-3 pt-2 font-medium">
-        <a class="hover:text-primary transition-colors text-gray-900" href="index.html#iphone">iPhone</a>
-        <a class="hover:text-primary transition-colors" href="index.html#watch">Apple Watch</a>
-        <a class="hover:text-primary transition-colors" href="index.html#mac">MacBook</a>
-        <a class="hover:text-primary transition-colors" href="index.html#ipad">iPad</a>
+        <a class="hover:text-primary transition-colors text-gray-900" href="index.html#catalogo-dispositivos">iPhone</a>
+        <a class="hover:text-primary transition-colors" href="index.html#catalogo-dispositivos">AirPods</a>
+        <a class="hover:text-primary transition-colors" href="index.html#catalogo-dispositivos">Apple Watch</a>
+        <a class="hover:text-primary transition-colors" href="index.html#catalogo-dispositivos">MacBook</a>
+        <a class="hover:text-primary transition-colors" href="index.html#catalogo-dispositivos">iPad</a>
+        <a class="hover:text-primary transition-colors" href="index.html#catalogo-dispositivos">Samsung Galaxy</a>
         <a class="hover:text-primary transition-colors" href="index.html#canje">Plan Canje</a>
         <a class="hover:text-primary transition-colors" href="index.html#accesorios">Accesorios</a>
         <a class="hover:text-primary transition-colors" href="index.html#tiendas">Nuestras Tiendas</a>
@@ -885,13 +816,13 @@
       </div>
 
       <p class="text-[11px] leading-relaxed text-gray-500">
-        * Precios expresados en Pesos Colombianos (COP) e incluyen el Impuesto sobre las Ventas (IVA). Los valores calculados en 24 cuotas con 0% de interés aplican exclusivamente para tarjetas de crédito expedidas en Colombia por Bancolombia, Davivienda, Nu y Banco de Bogotá sujetas a aprobación crediticia. La valoración final del Plan Canje está sujeta a verificación técnica presencial del equipo en puntos físicos RedCover autorizados. Apple, el logotipo de Apple, iPhone, Apple Watch, iPad y MagSafe son marcas comerciales registradas de Apple Inc.
+        * Precios expresados en Pesos Colombianos (COP) e incluyen el Impuesto sobre las Ventas (IVA). Los valores calculados en 24 cuotas con 0% de interés aplican exclusivamente para tarjetas de crédito expedidas en Colombia por Bancolombia, Davivienda, Nu y Banco de Bogotá sujetas a aprobación crediticia. La valoración final del Plan Canje está sujeta a verificación técnica presencial del equipo en nuestras tiendas físicas en Bogotá (San Andresito de la 38, Centro Comercial Caribe, Locales 136 y 197).
       </p>
 
       <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500">
-        <p>Copyright © 2026 RedCover Colombia. Distribuidor Autorizado de Apple. Todos los derechos reservados.</p>
+        <p>Copyright © 2026 RedCover Colombia. Todos los derechos reservados.</p>
         <div class="flex items-center gap-3 mt-2 sm:mt-0">
-          <span>Bogotá • Medellín • Cali • Barranquilla</span>
+          <span>Bogotá D.C. • San Andresito de la 38 • C.C. Caribe Locales 136 y 197</span>
         </div>
       </div>
     </div>
@@ -1005,10 +936,8 @@
               <label class="block text-[11px] font-bold text-gray-700 mb-1">Modalidad de Entrega</label>
               <select id="chk-delivery" class="w-full rounded-xl border-gray-300 text-xs py-2.5 px-3 focus:ring-primary focus:border-primary">
                 <option value="Envío Express Asegurado a Domicilio (Gratis)">Envío Express Asegurado a Domicilio (Gratis)</option>
-                <option value="Retiro en Tienda Bogotá - C.C. Andino Local 204">Retiro en Tienda Bogotá - C.C. Andino</option>
-                <option value="Retiro en Tienda Medellín - P.C. El Tesoro Local 1210">Retiro en Tienda Medellín - El Tesoro</option>
-                <option value="Retiro en Tienda Cali - C.C. Jardín Plaza Local 142">Retiro en Tienda Cali - Jardín Plaza</option>
-                <option value="Retiro en Tienda Barranquilla - C.C. Buenavista">Retiro en Tienda Barranquilla - Buenavista</option>
+                <option value="Retiro en Bogotá - San Andresito de la 38 C.C. Caribe Local 136">Retiro en Bogotá - San Andresito de la 38 C.C. Caribe Local 136</option>
+                <option value="Retiro en Bogotá - San Andresito de la 38 C.C. Caribe Local 197">Retiro en Bogotá - San Andresito de la 38 C.C. Caribe Local 197</option>
               </select>
             </div>
             <div>
@@ -1110,15 +1039,1101 @@
 
   <!-- Micro-interactions Script -->
   <script>
-    // State management for configurator
+    // Constantes de imágenes maestras
+    const IMG_IPHONE_PRO = "https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk";
+    const IMG_IPHONE_16 = "https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B";
+    const IMG_MACBOOK = "https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0";
+    const IMG_IPAD = "https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ";
+    const IMG_WATCH = "https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn";
+    const IMG_AIRPODS = "https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi";
+    const IMG_MAGSAFE = "https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48";
+    const IMG_CASE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we";
+
+    // Catálogo maestro completo de dispositivos (81 equipos)
+    let allCatalogDevices = [
+      // ==========================================
+      // GAMA IPHONE 18 (2026) — 3 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-duo-fold',
+        category: 'iphone',
+        badge: 'Gama 2026 • Primer Plegable Apple',
+        title: 'iPhone Duo (Primer Smartphone Plegable de Apple)',
+        price: 8999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Revolución histórica 2026: El primer smartphone plegable de Apple con bisagra de Metal Líquido sin pliegue visible, pantalla desplegable Tandem OLED de 7.9" y Chip A20 Pro.',
+        specs: ['Doble pantalla: Externa 6.3" Super Retina XDR + Interna Plegable 7.9" Tandem OLED 120Hz', 'Bisagra aeroespacial de Titanio y Metal Líquido con pliegue cero autorreparable', 'Chip A20 Pro de 2nm con multitarea dividida estilo iPadOS y Apple Intelligence 3.0', 'Sistema de triple cámara Pro de 48 MP + Face ID dual en ambas pantallas'],
+        variants: ['512 GB - Titanio Negro Espacial - $8.999.000', '1 TB - Titanio Plata - $10.199.000', '2 TB - Edición Especial Duo - $11.499.000']
+      },
+      {
+        id: 'iphone-18-pro-max',
+        category: 'iphone',
+        badge: 'Gama iPhone 18 (2026)',
+        title: 'iPhone 18 Pro Max (256GB - 2TB)',
+        price: 6999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'La máxima expresión tecnológica 2026: Chasis de Titanio Grado 5, Chip A20 Pro de 2nm, cámara con apertura mecánica variable y zoom periscópico 10x.',
+        specs: ['Pantalla Super Retina XDR 6.9" ProMotion 120Hz con Face ID bajo pantalla', 'Chip A20 Pro a 2nm con Neural Engine de 64 núcleos y 12 GB de RAM', 'Triple cámara trasera de 48 MP con apertura variable y Teleobjetivo 10x', 'Batería de alta densidad con hasta 38 horas de reproducción de video'],
+        variants: ['256 GB - $6.999.000', '512 GB - $7.999.000', '1 TB - $9.199.000', '2 TB - $10.499.000']
+      },
+      {
+        id: 'iphone-18-pro',
+        category: 'iphone',
+        badge: 'Gama iPhone 18 (2026)',
+        title: 'iPhone 18 Pro (256GB - 1TB)',
+        price: 5999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Potencia Pro insignia de 2026 en 6.3": Chasis de titanio aeroespacial, Face ID bajo pantalla, Chip A20 Pro y grabación Spatial Video 8K.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion con Dynamic Island ultrarreducida', 'Chip A20 Pro de 2nm con trazado de rayos por hardware de 3.ª generación', 'Sistema de cámaras Pro 48 MP en los 3 sensores + Control de Cámara háptico', 'Carga ultrarrápida MagSafe de 45W y conectividad Wi-Fi 7 + Satélite'],
+        variants: ['256 GB - $5.999.000', '512 GB - $6.999.000', '1 TB - $8.199.000']
+      },
+
+      // ==========================================
+      // GAMA IPHONE 17 (2025 / 2026) — 5 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-17-pro-max',
+        category: 'iphone',
+        badge: 'Gama iPhone 17 (2025/2026)',
+        title: 'iPhone 17 Pro Max (256GB - 1TB)',
+        price: 6299000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Chip A19 Pro, 12 GB de RAM para Apple Intelligence avanzada y triple cámara trasera íntegramente de 48 MP con zoom óptico 5x.',
+        specs: ['Pantalla Super Retina XDR 6.9" antirreflejo con Ceramic Shield de nueva generación', 'Chip A19 Pro con cámara de vapor térmica y 12 GB de RAM', 'Tres cámaras traseras de 48 MP (Principal, Ultra Gran Angular y Teleobjetivo 5x) + Frontal 24 MP', 'Hasta 35 horas de reproducción continua de video'],
+        variants: ['256 GB - $6.299.000', '512 GB - $7.299.000', '1 TB - $8.499.000']
+      },
+      {
+        id: 'iphone-17-pro',
+        category: 'iphone',
+        badge: 'Gama iPhone 17 (2025/2026)',
+        title: 'iPhone 17 Pro (256GB - 1TB)',
+        price: 5399000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Diseño Pro de 6.3" con triple sensor de 48 MP, cámara selfie TrueDepth de 24 MP y toda la potencia del Chip A19 Pro.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion Always-On 120Hz', 'Chip A19 Pro con 12 GB de memoria unificada', 'Grabación ProRes 4K a 120 fps y Audio Espacial de estudio', 'Acabados: Titanio Azul Oscuro, Titanio Natural, Titanio Plata y Negro'],
+        variants: ['256 GB - $5.399.000', '512 GB - $6.399.000', '1 TB - $7.599.000']
+      },
+      {
+        id: 'iphone-air',
+        category: 'iphone',
+        badge: 'Gama iPhone 17 • Ultra Delgado',
+        title: 'iPhone Air (256GB - 512GB)',
+        price: 4899000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El iPhone más delgado de la historia (5.5 mm): diseño ultraligero revolucionario con pantalla ProMotion de 6.6" y Chip A19.',
+        specs: ['Chasis ultradelgado de 5.5 mm en aleación de titanio y aluminio aeroespacial', 'Pantalla OLED Super Retina XDR de 6.6" con ProMotion 120Hz', 'Chip A19 + módem 5G diseñado por Apple de ultra bajo consumo', 'Cámara Fusion de 48 MP con teleobjetivo óptico 2x integrado y frontal de 24 MP'],
+        variants: ['256 GB - Plata Estelar - $4.899.000', '512 GB - Negro Espacial - $5.599.000']
+      },
+      {
+        id: 'iphone-17',
+        category: 'iphone',
+        badge: 'Gama iPhone 17 (2025/2026)',
+        title: 'iPhone 17 (128GB - 512GB)',
+        price: 4399000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Por primera vez con pantalla ProMotion de 120Hz en el modelo base, nuevo tamaño de 6.3", Chip A19 y cámara frontal de 24 MP.',
+        specs: ['Pantalla Super Retina XDR de 6.3" con tecnología ProMotion 120Hz Always-On', 'Chip Apple A19 de 3nm de tercera generación', 'Sistema de cámara Dual Fusion de 48 MP + cámara selfie de 24 MP', 'Colores: Verde Salvia, Lavanda, Azul Bruma, Blanco y Negro'],
+        variants: ['128 GB - $4.399.000', '256 GB - $4.899.000', '512 GB - $5.599.000']
+      },
+      {
+        id: 'iphone-17e',
+        category: 'iphone',
+        badge: 'Gama iPhone 17 (2026)',
+        title: 'iPhone 17e (128GB - 256GB)',
+        price: 3499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El miembro más accesible de la familia 17 con Chip A19, Apple Intelligence completa, Face ID y extraordinaria autonomía.',
+        specs: ['Pantalla Super Retina XDR OLED de 6.1" con Dynamic Island', 'Chip A19 compatible al 100% con Apple Intelligence', 'Cámara Fusion 2 en 1 de 48 MP con teleobjetivo 2x y USB-C', 'Batería para todo el día y resistencia al agua IP68'],
+        variants: ['128 GB - Blanco / Negro - $3.499.000', '256 GB - Blanco / Negro - $3.999.000']
+      },
+
+      // ==========================================
+      // LANZAMIENTOS DE 2024 / 2025 (GAMA IPHONE 16) — 5 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-16-pro-max',
+        category: 'iphone',
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 Pro Max (256GB - 1TB)',
+        price: 5699000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Pantalla gigante de 6.9", chasis de Titanio Grado 5, Chip A18 Pro, Control de Cámara y teleobjetivo tetraprisma 5x.',
+        specs: ['Pantalla Super Retina XDR 6.9" con los bordes más finos', 'Chip A18 Pro de 3nm optimizado para Apple Intelligence', 'Cámara Fusion 48 MP + Ultra Gran Angular 48 MP + Teleobjetivo 5x', 'Acabados: Titanio Desierto, Titanio Natural, Blanco y Negro'],
+        variants: ['256 GB - $5.699.000', '512 GB - $6.799.000', '1 TB - $7.899.000'],
+        configUrl: 'iphone-16-pro.html'
+      },
+      {
+        id: 'iphone-16-pro',
+        category: 'iphone',
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 Pro (128GB - 1TB)',
+        price: 4899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Chasis de Titanio Grado 5, Chip A18 Pro, botón Control de Cámara táctil y grabación 4K a 120 fps en Dolby Vision.',
+        specs: ['Pantalla Super Retina XDR 6.3" ProMotion 120Hz', 'Chip A18 Pro (GPU de 6 núcleos y Neural Engine de 16 núcleos)', 'Sistema de cámaras Pro 48 MP + Zoom Óptico 5x tetraprisma', '4 micrófonos con calidad de estudio y Mezcla de Audio'],
+        variants: ['128 GB - $4.899.000', '256 GB - $5.399.000', '512 GB - $6.399.000', '1 TB - $7.499.000'],
+        configUrl: 'iphone-16-pro.html'
+      },
+      {
+        id: 'iphone-16-plus',
+        category: 'iphone',
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 Plus (128GB - 512GB)',
+        price: 4399000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Gran pantalla de 6.7 pulgadas con batería colosal, Chip A18, Botón de Acción y nuevo Control de Cámara lateral.',
+        specs: ['Pantalla Super Retina XDR de 6.7" hasta 2000 nits en exteriores', 'Chip A18 con salto de dos generaciones para Apple Intelligence', 'Cámara Fusion de 48 MP + Fotografía Macro y Espacial', 'Hasta 27 horas de reproducción de video'],
+        variants: ['128 GB - $4.399.000', '256 GB - $4.899.000', '512 GB - $5.599.000']
+      },
+      {
+        id: 'iphone-16',
+        category: 'iphone',
+        badge: 'Lanzamiento 2024/2025',
+        title: 'iPhone 16 (128GB - 512GB)',
+        price: 3999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Diseñado para Apple Intelligence con Chip A18, Botón de Acción personalizable, Control de Cámara y colores vibrantes.',
+        specs: ['Pantalla Super Retina XDR de 6.1" con Ceramic Shield', 'Chip A18 de alto rendimiento y eficiencia energética', 'Cámara Fusion de 48 MP con teleobjetivo 2x de calidad óptica', 'Colores: Ultramarino, Verde Azulado, Rosa, Blanco y Negro'],
+        variants: ['128 GB - $3.999.000', '256 GB - $4.499.000', '512 GB - $5.199.000']
+      },
+      {
+        id: 'iphone-16e',
+        category: 'iphone',
+        badge: 'Lanzamiento 2025 • Chip A18',
+        title: 'iPhone 16e (128GB - 512GB)',
+        price: 2999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Potencia del Chip A18 y Apple Intelligence a un precio extraordinario, con pantalla OLED de 6.1", Face ID, Botón de Acción y módem Apple C1.',
+        specs: ['Pantalla Super Retina XDR OLED de 6.1" de borde a borde con Face ID', 'Chip A18 + Primer módem celular Apple C1 con la mejor batería en 6.1"', 'Sistema de cámara 2 en 1 Fusion de 48 MP con teleobjetivo 2x integrado', 'Botón de Acción, puerto USB-C y emergencia SOS vía satélite'],
+        variants: ['128 GB - Negro Mate / Blanco - $2.999.000', '256 GB - $3.499.000', '512 GB - $4.199.000']
+      },
+
+      // ==========================================
+      // IPHONE 15 (2023) — 4 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-15-pro-max',
+        category: 'iphone',
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 Pro Max (256GB - 1TB)',
+        price: 4999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Forjado en titanio aeroespacial con el Chip A17 Pro, conector USB-C con velocidad USB 3 y zoom óptico 5x.',
+        specs: ['Pantalla Super Retina XDR 6.7" ProMotion 120Hz Always-On', 'Chip A17 Pro de 3nm compatible con Apple Intelligence', 'Cámara principal 48 MP con teleobjetivo tetraprisma 5x (120 mm)', 'Botón de Acción personalizable y chasis de Titanio Grado 5'],
+        variants: ['256 GB - $4.999.000', '512 GB - $5.799.000', '1 TB - $6.599.000']
+      },
+      {
+        id: 'iphone-15-pro',
+        category: 'iphone',
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 Pro (128GB - 512GB)',
+        price: 4299000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El Pro más ligero en titanio aeroespacial de 6.1", con Botón de Acción, Chip A17 Pro y puerto USB-C 3.0.',
+        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz con Dynamic Island', 'Chip A17 Pro compatible con Apple Intelligence y juegos de consola', 'Cámara Pro de 48 MP con 7 distancias focales y zoom óptico 3x', 'Conector USB-C con transferencia de hasta 10 Gb/s'],
+        variants: ['128 GB - $4.299.000', '256 GB - $4.799.000', '512 GB - $5.399.000']
+      },
+      {
+        id: 'iphone-15-plus',
+        category: 'iphone',
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 Plus (128GB - 256GB)',
+        price: 3699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Gran pantalla de 6.7 pulgadas con Dynamic Island, cámara de 48 MP, vidrio con infusión de color y enorme batería.',
+        specs: ['Pantalla Super Retina XDR de 6.7" hasta 2000 nits', 'Chip A16 Bionic de 6 núcleos de alta eficiencia', 'Cámara gran angular de 48 MP con teleobjetivo 2x de calidad óptica', 'Puerto USB-C y hasta 26 horas de reproducción de video'],
+        variants: ['128 GB - $3.699.000', '256 GB - $4.199.000']
+      },
+      {
+        id: 'iphone-15',
+        category: 'iphone',
+        badge: 'Serie iPhone 15 (2023)',
+        title: 'iPhone 15 (128GB - 256GB)',
+        price: 3299000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Dynamic Island, cámara principal de 48 MP con retratos de última generación, Chip A16 Bionic y conector USB-C.',
+        specs: ['Pantalla Super Retina XDR de 6.1" con Dynamic Island', 'Chip A16 Bionic ultrarrápido', 'Vidrio trasero mate con infusión de color y bordes contorneados', 'Colores: Negro, Azul, Verde, Amarillo y Rosa'],
+        variants: ['128 GB - $3.299.000', '256 GB - $3.799.000']
+      },
+
+      // ==========================================
+      // LANZAMIENTOS DE 2022 (IPHONE 14 + SE 3.ª GEN) — 5 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-14-pro-max',
+        category: 'iphone',
+        badge: 'Lanzamiento 2022',
+        title: 'iPhone 14 Pro Max (128GB - 512GB)',
+        price: 3999000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El debut de Dynamic Island y la pantalla siempre activa en 6.7", con cámara Pro de 48 MP y acero inoxidable.',
+        specs: ['Pantalla Super Retina XDR de 6.7" ProMotion Always-On', 'Chip A16 Bionic de 4 nanómetros', 'Cámara Pro de 48 MP con sensor quad-pixel y Photonic Engine', 'Detección de Choques y Emergencia SOS vía satélite'],
+        variants: ['128 GB - $3.999.000', '256 GB - $4.499.000', '512 GB - $4.999.000']
+      },
+      {
+        id: 'iphone-14-pro',
+        category: 'iphone',
+        badge: 'Lanzamiento 2022',
+        title: 'iPhone 14 Pro (128GB - 256GB)',
+        price: 3499000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Dynamic Island interactiva en 6.1", cámara principal de 48 MP ProRAW y grabación Modo Cine en 4K HDR.',
+        specs: ['Pantalla Super Retina XDR 6.1" ProMotion 120Hz Always-On', 'Chip A16 Bionic con GPU de 5 núcleos', 'Triple cámara Pro de 48 MP + Teleobjetivo 3x + Escáner LiDAR', 'Acabados: Morado Oscuro, Oro, Plata y Negro Espacial'],
+        variants: ['128 GB - $3.499.000', '256 GB - $3.899.000']
+      },
+      {
+        id: 'iphone-14-plus',
+        category: 'iphone',
+        badge: 'Lanzamiento 2022',
+        title: 'iPhone 14 Plus (128GB - 256GB)',
+        price: 2899000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Pantalla grande de 6.7 pulgadas en un cuerpo de aluminio ligero con modo Acción y batería para todo el día.',
+        specs: ['Pantalla Super Retina XDR OLED de 6.7"', 'Chip A15 Bionic con GPU de 5 núcleos', 'Cámara dual avanzada con Photonic Engine y Modo Acción', 'Hasta 26 horas de reproducción de video'],
+        variants: ['128 GB - $2.899.000', '256 GB - $3.299.000']
+      },
+      {
+        id: 'iphone-14',
+        category: 'iphone',
+        badge: 'Lanzamiento 2022',
+        title: 'iPhone 14 (128GB - 256GB)',
+        price: 2599000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Equilibrio ideal de tamaño de 6.1", cámaras mejoradas en baja luz con Photonic Engine y Detección de Choques.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED con Ceramic Shield', 'Chip A15 Bionic con GPU de 5 núcleos', 'Cámara dual de 12 MP con Modo Cine en 4K Dolby Vision', 'Conectividad 5G y accesorios magnéticos MagSafe'],
+        variants: ['128 GB - $2.599.000', '256 GB - $2.999.000']
+      },
+      {
+        id: 'iphone-se-3',
+        category: 'iphone',
+        badge: 'Lanzamiento 2022 • Touch ID',
+        title: 'iPhone SE (3.ª generación - 2022)',
+        price: 1599000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El clásico botón de inicio con Touch ID potenciado con el Chip A15 Bionic del iPhone 13 y conectividad 5G.',
+        specs: ['Pantalla Retina HD de 4.7" compacta y cómoda en mano', 'Chip A15 Bionic de 6 núcleos con conectividad 5G', 'Botón de inicio con sensor de huella Touch ID seguro', 'Cámara de 12 MP con Deep Fusion, HDR Inteligente 4 y Estilos Fotográficos'],
+        variants: ['64 GB - Medianoche / Blanco Estelar / (PRODUCT)RED - $1.599.000', '128 GB - $1.799.000']
+      },
+
+      // ==========================================
+      // IPHONE 13 (2021) — 4 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-13-pro-max',
+        category: 'iphone',
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 Pro Max (128GB - 256GB)',
+        price: 3299000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Legendario por su batería y fluidez: pantalla ProMotion de 120Hz de 6.7", fotografía macro y teleobjetivo 3x.',
+        specs: ['Pantalla Super Retina XDR de 6.7" con ProMotion de 120Hz', 'Chip A15 Bionic con GPU de 5 núcleos', 'Sistema de cámaras Pro con Macro, Teleobjetivo 3x y LiDAR', 'Chasis de acero inoxidable quirúrgico y Ceramic Shield'],
+        variants: ['128 GB - $3.299.000', '256 GB - $3.699.000']
+      },
+      {
+        id: 'iphone-13-pro',
+        category: 'iphone',
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 Pro (128GB - 256GB)',
+        price: 2899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Pantalla ProMotion de 120Hz en 6.1", triple cámara profesional con grabación ProRes y fotografía macro.',
+        specs: ['Pantalla Super Retina XDR de 6.1" ProMotion 120Hz', 'Chip A15 Bionic con GPU de 5 núcleos', 'Grabación de video ProRes y Modo Cine con enfoque dinámico', 'Acabados: Azul Sierra, Verde Alpino, Grafito, Oro y Plata'],
+        variants: ['128 GB - $2.899.000', '256 GB - $3.299.000']
+      },
+      {
+        id: 'iphone-13',
+        category: 'iphone',
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 (128GB - 256GB)',
+        price: 2199000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Uno de los iPhones más populares de la historia: cámara dual en diagonal con Sensor-Shift OIS y gran autonomía.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED brillante', 'Chip A15 Bionic rápido y eficiente con 5G', 'Cámara dual de 12 MP con estabilización por desplazamiento de sensor', 'Modo Cine 1080p y compatibilidad total con MagSafe'],
+        variants: ['128 GB - $2.199.000', '256 GB - $2.599.000']
+      },
+      {
+        id: 'iphone-13-mini',
+        category: 'iphone',
+        badge: 'Serie iPhone 13 (2021)',
+        title: 'iPhone 13 mini (128GB - 256GB)',
+        price: 1999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El último mini de Apple: toda la potencia del Chip A15 Bionic y pantalla OLED en un tamaño compacto de 5.4".',
+        specs: ['Pantalla Super Retina XDR de 5.4" OLED de borde a borde', 'Chip A15 Bionic idéntico al iPhone 13', 'Cámara dual con Modo Cine y Modo Noche', 'Ultrahoja de 140 gramos con resistencia IP68 y MagSafe'],
+        variants: ['128 GB - $1.999.000', '256 GB - $2.399.000']
+      },
+
+      // ==========================================
+      // LANZAMIENTOS DE 2020 (IPHONE 12 + SE 2.ª GEN) — 5 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-12-pro-max',
+        category: 'iphone',
+        badge: 'Lanzamiento 2020',
+        title: 'iPhone 12 Pro Max (128GB - 256GB)',
+        price: 2499000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El primer Pro Max con 5G, bordes planos en acero inoxidable, pantalla de 6.7" y escáner LiDAR.',
+        specs: ['Pantalla Super Retina XDR de 6.7" OLED', 'Chip A14 Bionic (primer chip de 5 nanómetros)', 'Triple cámara Pro con zoom óptico 2.5x y Apple ProRAW', 'Tecnología MagSafe y frente de Ceramic Shield'],
+        variants: ['128 GB - $2.499.000', '256 GB - $2.799.000']
+      },
+      {
+        id: 'iphone-12-pro',
+        category: 'iphone',
+        badge: 'Lanzamiento 2020',
+        title: 'iPhone 12 Pro (128GB - 256GB)',
+        price: 2199000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Diseño en acero inoxidable quirúrgico de 6.1", triple cámara con sensor LiDAR y grabación HDR en Dolby Vision.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED', 'Chip A14 Bionic con conectividad 5G', 'Triple cámara de 12 MP con retratos en Modo Noche asistidos por LiDAR', 'Acabados: Azul Pacífico, Grafito, Oro y Plata'],
+        variants: ['128 GB - $2.199.000', '256 GB - $2.499.000']
+      },
+      {
+        id: 'iphone-12',
+        category: 'iphone',
+        badge: 'Lanzamiento 2020',
+        title: 'iPhone 12 (64GB - 128GB)',
+        price: 1699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Pionero del diseño de bordes planos con pantalla OLED Super Retina XDR de 6.1", 5G y accesorios MagSafe.',
+        specs: ['Pantalla Super Retina XDR de 6.1" OLED con Ceramic Shield', 'Chip A14 Bionic de alto desempeño', 'Cámara dual de 12 MP con Modo Noche en ultra gran angular y frontal', 'Carga inalámbrica magnética MagSafe'],
+        variants: ['64 GB - $1.699.000', '128 GB - $1.899.000']
+      },
+      {
+        id: 'iphone-12-mini',
+        category: 'iphone',
+        badge: 'Lanzamiento 2020',
+        title: 'iPhone 12 mini (64GB - 128GB)',
+        price: 1499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Compacto de 5.4 pulgadas con pantalla OLED de borde a borde, conectividad 5G, MagSafe y Chip A14 Bionic.',
+        specs: ['Pantalla Super Retina XDR de 5.4" OLED', 'Chip A14 Bionic con Neural Engine de 16 núcleos', 'Cámara dual de 12 MP con grabación 4K Dolby Vision', 'Resistencia al agua IP68 y Ceramic Shield'],
+        variants: ['64 GB - $1.499.000', '128 GB - $1.699.000']
+      },
+      {
+        id: 'iphone-se-2',
+        category: 'iphone',
+        badge: 'Lanzamiento 2020 • Touch ID',
+        title: 'iPhone SE (2.ª generación - 2020)',
+        price: 1099000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'El diseño clásico de 4.7 pulgadas con botón Touch ID y el corazón del iPhone 11 Pro (Chip A13 Bionic) al precio más económico.',
+        specs: ['Pantalla Retina HD de 4.7" con True Tone y Haptic Touch', 'Chip A13 Bionic de 64 bits con Neural Engine de 3.ª generación', 'Botón de inicio de cristal de zafiro con Touch ID', 'Modo Retrato con control de profundidad, carga inalámbrica Qi y resistencia IP67'],
+        variants: ['64 GB - Negro / Blanco / (PRODUCT)RED - $1.099.000', '128 GB - $1.249.000']
+      },
+
+      // ==========================================
+      // IPHONE 11 (2019) — 3 MODELOS
+      // ==========================================
+      {
+        id: 'iphone-11-pro-max',
+        category: 'iphone',
+        badge: 'Serie iPhone 11 (2019)',
+        title: 'iPhone 11 Pro Max (64GB - 256GB)',
+        price: 1899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El primer Pro Max de Apple con triple cámara de 12 MP, pantalla OLED de 6.5" y vidrio mate texturizado.',
+        specs: ['Pantalla Super Retina XDR de 6.5" OLED', 'Chip A13 Bionic con motor neuronal de 8 núcleos', 'Triple cámara: Ultra Gran Angular, Gran Angular y Teleobjetivo 2x', 'Acero inoxidable quirúrgico y resistencia al agua IP68 (4 metros)'],
+        variants: ['64 GB - Verde Medianoche / Gris Espacial / Oro / Plata - $1.899.000', '256 GB - $2.199.000']
+      },
+      {
+        id: 'iphone-11-pro',
+        category: 'iphone',
+        badge: 'Serie iPhone 11 (2019)',
+        title: 'iPhone 11 Pro (64GB - 256GB)',
+        price: 1699000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Formato Pro compacto de 5.8 pulgadas con pantalla Super Retina XDR OLED, acero inoxidable y triple cámara.',
+        specs: ['Pantalla Super Retina XDR de 5.8" OLED con HDR10 y Dolby Vision', 'Chip A13 Bionic de alto rendimiento', 'Sistema de triple cámara de 12 MP con Modo Noche y Deep Fusion', 'Face ID rápido y grabación 4K a 60 fps en todas las cámaras'],
+        variants: ['64 GB - $1.699.000', '256 GB - $1.999.000']
+      },
+      {
+        id: 'iphone-11',
+        category: 'iphone',
+        badge: 'Serie iPhone 11 (2019)',
+        title: 'iPhone 11 (64GB - 128GB)',
+        price: 1349000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Clásico imbatible: pantalla Liquid Retina de 6.1", cámara dual con Ultra Gran Angular y Modo Noche, Face ID y Chip A13 Bionic.',
+        specs: ['Pantalla Liquid Retina HD de 6.1" con True Tone', 'Chip A13 Bionic fluido y confiable en iOS', 'Cámara dual de 12 MP (Gran Angular y Ultra Gran Angular 120°)', 'Colores: Negro, Blanco, Morado, Verde, Amarillo y (PRODUCT)RED'],
+        variants: ['64 GB - $1.349.000', '128 GB - $1.549.000']
+      },
+      // ==========================================
+      // LÍNEA MAC & MACBOOK (ACTUALIZADA A 2026: M5, M4 Y M3)
+      // ==========================================
+      {
+        id: 'macbook-pro-m5',
+        category: 'mac',
+        badge: 'Nuevo 2026 • Chip M5',
+        title: 'MacBook Pro 14" y 16" (M5 / M5 Pro / M5 Max)',
+        price: 8999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'La estación de trabajo portátil definitiva 2026: arquitectura de 2nm, Thunderbolt 5 de 120 Gb/s y hasta 24 horas de batería.',
+        specs: ['Chips Apple M5, M5 Pro y M5 Max con Neural Engine cuántico de 32 núcleos', 'Pantalla Liquid Retina XDR con opción Nano-Texturizada antirreflejo', 'Puertos Thunderbolt 5, HDMI 2.1 (8K), lector SDXC y MagSafe 3', 'Hasta 128 GB de memoria unificada y Wi-Fi 7 ultrarrápido'],
+        variants: ['14" M5 (16GB/512GB) - $8.999.000', '14" M5 Pro (24GB/1TB) - $10.499.000', '16" M5 Max (48GB/1TB) - $15.999.000']
+      },
+      {
+        id: 'macbook-air-m5',
+        category: 'mac',
+        badge: 'Nuevo 2026 • Ultraligera',
+        title: 'MacBook Air 13" y 15" (Chip M5)',
+        price: 5899000,
+        img: IMG_MACBOOK,
+        shortDesc: 'La laptop más amada del mundo ahora con Chip M5, cámara Center Stage de 12 MP, 16GB de RAM base y hasta 20 horas de autonomía.',
+        specs: ['Chip Apple M5 de 10 núcleos con aceleración de IA para Apple Intelligence 3.0', '16 GB de memoria unificada de serie en todos los modelos', 'Soporte nativo para dos monitores externos 6K con la tapa abierta', 'Colores: Medianoche, Blanco Estelar, Azul Cielo y Plata'],
+        variants: ['13" M5 (16GB/256GB) - $5.899.000', '13" M5 (16GB/512GB) - $6.899.000', '15" M5 (16GB/512GB) - $7.799.000']
+      },
+      {
+        id: 'macbook-pro-m4',
+        category: 'mac',
+        badge: 'Potencia Pro M4',
+        title: 'MacBook Pro 14" y 16" (M4 / M4 Pro / M4 Max)',
+        price: 7999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Rendimiento profesional extraordinario con conectividad Thunderbolt 5, cámara 12MP Center Stage y batería de 24 horas.',
+        specs: ['Chip Apple M4, M4 Pro o M4 Max de hasta 16 núcleos de CPU y 40 de GPU', 'Brillo SDR de hasta 1000 nits en exteriores y 1600 nits HDR', '3 puertos Thunderbolt 5, HDMI, ranura SDXC y carga rápida MagSafe 3', 'Acabados: Negro Espacial (Space Black) y Plata'],
+        variants: ['14" M4 (16GB/512GB) - $7.999.000', '14" M4 Pro (24GB/512GB) - $9.699.000', '16" M4 Max (36GB/1TB) - $14.499.000']
+      },
+      {
+        id: 'macbook-air-m4',
+        category: 'mac',
+        badge: 'Best Seller Portátil',
+        title: 'MacBook Air 13" y 15" (Chip M4)',
+        price: 5199000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Diseño silencioso sin ventilador con chip M4, 16 GB de memoria RAM base y potencia sobrada para universidad y trabajo.',
+        specs: ['Chip Apple M4 de 10 núcleos CPU y 10 núcleos GPU', 'Pantalla Liquid Retina de 13.6" o 15.3" con 500 nits de brillo', 'Cámara 12MP Center Stage con Vista Cenital de escritorio', 'Batería de hasta 18 horas y carga MagSafe 3'],
+        variants: ['13" M4 (16GB/256GB) - $5.199.000', '13" M4 (16GB/512GB) - $6.199.000', '15" M4 (16GB/512GB) - $6.999.000']
+      },
+      {
+        id: 'imac-24-m4',
+        category: 'mac',
+        badge: 'Todo en Uno 4.5K',
+        title: 'iMac 24" Pantalla Retina 4.5K (Chip M4)',
+        price: 6699000,
+        img: IMG_MACBOOK,
+        shortDesc: 'El todo en uno definitivo con chip M4, 16 GB de RAM base, opción de vidrio nano-texturizado y accesorios USB-C a juego.',
+        specs: ['Pantalla Retina 4.5K de 24" con opción Nano-Texturizada antirreflejo', 'Chip Apple M4 y cámara 12MP Center Stage con Encuadre Centrado', 'Incluye Magic Keyboard con Touch ID y Magic Mouse con puerto USB-C', 'Hasta 4 puertos Thunderbolt 4 y Gigabit Ethernet'],
+        variants: ['M4 8-GPU (16GB/256GB) - $6.699.000', 'M4 10-GPU (16GB/512GB) - $7.899.000', 'M4 (24GB/1TB) - $9.199.000']
+      },
+      {
+        id: 'mac-mini-m4',
+        category: 'mac',
+        badge: 'Rediseño Ultracompacto',
+        title: 'Mac mini (Chip M4 y M4 Pro)',
+        price: 2999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Increíblemente pequeño (12.7 x 12.7 cm) y descomunalmente potente con puertos frontales USB-C y Thunderbolt 5 en M4 Pro.',
+        specs: ['Nuevo diseño cuadrado de apenas 12.7 cm por lado con huella de carbono neutra', '16 GB de memoria unificada base (expandible hasta 64 GB en M4 Pro)', '2 puertos USB-C frontales + 3 puertos Thunderbolt 4/5 traseros + HDMI + Ethernet', 'Ideal para desarrolladores, estudios creativos y servidores de IA local'],
+        variants: ['Mac mini M4 (16GB/256GB) - $2.999.000', 'Mac mini M4 (16GB/512GB) - $3.899.000', 'Mac mini M4 Pro (24GB/512GB) - $6.699.000']
+      },
+      {
+        id: 'mac-studio-m4',
+        category: 'mac',
+        badge: 'Supercomputadora IA',
+        title: 'Mac Studio (M4 Max / M4 Ultra)',
+        price: 9999000,
+        img: IMG_MACBOOK,
+        shortDesc: 'La bestia de escritorio para producción cinematográfica 8K, compilación masiva y entrenamiento de modelos LLM locales.',
+        specs: ['Chips M4 Max (16 núcleos CPU) o M4 Ultra (hasta 32 núcleos CPU y 80 GPU)', 'Hasta 256 GB de memoria unificada de ultra alto ancho de banda', '6 puertos Thunderbolt 5, Ethernet de 10 Gb, lector SDXC frontal y HDMI 2.1', 'Sistema térmico silencioso de doble turbina en aluminio extruido'],
+        variants: ['M4 Max (36GB/512GB) - $9.999.000', 'M4 Max (64GB/1TB) - $12.999.000', 'M4 Ultra (128GB/2TB) - $21.999.000']
+      },
+      {
+        id: 'macbook-pro-m3',
+        category: 'mac',
+        badge: 'Oportunidad Pro',
+        title: 'MacBook Pro 14" y 16" (M3 Pro / Max)',
+        price: 7299000,
+        img: IMG_MACBOOK,
+        shortDesc: 'Pantalla Liquid Retina XDR, hasta 22 horas de batería y todos los puertos profesionales a precio especial de liquidación.',
+        specs: ['Chip Apple M3 Pro o M3 Max con trazado de rayos por hardware', '18 GB o 36 GB de memoria unificada ultrarrápida', 'Puertos HDMI, lector SDXC, MagSafe 3 y 3x Thunderbolt 4', 'Acabado Negro Espacial (Space Black) o Plata'],
+        variants: ['14" M3 Pro (18GB/512GB) - $7.299.000', '16" M3 Pro (18GB/512GB) - $8.999.000']
+      },
+      {
+        id: 'macbook-air-m3',
+        category: 'mac',
+        badge: 'Favorita Estudiantes',
+        title: 'MacBook Air 13" y 15" (Chip M3 / M2)',
+        price: 4299000,
+        img: IMG_MACBOOK,
+        shortDesc: 'El ingreso ideal al mundo MacBook: ultraligera, silenciosa, con Wi-Fi 6E y hasta 18 horas de batería.',
+        specs: ['Chip Apple M3 o M2 de 8 núcleos con diseño delgado de aluminio reciclado', 'Pantalla Liquid Retina de 13.6" o 15.3" con True Tone', 'Cámara FaceTime HD 1080p y Touch ID integrado', 'Colores: Medianoche, Blanco Estelar, Gris Espacial y Plata'],
+        variants: ['13" M2 (8GB/256GB) - $4.299.000', '13" M3 (16GB/256GB) - $4.699.000', '15" M3 (16GB/512GB) - $5.899.000']
+      },
+
+      // ==========================================
+      // LÍNEA IPAD (ACTUALIZADA A 2026: M5, M4, MINI A17 PRO)
+      // ==========================================
+      {
+        id: 'ipad-pro-m5',
+        category: 'ipad',
+        badge: 'Nuevo 2026 • Tandem OLED',
+        title: 'iPad Pro 11" y 13" (Chip M5)',
+        price: 6499000,
+        img: IMG_IPAD,
+        shortDesc: 'La cúspide de las tablets en 2026: Chip M5 de 2nm, pantalla Ultra Retina XDR Tandem OLED 2.0 y Wi-Fi 7 en solo 5.0 mm.',
+        specs: ['Pantalla Ultra Retina XDR OLED en tándem con ProMotion 120Hz y opción Nano-Texturizada', 'Chip Apple M5 con 16 GB de RAM base y motor neuronal para Apple Intelligence 3.0', 'Conectividad Thunderbolt 5 / USB 4 y soporte para Apple Pencil Pro', 'Escáner LiDAR de nueva generación y 4 micrófonos con calidad de estudio'],
+        variants: ['11" M5 Wi-Fi 256GB - $6.499.000', '11" M5 Wi-Fi 512GB - $7.499.000', '13" M5 Wi-Fi 256GB - $7.999.000']
+      },
+      {
+        id: 'ipad-pro-m4',
+        category: 'ipad',
+        badge: 'Ultra Fino 5.1mm',
+        title: 'iPad Pro 11" y 13" (Chip M4)',
+        price: 5499000,
+        img: IMG_IPAD,
+        shortDesc: 'Pantalla Ultra Retina XDR OLED en tándem y el potente Chip M4 para diseño 3D, arquitectura y edición de video ProRes.',
+        specs: ['Pantalla Ultra Retina XDR con brillo pico de 1600 nits HDR', 'Chip M4 con motor neuronal de 38 billones de operaciones por segundo', 'Compatible con Apple Pencil Pro y Magic Keyboard de aluminio con trackpad háptico', 'Colores: Negro Espacial y Plata'],
+        variants: ['11" M4 Wi-Fi 256GB - $5.499.000', '11" M4 Wi-Fi 512GB - $6.399.000', '13" M4 Wi-Fi 256GB - $6.999.000']
+      },
+      {
+        id: 'ipad-air-m4',
+        category: 'ipad',
+        badge: 'Nuevo 2026 • 11" y 13"',
+        title: 'iPad Air 11" y 13" (Chip M4)',
+        price: 3599000,
+        img: IMG_IPAD,
+        shortDesc: 'El iPad Air más veloz de la historia ahora con Chip M4, pantalla de alto brillo de 600 nits y soporte completo para Apple Pencil Pro.',
+        specs: ['Chip Apple M4 de 8 núcleos CPU y 10 núcleos GPU con Ray Tracing', 'Disponible en 11 pulgadas portátil y 13 pulgadas de gran formato', 'Cámara frontal ultra gran angular de 12 MP en orientación horizontal', 'Compatible con el nuevo Magic Keyboard y Apple Pencil Pro'],
+        variants: ['11" M4 128GB Wi-Fi - $3.599.000', '11" M4 256GB Wi-Fi - $4.199.000', '13" M4 128GB Wi-Fi - $4.699.000']
+      },
+      {
+        id: 'ipad-air-m2',
+        category: 'ipad',
+        badge: 'Potencia M2',
+        title: 'iPad Air 11" y 13" (Chip M2)',
+        price: 2999000,
+        img: IMG_IPAD,
+        shortDesc: 'Rendimiento M2 extraordinario en dos tamaños con pantalla Liquid Retina laminada y diseño en aluminio reciclado.',
+        specs: ['Chip Apple M2 con 8 GB de memoria unificada para Apple Intelligence', 'Pantalla Liquid Retina con gama cromática P3 y revestimiento antirreflejo', 'Touch ID integrado en el botón superior y Wi-Fi 6E', 'Colores: Azul, Morado, Blanco Estelar y Gris Espacial'],
+        variants: ['11" M2 128GB Wi-Fi - $2.999.000', '11" M2 256GB Wi-Fi - $3.499.000', '13" M2 128GB Wi-Fi - $3.999.000']
+      },
+      {
+        id: 'ipad-mini-a17-pro',
+        category: 'ipad',
+        badge: 'IA Ultraportátil 8.3"',
+        title: 'iPad mini (7.ª Gen - Chip A17 Pro)',
+        price: 2699000,
+        img: IMG_IPAD,
+        shortDesc: 'Toda la potencia del Chip A17 Pro y Apple Intelligence en un diseño compacto de 8.3 pulgadas compatible con Apple Pencil Pro.',
+        specs: ['Chip A17 Pro con GPU de 5 núcleos y trazado de rayos por hardware', 'Pantalla Liquid Retina de 8.3 pulgadas con True Tone y gama P3', 'Compatible con Apple Pencil Pro (gesto de apretar y rotación)', 'Puerto USB-C el doble de rápido (10 Gbps) y 128 GB de almacenamiento base'],
+        variants: ['128 GB Wi-Fi - $2.699.000', '256 GB Wi-Fi - $3.199.000', '128 GB Wi-Fi + Cellular - $3.499.000']
+      },
+      {
+        id: 'ipad-11-gen',
+        category: 'ipad',
+        badge: 'Nuevo 2026 • Apple Intelligence',
+        title: 'iPad (11.ª Generación - Chip A16 / A17)',
+        price: 2199000,
+        img: IMG_IPAD,
+        shortDesc: 'El iPad más popular se renueva en 2026 con el doble de almacenamiento base (128 GB), chip preparado para IA y pantalla de 10.9".',
+        specs: ['Pantalla Liquid Retina de 10.9 pulgadas de borde a borde', 'Chip de nueva generación con 8 GB de RAM para multitarea fluida', 'Cámara frontal horizontal de 12 MP con Encuadre Centrado', 'Compatible con Magic Keyboard Folio y Apple Pencil (USB-C)'],
+        variants: ['128 GB Wi-Fi - $2.199.000', '256 GB Wi-Fi - $2.699.000']
+      },
+      {
+        id: 'ipad-10-gen',
+        category: 'ipad',
+        badge: 'Precio Especial',
+        title: 'iPad (10.ª Generación)',
+        price: 1799000,
+        img: IMG_IPAD,
+        shortDesc: 'Diseño moderno todo pantalla colorido ideal para colegio, universidad, lectura, streaming y notas digitales.',
+        specs: ['Pantalla Liquid Retina de 10.9" con True Tone', 'Chip A14 Bionic, conector USB-C y Touch ID en botón superior', 'Cámaras de 12 MP y altavoces estéreo en horizontal', 'Colores vibrantes: Azul, Rosa, Amarillo y Plata'],
+        variants: ['64 GB Wi-Fi - $1.799.000', '256 GB Wi-Fi - $2.399.000']
+      },
+
+      // ==========================================
+      // LÍNEA APPLE WATCH (ACTUALIZADA A 2026: ULTRA 3, SERIES 12, S11, S10, SE 3)
+      // ==========================================
+      {
+        id: 'watch-ultra-3',
+        category: 'watch',
+        badge: 'Nuevo 2026 • Satelital',
+        title: 'Apple Watch Ultra 3 (49mm Titanio)',
+        price: 4499000,
+        img: IMG_WATCH,
+        shortDesc: 'El reloj deportivo y de expedición definitivo 2026: conexión satelital fuera de red, alertas de hipertensión y pantalla OLED de 3500 nits.',
+        specs: ['Caja de titanio aeroespacial de 49 mm (Titanio Natural o Titanio Negro Satinado)', 'Chip S11 SiP con mensajes vía satélite sin necesidad de llevar el iPhone', 'Detección de tendencias de presión arterial (hipertensión) y apnea del sueño', 'Batería extrema de hasta 48 horas de uso normal y 96 horas en modo ahorro'],
+        variants: ['Titanio Natural 49mm - $4.499.000', 'Titanio Negro 49mm - $4.599.000', 'Con Correa Milanese de Titanio - $4.999.000']
+      },
+      {
+        id: 'watch-series-12',
+        category: 'watch',
+        badge: 'Nuevo 2026 • Salud IA',
+        title: 'Apple Watch Series 12 (42mm / 46mm)',
+        price: 2499000,
+        img: IMG_WATCH,
+        shortDesc: 'Nuevo lanzamiento 2026: pantalla Micro-LED/LTPO3 ultrabrillante, sensor de presión arterial y entrenador de salud con Apple Intelligence.',
+        specs: ['Diseño ultradelgado de 9.5 mm con cristal frontal de zafiro o Ion-X reforzado', 'Chip S12 SiP con procesamiento neuronal en la muñeca y gesto de doble toque 2.0', 'Monitoreo continuo de presión arterial, apnea del sueño, ECG y oxígeno en sangre', 'Carga ultrarrápida: de 0 a 80% en apenas 20 minutos'],
+        variants: ['Aluminio 42mm GPS - $2.499.000', 'Aluminio 46mm GPS - $2.699.000', 'Titanio Pulido 46mm GPS+Cell - $3.899.000']
+      },
+      {
+        id: 'watch-series-11',
+        category: 'watch',
+        badge: '5G RedCap & Salud',
+        title: 'Apple Watch Series 11 (42mm / 46mm)',
+        price: 2199000,
+        img: IMG_WATCH,
+        shortDesc: 'Gran pantalla de ángulo amplio, conectividad celular 5G RedCap de bajo consumo y métricas avanzadas de entrenamiento.',
+        specs: ['Pantalla OLED de gran ángulo un 40% más brillante al mirarla de lado', 'Chip S11 SiP con detección de caídas, choques y signos vitales nocturnos', 'Sensores de profundidad y temperatura del agua para snorkel y natación', 'Acabados: Negro Azabache brillante, Oro Rosa, Plata y Titanio'],
+        variants: ['Aluminio 42mm GPS - $2.199.000', 'Aluminio 46mm GPS - $2.399.000', 'Titanio 46mm GPS+Cell - $3.599.000']
+      },
+      {
+        id: 'watch-ultra-2',
+        category: 'watch',
+        badge: 'Titanio Negro & Natural',
+        title: 'Apple Watch Ultra 2 (49mm GPS + Cellular)',
+        price: 3899000,
+        img: IMG_WATCH,
+        shortDesc: 'Resistencia militar MIL-STD 810H, sirena de 86 decibeles, GPS de doble frecuencia L1+L5 y buceo recreativo hasta 40 metros.',
+        specs: ['Caja de titanio de 49 mm resistente a la corrosión con cristal de zafiro plano', 'Botón de Acción personalizable en Naranja Internacional', 'Hasta 36 horas de autonomía normal y 72 horas en modo bajo consumo', 'Correas: Alpine Loop, Trail Loop, Ocean Band y Milanese de Titanio'],
+        variants: ['Titanio Natural 49mm - $3.899.000', 'Titanio Negro Satinado 49mm - $3.999.000']
+      },
+      {
+        id: 'watch-series-10',
+        category: 'watch',
+        badge: 'Diseño Delgado',
+        title: 'Apple Watch Series 10 (42mm / 46mm)',
+        price: 1899000,
+        img: IMG_WATCH,
+        shortDesc: 'El rediseño clásico con pantalla amplia, reproducción de música por el altavoz integrado y carga rápida en 30 minutos.',
+        specs: ['Chip S10 SiP de 4 núcleos neuronales', 'Sensores de temperatura del agua, profundidad, ECG y ciclo menstrual', 'Notificaciones de apnea del sueño y frecuencia cardíaca alta/baja', 'Acabados: Negro Azabache brillante, Oro Rosa y Plata'],
+        variants: ['Aluminio 42mm GPS - $1.899.000', 'Aluminio 46mm GPS - $2.099.000']
+      },
+      {
+        id: 'watch-se-3',
+        category: 'watch',
+        badge: 'Nuevo 2026 • Calidad/Precio',
+        title: 'Apple Watch SE (3.ª Generación - 2026)',
+        price: 1399000,
+        img: IMG_WATCH,
+        shortDesc: 'El reloj inteligente esencial renovado con pantalla más grande de bordes delgados, chip S10 rápido y Detección de Choques.',
+        specs: ['Pantallas actualizadas de 41 mm y 45 mm con mayor área activa', 'Chip S10 SiP ultrarrápido compatible con gestos y Siri en el dispositivo', 'Resistencia al agua 50m, control del sueño y Configuración Familiar para niños', 'Colores: Medianoche, Blanco Estelar, Azul y Plata'],
+        variants: ['41mm GPS - $1.399.000', '45mm GPS - $1.549.000']
+      },
+      {
+        id: 'watch-se-2',
+        category: 'watch',
+        badge: 'Acceso Apple Watch',
+        title: 'Apple Watch SE (2.ª Generación)',
+        price: 1099000,
+        img: IMG_WATCH,
+        shortDesc: 'La forma más económica de estrenar Apple Watch original con todas las funciones de actividad, salud cardíaca y seguridad.',
+        specs: ['Chip S8 SiP de doble núcleo', 'Resistencia al agua hasta 50 metros para natación', 'Monitoreo de frecuencia cardíaca, fases del sueño y llamadas de emergencia', 'Cajas de 40 mm y 44 mm en Medianoche, Estelar y Plata'],
+        variants: ['40mm GPS - $1.099.000', '44mm GPS - $1.249.000']
+      },
+
+      // ==========================================
+      // LÍNEA AIRPODS (NUEVA CATEGORÍA 2026 • 7 MODELOS)
+      // ==========================================
+      {
+        id: 'airpods-pro-3',
+        category: 'airpods',
+        badge: 'Nuevo 2026 • Chip H3 + Salud',
+        title: 'AirPods Pro 3 (Estuche MagSafe USB-C con Pantalla Táctil)',
+        price: 1399000,
+        img: IMG_AIRPODS,
+        shortDesc: 'La nueva generación 2026 con Chip H3, Cancelación Activa de Ruido 4x superior, sensor de frecuencia cardíaca y temperatura en oído, y traducción en vivo con Apple Intelligence.',
+        specs: ['Nuevo Chip H3 de ultra baja latencia y Audio Lossless inalámbrico', 'Sensores biométricos de ritmo cardíaco y temperatura corporal integrados', 'Cancelación Activa de Ruido (ANC) 4x y Modo Audífono Clínico 2.0', 'Estuche MagSafe USB-C con altavoz, chip U2 de rastreo milimétrico y 36h de batería'],
+        variants: ['AirPods Pro 3 (USB-C MagSafe 2026) - $1.399.000']
+      },
+      {
+        id: 'airpods-max-2',
+        category: 'airpods',
+        badge: 'Nuevo 2026 • Studio Hi-Fi',
+        title: 'AirPods Max 2 (Chip H3 + Audio Lossless USB-C)',
+        price: 2899000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Diadema de alta fidelidad rediseñada en 2026: 30% más ligeros, Chip H3 dual en cada casco, Audio Adaptativo, Audio sin pérdida por USB-C y nuevos acabados en Titanio.',
+        specs: ['Doble Chip H3 (uno en cada auricular) con ecualización computacional de 10 bandas', 'Audio Lossless de 24 bits / 48 kHz sin latencia y Audio Espacial con seguimiento dinámico', 'Cancelación Activa de Ruido profesional de nueva generación', 'Colores 2026: Negro Titanio, Plata Estelar, Carmesí, Azul Medianoche y Morado'],
+        variants: ['Negro Titanio - $2.899.000', 'Plata Estelar - $2.899.000', 'Azul Medianoche - $2.899.000', 'Carmesí Especial - $2.999.000']
+      },
+      {
+        id: 'airpods-4-anc',
+        category: 'airpods',
+        badge: 'Best Seller • Diseño Abierto ANC',
+        title: 'AirPods 4 con Cancelación Activa de Ruido (ANC)',
+        price: 899000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Por primera vez, Cancelación Activa de Ruido, Audio Adaptativo y Modo Ambiente en un diseño abierto sin almohadillas de silicona.',
+        specs: ['Chip H2 con Cancelación Activa de Ruido y Aislamiento de Voz en llamadas', 'Estuche de carga inalámbrica compatible con MagSafe, Apple Watch y USB-C con altavoz', 'Audio Espacial personalizado con seguimiento dinámico de la cabeza', 'Resistencia al polvo, al sudor y al agua (IP54) con hasta 30 horas de batería'],
+        variants: ['AirPods 4 con ANC (Estuche Inalámbrico USB-C) - $899.000']
+      },
+      {
+        id: 'airpods-4',
+        category: 'airpods',
+        badge: 'Gama Actual • Chip H2',
+        title: 'AirPods 4 (Con Estuche de Carga USB-C)',
+        price: 679000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Contorno ergonómico totalmente rediseñado para ofrecer comodidad todo el día, acústica superior con Chip H2 y llamadas nítidas.',
+        specs: ['Chip H2 diseñado por Apple con graves profundos y agudos cristalinos', 'Audio Espacial personalizado y gestos con la cabeza para responder a Siri', 'Estuche de carga compacto USB-C con hasta 30 horas de autonomía total', 'Certificación IP54 contra agua, sudor y polvo'],
+        variants: ['AirPods 4 Estándar (USB-C) - $679.000']
+      },
+      {
+        id: 'airpods-pro-2',
+        category: 'airpods',
+        badge: 'Audio Pro • USB-C',
+        title: 'AirPods Pro (2.ª Generación) con MagSafe USB-C',
+        price: 1129000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Cancelación Activa de Ruido de referencia, Audio Adaptativo, Detección de Conversación y funciones certificadas de Salud Auditiva.',
+        specs: ['Chip H2 con arquitectura acústica a medida y control táctil de volumen en el vástago', 'Cuatro tamaños de almohadillas de silicona (XS, S, M, L) para sellado acústico', 'Estuche de carga MagSafe (USB-C) con Rastreo Preciso y enganche para correa', 'Protección IP54 y hasta 6 horas de escucha con una sola carga'],
+        variants: ['AirPods Pro 2 (Estuche MagSafe USB-C) - $1.129.000']
+      },
+      {
+        id: 'airpods-max-usbc',
+        category: 'airpods',
+        badge: 'Alta Fidelidad • USB-C',
+        title: 'AirPods Max (Edición USB-C)',
+        price: 2499000,
+        img: IMG_AIRPODS,
+        shortDesc: 'La experiencia definitiva de auriculares de diadema con transductores dinámicos diseñados por Apple, malla transpirable y aluminio anodizado.',
+        specs: ['Transductor dinámico de 40 mm con doble imán de neodimio sin distorsión', '9 micrófonos para Cancelación Activa de Ruido líder y Modo Ambiente', 'Digital Crown para control preciso de volumen, pistas y llamadas', 'Colores: Medianoche, Blanco Estelar, Azul, Morado y Naranja'],
+        variants: ['Medianoche USB-C - $2.499.000', 'Blanco Estelar USB-C - $2.499.000', 'Azul USB-C - $2.499.000']
+      },
+      {
+        id: 'airpods-3',
+        category: 'airpods',
+        badge: 'Clásico MagSafe',
+        title: 'AirPods (3.ª Generación) con Estuche MagSafe',
+        price: 589000,
+        img: IMG_AIRPODS,
+        shortDesc: 'Audio Espacial con seguimiento dinámico de la cabeza, ecualización adaptativa y sensor de presión en un formato ligero.',
+        specs: ['Ecualización Adaptativa que ajusta la música en tiempo real a tu oído', 'Audio Espacial tridimensional para música, películas y llamadas FaceTime', 'Resistencia al agua y al sudor (IPX4) en auriculares y estuche', 'Hasta 6 horas de reproducción continua y 30 horas con el estuche MagSafe'],
+        variants: ['AirPods 3.ª Gen (Estuche MagSafe) - $589.000']
+      },
+
+      // ==========================================
+      // LÍNEA SAMSUNG GALAXY (DESDE S24 HASTA GAMA 2026 • 17 MODELOS)
+      // ==========================================
+      {
+        id: 'samsung-s26-ultra',
+        category: 'samsung',
+        badge: 'Gama 2026 • Buque Insignia Galaxy',
+        title: 'Samsung Galaxy S26 Ultra 5G (256GB - 1TB • S-Pen)',
+        price: 6499000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El nuevo rey Android de 2026: Chasis de Titanio Grado 5 con esquinas ergonómicas, procesador Snapdragon 8 Elite Gen 2 for Galaxy, cámara cuádruple de 200 MP + Periscopio 50 MP y Galaxy AI 3.0.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.9" QHD+ 120Hz con Gorilla Glass Armor 2 antirreflejo', 'Procesador Snapdragon 8 Elite Gen 2 for Galaxy (2nm) con 16 GB de RAM', 'Sistema Cuádruple: Principal 200 MP + Ultra Gran Angular 50 MP + Tele 50 MP (5x) + Tele 50 MP (3x)', 'S-Pen integrado con Bluetooth, batería de 5.500 mAh con carga de 65W y 7 años de actualizaciones'],
+        variants: ['256 GB / 16GB RAM - Titanio Negro - $6.499.000', '512 GB / 16GB RAM - Titanio Plata - $7.199.000', '1 TB / 16GB RAM - Titanio Azul - $8.199.000']
+      },
+      {
+        id: 'samsung-s26-plus',
+        category: 'samsung',
+        badge: 'Gama 2026 • Gran Pantalla QHD+',
+        title: 'Samsung Galaxy S26+ 5G (256GB - 512GB)',
+        price: 5199000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Pantalla inmersiva QHD+ de 6.7 pulgadas con biseles ultradelgados, batería de 5.000 mAh de silicio-carbono y toda la suite Galaxy AI 3.0.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" QHD+ de hasta 2.800 nits y 1-120Hz', 'Procesador de 2 nanómetros con cámara de vapor un 40% mayor y 12 GB de RAM', 'Triple cámara ProVisual Engine de 50 MP con Nightography 2026 y grabación 8K', 'Carga superrápida de 45W, carga inalámbrica Qi2 y certificación IP68'],
+        variants: ['256 GB - Azul Hielo / Negro / Plata - $5.199.000', '512 GB - $5.799.000']
+      },
+      {
+        id: 'samsung-s26',
+        category: 'samsung',
+        badge: 'Gama 2026 • Compacto Flagship',
+        title: 'Samsung Galaxy S26 5G (256GB - 512GB)',
+        price: 4299000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Potencia de buque insignia en un formato compacto y ligero de 6.2", con 12 GB de RAM base, Armor Aluminum y funciones completas de Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.2" FHD+ LTPO 1-120Hz', 'Procesador de nueva generación de 2nm con 12 GB de memoria RAM', 'Triple cámara trasera de 50 MP + Teleobjetivo óptico 3x + Ultra Gran Angular 12 MP', 'Batería de 4.300 mAh de alta densidad y resistencia al agua IP68'],
+        variants: ['256 GB - Negro Ónix / Menta / Plata - $4.299.000', '512 GB - $4.799.000']
+      },
+      {
+        id: 'samsung-s26-slim',
+        category: 'samsung',
+        badge: 'Gama 2026 • Ultra Delgado 5.6mm',
+        title: 'Samsung Galaxy S26 Slim / Edge 5G (256GB - 512GB)',
+        price: 5599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Ingeniería extrema en solo 5.6 mm de grosor con cámara principal de 200 MP, marco de titanio cepillado y pantalla de 6.7 pulgadas.',
+        specs: ['Chasis ultradelgado de 5.6 mm y solo 162 gramos con estructura de Titanio', 'Pantalla Dynamic AMOLED 2X de 6.7" 120Hz con Gorilla Glass Ceramic', 'Cámara principal ISOCELL de 200 MP con zoom de calidad óptica 2x y 4x', 'Procesador Snapdragon 8 Elite Gen 2 y Galaxy AI integrada'],
+        variants: ['256 GB - Titanio Plata / Titanio Carbón - $5.599.000', '512 GB - $6.199.000']
+      },
+      {
+        id: 'samsung-z-fold-7',
+        category: 'samsung',
+        badge: 'Plegable Insignia 2026',
+        title: 'Samsung Galaxy Z Fold 7 5G (256GB - 1TB)',
+        price: 8299000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El plegable más delgado y potente de Samsung: pantalla interna de 8.0" sin pliegue perceptible, cámara Ultra de 200 MP y multitarea de escritorio DeX.',
+        specs: ['Pantalla principal desplegable de 8.0" Dynamic AMOLED 2X + Externa de 6.5" formato 21:9', 'Grosor plegado de apenas 8.9 mm con bisagra FlexHinge de titanio', 'Cámara principal de 200 MP heredada de la línea Ultra + 12 GB / 16 GB de RAM', 'Compatibilidad con S-Pen Fold Edition, resistencia IP48 y Galaxy AI para pantallas grandes'],
+        variants: ['256 GB - Plata Sombra / Negro - $8.299.000', '512 GB - $8.999.000', '1 TB - $9.999.000']
+      },
+      {
+        id: 'samsung-z-flip-7',
+        category: 'samsung',
+        badge: 'Plegable Compacto 2026',
+        title: 'Samsung Galaxy Z Flip 7 5G (256GB - 512GB)',
+        price: 4999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Estilo icónico de bolsillo con nueva pantalla externa FlexWindow de borde a borde de 4.0", cámara FlexCam de 50 MP con IA y batería de 4.300 mAh.',
+        specs: ['Pantalla externa Super AMOLED de 4.0" 120Hz + Interna plegable de 6.8" FHD+ 120Hz', 'Cámara principal de 50 MP con Auto Zoom inteligente para manos libres en FlexCam', 'Batería ampliada de 4.300 mAh y procesador de 3nm de alto rendimiento', 'Colores: Azul Hielo, Verde Menta, Plata Sombra y Grafito'],
+        variants: ['256 GB - $4.999.000', '512 GB - $5.499.000']
+      },
+      {
+        id: 'samsung-s25-ultra',
+        category: 'samsung',
+        badge: 'Gama S25 (2025) • Titanio',
+        title: 'Samsung Galaxy S25 Ultra 5G (256GB - 1TB • S-Pen)',
+        price: 5599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Diseño de titanio con bordes redondeados, procesador Snapdragon 8 Elite for Galaxy, nueva cámara Ultra Gran Angular de 50 MP + Principal de 200 MP y S-Pen.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.9" QHD+ con Corning Gorilla Armor 2 antirreflejo', 'Procesador Snapdragon 8 Elite for Galaxy (3nm) con NPU un 40% más rápida', 'Cámara 200 MP + Nuevo Ultra Gran Angular 50 MP Macro + Teleobjetivos 50 MP (5x) y 10 MP (3x)', 'Grabación de video Log profesional de 10 bits, Audio Eraser con IA y S-Pen integrado'],
+        variants: ['256 GB - Azul Titanio / Negro Titanio / Gris Titanio - $5.599.000', '512 GB - $6.199.000', '1 TB - $7.199.000']
+      },
+      {
+        id: 'samsung-s25-edge',
+        category: 'samsung',
+        badge: 'Gama S25 (2025) • 5.8mm Titanio',
+        title: 'Samsung Galaxy S25 Edge 5G (256GB - 512GB)',
+        price: 4899000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El Galaxy S25 ultradelgado de 5.8 mm y 163 gramos con chasis de titanio, pantalla QHD+ de 6.7" y sensor principal de 200 MP.',
+        specs: ['Perfil ultradelgado de 5.8 mm con marco de Titanio y Gorilla Glass Ceramic 2', 'Pantalla Dynamic AMOLED 2X de 6.7" QHD+ 120Hz', 'Cámara principal de 200 MP con Nightography y Snapdragon 8 Elite for Galaxy', '12 GB de RAM y todas las funciones de agentes multimodales Galaxy AI'],
+        variants: ['256 GB - Plata Titanio / Negro Jet / Azul Hielo - $4.899.000', '512 GB - $5.399.000']
+      },
+      {
+        id: 'samsung-s25-plus',
+        category: 'samsung',
+        badge: 'Gama S25 (2025)',
+        title: 'Samsung Galaxy S25+ 5G (256GB - 512GB)',
+        price: 4499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Gran pantalla QHD+ de 6.7 pulgadas con ProScaler AI, procesador Snapdragon 8 Elite for Galaxy, 12 GB de RAM y batería de 4.900 mAh.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" QHD+ (3120 x 1440) 120Hz', 'Snapdragon 8 Elite for Galaxy en todas las versiones con 12 GB de RAM', 'Triple cámara de 50 MP con motor ProVisual de nueva generación', 'Carga rápida de 45W, Wi-Fi 7 y cuerpo de Armor Aluminum'],
+        variants: ['256 GB - Azul Marino / Menta / Bruma / Plata - $4.499.000', '512 GB - $4.999.000']
+      },
+      {
+        id: 'samsung-s25',
+        category: 'samsung',
+        badge: 'Gama S25 (2025)',
+        title: 'Samsung Galaxy S25 5G (128GB - 256GB)',
+        price: 3699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Compacto, ultraligero (162g) y potentísimo gracias al chip Snapdragon 8 Elite for Galaxy y 12 GB de RAM de serie para Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.2" FHD+ 1-120Hz de 2.600 nits', 'Chip Snapdragon 8 Elite for Galaxy + 12 GB de memoria RAM', 'Cámara triple: 50 MP Principal + 12 MP Ultra Gran Angular + 10 MP Teleobjetivo 3x', 'Funciones Now Brief, Circle to Search y Traducción Simultánea de llamadas'],
+        variants: ['128 GB - $3.699.000', '256 GB - $3.999.000']
+      },
+      {
+        id: 'samsung-s25-fe',
+        category: 'samsung',
+        badge: 'Gama S25 • Fan Edition',
+        title: 'Samsung Galaxy S25 FE 5G (128GB - 256GB)',
+        price: 2999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'La edición para fans con diseño más delgado, pantalla Dynamic AMOLED 2X de 6.7", cámara de 50 MP con teleobjetivo óptico 3x y Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" 120Hz con Vision Booster', 'Triple cámara de 50 MP con OIS y zoom óptico 3x', 'Batería de 4.700 mAh para todo el día y certificación IP68', 'Experiencia completa de Galaxy AI y One UI 7 / 8'],
+        variants: ['128 GB - $2.999.000', '256 GB - $3.299.000']
+      },
+      {
+        id: 'samsung-z-fold-6',
+        category: 'samsung',
+        badge: 'Plegable 2024/2025',
+        title: 'Samsung Galaxy Z Fold 6 5G (256GB - 512GB)',
+        price: 6499000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'Productividad sin límites en una pantalla desplegable de 7.6 pulgadas de 2.600 nits con Note Assist, Intérprete en doble pantalla y Snapdragon 8 Gen 3.',
+        specs: ['Pantalla interna de 7.6" QXGA+ 120Hz + Pantalla externa de 6.3" 120Hz', 'Procesador Snapdragon 8 Gen 3 for Galaxy con 12 GB de RAM', 'Triple cámara trasera de 50 MP + cámara bajo pantalla (UDC)', 'Diseño simétrico de bordes rectos con certificación IP48 y Armor Aluminum'],
+        variants: ['256 GB - Plata Sombra / Azul Marino / Rosa - $6.499.000', '512 GB - $6.999.000']
+      },
+      {
+        id: 'samsung-z-flip-6',
+        category: 'samsung',
+        badge: 'Plegable 2024/2025',
+        title: 'Samsung Galaxy Z Flip 6 5G (256GB - 512GB)',
+        price: 3999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Plegable compacto con cámara mejorada de 50 MP, cámara de vapor por primera vez en un Flip, 12 GB de RAM y batería de 4.000 mAh.',
+        specs: ['Pantalla plegable de 6.7" Dynamic AMOLED 2X + Externa FlexWindow de 3.4"', 'Snapdragon 8 Gen 3 for Galaxy con 12 GB de RAM y cámara de vapor', 'Cámara principal de 50 MP + Ultra Gran Angular de 12 MP con Nightography', 'Batería de 4.000 mAh y resistencia IP48'],
+        variants: ['256 GB - Azul / Amarillo / Menta / Plata - $3.999.000', '512 GB - $4.399.000']
+      },
+      {
+        id: 'samsung-s24-ultra',
+        category: 'samsung',
+        badge: 'Gama S24 (2024) • Best Seller Titanio',
+        title: 'Samsung Galaxy S24 Ultra 5G (256GB - 1TB • S-Pen)',
+        price: 4599000,
+        img: IMG_IPHONE_PRO,
+        shortDesc: 'El favorito en calidad/precio Pro: exterior de Titanio, pantalla plana de 6.8" QHD+ antirreflejo, S-Pen integrado, cámara de 200 MP y Snapdragon 8 Gen 3.',
+        specs: ['Pantalla plana Dynamic AMOLED 2X de 6.8" QHD+ 120Hz con Corning Gorilla Armor', 'Procesador Snapdragon 8 Gen 3 for Galaxy con 12 GB de RAM', 'Cuádruple cámara: 200 MP + Teleobjetivo 50 MP (5x) + Tele 10 MP (3x) + Ultra Gran Angular 12 MP', 'S-Pen incluido, batería de 5.000 mAh (45W) y Galaxy AI completa'],
+        variants: ['256 GB - Gris Titanio / Negro Titanio / Violeta Titanio - $4.599.000', '512 GB - $5.099.000', '1 TB - $5.799.000']
+      },
+      {
+        id: 'samsung-s24-plus',
+        category: 'samsung',
+        badge: 'Gama S24 (2024)',
+        title: 'Samsung Galaxy S24+ 5G (256GB - 512GB)',
+        price: 3699000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Resolución QHD+ de máxima nitidez en 6.7 pulgadas, 12 GB de memoria RAM, batería de 4.900 mAh y todas las herramientas de Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" QHD+ LTPO 1-120Hz (2.600 nits)', '12 GB de RAM y 256 GB / 512 GB de almacenamiento ultrarrápido', 'Triple cámara de 50 MP con Zoom con IA y Super HDR', 'Batería de 4.900 mAh con carga superrápida de 45W e IP68'],
+        variants: ['256 GB - Negro Ónix / Gris Mármol / Violeta Cobalto - $3.699.000', '512 GB - $4.099.000']
+      },
+      {
+        id: 'samsung-s24',
+        category: 'samsung',
+        badge: 'Gama S24 (2024)',
+        title: 'Samsung Galaxy S24 5G (128GB - 256GB)',
+        price: 2999000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'Diseño compacto de 6.2 pulgadas con acabado satinado en Armor Aluminum, pantalla de 2.600 nits, cámara triple con zoom óptico 3x y Galaxy AI.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.2" FHD+ LTPO 1-120Hz con biseles mínimos', 'Triple cámara: 50 MP Principal + 10 MP Teleobjetivo 3x + 12 MP Ultra Gran Angular', 'Batería de 4.000 mAh optimizada por IA y resistencia al agua IP68', 'Circle to Search, Live Translate y Edición Generativa de Fotos'],
+        variants: ['128 GB - $2.999.000', '256 GB - $3.299.000']
+      },
+      {
+        id: 'samsung-s24-fe',
+        category: 'samsung',
+        badge: 'Gama S24 (2024) • Fan Edition',
+        title: 'Samsung Galaxy S24 FE 5G (128GB - 256GB)',
+        price: 2499000,
+        img: IMG_IPHONE_16,
+        shortDesc: 'La entrada ideal a la serie S24 y Galaxy AI con gran pantalla de 6.7 pulgadas, cámara ProVisual Engine de 50 MP y batería de 4.700 mAh.',
+        specs: ['Pantalla Dynamic AMOLED 2X de 6.7" FHD+ 120Hz Gorilla Glass Victus+', 'Sistema de triple cámara de 50 MP con OIS y zoom óptico 3x de 8 MP', 'Batería de 4.700 mAh, carga inalámbrica y certificación IP68', 'Colores: Azul, Grafito, Menta y Amarillo'],
+        variants: ['128 GB - $2.499.000', '256 GB - $2.799.000']
+      }
+    ];
+
+    // Sincronizar catálogo con cambios realizados por el Administrador en localStorage
+    (function syncAdminDevices() {
+      try {
+        const savedCms = localStorage.getItem('redcover_cms_state_v6');
+        if (savedCms) {
+          const cmsData = JSON.parse(savedCms);
+          if (Array.isArray(cmsData.devices) && cmsData.devices.length > 0) {
+            allCatalogDevices = cmsData.devices;
+          }
+        }
+      } catch (e) {
+        console.warn('Error al sincronizar con CMS:', e);
+      }
+    })();
+
+    // Helper de formato de moneda COP
+    function formatCOP(num) {
+      if (typeof num !== 'number') num = parseInt(num, 10) || 0;
+      return '$' + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' COP';
+    }
+
+    function calculateInstallment(total) {
+      const perMonth = Math.round(total / 24);
+      return '$' + perMonth.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' COP / mes';
+    }
+
+    // Paletas de acabados y colores por categoría / modelo
+    const COLOR_PALETTES = {
+      desert: { name: 'Titanio Desierto', hex: '#C5B29F', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM' },
+      natural: { name: 'Titanio Natural', hex: '#9B968F', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9Vbp8i7NcqJPqqwjnib7N5kojQ12qGEvJgIy1wgV3-32WO0IHIp3LcK4Ii52b8UHFqKq4nvW7NQozR1cqvE9Qi9YJvFMfEglIWYtutmYXcOCAHk7kKQ1fAZlk8G6cnyTsgxyq8-axeHjd0Kz_VsZNFP_I2DfY1IYtOchlgLNey5Za6e4zt0u21jvBsIQptmckP2q5sEk66EL0qAqhSdjjneDIX9ws4Uhh05RrKjuOfyasw9Bl-f51' },
+      white: { name: 'Titanio Blanco', hex: '#E8E8E6', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKpi-7626i_BJoAesODslUPkoHF04It4WQfIRb2gDCzY-XPTt0M4AWO3WivVPvllUKPqKO1qhdw_EkyK6IsQgqWFmrYCyz666iavAdl6p3SM5Rd7J82vr0lZhy3YDHo9sPYN5PQUCyWDPW9pdYh6VzFQp3QVDOIaAfKgJXAz2givYj5_BDYXPsmJsCXvxGgS-JuiYI6ziK3EGAf1dO_3gPjpA3eRj_FrcGJ__DTBAC1ChH96IN4DBt' },
+      black: { name: 'Titanio Negro', hex: '#343332', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMv6ybGEqgj4q7JB0905STGqvKkmeSjkOwJKHIsW3lZQs4t7J9z3Amool_EzZPhTuq47-VhCiR1KPVV_-avHCio8xc3fr8wI60m9tDqXziuhwgWSjPM1LTVzemNhlB7eDtEfWXuEjN91U0oRvU3KQv-a9Q-5xFxWdZlqEEJzeVWzKrhgXeEuRV3YEQMRl6YOAUBssA02c0rygPJNmzDND3-L9BBigYBXR_GsW5GtkuUN7mn8VyrNqi' },
+      silver: { name: 'Plata Estelar', hex: '#E2E4E5' },
+      spacegray: { name: 'Gris Espacial', hex: '#535150' },
+      midnight: { name: 'Medianoche', hex: '#2E3642' },
+      starlight: { name: 'Blanco Estelar', hex: '#F0EAD6' },
+      gold: { name: 'Oro Champán', hex: '#F5E7D0' },
+      blue: { name: 'Azul Titanio', hex: '#3B4459' },
+      green: { name: 'Verde Salvia', hex: '#879788' },
+      crimson: { name: 'Carmesí RedCover', hex: '#EF233C' }
+    };
+
+    function getDeviceColorOptions(device) {
+      const titleLower = device.title.toLowerCase();
+      const cat = device.category;
+      if (cat === 'iphone') {
+        if (titleLower.includes('pro') || titleLower.includes('duo')) {
+          return [
+            COLOR_PALETTES.desert,
+            COLOR_PALETTES.natural,
+            COLOR_PALETTES.white,
+            COLOR_PALETTES.black
+          ];
+        }
+        return [
+          { name: 'Negro Medianoche', hex: '#232528', img: device.img },
+          { name: 'Blanco Puro', hex: '#F5F5F7', img: device.img },
+          { name: 'Azul Ultramar', hex: '#39536E', img: device.img },
+          { name: 'Verde Menta', hex: '#8FB4A8', img: device.img }
+        ];
+      }
+      if (cat === 'samsung') {
+        return [
+          { name: 'Titanio Negro', hex: '#2B2B2C', img: device.img },
+          { name: 'Titanio Plata / Gris', hex: '#D1D2D4', img: device.img },
+          { name: 'Azul Hielo / Marino', hex: '#3F5168', img: device.img },
+          { name: 'Verde Menta / Sombra', hex: '#8FA698', img: device.img }
+        ];
+      }
+      if (cat === 'mac') {
+        return [
+          { name: 'Negro Espacial', hex: '#2E3033', img: device.img },
+          { name: 'Plata Clásica', hex: '#E3E4E6', img: device.img },
+          { name: 'Blanco Estelar', hex: '#F3EFE0', img: device.img },
+          { name: 'Medianoche', hex: '#1C2331', img: device.img }
+        ];
+      }
+      if (cat === 'ipad') {
+        return [
+          { name: 'Negro Espacial', hex: '#2E3033', img: device.img },
+          { name: 'Plata', hex: '#E3E4E6', img: device.img },
+          { name: 'Azul Cielo', hex: '#6D8299', img: device.img },
+          { name: 'Morado Suave', hex: '#8E8299', img: device.img }
+        ];
+      }
+      if (cat === 'watch') {
+        return [
+          { name: 'Titanio Natural', hex: '#9E978E', img: device.img },
+          { name: 'Titanio Negro', hex: '#222222', img: device.img },
+          { name: 'Negro Azabache', hex: '#101010', img: device.img },
+          { name: 'Oro Rosa / Plata', hex: '#E5D0C5', img: device.img }
+        ];
+      }
+      if (cat === 'airpods') {
+        return [
+          { name: 'Blanco Brillante Original', hex: '#FFFFFF', img: device.img },
+          { name: 'Negro Titanio Hi-Fi', hex: '#2C2D30', img: device.img },
+          { name: 'Plata Estelar', hex: '#E4E5E7', img: device.img },
+          { name: 'Azul Medianoche', hex: '#2B3547', img: device.img }
+        ];
+      }
+      return [
+        { name: 'Negro', hex: '#222222', img: device.img },
+        { name: 'Plata / Blanco', hex: '#E5E5E5', img: device.img }
+      ];
+    }
+
+    function parseDeviceVariants(device) {
+      if (Array.isArray(device.variants) && device.variants.length > 0) {
+        return device.variants.map((vStr, idx) => {
+          let label = vStr;
+          let price = device.price;
+          const matchPrice = vStr.match(/\$([\d.]+)/);
+          if (matchPrice) {
+            price = parseInt(matchPrice[1].replace(/\./g, ''), 10);
+            label = vStr.replace(/\s*-\s*\$[\d.]+(\s*COP)?/i, '').trim();
+          } else {
+            price = Math.round(device.price * (1 + idx * 0.12));
+          }
+          return { label, price, raw: vStr };
+        });
+      }
+      return [
+        { label: 'Versión Estándar', price: device.price, raw: '' }
+      ];
+    }
+
+    // Estado activo del producto configurado
+    let currentDevice = null;
+    let deviceVariants = [];
+    let deviceColors = [];
+    let selectedVariantIdx = 0;
+    let selectedColorIdx = 0;
+
     const productState = {
-      model: 'pro', // 'pro' | 'promax'
-      color: 'Titanio Desierto',
-      colorImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM',
-      storage: 128,
       basePrice: 4999000,
       tradeInDiscount: 0,
-      paymentMode: 'cash', // 'cash' | 'financing'
+      paymentMode: 'cash',
       tradeIn: {
         active: false,
         deviceText: '',
@@ -1129,122 +2144,208 @@
         conditionLabel: 'Impecable',
         finalDiscount: 0
       },
-      bagItems: [
-        {
-          name: 'iPhone 16 Pro (128GB, Titanio Desierto)',
-          price: 4999000,
-          qty: 1,
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM'
-        }
-      ]
+      bagItems: []
     };
 
-    const colorImages = {
-      0: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM',
-      1: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9Vbp8i7NcqJPqqwjnib7N5kojQ12qGEvJgIy1wgV3-32WO0IHIp3LcK4Ii52b8UHFqKq4nvW7NQozR1cqvE9Qi9YJvFMfEglIWYtutmYXcOCAHk7kKQ1fAZlk8G6cnyTsgxyq8-axeHjd0Kz_VsZNFP_I2DfY1IYtOchlgLNey5Za6e4zt0u21jvBsIQptmckP2q5sEk66EL0qAqhSdjjneDIX9ws4Uhh05RrKjuOfyasw9Bl-f51',
-      2: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKpi-7626i_BJoAesODslUPkoHF04It4WQfIRb2gDCzY-XPTt0M4AWO3WivVPvllUKPqKO1qhdw_EkyK6IsQgqWFmrYCyz666iavAdl6p3SM5Rd7J82vr0lZhy3YDHo9sPYN5PQUCyWDPW9pdYh6VzFQp3QVDOIaAfKgJXAz2givYj5_BDYXPsmJsCXvxGgS-JuiYI6ziK3EGAf1dO_3gPjpA3eRj_FrcGJ__DTBAC1ChH96IN4DBt',
-      3: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMv6ybGEqgj4q7JB0905STGqvKkmeSjkOwJKHIsW3lZQs4t7J9z3Amool_EzZPhTuq47-VhCiR1KPVV_-avHCio8xc3fr8wI60m9tDqXziuhwgWSjPM1LTVzemNhlB7eDtEfWXuEjN91U0oRvU3KQv-a9Q-5xFxWdZlqEEJzeVWzKrhgXeEuRV3YEQMRl6YOAUBssA02c0rygPJNmzDND3-L9BBigYBXR_GsW5GtkuUN7mn8VyrNqi'
-    };
-
-    const priceMatrix = {
-      pro: {
-        128: 4999000,
-        256: 5599000,
-        512: 6799000,
-        1024: 7999000
-      },
-      promax: {
-        256: 5899000,
-        512: 7099000,
-        1024: 8299000
+    // Cargar Carrito desde localStorage
+    function loadSavedCart() {
+      try {
+        const saved = localStorage.getItem('redcover_cart');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            productState.bagItems = parsed.map(item => ({
+              name: item.title || item.name,
+              price: item.price,
+              qty: item.qty || 1,
+              img: item.img
+            }));
+          }
+        }
+      } catch (e) {
+        console.warn('Error al leer redcover_cart:', e);
       }
-    };
-
-    function formatCOP(num) {
-      return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' COP';
     }
 
-    function calculateInstallment(total) {
-      const perMonth = Math.round(total / 24);
-      return '$' + perMonth.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' COP / mes';
+    function syncCartToStorage() {
+      try {
+        const toSave = productState.bagItems.map(item => ({
+          title: item.name,
+          name: item.name,
+          price: item.price,
+          qty: item.qty,
+          img: item.img
+        }));
+        localStorage.setItem('redcover_cart', JSON.stringify(toSave));
+      } catch (e) {
+        console.warn('Error guardando en redcover_cart:', e);
+      }
     }
 
-    function updatePrices() {
-      const activeMatrix = priceMatrix[productState.model];
-      
-      // Update price buttons in storage
-      const s128 = document.getElementById('storage-price-128');
-      if (s128) {
-        s128.innerText = activeMatrix[128] ? formatCOP(activeMatrix[128]) : 'No disp.';
+    // Inicializar Configuración del Producto basado en URL (?id=...)
+    function initProductConfigurator() {
+      loadSavedCart();
+
+      const params = new URLSearchParams(window.location.search);
+      const reqId = params.get('id');
+
+      currentDevice = allCatalogDevices.find(d => d.id === reqId);
+      if (!currentDevice) {
+        // Fallback default: iPhone 16 Pro o primer producto
+        currentDevice = allCatalogDevices.find(d => d.id === 'iphone-16-pro') || allCatalogDevices[0];
       }
-      document.getElementById('storage-price-256').innerText = formatCOP(activeMatrix[256]);
-      document.getElementById('storage-price-512').innerText = formatCOP(activeMatrix[512]);
-      document.getElementById('storage-price-1024').innerText = formatCOP(activeMatrix[1024]);
 
-      // Calculate total with trade-in
-      const rawPrice = activeMatrix[productState.storage] || activeMatrix[256];
-      productState.basePrice = rawPrice;
-      const finalPrice = Math.max(0, rawPrice - productState.tradeInDiscount);
+      deviceVariants = parseDeviceVariants(currentDevice);
+      deviceColors = getDeviceColorOptions(currentDevice);
+      selectedVariantIdx = 0;
+      selectedColorIdx = 0;
 
-      // Render on displays
-      document.getElementById('final-price-tag').innerText = formatCOP(finalPrice);
-      document.getElementById('sticky-price').innerText = formatCOP(finalPrice);
-      document.getElementById('monthly-installment-calc').innerHTML = `Tu cuota estimada: <strong class="text-gray-900 font-bold">${calculateInstallment(finalPrice)}</strong> a 24 meses.`;
-      document.getElementById('sticky-installment').innerText = `o 24 cuotas de ${calculateInstallment(finalPrice)} con 0% interés`;
-      
-      const modelTitle = productState.model === 'pro' ? 'iPhone 16 Pro' : 'iPhone 16 Pro Max';
-      document.getElementById('sticky-title').innerText = `${modelTitle} (${productState.storage}GB, ${productState.color})`;
-    }
-
-    function selectModel(modelName) {
-      productState.model = modelName;
-      const proBtn = document.getElementById('model-pro-btn');
-      const proMaxBtn = document.getElementById('model-promax-btn');
-      const checkPro = document.getElementById('check-pro');
-      const checkProMax = document.getElementById('check-promax');
-      const storage128 = document.getElementById('storage-128');
-
-      if (modelName === 'pro') {
-        proBtn.className = "relative p-4 rounded-2xl border-2 border-primary bg-white text-left transition-all crimson-border-glow shadow-sm";
-        proMaxBtn.className = "relative p-4 rounded-2xl border border-gray-200 bg-white text-left transition-all hover:border-gray-400 shadow-sm";
-        checkPro.classList.remove('hidden');
-        checkProMax.classList.add('hidden');
-        if (storage128) {
-          storage128.style.display = 'block';
-        }
-      } else {
-        proMaxBtn.className = "relative p-4 rounded-2xl border-2 border-primary bg-white text-left transition-all crimson-border-glow shadow-sm";
-        proBtn.className = "relative p-4 rounded-2xl border border-gray-200 bg-white text-left transition-all hover:border-gray-400 shadow-sm";
-        checkProMax.classList.remove('hidden');
-        checkPro.classList.add('hidden');
-        // Pro Max empieza en 256GB
-        if (storage128) {
-          storage128.style.display = 'none';
-        }
-        if (productState.storage === 128) {
-          selectStorage(256);
-        }
-      }
+      populateQuickSwitcher();
+      renderConfiguratorUI();
+      renderSiblingModels();
+      renderEngineeringSpecs();
+      renderRelatedDevices();
       updatePrices();
+      updateCartDrawerUI();
     }
 
-    function selectColor(colorName, hex, index) {
-      productState.color = colorName;
-      productState.colorImg = colorImages[index];
-      document.getElementById('selected-color-name').innerText = colorName;
-      document.getElementById('hero-finish-tag').innerText = colorName;
-      document.getElementById('hero-main-device-image').src = colorImages[index];
+    function switchConfiguredProduct(newId) {
+      if (!newId) return;
+      const url = new URL(window.location.href);
+      url.searchParams.set('id', newId);
+      window.history.pushState({}, '', url);
+      initProductConfigurator();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-      // Swatches highlight
-      for (let i = 0; i < 4; i++) {
-        const sw = document.getElementById('swatch-' + i);
-        if (i === index) {
-          sw.className = "flex flex-col items-center p-3 rounded-2xl border-2 border-primary bg-white transition-all text-center crimson-border-glow shadow-sm";
-        } else {
-          sw.className = "flex flex-col items-center p-3 rounded-2xl border border-gray-200 bg-white hover:border-gray-400 transition-all text-center shadow-sm";
-        }
+    function populateQuickSwitcher() {
+      const select = document.getElementById('quick-device-switcher');
+      if (!select) return;
+
+      const grouped = {};
+      allCatalogDevices.forEach(d => {
+        const cat = (d.category || 'otros').toUpperCase();
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(d);
+      });
+
+      let optionsHtml = '';
+      for (const cat in grouped) {
+        optionsHtml += `<optgroup label="Categoría: ${cat}">`;
+        grouped[cat].forEach(d => {
+          const isSel = d.id === currentDevice.id ? 'selected' : '';
+          optionsHtml += `<option value="${d.id}" ${isSel}>${d.title} — ${formatCOP(d.price)}</option>`;
+        });
+        optionsHtml += `</optgroup>`;
       }
-      // Update gallery strip active indicator
+      select.innerHTML = optionsHtml;
+    }
+
+    function renderConfiguratorUI() {
+      // Titles and Badges
+      const stickyTitle = document.getElementById('sticky-title');
+      const stickyBadge = document.getElementById('sticky-badge');
+      const configCategoryTag = document.getElementById('config-category-tag');
+      const configMainTitle = document.getElementById('config-main-title');
+      const configShortDesc = document.getElementById('config-short-desc');
+      const heroBadgePill = document.getElementById('hero-badge-pill');
+      const heroBadgeText = document.getElementById('hero-badge-text');
+      const heroBottomSpec1 = document.getElementById('hero-bottom-spec-1');
+      const heroBottomSpec2 = document.getElementById('hero-bottom-spec-2');
+
+      if (stickyTitle) stickyTitle.innerText = currentDevice.title;
+      if (stickyBadge) stickyBadge.innerText = currentDevice.badge || 'Garantía Oficial';
+      if (configCategoryTag) configCategoryTag.innerText = `Configuración • ${(currentDevice.category || 'Dispositivo').toUpperCase()}`;
+      if (configMainTitle) configMainTitle.innerText = `Elige tu nuevo ${currentDevice.title}.`;
+      if (configShortDesc) configShortDesc.innerText = currentDevice.shortDesc || '';
+      if (heroBadgeText) heroBadgeText.innerText = currentDevice.badge || 'En Stock';
+      if (heroBottomSpec1 && currentDevice.specs && currentDevice.specs[0]) {
+        heroBottomSpec1.innerText = currentDevice.specs[0];
+      }
+      if (heroBottomSpec2 && currentDevice.specs && currentDevice.specs[1]) {
+        heroBottomSpec2.innerText = currentDevice.specs[1];
+      }
+
+      // Render Finish Swatches
+      const swatchesContainer = document.getElementById('swatches-container');
+      if (swatchesContainer) {
+        swatchesContainer.innerHTML = deviceColors.map((col, idx) => {
+          const isAct = idx === selectedColorIdx;
+          return `
+            <button class="flex flex-col items-center p-3 rounded-2xl ${isAct ? 'border-2 border-primary bg-white crimson-border-glow' : 'border border-gray-200 bg-white hover:border-gray-400'} transition-all text-center shadow-sm" id="swatch-${idx}" onclick="selectColorIdx(${idx})" type="button">
+              <span class="w-8 h-8 rounded-full border border-gray-300 shadow-inner mb-1.5" style="background-color: ${col.hex};"></span>
+              <span class="text-[11px] font-mono ${isAct ? 'text-gray-900 font-bold' : 'text-gray-700 font-medium'} truncate w-full">${col.name.split(' ')[0]}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      // Render Gallery Thumbs
+      const thumbsContainer = document.getElementById('gallery-thumbs-container');
+      if (thumbsContainer) {
+        thumbsContainer.innerHTML = deviceColors.map((col, idx) => {
+          const imgSrc = col.img || currentDevice.img;
+          const isAct = idx === selectedColorIdx;
+          return `
+            <button class="gallery-thumb ${isAct ? 'border-2 border-primary active' : 'border border-gray-200'} rounded-2xl p-2 bg-white transition-all hover:border-primary shadow-sm text-center" onclick="selectColorIdx(${idx})">
+              <img class="w-full h-16 object-contain rounded-xl bg-gray-50" alt="${col.name}" src="${imgSrc}"/>
+              <span class="block text-center text-[10px] font-mono text-gray-800 mt-1.5 ${isAct ? 'font-bold' : 'font-medium'} truncate">${col.name.split(' ')[0]}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      // Render Storage / Versions
+      const storageContainer = document.getElementById('storage-container');
+      if (storageContainer) {
+        storageContainer.innerHTML = deviceVariants.map((v, idx) => {
+          const isAct = idx === selectedVariantIdx;
+          return `
+            <button class="storage-btn p-4 rounded-2xl ${isAct ? 'border-2 border-primary bg-white crimson-border-glow' : 'border border-gray-200 bg-white hover:border-gray-400'} text-left transition-all shadow-sm" id="storage-btn-${idx}" onclick="selectVariantIdx(${idx})" type="button">
+              <p class="text-base font-bold text-gray-900 leading-snug">${v.label}</p>
+              <p class="text-xs ${isAct ? 'text-primary font-bold' : 'text-gray-600 font-medium'} mt-1">${formatCOP(v.price)}</p>
+            </button>
+          `;
+        }).join('');
+      }
+
+      // Apply initial color visual
+      const activeColor = deviceColors[selectedColorIdx] || deviceColors[0];
+      const activeImg = activeColor.img || currentDevice.img;
+      const heroImg = document.getElementById('hero-main-device-image');
+      const heroFinishTag = document.getElementById('hero-finish-tag');
+      const selectedColorName = document.getElementById('selected-color-name');
+
+      if (heroImg) heroImg.src = activeImg;
+      if (heroFinishTag) heroFinishTag.innerText = activeColor.name;
+      if (selectedColorName) selectedColorName.innerText = activeColor.name;
+    }
+
+    function selectColorIdx(index) {
+      if (!deviceColors[index]) return;
+      selectedColorIdx = index;
+      const col = deviceColors[index];
+      const activeImg = col.img || currentDevice.img;
+
+      const heroImg = document.getElementById('hero-main-device-image');
+      const heroFinishTag = document.getElementById('hero-finish-tag');
+      const selectedColorName = document.getElementById('selected-color-name');
+
+      if (heroImg) heroImg.src = activeImg;
+      if (heroFinishTag) heroFinishTag.innerText = col.name;
+      if (selectedColorName) selectedColorName.innerText = col.name;
+
+      deviceColors.forEach((c, i) => {
+        const sw = document.getElementById('swatch-' + i);
+        if (sw) {
+          if (i === index) {
+            sw.className = "flex flex-col items-center p-3 rounded-2xl border-2 border-primary bg-white transition-all text-center crimson-border-glow shadow-sm";
+          } else {
+            sw.className = "flex flex-col items-center p-3 rounded-2xl border border-gray-200 bg-white hover:border-gray-400 transition-all text-center shadow-sm";
+          }
+        }
+      });
+
       document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
         if (i === index) {
           thumb.classList.add('border-primary', 'active');
@@ -1254,29 +2355,182 @@
           thumb.classList.add('border-gray-200');
         }
       });
+
       updatePrices();
     }
 
     function changeHeroImage(index, colorName) {
-      selectColor(colorName, '', index);
+      selectColorIdx(index);
     }
 
-    function selectStorage(capacity) {
-      productState.storage = capacity;
-      document.querySelectorAll('.storage-btn').forEach(btn => {
-        btn.classList.remove('border-primary', 'crimson-border-glow');
-        btn.classList.add('border-gray-200');
+    function selectVariantIdx(index) {
+      if (!deviceVariants[index]) return;
+      selectedVariantIdx = index;
+
+      deviceVariants.forEach((v, i) => {
+        const btn = document.getElementById('storage-btn-' + i);
+        if (btn) {
+          if (i === index) {
+            btn.className = "storage-btn p-4 rounded-2xl border-2 border-primary bg-white text-left transition-all crimson-border-glow shadow-sm";
+          } else {
+            btn.className = "storage-btn p-4 rounded-2xl border border-gray-200 bg-white text-left hover:border-gray-400 transition-all shadow-sm";
+          }
+        }
       });
-      const selectedBtn = document.getElementById('storage-' + capacity);
-      if (selectedBtn) {
-        selectedBtn.classList.remove('border-gray-200');
-        selectedBtn.classList.add('border-2', 'border-primary', 'crimson-border-glow');
-      }
+
       updatePrices();
     }
 
+    function renderSiblingModels() {
+      const container = document.getElementById('sibling-models-container');
+      const section = document.getElementById('sibling-models-section');
+      if (!container || !section) return;
+
+      // Find products in the same category that match similar title prefix
+      const titleWords = currentDevice.title.split(' ');
+      const prefix = titleWords.slice(0, 2).join(' ').toLowerCase();
+
+      let siblings = allCatalogDevices.filter(d => 
+        d.category === currentDevice.category && 
+        d.id !== currentDevice.id &&
+        d.title.toLowerCase().includes(prefix)
+      );
+
+      if (siblings.length === 0) {
+        siblings = allCatalogDevices.filter(d => d.category === currentDevice.category && d.id !== currentDevice.id).slice(0, 2);
+      } else {
+        siblings = siblings.slice(0, 2);
+      }
+
+      if (siblings.length === 0) {
+        section.classList.add('hidden');
+        return;
+      }
+
+      section.classList.remove('hidden');
+      const allSiblings = [currentDevice, ...siblings];
+
+      container.innerHTML = allSiblings.map(dev => {
+        const isCurrent = dev.id === currentDevice.id;
+        return `
+          <button class="relative p-3.5 rounded-2xl ${isCurrent ? 'border-2 border-primary bg-white crimson-border-glow' : 'border border-gray-200 bg-white hover:border-gray-400'} text-left transition-all shadow-sm" onclick="switchConfiguredProduct('${dev.id}')" type="button">
+            ${isCurrent ? '<span class="absolute top-3 right-3 text-primary material-symbols-outlined text-[20px]">check_circle</span>' : ''}
+            <p class="text-sm font-bold text-gray-900 pr-6">${dev.title}</p>
+            <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-1">${dev.badge || 'Oficial'}</p>
+            <div class="mt-2 pt-2 border-t border-gray-100 flex justify-between items-baseline">
+              <span class="text-[11px] text-gray-400">Desde</span>
+              <span class="text-xs font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderEngineeringSpecs() {
+      const grid = document.getElementById('engineering-specs-grid');
+      const engTitle = document.getElementById('eng-title');
+      const engBadge = document.getElementById('eng-badge');
+      if (!grid) return;
+
+      if (engTitle) engTitle.innerText = `Especificaciones Técnicas: ${currentDevice.title}`;
+      if (engBadge) engBadge.innerText = `Ingeniería ${(currentDevice.category || '').toUpperCase()} 2026`;
+
+      const specs = currentDevice.specs || [
+        'Arquitectura de última generación con alto rendimiento y eficiencia',
+        'Pantalla de alta resolución y reproducción de color profesional',
+        'Batería optimizada para autonomía de larga duración para todo el día',
+        'Garantía oficial y soporte técnico directo en Colombia'
+      ];
+
+      const icons = ['memory', 'photo_camera', 'shield', 'battery_charging_full', 'wifi', 'speed'];
+
+      grid.innerHTML = specs.map((spec, i) => {
+        const icon = icons[i % icons.length];
+        return `
+          <div class="bg-white p-6 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[22px]">${icon}</span>
+              </div>
+              <h4 class="text-sm font-bold text-gray-900 leading-snug">Característica ${i + 1}</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">${spec}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 text-[11px] font-mono text-primary font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">verified</span> Oficial RedCover
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderRelatedDevices() {
+      const grid = document.getElementById('related-devices-grid');
+      const title = document.getElementById('related-category-title');
+      if (!grid) return;
+
+      if (title) title.innerText = `Más productos en ${(currentDevice.category || 'tienda').toUpperCase()}`;
+
+      const related = allCatalogDevices
+        .filter(d => d.id !== currentDevice.id && d.category === currentDevice.category)
+        .slice(0, 4);
+
+      if (related.length === 0) {
+        grid.innerHTML = allCatalogDevices.slice(0, 4).map(renderSmallCard).join('');
+      } else {
+        grid.innerHTML = related.map(renderSmallCard).join('');
+      }
+    }
+
+    function renderSmallCard(dev) {
+      return `
+        <div class="rounded-3xl bg-white p-4 flex flex-col justify-between border border-gray-200 hover:border-primary/60 transition-all shadow-sm group">
+          <div>
+            <div class="h-36 rounded-2xl bg-zinc-950 flex items-center justify-center p-3 mb-3 cursor-pointer overflow-hidden" onclick="switchConfiguredProduct('${dev.id}')">
+              <img src="${dev.img}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" alt="${dev.title}">
+            </div>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-primary font-bold">${dev.badge || 'Oficial'}</span>
+            <h4 class="text-xs font-bold text-gray-900 mt-1 leading-snug line-clamp-1 cursor-pointer hover:text-primary" onclick="switchConfiguredProduct('${dev.id}')">${dev.title}</h4>
+            <p class="text-[11px] text-gray-500 mt-1 line-clamp-2">${dev.shortDesc || ''}</p>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-400 block">Desde:</span>
+              <span class="text-xs font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
+            </div>
+            <button type="button" onclick="switchConfiguredProduct('${dev.id}')" class="px-3 py-1.5 rounded-full crimson-btn text-white text-[10px] font-bold shadow-sm flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">tune</span> Configurar
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Actualización de Precios reactiva
+    function updatePrices() {
+      if (!currentDevice) return;
+
+      const activeVariant = deviceVariants[selectedVariantIdx] || { price: currentDevice.price, label: 'Base' };
+      const rawPrice = activeVariant.price;
+      productState.basePrice = rawPrice;
+      const finalPrice = Math.max(0, rawPrice - productState.tradeInDiscount);
+
+      const finalPriceTag = document.getElementById('final-price-tag');
+      const stickyPrice = document.getElementById('sticky-price');
+      const monthlyInstallment = document.getElementById('monthly-installment-calc');
+      const stickyInstallment = document.getElementById('sticky-installment');
+      const stickyTitle = document.getElementById('sticky-title');
+
+      if (finalPriceTag) finalPriceTag.innerText = formatCOP(finalPrice);
+      if (stickyPrice) stickyPrice.innerText = formatCOP(finalPrice);
+      if (monthlyInstallment) monthlyInstallment.innerHTML = `Tu cuota estimada: <strong class="text-gray-900 font-bold">${calculateInstallment(finalPrice)}</strong> a 24 meses.`;
+      if (stickyInstallment) stickyInstallment.innerText = `o 24 cuotas de ${calculateInstallment(finalPrice)} con 0% interés`;
+      
+      const activeColor = deviceColors[selectedColorIdx] || { name: '' };
+      if (stickyTitle) stickyTitle.innerText = `${currentDevice.title} (${activeVariant.label}, ${activeColor.name})`;
+    }
+
     // ==========================================
-    // PLAN CANJE CON BATERÍA Y ESTADO DEL EQUIPO
+    // PLAN CANJE CON BATERÍA Y ESTADO
     // ==========================================
     function toggleTradeIn(enable) {
       const drawer = document.getElementById('tradein-drawer');
@@ -1285,16 +2539,16 @@
 
       productState.tradeIn.active = enable;
       if (enable) {
-        drawer.classList.remove('hidden');
-        yesBtn.className = "py-2.5 px-3 rounded-xl border-2 border-primary bg-white text-xs text-primary font-bold transition-all text-center crimson-border-glow shadow-sm";
-        noBtn.className = "py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center";
+        if (drawer) drawer.classList.remove('hidden');
+        if (yesBtn) yesBtn.className = "py-2.5 px-3 rounded-xl border-2 border-primary bg-white text-xs text-primary font-bold transition-all text-center crimson-border-glow shadow-sm";
+        if (noBtn) noBtn.className = "py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center";
         calculateTradeInDiscount();
       } else {
-        drawer.classList.add('hidden');
+        if (drawer) drawer.classList.add('hidden');
         productState.tradeInDiscount = 0;
         productState.tradeIn.finalDiscount = 0;
-        noBtn.className = "py-2.5 px-3 rounded-xl border-2 border-primary bg-white text-xs text-primary font-bold transition-all text-center crimson-border-glow shadow-sm";
-        yesBtn.className = "py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center";
+        if (noBtn) noBtn.className = "py-2.5 px-3 rounded-xl border-2 border-primary bg-white text-xs text-primary font-bold transition-all text-center crimson-border-glow shadow-sm";
+        if (yesBtn) yesBtn.className = "py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 bg-gray-50 hover:border-primary transition-all text-center";
         updatePrices();
       }
     }
@@ -1309,7 +2563,8 @@
 
       productState.tradeIn.batteryFactor = factor;
       productState.tradeIn.batteryLabel = label;
-      document.getElementById('tradein-battery-tag').innerText = label;
+      const tag = document.getElementById('tradein-battery-tag');
+      if (tag) tag.innerText = label;
       calculateTradeInDiscount();
     }
 
@@ -1323,26 +2578,30 @@
 
       productState.tradeIn.conditionFactor = factor;
       productState.tradeIn.conditionLabel = label;
-      document.getElementById('tradein-condition-tag').innerText = label;
+      const tag = document.getElementById('tradein-condition-tag');
+      if (tag) tag.innerText = label;
       calculateTradeInDiscount();
     }
 
     function calculateTradeInDiscount() {
       const select = document.getElementById('tradein-device-select');
+      if (!select) return;
       const baseVal = parseInt(select.value, 10) || 0;
       productState.tradeIn.baseValue = baseVal;
       productState.tradeIn.deviceText = select.options[select.selectedIndex].text;
+
+      const badge = document.getElementById('tradein-applied-badge');
 
       if (baseVal > 0 && productState.tradeIn.active) {
         const discount = Math.round(baseVal * productState.tradeIn.batteryFactor * productState.tradeIn.conditionFactor);
         productState.tradeInDiscount = discount;
         productState.tradeIn.finalDiscount = discount;
-        document.getElementById('tradein-applied-badge').innerText = `-${formatCOP(discount)}`;
+        if (badge) badge.innerText = `-${formatCOP(discount)}`;
         showToast("Plan Canje Actualizado", `Descuento de ${formatCOP(discount)} aplicado por tu equipo.`);
       } else {
         productState.tradeInDiscount = 0;
         productState.tradeIn.finalDiscount = 0;
-        document.getElementById('tradein-applied-badge').innerText = `-$0 COP`;
+        if (badge) badge.innerText = `-$0 COP`;
       }
       updatePrices();
     }
@@ -1362,31 +2621,29 @@
       const actionIcon = document.getElementById('primary-action-icon');
 
       if (mode === 'financing') {
-        cashBtn.className = "p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between";
-        financingBtn.className = "p-3 rounded-xl border-2 border-emerald-600 bg-white text-emerald-700 text-xs font-bold transition-all text-left flex flex-col justify-between shadow-sm";
-        checkCash.classList.add('hidden');
-        checkFinancing.classList.remove('hidden');
-        noticeBox.classList.remove('hidden');
+        if (cashBtn) cashBtn.className = "p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between";
+        if (financingBtn) financingBtn.className = "p-3 rounded-xl border-2 border-emerald-600 bg-white text-emerald-700 text-xs font-bold transition-all text-left flex flex-col justify-between shadow-sm";
+        if (checkCash) checkCash.classList.add('hidden');
+        if (checkFinancing) checkFinancing.classList.remove('hidden');
+        if (noticeBox) noticeBox.classList.remove('hidden');
 
-        // Change CTA button to direct to WhatsApp
-        actionBtn.className = "w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all transform hover:scale-[1.01]";
-        actionText.innerText = "Solicitar Financiación por WhatsApp (24 Cuotas)";
-        actionIcon.innerText = "chat";
+        if (actionBtn) actionBtn.className = "w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all transform hover:scale-[1.01]";
+        if (actionText) actionText.innerText = "Solicitar Financiación por WhatsApp (24 Cuotas 0%)";
+        if (actionIcon) actionIcon.innerText = "chat";
         showToast("Financiación seleccionada", "Tu compra será canalizada vía WhatsApp con cuotas al 0% de interés.");
       } else {
-        cashBtn.className = "p-3 rounded-xl border-2 border-primary bg-white text-primary text-xs font-bold transition-all text-left flex flex-col justify-between crimson-border-glow shadow-sm";
-        financingBtn.className = "p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between hover:border-emerald-500";
-        checkCash.classList.remove('hidden');
-        checkFinancing.classList.add('hidden');
-        noticeBox.classList.add('hidden');
+        if (cashBtn) cashBtn.className = "p-3 rounded-xl border-2 border-primary bg-white text-primary text-xs font-bold transition-all text-left flex flex-col justify-between crimson-border-glow shadow-sm";
+        if (financingBtn) financingBtn.className = "p-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-xs font-semibold transition-all text-left flex flex-col justify-between hover:border-emerald-500";
+        if (checkCash) checkCash.classList.remove('hidden');
+        if (checkFinancing) checkFinancing.classList.add('hidden');
+        if (noticeBox) noticeBox.classList.add('hidden');
 
-        actionBtn.className = "w-full py-4 px-6 rounded-full crimson-btn text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
-        actionText.innerText = "Añadir a la bolsa RedCover";
-        actionIcon.innerText = "shopping_bag";
+        if (actionBtn) actionBtn.className = "w-full py-4 px-6 rounded-full crimson-btn text-white text-sm font-bold shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
+        if (actionText) actionText.innerText = "Añadir a la bolsa RedCover";
+        if (actionIcon) actionIcon.innerText = "shopping_bag";
       }
     }
 
-    // Acción principal: Si se financia -> WhatsApp; si es de contado -> Añadir a la bolsa
     function handlePrimaryAction() {
       if (productState.paymentMode === 'financing') {
         sendFinancingWhatsAppRequest();
@@ -1395,18 +2652,18 @@
       }
     }
 
-    // Arma mensaje para WhatsApp al financiar
     function sendFinancingWhatsAppRequest() {
-      const modelTitle = productState.model === 'pro' ? 'iPhone 16 Pro' : 'iPhone 16 Pro Max';
-      const finalPrice = Math.max(0, productState.basePrice - productState.tradeInDiscount);
+      const activeVariant = deviceVariants[selectedVariantIdx] || { label: 'Estándar', price: currentDevice.price };
+      const activeColor = deviceColors[selectedColorIdx] || { name: 'Estándar' };
+      const finalPrice = Math.max(0, activeVariant.price - productState.tradeInDiscount);
       const installmentStr = calculateInstallment(finalPrice);
 
-      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN a 0% de interés* para mi nuevo celular:%0A%0A` +
-        `📱 *Equipo:* ${encodeURIComponent(modelTitle)}%0A` +
-        `💾 *Capacidad:* ${productState.storage} GB%0A` +
-        `🎨 *Acabado:* ${encodeURIComponent(productState.color)}%0A` +
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN a 24 cuotas sin interés* para mi nuevo equipo:%0A%0A` +
+        `📱 *Equipo:* ${encodeURIComponent(currentDevice.title)}%0A` +
+        `💾 *Configuración:* ${encodeURIComponent(activeVariant.label)}%0A` +
+        `🎨 *Acabado:* ${encodeURIComponent(activeColor.name)}%0A` +
         `💰 *Valor total:* ${encodeURIComponent(formatCOP(finalPrice))}%0A` +
-        `💳 *Cuota estimada:* ${encodeURIComponent(installmentStr)} (24 cuotas fijas)%0A`;
+        `💳 *Cuota estimada:* ${encodeURIComponent(installmentStr)} (24 cuotas fijas al 0%)%0A`;
 
       if (productState.tradeIn.active && productState.tradeInDiscount > 0) {
         msg += `%0A🔄 *Plan Canje Incluido:*%0A` +
@@ -1416,16 +2673,90 @@
           `• Descuento aplicado: -${encodeURIComponent(formatCOP(productState.tradeInDiscount))}%0A`;
       }
 
-      msg += `%0A¿Podrían indicarme los requisitos y bancos aliados para el estudio inmediato? Muchas gracias.`;
+      msg += `%0A📍 *Sede de retiro preferida:* San Andresito de la 38 C.C. Caribe Locales 136 o 197 (o Envío a domicilio).%0A¿Podrían indicarme los requisitos para la aprobación en 10 minutos? Muchas gracias.`;
 
       window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
     }
 
     function sendCustomWhatsAppQuote() {
-      const modelTitle = productState.model === 'pro' ? 'iPhone 16 Pro' : 'iPhone 16 Pro Max';
-      const finalPrice = Math.max(0, productState.basePrice - productState.tradeInDiscount);
-      const msg = `Hola RedCover Colombia 👋 Deseo asesoría personalizada para adquirir el *${encodeURIComponent(modelTitle)}* (${productState.storage}GB, ${encodeURIComponent(productState.color)}) con valor de ${encodeURIComponent(formatCOP(finalPrice))}.`;
+      const activeVariant = deviceVariants[selectedVariantIdx] || { label: 'Estándar', price: currentDevice.price };
+      const activeColor = deviceColors[selectedColorIdx] || { name: 'Estándar' };
+      const finalPrice = Math.max(0, activeVariant.price - productState.tradeInDiscount);
+      const msg = `Hola RedCover Colombia 👋 Deseo asesoría personalizada para adquirir el *${encodeURIComponent(currentDevice.title)}* (${encodeURIComponent(activeVariant.label)}, ${encodeURIComponent(activeColor.name)}) con valor de ${encodeURIComponent(formatCOP(finalPrice))}.`;
       window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    function addToBag() {
+      const activeVariant = deviceVariants[selectedVariantIdx] || { label: 'Estándar', price: currentDevice.price };
+      const activeColor = deviceColors[selectedColorIdx] || { name: 'Estándar' };
+      const finalPrice = Math.max(0, activeVariant.price - productState.tradeInDiscount);
+      const itemName = `${currentDevice.title} (${activeVariant.label}, ${activeColor.name})`;
+      const itemImg = activeColor.img || currentDevice.img;
+
+      productState.bagItems.push({
+        name: itemName,
+        price: finalPrice,
+        qty: 1,
+        img: itemImg
+      });
+
+      syncCartToStorage();
+      updateCartDrawerUI();
+      showToast("¡Agregado a tu bolsa!", `${itemName} listo para comprar.`);
+      setTimeout(openCartDrawer, 600);
+    }
+
+    function addAccessoryToBag(name, price) {
+      productState.bagItems.push({
+        name: name,
+        price: price,
+        qty: 1,
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJcimQI86GNHtq-A713A44IekmJ6sJVkOc_cxW0miU6AnQX9HAw4glRP9aRLEEMaZ0-HibRgkg15IBT5Lg-AV_6CVy-VB2kKlO7aW8ZwMFi-iWetchexlHAaJ89LOdp3ocK7j_FH65ebRVp0_u7QhuUjKYxStRrIAsnBbCLzlIUTWzyDkyfwc7GsgWMtKsy1Ogg-0nwVT9y3npt2kNJQf5d4hpGMevc9oPwD_b4y5bSNM97Ywrn3Ui'
+      });
+      syncCartToStorage();
+      updateCartDrawerUI();
+      showToast("Accesorio añadido", `${name} agregado a tu orden.`);
+    }
+
+    function updateCartDrawerUI() {
+      const container = document.getElementById('cart-items');
+      const totalEl = document.getElementById('cart-total');
+      const bagBadge = document.getElementById('bag-badge');
+      if (!container || !totalEl || !bagBadge) return;
+
+      let grandTotal = 0;
+      let totalCount = 0;
+      container.innerHTML = '';
+
+      productState.bagItems.forEach((item, idx) => {
+        grandTotal += item.price * item.qty;
+        totalCount += item.qty;
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-200';
+        row.innerHTML = `
+          <img src="${item.img}" class="w-12 h-12 object-contain rounded bg-white border border-gray-100 p-1" alt="${item.name}">
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-gray-900 truncate">${item.name}</h4>
+            <p class="text-xs text-primary font-mono font-bold">${formatCOP(item.price)}</p>
+            <div class="flex items-center gap-2 mt-1 text-xs">
+              <span class="text-gray-500">Cant: ${item.qty}</span>
+            </div>
+          </div>
+          <button onclick="removeBagItem(${idx})" class="text-gray-400 hover:text-red-500 p-1">
+            <span class="material-symbols-outlined text-base">delete</span>
+          </button>
+        `;
+        container.appendChild(row);
+      });
+
+      bagBadge.innerText = totalCount;
+      totalEl.innerText = formatCOP(grandTotal);
+    }
+
+    function removeBagItem(idx) {
+      productState.bagItems.splice(idx, 1);
+      syncCartToStorage();
+      updateCartDrawerUI();
     }
 
     function toggleDrawerFinancing(checked) {
@@ -1434,13 +2765,13 @@
       const btn = document.getElementById('drawer-checkout-btn');
 
       if (checked) {
-        btn.className = "w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
-        text.innerText = "Financiar Orden por WhatsApp";
-        icon.innerText = "chat";
+        if (btn) btn.className = "w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider transition-all";
+        if (text) text.innerText = "Financiar Orden por WhatsApp";
+        if (icon) icon.innerText = "chat";
       } else {
-        btn.className = "w-full py-3.5 rounded-full crimson-btn text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider";
-        text.innerText = "Iniciar Compra Segura";
-        icon.innerText = "lock";
+        if (btn) btn.className = "w-full py-3.5 rounded-full crimson-btn text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 uppercase tracking-wider";
+        if (text) text.innerText = "Iniciar Compra Segura";
+        if (icon) icon.innerText = "lock";
       }
     }
 
@@ -1450,7 +2781,7 @@
     function handleCheckoutFromDrawer() {
       const isFinancing = document.getElementById('drawer-financing-checkbox') && document.getElementById('drawer-financing-checkbox').checked;
       if (productState.bagItems.length === 0) {
-        showToast('Bolsa vacía', 'Añade al menos un producto Apple a tu bolsa.');
+        showToast('Bolsa vacía', 'Añade al menos un producto a tu bolsa.');
         return;
       }
 
@@ -1477,8 +2808,12 @@
 
     function openCheckoutModal() {
       const modal = document.getElementById('checkout-modal');
-      document.getElementById('checkout-step-form').classList.remove('hidden');
-      document.getElementById('checkout-step-success').classList.add('hidden');
+      const form = document.getElementById('checkout-step-form');
+      const success = document.getElementById('checkout-step-success');
+      if (!modal) return;
+
+      if (form) form.classList.remove('hidden');
+      if (success) success.classList.add('hidden');
 
       let total = 0;
       let count = 0;
@@ -1487,8 +2822,10 @@
         count += item.qty;
       });
 
-      document.getElementById('chk-summary-items').innerText = `${count} ${count === 1 ? 'artículo' : 'artículos'}`;
-      document.getElementById('chk-summary-total').innerText = formatCOP(total);
+      const summaryItems = document.getElementById('chk-summary-items');
+      const summaryTotal = document.getElementById('chk-summary-total');
+      if (summaryItems) summaryItems.innerText = `${count} ${count === 1 ? 'artículo' : 'artículos'}`;
+      if (summaryTotal) summaryTotal.innerText = formatCOP(total);
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -1496,8 +2833,10 @@
 
     function closeCheckoutModal() {
       const modal = document.getElementById('checkout-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
     }
 
     function selectCheckoutPayment(method) {
@@ -1508,18 +2847,18 @@
       const bankBox = document.getElementById('pse-bank-selector');
 
       [pseBtn, cardBtn, waBtn].forEach(b => {
-        b.className = "p-3.5 rounded-2xl border border-gray-200 bg-white text-left transition-all";
+        if (b) b.className = "p-3.5 rounded-2xl border border-gray-200 bg-white text-left transition-all";
       });
 
       if (method === 'pse') {
-        pseBtn.className = "p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all";
-        bankBox.classList.remove('hidden');
+        if (pseBtn) pseBtn.className = "p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all";
+        if (bankBox) bankBox.classList.remove('hidden');
       } else if (method === 'card') {
-        cardBtn.className = "p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all";
-        bankBox.classList.add('hidden');
+        if (cardBtn) cardBtn.className = "p-3.5 rounded-2xl border-2 border-primary bg-red-50/40 text-left transition-all";
+        if (bankBox) bankBox.classList.add('hidden');
       } else {
-        waBtn.className = "p-3.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50/40 text-left transition-all";
-        bankBox.classList.add('hidden');
+        if (waBtn) waBtn.className = "p-3.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50/40 text-left transition-all";
+        if (bankBox) bankBox.classList.add('hidden');
       }
     }
 
@@ -1592,7 +2931,7 @@
       document.getElementById('checkout-step-form').classList.add('hidden');
       document.getElementById('checkout-step-success').classList.remove('hidden');
       productState.bagItems = [];
-      try { localStorage.setItem('redcover_cart', JSON.stringify([])); } catch(e) {}
+      syncCartToStorage();
       updateCartDrawerUI();
     }
 
@@ -1616,241 +2955,250 @@
       }
     }
 
-    function updateCartDrawerUI() {
-      const container = document.getElementById('cart-items');
-      const totalEl = document.getElementById('cart-total');
-      const bagBadge = document.getElementById('bag-badge');
-      
-      let grandTotal = 0;
-      let totalCount = 0;
-      container.innerHTML = '';
-
-      productState.bagItems.forEach((item, idx) => {
-        grandTotal += item.price * item.qty;
-        totalCount += item.qty;
-        const row = document.createElement('div');
-        row.className = 'flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-200';
-        row.innerHTML = `
-          <img src="${item.img}" class="w-12 h-12 object-contain rounded bg-white border border-gray-100 p-1" alt="${item.name}">
-          <div class="flex-1 min-w-0">
-            <h4 class="text-xs font-bold text-gray-900 truncate">${item.name}</h4>
-            <p class="text-xs text-primary font-mono font-bold">${formatCOP(item.price)}</p>
-            <div class="flex items-center gap-2 mt-1 text-xs">
-              <span class="text-gray-500">Cant: ${item.qty}</span>
-            </div>
-          </div>
-          <button onclick="removeBagItem(${idx})" class="text-gray-400 hover:text-red-500 p-1">
-            <span class="material-symbols-outlined text-base">delete</span>
-          </button>
-        `;
-        container.appendChild(row);
-      });
-
-      bagBadge.innerText = totalCount;
-      totalEl.innerText = formatCOP(grandTotal);
-    }
-
-    function removeBagItem(idx) {
-      productState.bagItems.splice(idx, 1);
-      updateCartDrawerUI();
-    }
-
-    function addToBag() {
-      const modelTitle = productState.model === 'pro' ? 'iPhone 16 Pro' : 'iPhone 16 Pro Max';
-      const itemPrice = Math.max(0, productState.basePrice - productState.tradeInDiscount);
-      const itemName = `${modelTitle} (${productState.storage} GB, ${productState.color})`;
-      
-      productState.bagItems.push({
-        name: itemName,
-        price: itemPrice,
-        qty: 1,
-        img: productState.colorImg
-      });
-
-      updateCartDrawerUI();
-      showToast("¡Agregado a tu bolsa!", `${itemName} listo para comprar.`);
-      setTimeout(openCartDrawer, 600);
-    }
-
-    function addAccessoryToBag(name, price) {
-      productState.bagItems.push({
-        name: name,
-        price: price,
-        qty: 1,
-        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJcimQI86GNHtq-A713A44IekmJ6sJVkOc_cxW0miU6AnQX9HAw4glRP9aRLEEMaZ0-HibRgkg15IBT5Lg-AV_6CVy-VB2kKlO7aW8ZwMFi-iWetchexlHAaJ89LOdp3ocK7j_FH65ebRVp0_u7QhuUjKYxStRrIAsnBbCLzlIUTWzyDkyfwc7GsgWMtKsy1Ogg-0nwVT9y3npt2kNJQf5d4hpGMevc9oPwD_b4y5bSNM97Ywrn3Ui'
-      });
-      updateCartDrawerUI();
-      showToast("Accesorio añadido", `${name} agregado a tu orden.`);
-    }
-
     function openCartDrawer() {
       const backdrop = document.getElementById('cart-backdrop');
       const panel = document.getElementById('cart-panel');
-      backdrop.classList.remove('hidden');
-      setTimeout(() => {
-        backdrop.classList.remove('opacity-0');
-        panel.classList.remove('translate-x-full');
-      }, 10);
+      if (backdrop && panel) {
+        backdrop.classList.remove('hidden');
+        setTimeout(() => {
+          backdrop.classList.remove('opacity-0');
+          panel.classList.remove('translate-x-full');
+        }, 10);
+      }
     }
 
     function closeCartDrawer() {
       const backdrop = document.getElementById('cart-backdrop');
       const panel = document.getElementById('cart-panel');
-      backdrop.classList.add('opacity-0');
-      panel.classList.add('translate-x-full');
-      setTimeout(() => {
-        backdrop.classList.add('hidden');
-      }, 300);
+      if (backdrop && panel) {
+        backdrop.classList.add('opacity-0');
+        panel.classList.add('translate-x-full');
+        setTimeout(() => {
+          backdrop.classList.add('hidden');
+        }, 300);
+      }
     }
 
     function showToast(title, desc) {
       const toast = document.getElementById('toast');
-      document.getElementById('toast-title').innerText = title;
-      document.getElementById('toast-desc').innerText = desc;
-      toast.classList.remove('translate-y-24', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-      setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-24', 'opacity-0');
-      }, 3500);
+      const titleEl = document.getElementById('toast-title');
+      const descEl = document.getElementById('toast-desc');
+      if (titleEl) titleEl.innerText = title;
+      if (descEl) descEl.innerText = desc;
+      if (toast) {
+        toast.classList.remove('translate-y-24', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-24', 'opacity-0');
+        }, 3500);
+      }
     }
 
     // ==========================================
-    // MEGA MENÚ INTERACTIVO ESTILO APPLE (TEMA CLARO)
+    // MODO OSCURO (SINCRONIZADO CON REDCOVER)
+    // ==========================================
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      try {
+        localStorage.setItem('redcover_dark_mode', isDark ? 'dark' : 'light');
+      } catch (e) {}
+      updateDarkModeIcon(isDark);
+    }
+
+    function updateDarkModeIcon(isDark) {
+      const icon = document.getElementById('dark-mode-icon');
+      if (icon) {
+        icon.innerText = isDark ? 'light_mode' : 'dark_mode';
+      }
+    }
+
+    (function initDarkMode() {
+      try {
+        const saved = localStorage.getItem('redcover_dark_mode');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+          updateDarkModeIcon(true);
+        } else {
+          document.documentElement.classList.remove('dark');
+          updateDarkModeIcon(false);
+        }
+      } catch (e) {}
+    })();
+
+    // ==========================================
+    // MEGA MENÚ INTERACTIVO COMPLETO
     // ==========================================
     const megaMenuData = {
       iphone: {
         categoryTitle: "Explorar iPhone",
         primaryLinks: [
-          { name: "Ver todos los modelos de iPhone", href: "iphone-16-pro.html", bold: true },
-          { name: "iPhone 16 Pro & Pro Max", href: "iphone-16-pro.html" },
-          { name: "iPhone 16 & 16 Plus", href: "index.html#iphone" },
-          { name: "iPhone 15 Pro Max", href: "index.html#iphone" },
-          { name: "iPhone 15", href: "index.html#iphone" },
-          { name: "iPhone 14", href: "index.html#iphone" }
+          { name: "Ver catálogo de iPhone", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "Gama iPhone 18 (2026)", href: "iphone-16-pro.html?id=iphone-18-pro-max" },
+          { name: "iPhone Duo Plegable", href: "iphone-16-pro.html?id=iphone-duo-fold" },
+          { name: "Gama iPhone 17 & Air", href: "iphone-16-pro.html?id=iphone-air" },
+          { name: "iPhone 16 Pro & 16", href: "iphone-16-pro.html?id=iphone-16-pro" },
+          { name: "iPhone 15 & 14", href: "index.html#catalogo-dispositivos" }
         ],
-        secondaryTitle: "Comprar iPhone",
+        secondaryTitle: "Configurar iPhone",
         secondaryLinks: [
-          { name: "Personalizar iPhone 16 Pro", href: "#configurador" },
-          { name: "Accesorios para iPhone", href: "#accesorios" },
-          { name: "Fundas MagSafe & Carbon", href: "#accesorios" },
-          { name: "Cargadores y Cables USB-C", href: "#accesorios" },
-          { name: "Plan Canje para iPhone", href: "#canje" }
+          { name: "Personalizar en este Configurator", href: "#configurador" },
+          { name: "Plan Canje de Celulares", href: "#tradein-section" },
+          { name: "Financiación 24 Cuotas 0%", href: "#configurador" }
         ],
-        tertiaryTitle: "Más para el iPhone",
+        tertiaryTitle: "Garantía & Sedes",
         tertiaryLinks: [
-          { name: "Soporte técnico para iPhone", href: "index.html#tiendas" },
-          { name: "iOS 18 y Apple Intelligence", href: "#ingenieria" },
-          { name: "Garantía Oficial Apple 1 Año", href: "index.html#tiendas" },
-          { name: "Comparar modelos de iPhone", href: "#comparativa" }
+          { name: "San Andresito de la 38 Loc. 136", href: "index.html#tiendas" },
+          { name: "San Andresito de la 38 Loc. 197", href: "index.html#tiendas" }
+        ]
+      },
+      airpods: {
+        categoryTitle: "Explorar AirPods",
+        primaryLinks: [
+          { name: "Ver catálogo de AirPods", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "AirPods Pro 3 (2026)", href: "iphone-16-pro.html?id=airpods-pro-3" },
+          { name: "AirPods Max 2 (2026)", href: "iphone-16-pro.html?id=airpods-max-2" },
+          { name: "AirPods 4 con ANC", href: "iphone-16-pro.html?id=airpods-4-anc" },
+          { name: "AirPods Pro 2 MagSafe", href: "iphone-16-pro.html?id=airpods-pro-2" }
+        ],
+        secondaryTitle: "Experiencia Hi-Fi",
+        secondaryLinks: [
+          { name: "Audio Espacial Personalizado", href: "#accesorios" },
+          { name: "Salud Auditiva Clínica", href: "#accesorios" }
+        ],
+        tertiaryTitle: "Compra Segura",
+        tertiaryLinks: [
+          { name: "100% Originales Apple", href: "index.html#tiendas" },
+          { name: "Garantía 1 Año Colombia", href: "index.html#tiendas" }
         ]
       },
       watch: {
         categoryTitle: "Explorar Apple Watch",
         primaryLinks: [
-          { name: "Ver todos los modelos de Watch", href: "index.html#watch", bold: true },
-          { name: "Apple Watch Ultra 2", href: "index.html#watch" },
-          { name: "Apple Watch Series 10", href: "index.html#watch" },
-          { name: "Apple Watch SE", href: "index.html#watch" }
+          { name: "Ver catálogo de Apple Watch", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "Apple Watch Ultra 3 (2026)", href: "iphone-16-pro.html?id=watch-ultra-3" },
+          { name: "Apple Watch Series 12 (2026)", href: "iphone-16-pro.html?id=watch-series-12" },
+          { name: "Apple Watch Series 10", href: "iphone-16-pro.html?id=watch-series-10" },
+          { name: "Apple Watch SE (3.ª gen)", href: "iphone-16-pro.html?id=watch-se-3" }
         ],
-        secondaryTitle: "Comprar Watch",
+        secondaryTitle: "Modelos & Correas",
         secondaryLinks: [
-          { name: "Comprar Apple Watch", href: "index.html#watch" },
-          { name: "Correas oficiales Apple", href: "index.html#accesorios" }
+          { name: "Titanio 49mm Satelital", href: "iphone-16-pro.html?id=watch-ultra-3" },
+          { name: "Aluminio 42mm y 46mm", href: "iphone-16-pro.html?id=watch-series-12" }
         ],
-        tertiaryTitle: "Más para Apple Watch",
+        tertiaryTitle: "Salud & Deportes",
         tertiaryLinks: [
-          { name: "Soporte para Apple Watch", href: "index.html#tiendas" },
-          { name: "watchOS 11", href: "index.html#watch" }
+          { name: "Presión Arterial & ECG", href: "#ingenieria" },
+          { name: "Buceo y Deportes Extremos", href: "#ingenieria" }
         ]
       },
       mac: {
         categoryTitle: "Explorar Mac",
         primaryLinks: [
-          { name: "Ver todos los modelos de Mac", href: "index.html#mac", bold: true },
-          { name: "MacBook Pro 14\" y 16\" (M3)", href: "index.html#mac" },
-          { name: "MacBook Air 13\" y 15\"", href: "index.html#mac" },
-          { name: "iMac 24\" Retina 4.5K", href: "index.html#mac" }
+          { name: "Ver catálogo de MacBook & Mac", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: 'MacBook Pro M5 (2026)', href: "iphone-16-pro.html?id=macbook-pro-m5" },
+          { name: 'MacBook Air M5 (2026)', href: "iphone-16-pro.html?id=macbook-air-m5" },
+          { name: 'Mac mini M4 Rediseñado', href: "iphone-16-pro.html?id=mac-mini-m4" },
+          { name: "iMac 24' Retina 4.5K", href: "iphone-16-pro.html?id=imac-24-m4" }
         ],
-        secondaryTitle: "Comprar Mac",
+        secondaryTitle: "Configurar Mac",
         secondaryLinks: [
-          { name: "Comprar MacBook Pro", href: "index.html#mac" },
-          { name: "Accesorios para Mac", href: "index.html#accesorios" }
+          { name: "Memoria Unificada hasta 128GB", href: "#configurador" },
+          { name: "Thunderbolt 5 & Pantalla Liquid XDR", href: "#ingenieria" }
         ],
-        tertiaryTitle: "Más para Mac",
+        tertiaryTitle: "Soporte Profesional",
         tertiaryLinks: [
-          { name: "Soporte técnico Mac", href: "index.html#tiendas" },
-          { name: "macOS Sequoia", href: "index.html#mac" }
+          { name: "Asesoría para Creadores & Devs", href: "https://wa.me/573001234567" }
         ]
       },
       ipad: {
         categoryTitle: "Explorar iPad",
         primaryLinks: [
-          { name: "Ver todos los modelos de iPad", href: "index.html#ipad", bold: true },
-          { name: "iPad Pro (Chip M4 Tandem OLED)", href: "index.html#ipad" },
-          { name: "iPad Air (Chip M2)", href: "index.html#ipad" },
-          { name: "iPad (10.ª gen) & mini", href: "index.html#ipad" }
+          { name: "Ver catálogo de iPad", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: 'iPad Pro M5 Tandem OLED (2026)', href: "iphone-16-pro.html?id=ipad-pro-m5" },
+          { name: 'iPad Air M4 11 y 13 pulgadas', href: "iphone-16-pro.html?id=ipad-air-m4" },
+          { name: 'iPad mini A17 Pro', href: "iphone-16-pro.html?id=ipad-mini-a17-pro" },
+          { name: 'iPad (11.ª gen - 2026)', href: "iphone-16-pro.html?id=ipad-11-gen" }
         ],
-        secondaryTitle: "Comprar iPad",
+        secondaryTitle: "Accesorios iPad",
         secondaryLinks: [
-          { name: "Comprar iPad Pro M4", href: "index.html#ipad" },
-          { name: "Apple Pencil Pro", href: "index.html#accesorios" }
-        ],
-        tertiaryTitle: "Más para iPad",
-        tertiaryLinks: [
-          { name: "Soporte para iPad", href: "index.html#tiendas" },
-          { name: "iPadOS 18", href: "index.html#ipad" }
-        ]
-      },
-      accesorios: {
-        categoryTitle: "Explorar Accesorios",
-        primaryLinks: [
-          { name: "Ver todos los Accesorios", href: "index.html#accesorios", bold: true },
-          { name: "AirPods Pro 2", href: "index.html#accesorios" },
-          { name: "Cargador MagSafe", href: "#accesorios" },
-          { name: "Fundas Carbon Armor", href: "#accesorios" }
-        ],
-        secondaryTitle: "Comprar por Categoría",
-        secondaryLinks: [
-          { name: "Accesorios para iPhone", href: "#accesorios" },
-          { name: "Carga rápida USB-C", href: "#accesorios" }
+          { name: "Apple Pencil Pro", href: "index.html#accesorios" },
+          { name: "Magic Keyboard de Aluminio", href: "index.html#accesorios" }
         ],
         tertiaryTitle: "Garantía",
         tertiaryLinks: [
-          { name: "100% Originales Apple", href: "index.html#tiendas" }
+          { name: "Garantía 1 Año Oficial", href: "index.html#tiendas" }
+        ]
+      },
+      samsung: {
+        categoryTitle: "Explorar Samsung Galaxy",
+        primaryLinks: [
+          { name: "Ver catálogo de Samsung Galaxy", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "Galaxy S26 Ultra 5G (2026)", href: "iphone-16-pro.html?id=samsung-s26-ultra" },
+          { name: "Galaxy S26 Slim / Edge 5.6mm", href: "iphone-16-pro.html?id=samsung-s26-slim" },
+          { name: "Galaxy Z Fold 7 & Flip 7", href: "iphone-16-pro.html?id=samsung-z-fold-7" },
+          { name: "Galaxy S25 Ultra & S24 Ultra", href: "iphone-16-pro.html?id=samsung-s24-ultra" }
+        ],
+        secondaryTitle: "Galaxy AI & S-Pen",
+        secondaryLinks: [
+          { name: "Configurar S26 Ultra con S-Pen", href: "iphone-16-pro.html?id=samsung-s26-ultra" },
+          { name: "Financiación 24 Cuotas 0%", href: "#configurador" }
+        ],
+        tertiaryTitle: "Tiendas Oficiales",
+        tertiaryLinks: [
+          { name: "Bogotá C.C. Caribe Local 136", href: "index.html#tiendas" },
+          { name: "Bogotá C.C. Caribe Local 197", href: "index.html#tiendas" }
+        ]
+      },
+      accesorios: {
+        categoryTitle: "Accesorios Originales",
+        primaryLinks: [
+          { name: "Ver todos los accesorios", href: "index.html#accesorios", bold: true },
+          { name: "Cargadores MagSafe & GaN", href: "#accesorios" },
+          { name: "Fundas Carbon Armor", href: "#accesorios" },
+          { name: "Cables USB-C Trenzados", href: "index.html#accesorios" }
+        ],
+        secondaryTitle: "Compra Directa",
+        secondaryLinks: [
+          { name: "Añadir directo a la bolsa", href: "#accesorios" }
+        ],
+        tertiaryTitle: "Garantía",
+        tertiaryLinks: [
+          { name: "100% Originales y Certificados", href: "index.html#tiendas" }
         ]
       },
       canje: {
-        categoryTitle: "Plan Canje",
+        categoryTitle: "Plan Canje RedCover",
         primaryLinks: [
-          { name: "Cotizar en segundos", href: "index.html#canje", bold: true },
-          { name: "Abono hasta $2.000.000 COP", href: "#configurador" }
+          { name: "Calcular bono en vivo", href: "#tradein-section", bold: true },
+          { name: "Abono inmediato en Bogotá", href: "index.html#tiendas" }
         ],
-        secondaryTitle: "Dispositivos",
+        secondaryTitle: "Dispositivos Aceptados",
         secondaryLinks: [
-          { name: "iPhone, iPad, Mac y Watch", href: "index.html#canje" }
+          { name: "iPhone, Galaxy, iPad, Mac y Watch", href: "#tradein-section" }
         ],
-        tertiaryTitle: "Condiciones",
+        tertiaryTitle: "Peritaje",
         tertiaryLinks: [
-          { name: "Factura y peritaje oficial", href: "index.html#canje" }
+          { name: "C.C. Caribe Locales 136 y 197", href: "index.html#tiendas" }
         ]
       },
       tiendas: {
-        categoryTitle: "Tiendas Oficiales",
+        categoryTitle: "Nuestras Tiendas en Bogotá",
         primaryLinks: [
-          { name: "Nuestras 4 sedes en Colombia", href: "index.html#tiendas", bold: true },
-          { name: "Bogotá - Andino Local 204", href: "index.html#tiendas" },
-          { name: "Medellín - El Tesoro Local 1210", href: "index.html#tiendas" },
-          { name: "Cali - Jardín Plaza Local 142", href: "index.html#tiendas" },
-          { name: "Barranquilla - Buenavista Local 210", href: "index.html#tiendas" }
+          { name: "San Andresito de la 38 - C.C. Caribe Local 136", href: "index.html#tiendas", bold: true },
+          { name: "San Andresito de la 38 - C.C. Caribe Local 197", href: "index.html#tiendas", bold: true }
         ],
-        secondaryTitle: "Contacto",
+        secondaryTitle: "Atención Inmediata",
         secondaryLinks: [
-          { name: "WhatsApp Oficial Asesoría", href: "https://wa.me/573001234567" }
+          { name: "WhatsApp Oficial Asesoría", href: "https://wa.me/573001234567" },
+          { name: "TikTok: @redcover.colombia", href: "https://www.tiktok.com/@redcover.colombia" },
+          { name: "Instagram: @redcover.colombia", href: "https://www.instagram.com/redcover.colombia" }
         ],
         tertiaryTitle: "Horarios",
         tertiaryLinks: [
-          { name: "Lunes a Sábado 10am - 8pm", href: "index.html#tiendas" }
+          { name: "Lunes a Sábado: 9:30 AM - 7:00 PM", href: "index.html#tiendas" },
+          { name: "Envíos asegurados a toda Colombia", href: "index.html#tiendas" }
         ]
       }
     };
@@ -1863,7 +3211,7 @@
 
     function renderMenuContent(key) {
       const data = megaMenuData[key];
-      if (!data) return;
+      if (!data || !megaMenuContent) return;
 
       megaMenuContent.innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 text-left">
@@ -1918,13 +3266,17 @@
         }
       });
 
-      megaMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
-      megaMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      if (megaMenu) {
+        megaMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+        megaMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }
     }
 
     function closeMegaMenu() {
-      megaMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
-      megaMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      if (megaMenu) {
+        megaMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+        megaMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }
       navButtons.forEach(btn => {
         btn.classList.remove('text-primary');
         btn.classList.add('text-gray-600');
@@ -1942,20 +3294,24 @@
       });
     });
 
-    megaMenu.addEventListener('mouseenter', () => clearTimeout(menuCloseTimeout));
-    megaMenu.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 250));
-    document.getElementById('nav-container').addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 300));
+    if (megaMenu) {
+      megaMenu.addEventListener('mouseenter', () => clearTimeout(menuCloseTimeout));
+      megaMenu.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 250));
+    }
+    const navCont = document.getElementById('nav-container');
+    if (navCont) {
+      navCont.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 300));
+    }
     document.addEventListener('click', (e) => {
-      if (!megaMenu.contains(e.target) && !document.getElementById('nav-container').contains(e.target)) {
+      if (megaMenu && !megaMenu.contains(e.target) && navCont && !navCont.contains(e.target)) {
         closeMegaMenu();
       }
     });
 
-    // Initialize defaults on page load
+    // Inicialización al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
-      updatePrices();
-      updateCartDrawerUI();
+      initProductConfigurator();
     });
-  </script>
+</script>
 </body>
 </html>
