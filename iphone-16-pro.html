@@ -159,24 +159,22 @@
   <!-- ========================================== -->
   <!-- 1. TOP NAV BAR CON MEGA MENÚ DESPLEGABLE -->
   <!-- ========================================== -->
-  <header class="glass-tier-1 sticky top-0 left-0 right-0 z-50 border-b border-gray-200/80 transition-all">
+  <header class="glass-nav sticky top-0 left-0 right-0 z-40 border-b border-gray-200/80 transition-all">
     <div class="max-w-7xl mx-auto h-16 px-4 sm:px-6 lg:px-12 flex items-center justify-between">
-      <!-- Brand Logo Anchor -->
-      <a class="flex items-center gap-2 group" href="index.html">
+      <!-- Logo -->
+      <a href="index.html" class="text-xl font-bold tracking-tight text-gray-900 flex items-center gap-2 group">
         <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
           <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
         </div>
         <div class="flex flex-col">
-          <span class="leading-none text-lg font-extrabold tracking-tight text-gray-900">
-            Red<span class="text-primary">Cover</span>
-          </span>
+          <span class="leading-none text-lg font-extrabold tracking-tight">RedCover</span>
           <span class="text-[9px] text-zinc-500 font-semibold uppercase tracking-widest">Colombia</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation con Mega Menú desplegable Apple & Samsung -->
-      <nav class="hidden md:flex items-center space-x-5 lg:space-x-7" id="nav-container">
-        <button class="nav-item-btn text-sm font-semibold text-primary transition-colors py-2 flex items-center gap-1" data-menu="iphone">
+      <!-- Desktop Navigation Links con Mega Menú Apple & Samsung -->
+      <nav class="hidden md:flex items-center gap-5 lg:gap-6" id="nav-container">
+        <button class="nav-item-btn text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="iphone">
           iPhone
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="airpods">
@@ -191,7 +189,7 @@
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="ipad">
           iPad
         </button>
-        <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="samsung">
+        <button class="nav-item-btn text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="samsung">
           Samsung
         </button>
         <button class="nav-item-btn text-sm font-medium text-gray-600 hover:text-primary transition-colors py-2 flex items-center gap-1" data-menu="accesorios">
@@ -205,28 +203,75 @@
         </button>
       </nav>
 
-      <!-- Trailing Action: Ofertas + Dark Mode + Icons -->
-      <div class="flex items-center gap-2.5 lg:gap-3.5">
-        <a class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full crimson-btn text-white text-xs font-semibold shadow-sm" href="index.html#ofertas">
+      <!-- Right Actions -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Promo pill -->
+        <a href="#ofertas" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full crimson-btn text-white text-xs font-semibold shadow-sm">
           <span class="material-symbols-outlined text-sm">local_fire_department</span>
           Ofertas
         </a>
-        <a href="index.html" class="text-xs font-semibold text-gray-600 hover:text-primary border border-gray-200 px-3 py-1.5 rounded-full hidden lg:inline-flex items-center gap-1 bg-white shadow-sm">
-          <span class="material-symbols-outlined text-sm">home</span> Inicio
-        </a>
-        <button aria-label="Alternar Modo Oscuro" id="dark-mode-toggle-btn" onclick="toggleDarkMode()" class="text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100 border border-gray-200/80" type="button" title="Alternar Modo Oscuro / Claro">
-          <span class="material-symbols-outlined text-[20px]" id="dark-mode-icon">dark_mode</span>
+
+        <!-- Dark Mode Toggle Button -->
+        <button type="button" onclick="toggleDarkMode()" id="dark-mode-btn" aria-label="Alternar Modo Oscuro" title="Alternar Modo Oscuro / Claro" class="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors border border-gray-200/80">
+          <span id="dark-mode-icon" class="material-symbols-outlined text-[20px]">dark_mode</span>
         </button>
-        <button aria-label="Bolsa de compras" class="relative text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100" onclick="openCartDrawer()" type="button">
+
+        <!-- Search button -->
+        <button id="search-btn" aria-label="Buscar" class="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+
+        <!-- Admin Profile / CMS Button -->
+        <button type="button" onclick="openAdminPanel()" id="admin-nav-btn" title="Perfil de Administrador (Editar Tienda)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-primary text-white text-xs font-bold transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[17px]">admin_panel_settings</span>
+          <span class="hidden lg:inline">Admin</span>
+        </button>
+
+        <!-- Cart button with counter -->
+        <button id="cart-btn" aria-label="Bolsa de compras" onclick="openCartDrawer()" class="relative w-9 h-9 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors">
           <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
-          <span class="absolute top-0 right-0 w-5 h-5 rounded-full bg-primary text-white text-[10px] flex items-center justify-center font-bold border-2 border-white" id="bag-badge">1</span>
+          <span id="cart-counter" class="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+        </button>
+
+        <!-- Mobile menu toggle -->
+        <button id="mobile-menu-btn" class="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100">
+          <span class="material-symbols-outlined">menu</span>
         </button>
       </div>
     </div>
 
-    <!-- Apple-style Full Width Dropdown Mega Menu (Estilo Claro Elegante) -->
-    <div id="mega-menu" class="absolute top-full left-0 right-0 bg-white/95 text-gray-900 backdrop-blur-2xl border-b border-gray-200 transition-all duration-300 transform opacity-0 -translate-y-4 pointer-events-none z-50 shadow-xl">
-      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10" id="mega-menu-content"></div>
+    <!-- Apple-style Full Width Dropdown Mega Menu -->
+    <div id="mega-menu" class="absolute top-full left-0 right-0 bg-[#161617]/95 text-white backdrop-blur-2xl border-b border-zinc-800 transition-all duration-300 transform opacity-0 -translate-y-4 pointer-events-none z-50 shadow-2xl">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10" id="mega-menu-content">
+        <!-- Dynamic content filled by JS -->
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-6 py-4 space-y-3">
+      <div class="border-b border-gray-100 pb-2 flex items-center justify-between">
+        <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Explorar Productos 2026</span>
+        <button type="button" onclick="toggleDarkMode()" class="px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-bold flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">dark_mode</span> Modo Oscuro
+        </button>
+      </div>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('iphone')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">iPhone (18 Pro, Duo, 17, Air, 16, 15, 14, 13, 12, 11)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('airpods')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">AirPods (Pro 3 2026, Max 2, AirPods 4 ANC, Pro 2)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('watch')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">Apple Watch (Ultra 3, Series 12, Series 11, SE 3, Ultra 2)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('mac')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">MacBook & Mac (Pro M5 Max, Air M5, Studio M4 Ultra, iMac M4)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('ipad')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#catalogo-dispositivos">iPad (Pro M5 OLED, Air M4, mini A17 Pro, 11ª Gen)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('samsung')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">Samsung Galaxy (S26 Ultra, Z Fold 7, S25 Ultra, S24 Ultra)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios (MagSafe, Fundas, Cargadores)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje (Cotizar y Renovar)</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras Tiendas en Bogotá</a>
+      <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
+        <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" href="#ofertas" class="w-full text-center py-2.5 rounded-full crimson-btn text-white text-sm font-semibold">
+          Ver Ofertas Especiales
+        </a>
+        <button type="button" onclick="document.getElementById('mobile-menu').classList.add('hidden'); openAdminPanel()" class="w-full text-center py-2.5 rounded-full bg-zinc-900 text-white text-xs font-bold flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">admin_panel_settings</span> Perfil de Administrador (Editar Web)
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1054,6 +1099,8 @@
   </div>
 
   <!-- Micro-interactions Script -->
+  
+
   <script>
     // Constantes de imágenes maestras
     const IMG_IPHONE_PRO = "https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk";
@@ -4757,8 +4804,8 @@
     function updateCartDrawerUI() {
       const container = document.getElementById('cart-items');
       const totalEl = document.getElementById('cart-total');
-      const bagBadge = document.getElementById('bag-badge');
-      if (!container || !totalEl || !bagBadge) return;
+      const bagBadge = document.getElementById('bag-badge') || document.getElementById('cart-counter');
+      if (!container || !totalEl) return;
 
       let grandTotal = 0;
       let totalCount = 0;
@@ -4785,7 +4832,8 @@
         container.appendChild(row);
       });
 
-      bagBadge.innerText = totalCount;
+      if (bagBadge) bagBadge.innerText = totalCount;
+      const cartCounter = document.getElementById('cart-counter'); if (cartCounter) cartCounter.innerText = totalCount;
       totalEl.innerText = formatCOP(grandTotal);
     }
 
@@ -5063,178 +5111,503 @@
       } catch (e) {}
     })();
 
+    
     // ==========================================
-    // MEGA MENÚ INTERACTIVO COMPLETO
+    // BUSCADOR EN TIEMPO REAL
     // ==========================================
+    const searchBtn = document.getElementById('search-btn');
+    const closeSearchBtn = document.getElementById('close-search-btn');
+    const searchModal = document.getElementById('search-modal');
+    const searchInput = document.getElementById('search-input');
+    const searchResultsContainer = document.getElementById('search-results-container');
+
+    function getAllSearchableProducts() {
+      return allCatalogDevices.map(d => ({
+        title: d.title,
+        price: d.price,
+        img: d.img,
+        category: d.badge,
+        id: d.id
+      }));
+    }
+
+    function renderSearchResults(query = '') {
+      if (!searchResultsContainer) return;
+      const allItems = getAllSearchableProducts();
+      const q = query.trim().toLowerCase();
+      const results = q === '' ? allItems.slice(0, 6) : allItems.filter(item =>
+        item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+      );
+
+      if (results.length === 0) {
+        searchResultsContainer.innerHTML = `
+          <div class="text-center py-8 text-gray-400 text-xs">
+            No encontramos productos para "${query}". Prueba con 'iPhone', 'Samsung', 'MacBook', 'iPad', 'Watch' o 'AirPods'.
+          </div>
+        `;
+        return;
+      }
+
+      searchResultsContainer.innerHTML = results.map(item => `
+        <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-gray-50 hover:bg-red-50/40 border border-gray-200 transition-all">
+          <div class="flex items-center gap-3 min-w-0">
+            <img src="${item.img}" class="w-12 h-12 rounded-xl object-cover bg-zinc-900 shrink-0" alt="${item.title}">
+            <div class="min-w-0">
+              <span class="text-[10px] font-bold text-primary uppercase">${item.category}</span>
+              <h4 class="text-xs font-bold text-gray-900 truncate">${item.title}</h4>
+              <p class="text-xs font-extrabold text-gray-700">${formatCOP(item.price)}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="searchModal.classList.add('hidden'); searchModal.classList.remove('flex'); openProductModal('${item.id}')" class="px-3 py-1.5 rounded-full bg-white border border-gray-300 text-[11px] font-bold text-gray-800 hover:border-primary">Ficha</button>
+            <button type="button" onclick="searchModal.classList.add('hidden'); searchModal.classList.remove('flex'); switchConfiguredProduct('${item.id}')" class="px-3 py-1.5 rounded-full crimson-btn text-white text-[11px] font-bold">Configurar</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function triggerQuickSearch(term) {
+      if (searchInput) {
+        searchInput.value = term;
+        renderSearchResults(term);
+      }
+    }
+
+    if (searchBtn && searchModal) {
+      searchBtn.addEventListener('click', () => {
+        searchModal.classList.remove('hidden');
+        searchModal.classList.add('flex');
+        renderSearchResults(searchInput ? searchInput.value : '');
+        setTimeout(() => { if (searchInput) searchInput.focus(); }, 50);
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value);
+      });
+    }
+
+    if (closeSearchBtn && searchModal) {
+      closeSearchBtn.addEventListener('click', () => {
+        searchModal.classList.add('hidden');
+        searchModal.classList.remove('flex');
+      });
+    }
+
+    if (searchModal) {
+      searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+          searchModal.classList.add('hidden');
+          searchModal.classList.remove('flex');
+        }
+      });
+    }
+
+    // Toggle Menú Móvil
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // ==========================================
+    // MODALES INFORMATIVOS OFICIALES
+    // ==========================================
+    const officialInfoPages = {
+      soporte: {
+        badge: 'Centro de Servicio Autorizado',
+        title: 'Soporte Técnico Oficial Apple en Colombia',
+        content: `
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">En RedCover Colombia contamos con laboratorios certificados por Apple, diagnósticos oficiales AST2 y repuestos 100% genuinos de fábrica.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
+              <strong class="text-gray-900 block mb-1">🔋 Cambio de Batería Original</strong>
+              <p class="text-gray-600">Reemplazo en 2 horas manteniendo la certificación de resistencia al agua y el 100% de condición en iOS.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
+              <strong class="text-gray-900 block mb-1">📱 Pantallas y Cámaras Genuinas</strong>
+              <p class="text-gray-600">Calibración True Tone oficial y piezas originales para iPhone, iPad, Mac y Apple Watch.</p>
+            </div>
+          </div>
+          <a href="https://wa.me/573001234567?text=Hola%20RedCover%2C%20necesito%20agendar%20una%20cita%20de%20Soporte%20T%C3%A9cnico%20Apple" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full crimson-btn text-white text-xs font-bold">
+            <span class="material-symbols-outlined text-sm">calendar_month</span> Agendar Cita Técnica por WhatsApp
+          </a>
+        `
+      },
+      garantia: {
+        badge: 'Respaldo Oficial 1 Año',
+        title: 'Garantía Oficial Apple y AppleCare+',
+        content: `
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">Todos los equipos vendidos por RedCover Colombia se entregan sellados, con factura electrónica legal DIAN y 1 año de garantía directa en cualquier centro autorizado Apple del país.</p>
+          <ul class="text-xs text-gray-700 space-y-2 mb-4">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Cobertura nacional e internacional Apple por 12 meses.</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Equipos 100% libres de operador y homologados en Colombia.</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Póliza de envío blindado contra todo riesgo hasta tus manos.</li>
+          </ul>
+        `
+      },
+      sistemas: {
+        badge: 'Ecosistema de Software 2026',
+        title: 'iOS 20, macOS 17, iPadOS 20, watchOS 13 & Apple Intelligence 3.0',
+        content: `
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">La línea 2026 de hardware Apple (Chips A20 Pro, M5 y S12) está diseñada desde el silicio de 2 nanómetros para potenciar Apple Intelligence 3.0, brindando agentes autónomos en el dispositivo, edición generativa de video 8K y privacidad cuántica total.</p>
+          <div class="p-4 rounded-2xl bg-red-50 border border-red-100 text-xs text-gray-800">
+            <strong>Configuración Gratuita en Tienda:</strong> Al comprar tu equipo en RedCover, nuestros especialistas transfieren todos tus datos de tu dispositivo anterior y configuran tu iCloud+ sin costo adicional.
+          </div>
+        `
+      },
+      terminos: {
+        badge: 'Información Legal Colombia',
+        title: 'Términos, Condiciones y Políticas RedCover',
+        content: `
+          <div class="space-y-3 text-xs text-gray-600 max-h-64 overflow-y-auto pr-2">
+            <p><strong>1. Facturación Electrónica DIAN:</strong> Todos los precios publicados están en Pesos Colombianos (COP) e incluyen el IVA legal vigente (19% cuando aplique según estatuto tributario).</p>
+            <p><strong>2. Financiación 0% Interés:</strong> Las 24 cuotas sin interés aplican con tarjetas seleccionadas de Bancolombia, Davivienda, Nu Colombia y Banco de Bogotá previa aprobación de la entidad financiera a través de nuestro canal asistido por WhatsApp.</p>
+            <p><strong>3. Plan Canje RedCover:</strong> El valor cotizado en la web corresponde a una estimación según el estado reportado de batería y estética. Al entregar el equipo se realiza una revisión técnica de 10 minutos para validar que no tenga bloqueos de iCloud ni reportes.</p>
+            <p><strong>4. Derecho de Retracto:</strong> Cumplimos íntegramente con el Estatuto del Consumidor (Ley 1480 de 2011) de la Superintendencia de Industria y Comercio (SIC).</p>
+          </div>
+        `
+      }
+    };
+
+    function openInfoModal(key) {
+      closeMegaMenu();
+      const info = officialInfoPages[key] || officialInfoPages.garantia;
+      const modal = document.getElementById('info-modal');
+      const body = document.getElementById('info-modal-body');
+      if (!modal || !body) return;
+
+      body.innerHTML = `
+        <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 text-[11px] font-bold uppercase">${info.badge}</span>
+        <h3 class="text-2xl font-extrabold text-gray-900 mt-3 mb-4">${info.title}</h3>
+        ${info.content}
+      `;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeInfoModal() {
+      const modal = document.getElementById('info-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // Modal de Detalle Rápido (Product Modal)
+    function openProductModal(productId) {
+      closeMegaMenu();
+      const dev = allCatalogDevices.find(d => d.id === productId);
+      if (!dev) {
+        switchConfiguredProduct(productId);
+        return;
+      }
+
+      const modal = document.getElementById('product-detail-modal');
+      const body = document.getElementById('product-modal-body');
+      if (!modal || !body) {
+        switchConfiguredProduct(productId);
+        return;
+      }
+
+      body.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-5 rounded-2xl overflow-hidden bg-zinc-950 h-64 sm:h-72 flex items-center justify-center relative">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-bold uppercase">${dev.badge}</span>
+            <img src="${dev.img}" alt="${dev.title}" class="w-full h-full object-cover">
+          </div>
+          <div class="md:col-span-7 space-y-4 text-left">
+            <div>
+              <span class="text-[11px] font-mono text-emerald-600 font-bold">● En Stock Oficial Colombia • Envío Gratis</span>
+              <h3 class="text-2xl font-extrabold text-gray-900 mt-1">${dev.title}</h3>
+              <p class="text-xs text-gray-600 mt-1 leading-relaxed">${dev.shortDesc}</p>
+            </div>
+
+            <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-200 space-y-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-700 block">Especificaciones Destacadas:</span>
+              <ul class="text-xs text-gray-600 space-y-1">
+                ${dev.specs.map(s => `<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> ${s}</li>`).join('')}
+              </ul>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100 flex flex-wrap items-baseline justify-between gap-2">
+              <div>
+                <span class="text-xs text-gray-500 block">Precio Oficial Contado:</span>
+                <span class="text-2xl font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-emerald-700 font-bold block">Financiación 0% Interés:</span>
+                <span class="text-xs text-gray-600">24 cuotas de <strong>${calculateInstallment(dev.price)}</strong></span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+              <button type="button" onclick="closeProductModal(); switchConfiguredProduct('${dev.id}')" class="py-3 px-4 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+                <span class="material-symbols-outlined text-base">tune</span>
+                Configurar Este Dispositivo
+              </button>
+              <button type="button" onclick="directFinanceWhatsApp('${dev.title.replace(/'/g, "\\'")}', ${dev.price})" class="py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+                <span class="material-symbols-outlined text-base">chat</span>
+                Financiar por WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('product-detail-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function directFinanceWhatsApp(productTitle, price) {
+      const installment = calculateInstallment(price);
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN a 0% de interés* para:%0A%0A` +
+        `📱 *Producto:* ${encodeURIComponent(productTitle)}%0A` +
+        `💰 *Precio de contado:* ${encodeURIComponent(formatCOP(price))}%0A` +
+        `💳 *Cuota estimada:* ${encodeURIComponent(installment)} (24 cuotas sin interés)%0A`;
+
+      if (productState.tradeIn.active && productState.tradeInDiscount > 0) {
+        msg += `🔄 *Bono Plan Canje aplicado:* -${encodeURIComponent(formatCOP(productState.tradeInDiscount))}%0A`;
+      }
+
+      msg += `%0A¿Me indican los pasos para el estudio de crédito inmediato?`;
+      window.open(`https://wa.me/573001234567?text=${msg}`, '_blank');
+    }
+
+    function filterAndScroll(category) {
+      closeMegaMenu();
+      window.location.href = 'index.html#catalogo-dispositivos';
+    }
+
+    function openAdminPanel() {
+      window.location.href = 'index.html#admin';
+    }
+
+    function filterDevices(cat) {
+      closeMegaMenu();
+      window.location.href = 'index.html#catalogo-dispositivos';
+    }
+
     const megaMenuData = {
       iphone: {
-        categoryTitle: "Explorar iPhone",
+        categoryTitle: "Explorar iPhone (34 Modelos)",
         primaryLinks: [
-          { name: "Ver catálogo de iPhone", href: "index.html#catalogo-dispositivos", bold: true },
-          { name: "Gama iPhone 18 (2026)", href: "iphone-16-pro.html?id=iphone-18-pro-max" },
-          { name: "iPhone Duo Plegable", href: "iphone-16-pro.html?id=iphone-duo-fold" },
-          { name: "Gama iPhone 17 & Air", href: "iphone-16-pro.html?id=iphone-air" },
-          { name: "iPhone 16 Pro & 16", href: "iphone-16-pro.html?id=iphone-16-pro" },
-          { name: "iPhone 15 & 14", href: "index.html#catalogo-dispositivos" }
+          { name: "Ver los 34 modelos de iPhone", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "iPhone Duo (Primer Plegable Apple 2026)", action: "switchConfiguredProduct('iphone-duo-fold')" },
+          { name: "iPhone 18 Pro & 18 Pro Max (2026)", action: "switchConfiguredProduct('iphone-18-pro-max')" },
+          { name: "iPhone 17, Air, 17 Pro, Pro Max & 17e", action: "switchConfiguredProduct('iphone-air')" },
+          { name: "iPhone 16, 16 Plus, 16 Pro, Pro Max & 16e", action: "switchConfiguredProduct('iphone-16e')" },
+          { name: "iPhone 15, 14, 13, 12, 11 y SE (2.ª y 3.ª gen)", href: "index.html#catalogo-dispositivos" }
         ],
-        secondaryTitle: "Configurar iPhone",
+        secondaryTitle: "Comprar iPhone",
         secondaryLinks: [
-          { name: "Personalizar en este Configurator", href: "#configurador" },
-          { name: "Plan Canje de Celulares", href: "#tradein-section" },
-          { name: "Financiación 24 Cuotas 0%", href: "#configurador" }
+          { name: "Reservar iPhone Duo Plegable", action: "switchConfiguredProduct('iphone-duo-fold')" },
+          { name: "Comprar iPhone 18 Pro / Pro Max", action: "switchConfiguredProduct('iphone-18-pro')" },
+          { name: "Ver Catálogo Completo (34 modelos)", href: "index.html#catalogo-dispositivos" },
+          { name: "Accesorios MagSafe para iPhone", href: "#accesorios" },
+          { name: "Plan Canje para iPhone", href: "#canje" },
+          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / iPhone Duo', 5999000)" }
         ],
-        tertiaryTitle: "Garantía & Sedes",
+        tertiaryTitle: "Más para el iPhone",
         tertiaryLinks: [
-          { name: "San Andresito de la 38 Loc. 136", href: "index.html#tiendas" },
-          { name: "San Andresito de la 38 Loc. 197", href: "index.html#tiendas" }
+          { name: "Soporte técnico para iPhone", action: "openInfoModal('soporte')" },
+          { name: "iOS 18 / iOS 19 y Apple Intelligence", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" },
+          { name: "Comparar modelos de iPhone", href: "iphone-16-pro.html#comparativa" }
         ]
       },
       airpods: {
-        categoryTitle: "Explorar AirPods",
+        categoryTitle: "Explorar AirPods (Línea 2026)",
         primaryLinks: [
-          { name: "Ver catálogo de AirPods", href: "index.html#catalogo-dispositivos", bold: true },
-          { name: "AirPods Pro 3 (2026)", href: "iphone-16-pro.html?id=airpods-pro-3" },
-          { name: "AirPods Max 2 (2026)", href: "iphone-16-pro.html?id=airpods-max-2" },
-          { name: "AirPods 4 con ANC", href: "iphone-16-pro.html?id=airpods-4-anc" },
-          { name: "AirPods Pro 2 MagSafe", href: "iphone-16-pro.html?id=airpods-pro-2" }
+          { name: "Ver todos los modelos de AirPods (7)", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "AirPods Pro 3 (Nuevo 2026 • Chip H3 + Salud)", action: "switchConfiguredProduct('airpods-pro-3')" },
+          { name: "AirPods Max 2 (Nuevo 2026 • Lossless USB-C)", action: "switchConfiguredProduct('airpods-max-2')" },
+          { name: "AirPods 4 con Cancelación Activa (ANC)", action: "switchConfiguredProduct('airpods-4-anc')" },
+          { name: "AirPods 4 (Estándar • Chip H2)", action: "switchConfiguredProduct('airpods-4')" },
+          { name: "AirPods Pro 2 (USB-C) & AirPods 3.ª Gen", action: "switchConfiguredProduct('airpods-pro-2')" }
         ],
-        secondaryTitle: "Experiencia Hi-Fi",
+        secondaryTitle: "Comprar AirPods",
         secondaryLinks: [
-          { name: "Audio Espacial Personalizado", href: "#accesorios" },
-          { name: "Salud Auditiva Clínica", href: "#accesorios" }
+          { name: "Reservar AirPods Pro 3 (2026)", action: "switchConfiguredProduct('airpods-pro-3')" },
+          { name: "Comprar AirPods Max 2 Hi-Fi", action: "switchConfiguredProduct('airpods-max-2')" },
+          { name: "Ver Catálogo de AirPods (7 modelos)", href: "index.html#catalogo-dispositivos" },
+          { name: "Financiar AirPods al 0% por WhatsApp", action: "directFinanceWhatsApp('AirPods Pro 3 / AirPods Max 2', 1399000)" }
         ],
-        tertiaryTitle: "Compra Segura",
+        tertiaryTitle: "Más para AirPods",
         tertiaryLinks: [
-          { name: "100% Originales Apple", href: "index.html#tiendas" },
-          { name: "Garantía 1 Año Colombia", href: "index.html#tiendas" }
-        ]
-      },
-      watch: {
-        categoryTitle: "Explorar Apple Watch",
-        primaryLinks: [
-          { name: "Ver catálogo de Apple Watch", href: "index.html#catalogo-dispositivos", bold: true },
-          { name: "Apple Watch Ultra 3 (2026)", href: "iphone-16-pro.html?id=watch-ultra-3" },
-          { name: "Apple Watch Series 12 (2026)", href: "iphone-16-pro.html?id=watch-series-12" },
-          { name: "Apple Watch Series 10", href: "iphone-16-pro.html?id=watch-series-10" },
-          { name: "Apple Watch SE (3.ª gen)", href: "iphone-16-pro.html?id=watch-se-3" }
-        ],
-        secondaryTitle: "Modelos & Correas",
-        secondaryLinks: [
-          { name: "Titanio 49mm Satelital", href: "iphone-16-pro.html?id=watch-ultra-3" },
-          { name: "Aluminio 42mm y 46mm", href: "iphone-16-pro.html?id=watch-series-12" }
-        ],
-        tertiaryTitle: "Salud & Deportes",
-        tertiaryLinks: [
-          { name: "Presión Arterial & ECG", href: "#ingenieria" },
-          { name: "Buceo y Deportes Extremos", href: "#ingenieria" }
-        ]
-      },
-      mac: {
-        categoryTitle: "Explorar Mac",
-        primaryLinks: [
-          { name: "Ver catálogo de MacBook & Mac", href: "index.html#catalogo-dispositivos", bold: true },
-          { name: 'MacBook Pro M5 (2026)', href: "iphone-16-pro.html?id=macbook-pro-m5" },
-          { name: 'MacBook Air M5 (2026)', href: "iphone-16-pro.html?id=macbook-air-m5" },
-          { name: 'Mac mini M4 Rediseñado', href: "iphone-16-pro.html?id=mac-mini-m4" },
-          { name: "iMac 24' Retina 4.5K", href: "iphone-16-pro.html?id=imac-24-m4" }
-        ],
-        secondaryTitle: "Configurar Mac",
-        secondaryLinks: [
-          { name: "Memoria Unificada hasta 128GB", href: "#configurador" },
-          { name: "Thunderbolt 5 & Pantalla Liquid XDR", href: "#ingenieria" }
-        ],
-        tertiaryTitle: "Soporte Profesional",
-        tertiaryLinks: [
-          { name: "Asesoría para Creadores & Devs", href: "https://wa.me/573001234567" }
-        ]
-      },
-      ipad: {
-        categoryTitle: "Explorar iPad",
-        primaryLinks: [
-          { name: "Ver catálogo de iPad", href: "index.html#catalogo-dispositivos", bold: true },
-          { name: 'iPad Pro M5 Tandem OLED (2026)', href: "iphone-16-pro.html?id=ipad-pro-m5" },
-          { name: 'iPad Air M4 11 y 13 pulgadas', href: "iphone-16-pro.html?id=ipad-air-m4" },
-          { name: 'iPad mini A17 Pro', href: "iphone-16-pro.html?id=ipad-mini-a17-pro" },
-          { name: 'iPad (11.ª gen - 2026)', href: "iphone-16-pro.html?id=ipad-11-gen" }
-        ],
-        secondaryTitle: "Accesorios iPad",
-        secondaryLinks: [
-          { name: "Apple Pencil Pro", href: "index.html#accesorios" },
-          { name: "Magic Keyboard de Aluminio", href: "index.html#accesorios" }
-        ],
-        tertiaryTitle: "Garantía",
-        tertiaryLinks: [
-          { name: "Garantía 1 Año Oficial", href: "index.html#tiendas" }
+          { name: "Audio Espacial y Lossless H3", action: "openInfoModal('sistemas')" },
+          { name: "Salud Auditiva y Sensores Biométricos", action: "openInfoModal('soporte')" },
+          { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" }
         ]
       },
       samsung: {
-        categoryTitle: "Explorar Samsung Galaxy",
+        categoryTitle: "Explorar Samsung Galaxy (S24 a S26 2026)",
         primaryLinks: [
-          { name: "Ver catálogo de Samsung Galaxy", href: "index.html#catalogo-dispositivos", bold: true },
-          { name: "Galaxy S26 Ultra 5G (2026)", href: "iphone-16-pro.html?id=samsung-s26-ultra" },
-          { name: "Galaxy S26 Slim / Edge 5.6mm", href: "iphone-16-pro.html?id=samsung-s26-slim" },
-          { name: "Galaxy Z Fold 7 & Flip 7", href: "iphone-16-pro.html?id=samsung-z-fold-7" },
-          { name: "Galaxy S25 Ultra & S24 Ultra", href: "iphone-16-pro.html?id=samsung-s24-ultra" }
+          { name: "Ver todos los Samsung Galaxy (17)", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "Galaxy S26 Ultra, S26+, S26 & S26 Slim (2026)", action: "switchConfiguredProduct('samsung-s26-ultra')" },
+          { name: "Plegables Galaxy Z Fold 7 & Z Flip 7 (2026)", action: "switchConfiguredProduct('samsung-z-fold-7')" },
+          { name: "Galaxy S25 Ultra, S25 Edge, S25+, S25 & S25 FE", action: "switchConfiguredProduct('samsung-s25-ultra')" },
+          { name: "Plegables Galaxy Z Fold 6 & Z Flip 6", action: "switchConfiguredProduct('samsung-z-fold-6')" },
+          { name: "Galaxy S24 Ultra, S24+, S24 & S24 FE", action: "switchConfiguredProduct('samsung-s24-ultra')" }
         ],
-        secondaryTitle: "Galaxy AI & S-Pen",
+        secondaryTitle: "Comprar Samsung Galaxy",
         secondaryLinks: [
-          { name: "Configurar S26 Ultra con S-Pen", href: "iphone-16-pro.html?id=samsung-s26-ultra" },
-          { name: "Financiación 24 Cuotas 0%", href: "#configurador" }
+          { name: "Comprar Galaxy S26 Ultra 5G", action: "switchConfiguredProduct('samsung-s26-ultra')" },
+          { name: "Comprar Galaxy S25 Ultra / S24 Ultra", action: "switchConfiguredProduct('samsung-s25-ultra')" },
+          { name: "Ver los 17 Modelos Samsung Galaxy", href: "index.html#catalogo-dispositivos" },
+          { name: "Plan Canje: Recibimos tu Galaxy o iPhone", href: "#canje" },
+          { name: "Financiación 0% por WhatsApp", action: "directFinanceWhatsApp('Samsung Galaxy S26 Ultra / S25 Ultra', 5599000)" }
         ],
-        tertiaryTitle: "Tiendas Oficiales",
+        tertiaryTitle: "Respaldo Oficial Samsung",
         tertiaryLinks: [
-          { name: "Bogotá C.C. Caribe Local 136", href: "index.html#tiendas" },
-          { name: "Bogotá C.C. Caribe Local 197", href: "index.html#tiendas" }
+          { name: "Garantía Oficial 1 Año en Colombia", action: "openInfoModal('garantia')" },
+          { name: "Galaxy AI 3.0 & One UI 8", action: "openInfoModal('sistemas')" },
+          { name: "Servicio Técnico Especializado", action: "openInfoModal('soporte')" }
+        ]
+      },
+      watch: {
+        categoryTitle: "Explorar Apple Watch (Línea 2026)",
+        primaryLinks: [
+          { name: "Ver todos los modelos de Watch (7)", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "Apple Watch Ultra 3 (Nuevo 2026)", action: "switchConfiguredProduct('watch-ultra-3')" },
+          { name: "Apple Watch Series 12 (Nuevo 2026)", action: "switchConfiguredProduct('watch-series-12')" },
+          { name: "Apple Watch Series 11 (5G RedCap)", action: "switchConfiguredProduct('watch-series-11')" },
+          { name: "Apple Watch Ultra 2 & Series 10", action: "switchConfiguredProduct('watch-ultra-2')" },
+          { name: "Apple Watch SE 3 (2026) & SE 2", action: "switchConfiguredProduct('watch-se-3')" }
+        ],
+        secondaryTitle: "Comprar Watch",
+        secondaryLinks: [
+          { name: "Comprar Apple Watch 2026", href: "index.html#catalogo-dispositivos" },
+          { name: "Cargadores MagSafe y Correas", href: "#accesorios" },
+          { name: "Plan Canje para Apple Watch", href: "#canje" },
+          { name: "Financiar Apple Watch al 0%", action: "directFinanceWhatsApp('Apple Watch Ultra 3 / Series 12', 2499000)" }
+        ],
+        tertiaryTitle: "Más para el Apple Watch",
+        tertiaryLinks: [
+          { name: "Soporte para Apple Watch", action: "openInfoModal('soporte')" },
+          { name: "watchOS 13 y Monitoreo Hipertensión", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial Apple 1 Año", action: "openInfoModal('garantia')" }
+        ]
+      },
+      mac: {
+        categoryTitle: "Explorar Mac (Línea M5 y M4 2026)",
+        primaryLinks: [
+          { name: "Ver todos los modelos de Mac (9)", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "MacBook Pro 14\" y 16\" (Chip M5 Max)", action: "switchConfiguredProduct('macbook-pro-m5')" },
+          { name: "MacBook Air 13\" y 15\" (Chip M5)", action: "switchConfiguredProduct('macbook-air-m5')" },
+          { name: "MacBook Pro & Air (Serie Chip M4)", action: "switchConfiguredProduct('macbook-pro-m4')" },
+          { name: "iMac 24\" Retina 4.5K (Chip M4)", action: "switchConfiguredProduct('imac-24-m4')" },
+          { name: "Mac mini M4 Pro & Mac Studio M4 Ultra", action: "switchConfiguredProduct('mac-studio-m4')" }
+        ],
+        secondaryTitle: "Comprar Mac",
+        secondaryLinks: [
+          { name: "Ver Catálogo Completo de Mac (9)", href: "index.html#catalogo-dispositivos" },
+          { name: "Accesorios y Carga USB-C / Thunderbolt 5", href: "#accesorios" },
+          { name: "Plan Canje de MacBooks", href: "#canje" },
+          { name: "Financiar MacBook por WhatsApp", action: "directFinanceWhatsApp('MacBook Pro M5 / Air M5', 5899000)" }
+        ],
+        tertiaryTitle: "Más para Mac",
+        tertiaryLinks: [
+          { name: "Soporte técnico Mac", action: "openInfoModal('soporte')" },
+          { name: "macOS 17 y Apple Intelligence 3.0", action: "openInfoModal('sistemas')" },
+          { name: "AppleCare+ y Garantía", action: "openInfoModal('garantia')" }
+        ]
+      },
+      ipad: {
+        categoryTitle: "Explorar iPad (Línea 2026)",
+        primaryLinks: [
+          { name: "Ver todos los modelos de iPad (7)", href: "index.html#catalogo-dispositivos", bold: true },
+          { name: "iPad Pro 11\" y 13\" (Chip M5 OLED)", action: "switchConfiguredProduct('ipad-pro-m5')" },
+          { name: "iPad Pro (Chip M4 Tandem OLED)", action: "switchConfiguredProduct('ipad-pro-m4')" },
+          { name: "iPad Air 11\" y 13\" (Chip M4 2026)", action: "switchConfiguredProduct('ipad-air-m4')" },
+          { name: "iPad mini 7 (Chip A17 Pro IA)", action: "switchConfiguredProduct('ipad-mini-a17-pro')" },
+          { name: "iPad 11.ª Gen (2026) & iPad 10.ª Gen", action: "switchConfiguredProduct('ipad-11-gen')" }
+        ],
+        secondaryTitle: "Comprar iPad",
+        secondaryLinks: [
+          { name: "Ver Catálogo Completo de iPad (7)", href: "index.html#catalogo-dispositivos" },
+          { name: "Apple Pencil Pro y Accesorios", href: "#accesorios" },
+          { name: "Plan Canje para iPad", href: "#canje" },
+          { name: "Financiar iPad por WhatsApp", action: "directFinanceWhatsApp('iPad Pro M5 / iPad Air M4', 3599000)" }
+        ],
+        tertiaryTitle: "Más para el iPad",
+        tertiaryLinks: [
+          { name: "Soporte para el iPad", action: "openInfoModal('soporte')" },
+          { name: "iPadOS 20 y Apple Intelligence 3.0", action: "openInfoModal('sistemas')" },
+          { name: "Garantía Oficial 1 Año", action: "openInfoModal('garantia')" }
         ]
       },
       accesorios: {
-        categoryTitle: "Accesorios Originales",
+        categoryTitle: "Explorar Accesorios",
         primaryLinks: [
-          { name: "Ver todos los accesorios", href: "index.html#accesorios", bold: true },
-          { name: "Cargadores MagSafe & GaN", href: "#accesorios" },
-          { name: "Fundas Carbon Armor", href: "#accesorios" },
-          { name: "Cables USB-C Trenzados", href: "index.html#accesorios" }
+          { name: "Ver todos los Accesorios (12)", href: "#accesorios", bold: true },
+          { name: "AirPods Pro 2 (USB-C)", action: "switchConfiguredProduct('airpods-pro-2')" },
+          { name: "AirPods Max (USB-C)", href: "#accesorios" },
+          { name: "Cargadores MagSafe Oficiales", href: "#accesorios" },
+          { name: "Batería Externa MagSafe", href: "#accesorios" },
+          { name: "Fundas Carbon Armor & Silicona", href: "#accesorios" },
+          { name: "AirTag (Pack 1 y Pack 4)", href: "#accesorios" }
         ],
-        secondaryTitle: "Compra Directa",
+        secondaryTitle: "Filtrar por Categoría",
         secondaryLinks: [
-          { name: "Añadir directo a la bolsa", href: "#accesorios" }
+          { name: "Audio & AirPods", href: "#accesorios" },
+          { name: "Carga Inalámbrica MagSafe", href: "#accesorios" },
+          { name: "Fundas y Protección", href: "#accesorios" },
+          { name: "Cables y Adaptadores USB-C", href: "#accesorios" }
         ],
-        tertiaryTitle: "Garantía",
+        tertiaryTitle: "Beneficios de Accesorios",
         tertiaryLinks: [
-          { name: "100% Originales y Certificados", href: "index.html#tiendas" }
+          { name: "100% Originales Sellados Apple", action: "openInfoModal('garantia')" },
+          { name: "Servicio Técnico y Repuestos", action: "openInfoModal('soporte')" }
         ]
       },
       canje: {
         categoryTitle: "Plan Canje RedCover",
         primaryLinks: [
-          { name: "Calcular bono en vivo", href: "#tradein-section", bold: true },
-          { name: "Abono inmediato en Bogotá", href: "index.html#tiendas" }
+          { name: "Ir al Cotizador con Batería y Estado", href: "#canje", bold: true },
+          { name: "Canjear iPhone (hasta $3.250.000)", href: "#canje" },
+          { name: "Canjear MacBook (hasta $2.700.000)", href: "#canje" },
+          { name: "Canjear iPad (hasta $1.800.000)", href: "#canje" }
         ],
-        secondaryTitle: "Dispositivos Aceptados",
+        secondaryTitle: "¿Cómo Funciona?",
         secondaryLinks: [
-          { name: "iPhone, Galaxy, iPad, Mac y Watch", href: "#tradein-section" }
+          { name: "1. Selecciona modelo, batería y estado", href: "#canje" },
+          { name: "2. Aplica el bono directo a tu bolsa", href: "#canje" },
+          { name: "3. O cotiza directo por WhatsApp", action: "sendCanjeToWhatsApp()" }
         ],
-        tertiaryTitle: "Peritaje",
+        tertiaryTitle: "Ventajas del Canje",
         tertiaryLinks: [
-          { name: "C.C. Caribe Locales 136 y 197", href: "index.html#tiendas" }
+          { name: "Términos del Plan Canje", action: "openInfoModal('terminos')" },
+          { name: "Borrado seguro certificado de datos", action: "openInfoModal('garantia')" }
         ]
       },
       tiendas: {
-        categoryTitle: "Nuestras Tiendas en Bogotá",
+        categoryTitle: "Tiendas Oficiales RedCover Bogotá",
         primaryLinks: [
-          { name: "San Andresito de la 38 - C.C. Caribe Local 136", href: "index.html#tiendas", bold: true },
-          { name: "San Andresito de la 38 - C.C. Caribe Local 197", href: "index.html#tiendas", bold: true }
+          { name: "Ver nuestras 2 sedes en Bogotá", href: "#tiendas", bold: true },
+          { name: "Bogotá D.C. • San Andresito de la 38 (C.C. Caribe Local 136)", href: "#tiendas" },
+          { name: "Bogotá D.C. • San Andresito de la 38 (C.C. Caribe Local 197)", href: "#tiendas" }
         ],
-        secondaryTitle: "Atención Inmediata",
+        secondaryTitle: "Servicios en Tienda",
         secondaryLinks: [
-          { name: "WhatsApp Oficial Asesoría", href: "https://wa.me/573001234567" },
-          { name: "TikTok: @redcover.colombia", href: "https://www.tiktok.com/@redcover.colombia" },
-          { name: "Instagram: @redcover.colombia", href: "https://www.instagram.com/redcover.colombia" }
+          { name: "Agendar Servicio Técnico Apple", action: "openInfoModal('soporte')" },
+          { name: "Hablar con Asesor por WhatsApp", href: "https://wa.me/573001234567" }
         ],
-        tertiaryTitle: "Horarios",
+        tertiaryTitle: "Ubicación & Horarios",
         tertiaryLinks: [
-          { name: "Lunes a Sábado: 9:30 AM - 7:00 PM", href: "index.html#tiendas" },
-          { name: "Envíos asegurados a toda Colombia", href: "index.html#tiendas" }
+          { name: "San Andresito de la 38 • C.C. Caribe", href: "#tiendas" },
+          { name: "Horarios: Lun a Sáb 9:30am - 7:30pm", href: "#tiendas" }
         ]
       }
     };
@@ -5245,42 +5618,43 @@
     let activeMenuKey = null;
     let menuCloseTimeout = null;
 
+    function renderMegaLink(link, cls) {
+      if (link.action) {
+        return `<button type="button" onclick="${link.action}" class="block text-left w-full ${cls} transition-colors">${link.name}</button>`;
+      }
+      const target = link.href && link.href.startsWith('http') ? 'target="_blank"' : '';
+      return `<a href="${link.href}" ${target} onclick="closeMegaMenu()" class="block ${cls} transition-colors">${link.name}</a>`;
+    }
+
     function renderMenuContent(key) {
       const data = megaMenuData[key];
-      if (!data || !megaMenuContent) return;
+      if (!data) return;
 
       megaMenuContent.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 text-left animate-fadeIn">
           <div class="md:col-span-5 space-y-3">
-            <span class="text-xs font-semibold text-gray-500 tracking-wider uppercase block mb-3">${data.categoryTitle}</span>
+            <span class="text-xs font-semibold text-zinc-400 tracking-wider uppercase block mb-3">${data.categoryTitle}</span>
             <div class="space-y-2.5">
-              ${data.primaryLinks.map(link => `
-                <a href="${link.href}" onclick="closeMegaMenu()" class="block ${link.bold ? 'text-2xl lg:text-3xl font-extrabold text-gray-900 hover:text-primary' : 'text-lg font-semibold text-gray-700 hover:text-primary'} transition-colors">
-                  ${link.name}
-                </a>
-              `).join('')}
+              ${data.primaryLinks.map(link => renderMegaLink(link, link.bold ? 'text-2xl lg:text-3xl font-bold text-white hover:text-primary' : 'text-lg lg:text-xl font-semibold text-zinc-200 hover:text-white')).join('')}
             </div>
           </div>
 
-          <div class="md:col-span-4 space-y-2 pl-0 md:pl-4 border-l-0 md:border-l border-gray-100">
-            <span class="text-xs font-semibold text-gray-500 tracking-wider uppercase block mb-3">${data.secondaryTitle}</span>
+          <div class="md:col-span-4 space-y-2 pl-0 md:pl-4 border-l-0 md:border-l border-zinc-800">
+            <span class="text-xs font-semibold text-zinc-400 tracking-wider uppercase block mb-3">${data.secondaryTitle}</span>
             <div class="space-y-2">
-              ${data.secondaryLinks.map(link => `
-                <a href="${link.href}" onclick="closeMegaMenu()" class="block text-sm font-medium text-gray-600 hover:text-primary transition-colors py-0.5">
-                  ${link.name}
-                </a>
-              `).join('')}
+              ${data.secondaryLinks.map(link => renderMegaLink(link, 'text-sm font-medium text-zinc-300 hover:text-primary py-0.5')).join('')}
             </div>
           </div>
 
-          <div class="md:col-span-3 space-y-2 pl-0 md:pl-4 border-l-0 md:border-l border-gray-100">
-            <span class="text-xs font-semibold text-gray-500 tracking-wider uppercase block mb-3">${data.tertiaryTitle}</span>
+          <div class="md:col-span-3 space-y-2 pl-0 md:pl-4 border-l-0 md:border-l border-zinc-800">
+            <span class="text-xs font-semibold text-zinc-400 tracking-wider uppercase block mb-3">${data.tertiaryTitle}</span>
             <div class="space-y-2">
-              ${data.tertiaryLinks.map(link => `
-                <a href="${link.href}" onclick="closeMegaMenu()" class="block text-xs font-medium text-gray-500 hover:text-primary transition-colors py-0.5">
-                  ${link.name}
-                </a>
-              `).join('')}
+              ${data.tertiaryLinks.map(link => renderMegaLink(link, 'text-xs font-medium text-zinc-400 hover:text-white py-0.5')).join('')}
+            </div>
+            <div class="pt-4 mt-4 border-t border-zinc-800/80">
+              <span class="inline-flex items-center gap-1.5 text-xs text-primary font-semibold">
+                <span class="material-symbols-outlined text-sm">verified</span> +10.000 Clientes Satisfechos
+              </span>
             </div>
           </div>
         </div>
@@ -5295,27 +5669,23 @@
       navButtons.forEach(btn => {
         if (btn.getAttribute('data-menu') === key) {
           btn.classList.add('text-primary');
-          btn.classList.remove('text-gray-600');
+          btn.classList.remove('text-gray-700', 'text-gray-600');
         } else {
           btn.classList.remove('text-primary');
           btn.classList.add('text-gray-600');
         }
       });
 
-      if (megaMenu) {
-        megaMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
-        megaMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-      }
+      megaMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+      megaMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
     }
 
     function closeMegaMenu() {
-      if (megaMenu) {
-        megaMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
-        megaMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-      }
+      megaMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+      megaMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
       navButtons.forEach(btn => {
         btn.classList.remove('text-primary');
-        btn.classList.add('text-gray-600');
+        btn.classList.add('text-gray-700');
       });
       activeMenuKey = null;
     }
@@ -5330,20 +5700,26 @@
       });
     });
 
-    if (megaMenu) {
-      megaMenu.addEventListener('mouseenter', () => clearTimeout(menuCloseTimeout));
-      megaMenu.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 250));
-    }
-    const navCont = document.getElementById('nav-container');
-    if (navCont) {
-      navCont.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 300));
-    }
+    megaMenu.addEventListener('mouseenter', () => clearTimeout(menuCloseTimeout));
+    megaMenu.addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 250));
+    document.getElementById('nav-container').addEventListener('mouseleave', () => menuCloseTimeout = setTimeout(closeMegaMenu, 300));
     document.addEventListener('click', (e) => {
-      if (megaMenu && !megaMenu.contains(e.target) && navCont && !navCont.contains(e.target)) {
+      if (!megaMenu.contains(e.target) && !document.getElementById('nav-container').contains(e.target)) {
         closeMegaMenu();
       }
     });
 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMegaMenu();
+        closeProductModal();
+        closeCheckoutModal();
+        closeInfoModal();
+        closeAdminPanel();
+      }
+    });
+
+    
     // Inicialización al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
       initProductConfigurator();
