@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+const sharp = require('sharp');
 require('dotenv').config();
 
 const app = express();
@@ -19,6 +22,26 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, '..')));
+
+// Carpeta donde se guardarán las imágenes optimizadas
+const UPLOADS_DIR = path.join(__dirname, '..', 'assets', 'uploads');
+if (!fs.existsSync(UPLOADS_DIR)) {
+  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+}
+
+// Configuración de Multer (Almacenar temporalmente en memoria para procesar con Sharp)
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 15 * 1024 * 1024 }, // Límite de 15MB por archivo
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Solo se permiten archivos de imagen'));
+    }
+  }
+});
 
 // Inicializar la tabla en PostgreSQL si no existe
 async function initDB() {
@@ -41,7 +64,56 @@ async function initDB() {
 
 initDB();
 
+// ==========================================
+// ENDPOINT: SUBIR Y OPTIMIZAR IMAGEN A WEBP
+// ==========================================
+app.post('/api/upload-image', upload.single('image'), async (req, res) => {
+  try {
+    const authHeader = req.headers['x-admin-password'] || req.body.password;
+    if (authHeader !== ADMIN_PASSWORD) {
+      return res.status(401).json({ error: 'No autorizado. Contraseña de admin inválida.' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se subió ningún archivo de imagen.' });
+    }
+
+    // Nombre único para la imagen WebP
+    const fileName = `img-${Date.now()}-${Math.round(Math.random() * 1e5)}.webp`;
+    const outputPath = path.join(UPLOADS_DIR, fileName);
+
+    // Procesamiento y optimización con Sharp:
+    // - Redimensiona a máximo 1200px de ancho/alto manteniendo proporción
+    // - Convierte a formato WebP moderno (82% calidad, compresión visual sin pérdidas perceptibles)
+    // - Preserva canal alfa/transparencia de PNGs
+    await sharp(req.file.buffer)
+      .resize(1200, 1200, {
+        fit: 'inside',
+        withoutEnlargement: true
+      })
+      .webp({ quality: 82, effort: 4 })
+      .toFile(outputPath);
+
+    const stats = fs.statSync(outputPath);
+    const relativeUrl = `assets/uploads/${fileName}`;
+
+    console.log(`📸 Imagen procesada y optimizada: ${fileName} (${Math.round(stats.size / 1024)} KB)`);
+
+    res.json({
+      success: true,
+      url: relativeUrl,
+      sizeBytes: stats.size,
+      sizeKB: Math.round(stats.size / 1024)
+    });
+  } catch (err) {
+    console.error('Error al procesar imagen:', err);
+    res.status(500).json({ error: 'Error al optimizar imagen: ' + err.message });
+  }
+});
+
+// ==========================================
 // 1. Obtener catálogo y CMS actual
+// ==========================================
 app.get('/api/catalog', async (req, res) => {
   try {
     const result = await pool.query(
@@ -68,7 +140,9 @@ app.get('/api/catalog', async (req, res) => {
   }
 });
 
-// 2. Guardar o actualizar catálogo y CMS (Protegido con contraseña)
+// ==========================================
+// 2. Guardar o actualizar catálogo y CMS
+// ==========================================
 app.post('/api/catalog', async (req, res) => {
   try {
     const { password, devices, cmsData } = req.body;
