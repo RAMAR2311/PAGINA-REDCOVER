@@ -1,0 +1,253 @@
+    body {
+      background-color: #FAFAFC;
+      color: #18181B;
+      font-family: 'Inter', sans-serif;
+    }
+    .crimson-glow {
+      box-shadow: 0 10px 30px -5px rgba(239, 35, 60, 0.2);
+    }
+    .crimson-glow-lg {
+      box-shadow: 0 20px 50px -10px rgba(239, 35, 60, 0.25);
+    }
+    .crimson-btn {
+      background: linear-gradient(135deg, #EF233C 0%, #C50812 100%);
+      transition: all 0.25s ease;
+    }
+    .crimson-btn:hover {
+      background: linear-gradient(135deg, #FF334B 0%, #EF233C 100%);
+      box-shadow: 0 8px 24px rgba(239, 35, 60, 0.35);
+      transform: translateY(-1px);
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(228, 228, 231, 0.8);
+    }
+    .badge-pulse {
+      box-shadow: 0 0 0 0 rgba(239, 35, 60, 0.6);
+      animation: pulse-ring 2s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(239, 35, 60, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(239, 35, 60, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 35, 60, 0); }
+    }
+    .toast-enter {
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ==========================================
+       SISTEMA DE MODO OSCURO COMPLETO (html.dark)
+       ========================================== */
+    html.dark body {
+      background-color: #09090B !important;
+      color: #F4F4F5 !important;
+    }
+    html.dark .glass-nav {
+      background: rgba(15, 15, 18, 0.90) !important;
+      border-color: #27272A !important;
+    }
+    html.dark .glass-card {
+      background: rgba(24, 24, 27, 0.95) !important;
+      border-color: #27272A !important;
+    }
+    html.dark .bg-white:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      background-color: #18181B !important;
+    }
+    html.dark .bg-gray-50:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .bg-gray-100:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      background-color: #27272A !important;
+    }
+    html.dark .text-gray-900:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .text-gray-800:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      color: #F4F4F5 !important;
+    }
+    html.dark .text-gray-700:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .text-gray-600:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      color: #A1A1AA !important;
+    }
+    html.dark .text-gray-500:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      color: #71717A !important;
+    }
+    html.dark .border-gray-200:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-200\/80:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-200\/90:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-300:not(#admin-cms-modal *):not(#admin-login-modal *),
+    html.dark .border-gray-100:not(#admin-cms-modal *):not(#admin-login-modal *) {
+      border-color: #27272A !important;
+    }
+    html.dark #cms-hero-title-gradient {
+      background-image: linear-gradient(to right, #FFFFFF, #FCA5A5, #EF233C) !important;
+    }
+  
+    /* Premium Text Effect Styles (Inspirado en motion-primitives & text-effect) */
+    .text-effect-container {
+      display: inline-block;
+      overflow: visible;
+    }
+    .text-effect-char {
+      display: inline-block;
+      white-space: pre;
+      opacity: 0;
+      transform: translateY(24px) scale(0.92);
+      filter: blur(10px);
+      animation: textEffectFadeSlide 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .text-effect-word {
+      display: inline-block;
+      white-space: pre;
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(8px);
+      animation: textEffectFadeSlide 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes textEffectFadeSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.92);
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    /* =========================================================================
+       METALLIC BUTTON SHADER EFFECT (Adapted from 21st.dev / @hyperiux/metallic-button)
+       ========================================================================= */
+    .metallic-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      padding: 2px; /* Rim thickness */
+      background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(120,120,125,0.3) 25%, rgba(255,255,255,0.85) 50%, rgba(80,80,85,0.3) 75%, rgba(239,35,60,0.5) 100%);
+      box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .metallic-btn::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background: conic-gradient(from 0deg at 50% 50%, 
+        rgba(255, 255, 255, 0.9) 0deg, 
+        rgba(100, 100, 105, 0.2) 60deg, 
+        rgba(255, 255, 255, 0.85) 120deg, 
+        rgba(239, 35, 60, 0.6) 180deg, 
+        rgba(255, 255, 255, 0.95) 240deg, 
+        rgba(80, 80, 85, 0.2) 300deg, 
+        rgba(255, 255, 255, 0.9) 360deg);
+      opacity: 0.7;
+      transition: opacity 0.4s ease, transform 0.8s ease;
+      animation: metallicSheenSpin 7s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .metallic-btn:hover::before {
+      opacity: 1;
+      animation-duration: 2.5s; /* Hover speed ramp */
+    }
+
+    @keyframes metallicSheenSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Contenedor interior del botón */
+    .metallic-btn > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .metallic-btn-inner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 9999px;
+      padding: 0.65rem 1.4rem;
+      background: radial-gradient(120% 120% at 50% 20%, #1c1c20 0%, #0a0a0c 100%);
+      color: #ffffff;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .metallic-btn:hover .metallic-btn-inner {
+      background: radial-gradient(120% 120% at 50% 10%, #26262c 0%, #0d0d10 100%);
+      color: #ffffff;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.55), inset 0 -2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .metallic-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Variante Carmesí de la Marca RedCover */
+    .metallic-btn-crimson {
+      background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(239,35,60,0.6) 30%, rgba(255,255,255,0.9) 50%, rgba(180,10,25,0.5) 75%, rgba(255,255,255,0.7) 100%);
+      box-shadow: 0 6px 20px -3px rgba(239, 35, 60, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+    }
+    .metallic-btn-crimson .metallic-btn-inner {
+      background: radial-gradient(120% 120% at 50% 15%, #ef233c 0%, #990317 100%);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .metallic-btn-crimson:hover .metallic-btn-inner {
+      background: radial-gradient(120% 120% at 50% 10%, #ff3850 0%, #ba051e 100%);
+      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.75), inset 0 -2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Variante Titanio Plata / Blanco */
+    .metallic-btn-silver .metallic-btn-inner {
+      background: radial-gradient(120% 120% at 50% 15%, #f4f4f6 0%, #e2e2e7 100%);
+      color: #18181b;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 3px rgba(0, 0, 0, 0.15);
+    }
+    .metallic-btn-silver:hover .metallic-btn-inner {
+      background: radial-gradient(120% 120% at 50% 10%, #ffffff 0%, #ebebef 100%);
+      color: #000000;
+      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 1), inset 0 -1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Adaptación global a .crimson-btn para que herede la estética metallic-button */
+    .crimson-btn {
+      position: relative !important;
+      border-radius: 9999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      background: linear-gradient(180deg, #ef233c 0%, #a80515 100%) !important;
+      box-shadow: 0 6px 18px -2px rgba(239, 35, 60, 0.42), inset 0 1px 1.5px rgba(255, 255, 255, 0.6), inset 0 -2px 4px rgba(0, 0, 0, 0.4) !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      overflow: hidden !important;
+    }
+    .crimson-btn:hover {
+      background: linear-gradient(180deg, #ff3850 0%, #c4061a 100%) !important;
+      box-shadow: 0 10px 24px -2px rgba(239, 35, 60, 0.55), inset 0 1.5px 2.5px rgba(255, 255, 255, 0.8), inset 0 -2px 5px rgba(0, 0, 0, 0.5) !important;
+      transform: translateY(-1px) scale(1.02) !important;
+    }
+    .crimson-btn:active {
+      transform: translateY(1px) scale(0.98) !important;
+      box-shadow: 0 3px 10px rgba(239, 35, 60, 0.35) !important;
+    }
