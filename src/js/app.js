@@ -2016,7 +2016,7 @@
       viewport.innerHTML = `
         <div class="w-full h-full relative transition-opacity duration-500">
           ${isVideo ? `
-            <video src="${s.mediaUrl}" autoplay muted loop playsinline class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105"></video>
+            <video src="${s.mediaUrl}" autoplay muted playsinline class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105"></video>
           ` : `
             <img src="${s.mediaUrl}" alt="${s.title}" class="w-full h-[360px] md:h-[520px] object-cover transition-transform duration-700">
           `}
@@ -2057,57 +2057,46 @@
         heroAutoSlideTimer = null;
       }
 
-      // Si es un video, se adapta exactamente a su duracion (maximo 10 segundos)
+      // Manejo de duracion de pase: Imagen fija (7.5s) o Video (su duracion o maximo 10s)
+      const advanceSlide = () => {
+        if (adminModeActive) return;
+        if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+        currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
+        renderHeroBannerCarousel();
+      };
+
       if (isVideo) {
         const videoEl = viewport.querySelector('video');
-        if (videoEl) {
-          let hasTransitioned = false;
-          const advanceSlide = () => {
-            if (hasTransitioned || adminModeActive) return;
-            hasTransitioned = true;
-            if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
-            currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
-            renderHeroBannerCarousel();
-          };
+        let fallbackMs = 10000;
 
-          // 1. Al finalizar el video pasa al siguiente
+        if (videoEl) {
+          // Intentar forzar play si el navegador lo detuvo
+          videoEl.play().catch(() => {});
+
           videoEl.onended = () => {
             advanceSlide();
           };
 
-          // 2. Lee la duracion real del video y programa el pase (max 10s)
-          videoEl.onloadedmetadata = () => {
-            const durationSec = videoEl.duration;
-            let waitMs = 7500;
-            if (durationSec && !isNaN(durationSec) && isFinite(durationSec)) {
-              waitMs = Math.min(Math.max(durationSec * 1000, 3000), 10000);
+          const checkDuration = () => {
+            const dur = videoEl.duration;
+            if (dur && !isNaN(dur) && isFinite(dur)) {
+              const targetMs = Math.min(Math.max(dur * 1000, 3000), 10000);
+              if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+              heroAutoSlideTimer = setTimeout(advanceSlide, targetMs);
             }
-            if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
-            heroAutoSlideTimer = setTimeout(() => {
-              advanceSlide();
-            }, waitMs);
           };
 
-          // 3. Temporizador limite maximo de seguridad: 10 segundos
-          heroAutoSlideTimer = setTimeout(() => {
-            advanceSlide();
-          }, 10000);
-        } else {
-          heroAutoSlideTimer = setTimeout(() => {
-            if (!adminModeActive) {
-              currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
-              renderHeroBannerCarousel();
-            }
-          }, 10000);
-        }
-      } else {
-        // Si es una imagen fija, dura los 7.5 segundos habituales
-        heroAutoSlideTimer = setTimeout(() => {
-          if (!adminModeActive) {
-            currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
-            renderHeroBannerCarousel();
+          if (videoEl.readyState >= 1) {
+            checkDuration();
+          } else {
+            videoEl.onloadedmetadata = checkDuration;
           }
-        }, 7500);
+        }
+
+        // Siempre tener un timeout de seguridad garantizado
+        heroAutoSlideTimer = setTimeout(advanceSlide, fallbackMs);
+      } else {
+        heroAutoSlideTimer = setTimeout(advanceSlide, 7500);
       }
     }
 
