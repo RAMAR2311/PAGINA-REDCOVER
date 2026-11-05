@@ -61,7 +61,7 @@
       const btnDuo = document.getElementById('btn-flagship-duo');
 
       const activeClass = 'bg-gradient-to-r from-primary to-red-600 text-white shadow-md shadow-red-500/30';
-      const inactiveClass = 'text-gray-600 hover:text-gray-900 hover:bg-white';
+      const inactiveClass = 'text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800';
 
       [btnPro, btnMax, btnDuo].forEach(b => {
         if (!b) return;

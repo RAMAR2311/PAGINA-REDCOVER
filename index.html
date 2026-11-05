@@ -213,22 +213,22 @@
       <div class="w-full relative z-10 flex flex-col items-center text-center max-w-7xl mx-auto">
         <!-- Fila Superior: Selector Dinámico Interactivo + Badge de Lanzamiento -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 w-full">
-          <div class="inline-flex p-1.5 rounded-full bg-white/90 backdrop-blur-md border border-gray-200/90 shadow-sm items-center gap-1.5 flex-wrap justify-center">
+          <div class="inline-flex p-1.5 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-gray-200/90 dark:border-zinc-800 shadow-sm items-center gap-1.5 flex-wrap justify-center">
             <button type="button" onclick="switchHeroFlagship('iphone-18-pro')" id="btn-flagship-18-pro" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-primary to-red-600 text-white shadow-md shadow-red-500/30">
               <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
               iPhone 18 Pro
             </button>
-            <button type="button" onclick="switchHeroFlagship('iphone-18-pro-max')" id="btn-flagship-18-pro-max" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-white">
+            <button type="button" onclick="switchHeroFlagship('iphone-18-pro-max')" id="btn-flagship-18-pro-max" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800">
               <span class="material-symbols-outlined text-sm text-primary">diamond</span>
               iPhone 18 Pro Max
             </button>
-            <button type="button" onclick="switchHeroFlagship('iphone-duo-fold')" id="btn-flagship-duo" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-white">
+            <button type="button" onclick="switchHeroFlagship('iphone-duo-fold')" id="btn-flagship-duo" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800">
               <span class="material-symbols-outlined text-sm text-amber-500">devices_fold</span>
               iPhone Duo
             </button>
           </div>
 
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/90 border border-red-200 text-primary text-[11px] font-mono font-bold tracking-wider uppercase shadow-2xs backdrop-blur-sm">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/90 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30 text-primary dark:text-red-400 text-[11px] font-mono font-bold tracking-wider uppercase shadow-2xs backdrop-blur-sm">
             <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
             <span id="hero-flagship-badge">Lanzamiento Oficial 2026 • Chip A20 Pro 2nm</span>
           </div>
@@ -236,14 +236,14 @@
 
         <!-- Headline Gigante en Gran Formato -->
         <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-4 leading-[1.04]">
-          <span id="cms-hero-title-main" class="text-gray-900 font-black block">iPhone 18 Pro.</span>
-          <span id="cms-hero-title-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 font-black block mt-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
+          <span id="cms-hero-title-main" class="text-gray-900 dark:text-white font-black block">iPhone 18 Pro.</span>
+          <span id="cms-hero-title-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 dark:from-red-500 dark:via-red-400 dark:to-white font-black block mt-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
             Titanio Café Bronce & Chip A20 Pro.
           </span>
         </h1>
 
         <!-- Párrafo Descriptivo Amplio y Nítido -->
-        <p id="cms-hero-description" class="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mb-10 leading-relaxed font-normal">
+        <p id="cms-hero-description" class="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-zinc-300 max-w-3xl mb-10 leading-relaxed font-normal">
           La cumbre de la ingeniería portátil. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 y zoom óptico periscópico continuo de 10x.
         </p>
 
@@ -279,43 +279,43 @@
 
         <!-- Píldoras de Especificaciones Técnicas Ampliadas en 4 Columnas -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 w-full max-w-5xl text-left">
-          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-gray-200/90 dark:border-zinc-800 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-500/20 text-primary dark:text-red-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-2xl">memory</span>
             </div>
             <div>
-              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Procesador</span>
-              <span class="text-xs sm:text-sm font-extrabold text-gray-900" id="hero-spec-chip">Chip A20 Pro 2nm</span>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 dark:text-zinc-400 uppercase font-mono font-bold block">Procesador</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900 dark:text-zinc-100" id="hero-spec-chip">Chip A20 Pro 2nm</span>
             </div>
           </div>
 
-          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-gray-200/90 dark:border-zinc-800 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-2xl">photo_camera</span>
             </div>
             <div>
-              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Sistema Óptico</span>
-              <span class="text-xs sm:text-sm font-extrabold text-gray-900" id="hero-spec-cam">Triple 48MP • Zoom 10x</span>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 dark:text-zinc-400 uppercase font-mono font-bold block">Sistema Óptico</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900 dark:text-zinc-100" id="hero-spec-cam">Triple 48MP • Zoom 10x</span>
             </div>
           </div>
 
-          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-gray-200/90 dark:border-zinc-800 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-2xl">verified_user</span>
             </div>
             <div>
-              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Respaldo Oficial</span>
-              <span class="text-xs sm:text-sm font-extrabold text-gray-900">Garantía Apple 1 Año</span>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 dark:text-zinc-400 uppercase font-mono font-bold block">Respaldo Oficial</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900 dark:text-zinc-100">Garantía Apple 1 Año</span>
             </div>
           </div>
 
-          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-amber-300 transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-gray-200/90 dark:border-zinc-800 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-amber-300 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-2xl">payments</span>
             </div>
             <div>
-              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Financiación</span>
-              <span class="text-xs sm:text-sm font-extrabold text-gray-900">Hasta 24 Cuotas</span>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 dark:text-zinc-400 uppercase font-mono font-bold block">Financiación</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900 dark:text-zinc-100">Hasta 24 Cuotas</span>
             </div>
           </div>
         </div>
