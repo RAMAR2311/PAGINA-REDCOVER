@@ -14,7 +14,7 @@
     "badge": "Gama 2026 • Primer Plegable Apple",
     "price": 8999000,
     "specs": [
-      "Doble pantalla: Externa 6.3" Super Retina XDR + Interna Plegable 7.9" Tandem OLED 120Hz",
+      "Doble pantalla: Externa 6.3\" Super Retina XDR + Interna Plegable 7.9\" Tandem OLED 120Hz",
       "Bisagra aeroespacial de Titanio y Metal Líquido con pliegue cero autorreparable",
       "Chip A20 Pro de 2nm con multitarea dividida estilo iPadOS y Apple Intelligence 3.0",
       "Sistema de triple cámara Pro de 48 MP + Face ID dual en ambas pantallas"
@@ -45,7 +45,7 @@
     "badge": "Gama iPhone 18 (2026)",
     "price": 6999000,
     "specs": [
-      "Pantalla Super Retina XDR 6.9" ProMotion 120Hz con Face ID bajo pantalla",
+      "Pantalla Super Retina XDR 6.9\" ProMotion 120Hz con Face ID bajo pantalla",
       "Chip A20 Pro a 2nm con Neural Engine de 64 núcleos y 12 GB de RAM",
       "Triple cámara trasera de 48 MP con apertura variable y Teleobjetivo 10x",
       "Batería de alta densidad con hasta 38 horas de reproducción de video"
@@ -84,7 +84,7 @@
     "badge": "Gama iPhone 18 (2026)",
     "price": 5999000,
     "specs": [
-      "Pantalla Super Retina XDR 6.3" ProMotion con Dynamic Island ultrarreducida",
+      "Pantalla Super Retina XDR 6.3\" ProMotion con Dynamic Island ultrarreducida",
       "Chip A20 Pro de 2nm con trazado de rayos por hardware de 3.ª generación",
       "Sistema de cámaras Pro 48 MP en los 3 sensores + Control de Cámara háptico",
       "Carga ultrarrápida MagSafe de 45W y conectividad Wi-Fi 7 + Satélite"
