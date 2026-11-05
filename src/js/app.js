@@ -3373,7 +3373,12 @@
                 </div>
                 <p class="text-[11px] text-gray-500 mt-0.5">Es el primer elemento visual gigante que ven los clientes al entrar a la tienda. Puedes subir imágenes o videos cortos (.mp4).</p>
               </div>
-              <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 font-extrabold text-[11px] w-fit">4 Banners Activos</span>
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 font-extrabold text-[11px] w-fit">${cmsData.heroSlides.length} Banners Activos</span>
+                <button type="button" onclick="addAdminHeroSlide()" class="px-3.5 py-1.5 rounded-xl crimson-btn text-white font-extrabold text-xs shadow-sm flex items-center gap-1 hover:scale-105 transition-all">
+                  <span class="material-symbols-outlined text-sm">add_circle</span> + Agregar Nuevo Banner
+                </button>
+              </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -3383,9 +3388,14 @@
                     <span class="font-extrabold text-primary uppercase flex items-center gap-1.5">
                       <span class="material-symbols-outlined text-sm">view_carousel</span> Banner #${idx + 1}
                     </span>
-                    <div class="flex items-center gap-1.5">
-                      <button type="button" onclick="goToHeroSlide(${idx}); showToast('Previsualizando Banner #${idx + 1} en la web')" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-[10px]">Previsualizar</button>
-                      <button type="button" onclick="saveAdminHeroSlide(${idx})" class="px-3 py-1 rounded-lg crimson-btn text-white font-bold text-[11px] shadow-xs">Guardar Banner</button>
+                    <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                      <button type="button" onclick="goToHeroSlide(${idx}); showToast('Previsualizando Banner #${idx + 1} en la web')" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-[10px]" title="Ver en carrusel">Previsualizar</button>
+                      <button type="button" onclick="saveAdminHeroSlide(${idx})" class="px-3 py-1 rounded-lg crimson-btn text-white font-bold text-[11px] shadow-xs">Guardar</button>
+                      ${cmsData.heroSlides.length > 1 ? `
+                        <button type="button" onclick="deleteAdminHeroSlide(${idx})" class="px-2 py-1 rounded-lg bg-red-100 hover:bg-red-600 hover:text-white text-red-700 font-bold text-[10px] transition-colors" title="Eliminar este banner">
+                          <span class="material-symbols-outlined text-xs">delete</span>
+                        </button>
+                      ` : ''}
                     </div>
                   </div>
 
@@ -3564,6 +3574,47 @@
         switchHeroFlagship(key);
       }
       showToast(`¡Datos de ${item.titleMain} guardados y actualizados en la web!`);
+    }
+
+    
+    function addAdminHeroSlide() {
+      if (!Array.isArray(cmsData.heroSlides)) {
+        cmsData.heroSlides = [];
+      }
+      const newIdx = cmsData.heroSlides.length + 1;
+      cmsData.heroSlides.push({
+        id: 'slide-' + Date.now(),
+        mediaType: 'image',
+        mediaUrl: 'assets/img/iphone-pro.png',
+        badge: `Banner ${newIdx} • Nuevo Lanzamiento`,
+        title: 'Nuevo Banner Promocional RedCover',
+        subtitle: 'Edita este subtítulo con tus ofertas especiales, garantía y financiación 0%',
+        btn1Text: 'Ver Producto',
+        productIdTarget: 'iphone-18-pro-max',
+        btn2Text: 'Ver Catálogo',
+        categoryTarget: 'iphone'
+      });
+
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminHeroTab(document.getElementById('admin-tab-content'));
+      goToHeroSlide(cmsData.heroSlides.length - 1);
+      showToast(`✅ ¡Banner #${newIdx} agregado con éxito!`);
+    }
+
+    function deleteAdminHeroSlide(idx) {
+      if (!Array.isArray(cmsData.heroSlides) || cmsData.heroSlides.length <= 1) {
+        showToast('⚠️ Debe existir al menos 1 banner en el carrusel');
+        return;
+      }
+      if (!confirm(`¿Estás seguro de eliminar el Banner #${idx + 1}?`)) return;
+
+      cmsData.heroSlides.splice(idx, 1);
+      currentHeroSlideIndex = 0;
+      saveCMSState();
+      renderAllCMSContent();
+      renderAdminHeroTab(document.getElementById('admin-tab-content'));
+      showToast('🗑️ Banner eliminado del carrusel');
     }
 
     function saveAdminHeroSlide(idx) {
