@@ -1969,7 +1969,7 @@
     let currentHeroSlideIndex = 0;
     let heroAutoSlideTimer = null;
     let currentOffersStartIndex = 0;
-    const OFFERS_PER_VIEW = 4;
+    const OFFERS_PER_VIEW = 2;
 
     function renderCMSHeroAndTopbar() {
       const topbar = document.getElementById('cms-promo-topbar');
