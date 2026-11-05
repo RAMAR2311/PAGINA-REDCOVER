@@ -15,10 +15,12 @@
     ? cms.devices
     : (typeof allCatalogDevices !== 'undefined' ? allCatalogDevices : []);
 
-  // Accesorios
+  // Accesorios (Prioridad: CMS -> allCatalogAccessories [12 items oficiales] -> defaultCMSData)
   const accessories = (cms && Array.isArray(cms.accessories) && cms.accessories.length > 0)
     ? cms.accessories
-    : (typeof defaultCMSData !== 'undefined' && Array.isArray(defaultCMSData.accessories) ? defaultCMSData.accessories : []);
+    : (typeof allCatalogAccessories !== 'undefined' && Array.isArray(allCatalogAccessories) && allCatalogAccessories.length > 0
+        ? allCatalogAccessories
+        : (typeof defaultCMSData !== 'undefined' && Array.isArray(defaultCMSData.accessories) ? defaultCMSData.accessories : []));
 
   // Unificar catálogo completo con etiquetas de tipo
   const masterList = [
@@ -514,6 +516,34 @@
       window.location.href = 'index.html?openCart=true';
     });
   }
+
+  // 8. Soporte de Modo Oscuro Oficial (redcover_dark_mode)
+  const DARK_MODE_STORAGE_KEY = 'redcover_dark_mode';
+
+  function initDarkMode() {
+    const saved = localStorage.getItem(DARK_MODE_STORAGE_KEY);
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+      updateDarkModeIcon(true);
+    } else {
+      document.documentElement.classList.remove('dark');
+      updateDarkModeIcon(false);
+    }
+  }
+
+  window.toggleDarkMode = function() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem(DARK_MODE_STORAGE_KEY, isDark ? 'dark' : 'light');
+    updateDarkModeIcon(isDark);
+    showToast(isDark ? '🌙 Modo Oscuro activado' : '☀️ Modo Claro activado');
+  };
+
+  function updateDarkModeIcon(isDark) {
+    const icon = document.getElementById('dark-mode-icon');
+    if (icon) icon.innerText = isDark ? 'light_mode' : 'dark_mode';
+  }
+
+  initDarkMode();
 
   // Render inicial
   renderCatalog();

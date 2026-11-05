@@ -3102,3 +3102,146 @@
     "shortDesc": "Edición de colección con montura transparente que deja ver la ingeniería interna de Qualcomm Snapdragon AR1 Gen 1 y lentes Transitions Rubí."
   }
 ];
+
+
+// =========================================================================
+// ACCESORIOS ORIGINALES OFICIALES REDCOVER COLOMBIA (12 REFERENCIAS)
+// =========================================================================
+const allCatalogAccessories = [
+  {
+    id: 'acc-cubo-20w',
+    category: 'carga',
+    badge: 'Carga Rápida',
+    badgeColor: 'bg-red-600',
+    title: 'Cubo de Carga 20W USB-C Original Apple',
+    desc: 'Adaptador de corriente USB-C de 20W original sellado en caja. Carga rápida del 0 al 50% en 30 minutos para iPhone y iPad.',
+    price: 119000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7T2_GEO_US?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPhone 11 a 18 Pro, iPad, Apple Watch'
+  },
+  {
+    id: 'acc-cubo-40w',
+    category: 'carga',
+    badge: 'Carga Ultra Rápida Dual',
+    badgeColor: 'bg-zinc-900',
+    title: 'Cubo de Carga 40W USB-C Dual Original Apple',
+    desc: 'Adaptador de corriente dual original de 40W para máxima velocidad de carga simultánea en iPhone, iPad Pro y MacBook Air.',
+    price: 189000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNWM3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'MacBook Air, iPad Pro, iPhone 16/17/18'
+  },
+  {
+    id: 'acc-magsafe-25w',
+    category: 'carga',
+    badge: 'MagSafe Oficial',
+    badgeColor: 'bg-red-600',
+    title: 'Cargador MagSafe Oficial Apple (1m / 25W)',
+    desc: 'Alineación magnética perfecta para carga inalámbrica ultrarrápida de hasta 25W con cable trenzado de alta durabilidad.',
+    price: 249000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX6X3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPhone 12 en adelante con MagSafe'
+  },
+  {
+    id: 'acc-airpods-pro-2',
+    category: 'audio',
+    badge: 'Cancelación Pro',
+    badgeColor: 'bg-emerald-600',
+    title: 'AirPods Pro 2 (USB-C MagSafe con Altavoz)',
+    desc: 'Cancelación activa de ruido 2x más potente, modo ambiente adaptativo, audio espacial personalizado y estuche con rastreo en Encontrar.',
+    price: 1299000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'Ecosistema Apple completo, iOS, iPadOS, macOS'
+  },
+  {
+    id: 'acc-pencil-pro',
+    category: 'pencil',
+    badge: 'Gama Pro',
+    badgeColor: 'bg-primary',
+    title: 'Apple Pencil Pro Original con Respuesta Háptica',
+    desc: 'Gesto de apretar, rotación de barril, respuesta háptica, puntero flotante y rastreo en la app Encontrar. 100% original sellado.',
+    price: 649000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX2D3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPad Pro M4, iPad Air M2'
+  },
+  {
+    id: 'acc-pencil-usbc',
+    category: 'pencil',
+    badge: 'Original Apple',
+    badgeColor: 'bg-zinc-900',
+    title: 'Apple Pencil (USB-C) Original',
+    desc: 'Precisión milimétrica, baja latencia, sensibilidad a la inclinación y acople magnético para cargar y enlazar por USB-C.',
+    price: 449000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MUWA3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPad Pro, iPad Air, iPad 10ma gen, iPad mini'
+  },
+  {
+    id: 'acc-cable-usbc',
+    category: 'cables',
+    badge: 'Trenzado Original',
+    badgeColor: 'bg-emerald-600',
+    title: 'Cable de Carga USB-C a USB-C Original Apple (1m)',
+    desc: 'Cable trenzado original de alta resistencia para carga rápida y sincronización de datos en iPhone 15, 16, 17, 18, iPad y MacBook.',
+    price: 99000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU2G3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'Todos los equipos Apple con puerto USB-C'
+  },
+  {
+    id: 'acc-cable-lightning',
+    category: 'cables',
+    badge: 'Original Certificado',
+    badgeColor: 'bg-zinc-900',
+    title: 'Cable USB-C a Lightning Original Apple (1m)',
+    desc: 'Cable original de carga rápida para iPhone 11, 12, 13, 14 y estuches de AirPods Lightning. 100% original en caja.',
+    price: 99000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MM0A3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPhone 11 a 14, AirPods Lightning'
+  },
+  {
+    id: 'acc-airtag-single',
+    category: 'airtag',
+    badge: 'Rastreo Preciso',
+    badgeColor: 'bg-red-600',
+    title: 'Apple AirTag (Unidad Individual)',
+    desc: 'Rastreador inteligente con tecnología Ultra Banda Ancha y red Encontrar de Apple para localizar tus llaves, maletas o vehículo.',
+    price: 159000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airtag-single-select-202104?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPhone 11 en adelante con chip U1/U2'
+  },
+  {
+    id: 'acc-airtag-pack4',
+    category: 'airtag',
+    badge: 'Pack x4 Ahorro',
+    badgeColor: 'bg-red-600',
+    title: 'Apple AirTag (Pack de 4 Unidades Oficial)',
+    desc: 'Protege todo lo importante: morrales, maletas de viaje, vehículos y llaves con el pack cuádruple de AirTags Apple.',
+    price: 549000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airtag-4pack-select-202104?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'iPhone con iOS 14.5 en adelante'
+  },
+  {
+    id: 'acc-funda-carbon',
+    category: 'fundas',
+    badge: 'Kevlar MagSafe',
+    badgeColor: 'bg-zinc-900',
+    title: 'Funda Carbon Armor Pro MagSafe Kevlar',
+    desc: 'Protección militar ultraliviana en fibra de carbono auténtica con imanes de neodimio N52 compatibles con cargadores MagSafe.',
+    price: 189000,
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDt8mU4Jv4yv6Vl0U_Uo12oY7Vw_2G8F6F4w7V3L8b_7w6G5R4t3Y2X1V0U9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi',
+    compat: 'iPhone 15 Pro, 16 Pro, 17 Pro, 18 Pro'
+  },
+  {
+    id: 'acc-correa-alpine',
+    category: 'correas',
+    badge: 'Titanio & Tejido',
+    badgeColor: 'bg-amber-600',
+    title: 'Correa Apple Watch Ultra Alpine Loop Oficial',
+    desc: 'Tejido continuo de alta resistencia sin costuras con gancho en G de titanio resistente a la corrosión para entrenamientos extremos.',
+    price: 219000,
+    img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQEG3?wid=800&hei=800&fmt=jpeg&qlt=90',
+    compat: 'Apple Watch 44mm, 45mm, 46mm y Ultra 49mm'
+  }
+];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { allCatalogDevices, allCatalogAccessories };
+}

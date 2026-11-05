@@ -2390,6 +2390,133 @@
       }
     }
 
+    // ==========================================
+    // SHOWCASE INTERACTIVO: INGENIERÍA DE VANGUARDIA (TARJETAS VISUALES)
+    // ==========================================
+    const vanguardiaData = {
+      iphone: {
+        title: 'iPhone 18 Pro Max, 17 Pro & 16 Pro',
+        tag: 'Universo iPhone',
+        badge: 'Titanio & A19 Pro',
+        desc: 'Titanio Grado 5 aeroespacial, chip A19 Pro con Neural Engine de 16 núcleos y cámara 48MP Fusion con zoom óptico 5x.',
+        img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=iphone',
+        btnText: 'Ver iPhone'
+      },
+      mac: {
+        title: 'MacBook Pro M4 & MacBook Air M3',
+        tag: 'Universo Mac',
+        badge: 'Apple Silicon M4',
+        desc: 'Potencia profesional con hasta 128GB de memoria unificada, pantalla Liquid Retina XDR de 1600 nits y 24h de batería.',
+        img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=mac',
+        btnText: 'Ver MacBook'
+      },
+      ipad: {
+        title: 'iPad Pro M4 & iPad Air M2',
+        tag: 'Universo iPad',
+        badge: 'Ultra Retina XDR',
+        desc: 'Diseño revolucionario de 5.1 mm, pantalla OLED en tándem de 1000 nits, chip M4 y soporte para Apple Pencil Pro.',
+        img: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=ipad',
+        btnText: 'Ver iPad'
+      },
+      watch: {
+        title: 'Apple Watch Ultra 2 & Series 10',
+        tag: 'Universo Watch',
+        badge: 'Titanio 49mm',
+        desc: 'Caja de titanio de 49mm, pantalla de 3000 nits, GPS de doble frecuencia, sirena de 86dB y resistencia al agua 100m.',
+        img: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=watch',
+        btnText: 'Ver Watch'
+      },
+      airpods: {
+        title: 'AirPods Pro 2 & AirPods Max USB-C',
+        tag: 'Universo AirPods',
+        badge: 'Cancelación 2X',
+        desc: 'Cancelación activa de ruido 2x superior, audio espacial personalizado y estuche MagSafe con altavoz y rastreo.',
+        img: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=airpods',
+        btnText: 'Ver AirPods'
+      },
+      samsung: {
+        title: 'Samsung Galaxy S26 Ultra & Z Fold',
+        tag: 'Universo Samsung',
+        badge: 'Galaxy AI 2026',
+        desc: 'Cámara de 200 MP, chasis de titanio con S-Pen integrado, pantalla Gorilla Armor anti-reflejos y Snapdragon 8 Gen 4.',
+        img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=samsung',
+        btnText: 'Ver Galaxy'
+      },
+      gafas: {
+        title: 'Ray-Ban Meta Wayfarer Edición Limitada',
+        tag: 'Universo Ray-Ban',
+        badge: 'Meta AI Integrada',
+        desc: 'Gafas inteligentes con cámara ultra-wide de 12 MP, audio direccional discreto, 5 micrófonos y lentes Transitions.',
+        img: 'https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=600&q=80',
+        link: 'catalogo.html?cat=gafas',
+        btnText: 'Ver Ray-Ban'
+      },
+      accesorios: {
+        title: 'Accesorios Originales Apple Sellados',
+        tag: 'Universo Accesorios',
+        badge: '100% Originales',
+        desc: 'Cubos de carga rápida 20W y 40W duales, cables trenzados USB-C, cargador MagSafe 25W, AirTags y fundas Kevlar.',
+        img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7T2_GEO_US?wid=800&hei=800&fmt=jpeg&qlt=90',
+        link: 'catalogo.html?tipo=accesorios',
+        btnText: 'Ver Accesorios'
+      }
+    };
+
+    const vanguardiaKeys = ['iphone', 'mac', 'ipad', 'watch', 'airpods', 'samsung', 'gafas', 'accesorios'];
+
+    window.selectVanguardiaCategory = function(catKey) {
+      if (!vanguardiaData[catKey]) return;
+      const data = vanguardiaData[catKey];
+
+      const img = document.getElementById('vanguardia-img');
+      const badge = document.getElementById('vanguardia-badge');
+      const tag = document.getElementById('vanguardia-category-tag');
+      const title = document.getElementById('vanguardia-title');
+      const desc = document.getElementById('vanguardia-desc');
+      const link = document.getElementById('vanguardia-link');
+      const linkText = document.getElementById('vanguardia-link-text');
+
+      if (img) {
+        img.style.opacity = '0.35';
+        setTimeout(() => {
+          img.src = data.img;
+          img.alt = data.title;
+          img.style.opacity = '1';
+        }, 80);
+      }
+      if (badge) badge.innerText = data.badge;
+      if (tag) tag.innerText = data.tag;
+      if (title) title.innerText = data.title;
+      if (desc) desc.innerText = data.desc;
+      if (link) link.href = data.link;
+      if (linkText) linkText.innerText = data.btnText;
+
+      const btns = document.querySelectorAll('.vanguardia-btn');
+      btns.forEach(b => {
+        const cat = b.getAttribute('data-vanguardia-cat');
+        const iconBox = b.querySelector('.vanguardia-icon-box');
+        if (cat === catKey) {
+          b.classList.remove('bg-gray-50', 'text-gray-900', 'border-gray-200/90');
+          b.classList.add('bg-zinc-950', 'text-white', 'border-primary', 'shadow-xs');
+          if (iconBox) {
+            iconBox.className = 'vanguardia-icon-box w-7 h-7 rounded-lg bg-primary text-white flex items-center justify-center transition-colors shrink-0';
+          }
+        } else {
+          b.classList.remove('bg-zinc-950', 'text-white', 'border-primary', 'shadow-xs');
+          b.classList.add('bg-gray-50', 'text-gray-900', 'border-gray-200/90');
+          if (iconBox) {
+            iconBox.className = 'vanguardia-icon-box w-7 h-7 rounded-lg bg-red-50 text-primary flex items-center justify-center transition-colors shrink-0';
+          }
+        }
+      });
+    };
+
     function renderCMSAccessories(filterCat = 'all') {
       currentAccCategoryFilter = filterCat;
       renderCMSCategories();
