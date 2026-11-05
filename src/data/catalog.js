@@ -3242,6 +3242,81 @@ const allCatalogAccessories = [
   }
 ];
 
+const allCatalogOffers = [
+  {
+    id: 'offer-1',
+    discountBadge: '-18% OFF',
+    topTag: 'Envío Gratis Hoy',
+    title: 'Combo iPhone 18 Pro (256GB) + Funda MagSafe + Cargador 35W',
+    desc: 'Lleva el nuevo buque insignia 2026 listo para usar con protección Carbon Armor y carga rápida original.',
+    price: 6199000,
+    oldPrice: 7499000,
+    progressPercent: 85,
+    stockLeftText: 'Quedan 4 combos',
+    img: IMG_IPHONE_PRO
+  },
+  {
+    id: 'offer-2',
+    discountBadge: '-15% OFF',
+    topTag: 'Especial Creativos',
+    title: 'Combo MacBook Air M5 13" (16GB/512GB) + AirPods 4 ANC',
+    desc: 'Potencia todo tu flujo de trabajo con el chip M5 de 2nm y auriculares con cancelación activa de ruido.',
+    price: 5899000,
+    oldPrice: 6898000,
+    progressPercent: 78,
+    stockLeftText: 'Quedan 5 combos',
+    img: IMG_MACBOOK
+  },
+  {
+    id: 'offer-3',
+    discountBadge: '-22% OFF',
+    topTag: 'Pack Ecosistema Pro',
+    title: 'Kit MagSafe Total: Cargador MagSafe 25W + Batería + AirTag',
+    desc: 'Energía magnética todo el día y localización precisa en la red Encontrar de Apple.',
+    price: 799000,
+    oldPrice: 1029000,
+    progressPercent: 90,
+    stockLeftText: 'Últimas 3 uds',
+    img: IMG_AIRPODS
+  },
+  {
+    id: 'offer-4',
+    discountBadge: '-14% OFF',
+    topTag: 'Estudio Digital Pro',
+    title: 'Combo iPad Air M4 (11") + Apple Pencil Pro Magnético',
+    desc: 'El lienzo definitivo para diseño, arquitectura, notas universitarias e ilustración profesional.',
+    price: 3999000,
+    oldPrice: 4648000,
+    progressPercent: 68,
+    stockLeftText: 'Quedan 7 combos',
+    img: IMG_IPAD
+  },
+  {
+    id: 'offer-5',
+    discountBadge: '-16% OFF',
+    topTag: 'Combo Android Flagship',
+    title: 'Samsung Galaxy S26 Ultra (256GB) + Cargador 45W + Funda',
+    desc: 'Estrena el nuevo Galaxy S26 Ultra con S-Pen integrado, cámara de 200 MP y carga superrápida.',
+    price: 6399000,
+    oldPrice: 7599000,
+    progressPercent: 80,
+    stockLeftText: 'Quedan 4 combos',
+    img: IMG_IPHONE_PRO
+  },
+  {
+    id: 'offer-6',
+    discountBadge: '-19% OFF',
+    topTag: 'Salud & Deporte 2026',
+    title: 'Pack Apple Watch Series 12 + AirPods Pro 3 (Chip H3)',
+    desc: 'Sincronización total de salud cardíaca, temperatura y audio espacial sin pérdida para entrenar al máximo.',
+    price: 3199000,
+    oldPrice: 3948000,
+    progressPercent: 74,
+    stockLeftText: 'Quedan 6 packs',
+    img: IMG_WATCH
+  }
+];
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { allCatalogDevices, allCatalogAccessories };
+  module.exports = { allCatalogDevices, allCatalogAccessories, allCatalogOffers };
 }

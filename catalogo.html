@@ -6,7 +6,7 @@
   <!-- Favicon Oficial RedCover -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/redcover-logo.png">
-  <title>Catálogo Completo de Productos y Accesorios — RedCover Colombia</title>
+  <title>Tienda RedCover — Todos los Productos, Accesorios y Promociones</title>
   <meta name="description" content="Explora el catálogo oficial de RedCover Colombia. iPhone, MacBook, iPad, Apple Watch, Samsung Galaxy, Ray-Ban Meta y accesorios originales con filtros avanzados y garantía oficial.">
 
   <!-- Detección Inmediata de Modo Oscuro para evitar destellos -->
@@ -225,7 +225,7 @@
           <span>●</span> Catálogo Oficial RedCover Colombia 2026
         </div>
         <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">
-          Todos los Productos y Accesorios
+          Tienda RedCover
         </h1>
         <p class="text-xs sm:text-sm text-gray-600 mt-1">
           Filtra por categoría, condición, precio o utiliza el buscador para encontrar tu próximo equipo o accesorio oficial.
@@ -284,6 +284,15 @@
           </div>
 
           <div class="space-y-1 max-h-56 overflow-y-auto pr-1" id="category-filter-list">
+            <!-- Ítem Especial Promociones en Rojo Destacado -->
+            <button type="button" data-cat="promociones" class="cat-filter-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-black text-red-600 bg-red-50/80 hover:bg-red-100 transition-all border border-red-200 shadow-xs mb-1">
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-base text-red-600 animate-pulse">local_fire_department</span>
+                <span class="text-red-600 font-extrabold uppercase tracking-tight">Promociones</span>
+              </span>
+              <span id="count-promociones" class="text-[10px] bg-red-600 text-white font-extrabold px-2 py-0.5 rounded-full shadow-xs">6</span>
+            </button>
+
             <button type="button" data-cat="all" class="cat-filter-btn active w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold bg-red-50 text-primary transition-all">
               <span class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-base">apps</span> Todas las categorías

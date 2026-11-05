@@ -452,27 +452,43 @@
               </div>
             </div>
 
-            <!-- Testimonio Rotativo Interactivo con Avatares -->
-            <div class="p-4 sm:p-5 rounded-2xl bg-zinc-900/95 border border-zinc-800/90 flex items-center justify-between gap-4">
-              <div class="flex items-center gap-3.5 overflow-hidden">
-                <img id="client-story-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente RedCover" class="w-12 h-12 rounded-2xl object-cover border-2 border-primary shrink-0 shadow-md">
-                <div class="overflow-hidden">
-                  <div class="flex items-center gap-2">
+            <!-- Testimonios Duales Interactivos (Sin Foto, Solo Texto y Reseñas Clave) -->
+            <div class="space-y-3">
+              <!-- Reseña 1 -->
+              <div class="p-4 rounded-2xl bg-zinc-900/95 border border-zinc-800/90 flex items-center justify-between gap-4">
+                <div class="overflow-hidden space-y-1">
+                  <div class="flex items-center gap-2 flex-wrap">
                     <span class="text-xs sm:text-sm font-black text-white truncate" id="client-story-name">Valentina Gómez • Bogotá</span>
+                    <span id="client-story-model" class="px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold">Estrenó iPhone 18 Pro Max</span>
                   </div>
-                  <span id="client-story-model" class="inline-block px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold mt-1">Estrenó iPhone 18 Pro Max</span>
-                  <p id="client-story-quote" class="text-xs text-zinc-300 italic truncate mt-1">
-                    "Entregué mi iPhone 15 Pro en Plan Canje y salí con mi iPhone 18 Pro Max..."
+                  <p id="client-story-quote" class="text-xs text-zinc-300 italic line-clamp-2 leading-relaxed">
+                    "Entregué mi iPhone 15 Pro en Plan Canje en el Local 136 del C.C. Caribe y salí en 15 minutos con mi iPhone 18 Pro Max nuevo y sellado. ¡Atención 10/10!"
                   </p>
                 </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" onclick="prevClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Testimonio anterior">
+                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                  </button>
+                  <button type="button" onclick="nextClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Siguiente testimonio">
+                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                  </button>
+                </div>
               </div>
-              <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="prevClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Testimonio anterior">
-                  <span class="material-symbols-outlined text-sm">chevron_left</span>
-                </button>
-                <button type="button" onclick="nextClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Siguiente testimonio">
-                  <span class="material-symbols-outlined text-sm">chevron_right</span>
-                </button>
+
+              <!-- Reseña 2 Adicional -->
+              <div class="p-4 rounded-2xl bg-zinc-900/95 border border-zinc-800/90 flex items-center justify-between gap-4">
+                <div class="overflow-hidden space-y-1">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-xs sm:text-sm font-black text-white truncate" id="client-story-name-2">Andrés Felipe Pardo • Bogotá</span>
+                    <span id="client-story-model-2" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">Estrenó Samsung Galaxy S26 Ultra</span>
+                  </div>
+                  <p id="client-story-quote-2" class="text-xs text-zinc-300 italic line-clamp-2 leading-relaxed">
+                    "Compré mi Galaxy S26 Ultra en San Andresito de la 38 (Local 197 C.C. Caribe). Me dieron factura oficial, garantía de 1 año y el mejor precio de Bogotá."
+                  </p>
+                </div>
+                <div class="flex items-center gap-1 shrink-0 text-amber-400 text-xs">
+                  ★★★★★
+                </div>
               </div>
             </div>
           </div>

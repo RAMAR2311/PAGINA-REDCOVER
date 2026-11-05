@@ -1381,16 +1381,23 @@
     let currentClientStoryIdx = 0;
 
     function renderClientStory() {
-      const st = clientStoriesData[currentClientStoryIdx];
-      if (!st) return;
-      const av = document.getElementById('client-story-avatar');
-      const nm = document.getElementById('client-story-name');
-      const md = document.getElementById('client-story-model');
-      const qt = document.getElementById('client-story-quote');
-      if (av) av.src = st.avatar;
-      if (nm) nm.innerText = st.name;
-      if (md) md.innerText = st.model;
-      if (qt) qt.innerText = st.quote;
+      const st1 = clientStoriesData[currentClientStoryIdx];
+      const nextIdx = (currentClientStoryIdx + 1) % clientStoriesData.length;
+      const st2 = clientStoriesData[nextIdx];
+
+      const nm1 = document.getElementById('client-story-name');
+      const md1 = document.getElementById('client-story-model');
+      const qt1 = document.getElementById('client-story-quote');
+      if (nm1 && st1) nm1.innerText = st1.name;
+      if (md1 && st1) md1.innerText = st1.model;
+      if (qt1 && st1) qt1.innerText = st1.quote;
+
+      const nm2 = document.getElementById('client-story-name-2');
+      const md2 = document.getElementById('client-story-model-2');
+      const qt2 = document.getElementById('client-story-quote-2');
+      if (nm2 && st2) nm2.innerText = st2.name;
+      if (md2 && st2) md2.innerText = st2.model;
+      if (qt2 && st2) qt2.innerText = st2.quote;
     }
 
     function prevClientStory() {
@@ -2086,12 +2093,13 @@
                 <p class="text-zinc-200 text-sm sm:text-base lg:text-lg max-w-2xl font-medium leading-relaxed drop-shadow-sm">${s.subtitle}</p>
               </div>
               <div class="flex flex-wrap items-center gap-3 shrink-0">
-                <a href="iphone-16-pro.html?id=${s.productIdTarget || 'iphone-18-pro-max'}" onclick="localStorage.setItem('redcover_selected_device_id', '${s.productIdTarget || 'iphone-18-pro-max'}')" class="metallic-btn metallic-btn-silver text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-lg">
-                  ${s.btn1Text || 'Configurar Equipo'}
+                <a href="catalogo.html?cat=${s.categoryTarget || 'all'}" class="metallic-btn metallic-btn-crimson text-xs sm:text-sm font-extrabold uppercase tracking-tight shadow-xl shadow-red-600/40 hover:scale-105 transition-transform">
+                  <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-6">
+                    <span class="material-symbols-outlined text-base">storefront</span>
+                    <span>Ir a Tienda</span>
+                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                  </span>
                 </a>
-                <button type="button" onclick="filterAndScroll('${s.categoryTarget || 'iphone'}')" class="metallic-btn metallic-btn-crimson text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-lg shadow-red-600/30">
-                  ${s.btn2Text || 'Ver Catálogo'}
-                </button>
               </div>
             </div>
           </div>

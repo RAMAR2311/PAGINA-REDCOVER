@@ -22,6 +22,13 @@
         ? allCatalogAccessories
         : (typeof defaultCMSData !== 'undefined' && Array.isArray(defaultCMSData.accessories) ? defaultCMSData.accessories : []));
 
+  // Promociones y Combos Oficiales
+  const offers = (cms && Array.isArray(cms.offers) && cms.offers.length > 0)
+    ? cms.offers
+    : (typeof allCatalogOffers !== 'undefined' && Array.isArray(allCatalogOffers) && allCatalogOffers.length > 0
+        ? allCatalogOffers
+        : (typeof defaultCMSData !== 'undefined' && Array.isArray(defaultCMSData.offers) ? defaultCMSData.offers : []));
+
   // Unificar catálogo completo con etiquetas de tipo
   const masterList = [
     ...devices.map(d => ({
@@ -37,6 +44,15 @@
       badge: 'Accesorio Original',
       shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía oficial Apple de 1 año.',
       cleanPrice: Number(a.price) || 0
+    })),
+    ...offers.map(o => ({
+      ...o,
+      itemType: 'offer',
+      displayCategory: 'promociones',
+      badge: o.discountBadge || '🔥 Oferta Especial',
+      shortDesc: o.desc || 'Combo especial con descuento directo, garantía oficial y financiación a 24 cuotas.',
+      cleanPrice: Number(o.price) || 0,
+      oldPrice: Number(o.oldPrice) || (Number(o.price) * 1.2)
     }))
   ];
 
@@ -120,7 +136,7 @@
       counts[c] = (counts[c] || 0) + 1;
     });
 
-    ['all', 'iphone', 'mac', 'ipad', 'watch', 'airpods', 'samsung', 'gafas', 'accesorios'].forEach(key => {
+    ['all', 'promociones', 'iphone', 'mac', 'ipad', 'watch', 'airpods', 'samsung', 'gafas', 'accesorios'].forEach(key => {
       const badge = document.getElementById(`count-${key}`);
       if (badge) badge.innerText = counts[key] || 0;
     });
@@ -203,21 +219,27 @@
     if (grid) {
       grid.innerHTML = paginated.map(item => {
         const isDevice = item.itemType === 'device';
+        const isOffer = item.itemType === 'offer';
         return `
-          <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border border-gray-200 hover:border-primary/50 transition-all shadow-xs hover:shadow-xl hover:-translate-y-1 relative">
+          <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border ${isOffer ? 'border-red-400/80 ring-2 ring-red-500/20 shadow-red-500/10' : 'border-gray-200'} hover:border-primary/50 transition-all shadow-xs hover:shadow-xl hover:-translate-y-1 relative">
             <div>
-              <!-- Imagen del Producto / Accesorio -->
+              <!-- Imagen del Producto / Accesorio / Promoción -->
               <div class="relative h-48 rounded-2xl overflow-hidden bg-zinc-950 mb-4 flex items-center justify-center cursor-pointer" onclick="viewItemDetail('${item.id}')">
-                <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full bg-red-600 text-[10px] font-black text-white uppercase tracking-wider shadow-sm">
-                  ${item.badge || 'Oficial Apple'}
+                <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full ${isOffer ? 'bg-red-600 animate-pulse' : 'bg-red-600'} text-[10px] font-black text-white uppercase tracking-wider shadow-sm">
+                  ${item.badge || (isOffer ? '🔥 OFERTA' : 'Oficial Apple')}
                 </span>
+                ${item.topTag ? `
+                  <span class="absolute top-2.5 right-2.5 z-10 px-2 py-0.5 rounded-full bg-emerald-600 text-[9px] font-extrabold text-white uppercase tracking-wider shadow-sm">
+                    ${item.topTag}
+                  </span>
+                ` : ''}
                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
               </div>
 
               <!-- Metadatos de Garantía y Stock -->
               <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 uppercase font-semibold">
-                <span>Garantía Oficial 1 Año</span>
-                <span class="text-emerald-600 font-bold">● En Stock</span>
+                <span>${isOffer ? (item.stockLeftText || 'Unidades Limitadas') : 'Garantía Oficial 1 Año'}</span>
+                <span class="${isOffer ? 'text-red-600 font-extrabold' : 'text-emerald-600 font-bold'}">● ${isOffer ? 'Oferta Activa' : 'En Stock'}</span>
               </div>
 
               <!-- Título y Descripción -->
@@ -234,7 +256,10 @@
               <div>
                 <div class="flex items-baseline justify-between">
                   <span class="text-[11px] text-gray-400 font-medium">Precio contado:</span>
-                  <span class="text-base font-black text-gray-900">${formatCOP(item.cleanPrice)}</span>
+                  <div class="text-right">
+                    ${item.oldPrice ? `<span class="text-[11px] text-gray-400 line-through mr-1.5 font-medium">${formatCOP(item.oldPrice)}</span>` : ''}
+                    <span class="text-base font-black ${isOffer ? 'text-red-600' : 'text-gray-900'}">${formatCOP(item.cleanPrice)}</span>
+                  </div>
                 </div>
                 <p class="text-[11px] text-primary font-bold text-right">o 24 cuotas de ${calculate24(item.cleanPrice)} (0%)</p>
               </div>
@@ -311,14 +336,17 @@
   catBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       catBtns.forEach(b => {
+        const isPromo = b.getAttribute('data-cat') === 'promociones';
         b.classList.remove('active', 'bg-red-50', 'text-primary', 'font-bold');
-        b.classList.add('text-gray-700', 'font-medium');
+        if (!isPromo) {
+          b.classList.add('text-gray-700', 'font-medium');
+        }
       });
       btn.classList.add('active', 'bg-red-50', 'text-primary', 'font-bold');
       btn.classList.remove('text-gray-700', 'font-medium');
 
       activeCategory = btn.getAttribute('data-cat');
-      if (catLabel) catLabel.innerText = activeCategory.toUpperCase();
+      if (catLabel) catLabel.innerText = activeCategory === 'promociones' ? '🔥 PROMOCIONES' : activeCategory.toUpperCase();
       currentPage = 1;
       renderCatalog();
     });
@@ -473,9 +501,15 @@
 
     if (modalImg) modalImg.src = item.img;
     if (modalBadge) modalBadge.innerText = item.badge || 'Oficial Apple';
-    if (modalCat) modalCat.innerText = item.displayCategory.toUpperCase();
+    if (modalCat) modalCat.innerText = item.displayCategory === 'promociones' ? 'COMBO PROMOCIONAL' : item.displayCategory.toUpperCase();
     if (modalTitle) modalTitle.innerText = item.title;
-    if (modalPrice) modalPrice.innerText = formatCOP(item.cleanPrice);
+    if (modalPrice) {
+      if (item.oldPrice) {
+        modalPrice.innerHTML = `<span class="text-sm text-gray-400 line-through mr-2 font-normal">${formatCOP(item.oldPrice)}</span><span>${formatCOP(item.cleanPrice)}</span>`;
+      } else {
+        modalPrice.innerText = formatCOP(item.cleanPrice);
+      }
+    }
     if (modalDesc) modalDesc.innerText = item.shortDesc || item.desc || '';
 
     if (addBtn) {
@@ -490,6 +524,10 @@
         configLink.classList.remove('hidden');
         configLink.href = `iphone-16-pro.html?id=${item.id}`;
         configLink.onclick = () => localStorage.setItem('redcover_selected_device_id', item.id);
+      } else if (item.itemType === 'offer') {
+        configLink.classList.remove('hidden');
+        configLink.href = 'index.html#promociones';
+        configLink.innerHTML = '<span class="material-symbols-outlined text-sm">local_fire_department</span> Ver en Inicio';
       } else {
         configLink.classList.add('hidden');
       }
