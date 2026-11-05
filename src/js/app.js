@@ -2051,13 +2051,64 @@
         `).join('');
       }
 
-      if (heroAutoSlideTimer) clearInterval(heroAutoSlideTimer);
-      heroAutoSlideTimer = setInterval(() => {
-        if (!adminModeActive) {
-          currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
-          renderHeroBannerCarousel();
+      if (heroAutoSlideTimer) {
+        clearTimeout(heroAutoSlideTimer);
+        clearInterval(heroAutoSlideTimer);
+        heroAutoSlideTimer = null;
+      }
+
+      // Si es un video, se adapta exactamente a su duracion (maximo 10 segundos)
+      if (isVideo) {
+        const videoEl = viewport.querySelector('video');
+        if (videoEl) {
+          let hasTransitioned = false;
+          const advanceSlide = () => {
+            if (hasTransitioned || adminModeActive) return;
+            hasTransitioned = true;
+            if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+            currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
+            renderHeroBannerCarousel();
+          };
+
+          // 1. Al finalizar el video pasa al siguiente
+          videoEl.onended = () => {
+            advanceSlide();
+          };
+
+          // 2. Lee la duracion real del video y programa el pase (max 10s)
+          videoEl.onloadedmetadata = () => {
+            const durationSec = videoEl.duration;
+            let waitMs = 7500;
+            if (durationSec && !isNaN(durationSec) && isFinite(durationSec)) {
+              waitMs = Math.min(Math.max(durationSec * 1000, 3000), 10000);
+            }
+            if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+            heroAutoSlideTimer = setTimeout(() => {
+              advanceSlide();
+            }, waitMs);
+          };
+
+          // 3. Temporizador limite maximo de seguridad: 10 segundos
+          heroAutoSlideTimer = setTimeout(() => {
+            advanceSlide();
+          }, 10000);
+        } else {
+          heroAutoSlideTimer = setTimeout(() => {
+            if (!adminModeActive) {
+              currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
+              renderHeroBannerCarousel();
+            }
+          }, 10000);
         }
-      }, 7500);
+      } else {
+        // Si es una imagen fija, dura los 7.5 segundos habituales
+        heroAutoSlideTimer = setTimeout(() => {
+          if (!adminModeActive) {
+            currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
+            renderHeroBannerCarousel();
+          }
+        }, 7500);
+      }
     }
 
     function prevHeroSlide() {
