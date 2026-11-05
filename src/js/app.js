@@ -2071,25 +2071,25 @@
           ${isVideo ? `
             <video src="${s.mediaUrl}" autoplay muted playsinline class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105"></video>
           ` : `
-            <img src="${s.mediaUrl}" alt="${s.title}" class="w-full h-[360px] md:h-[520px] object-cover transition-transform duration-700">
+            <img src="${s.mediaUrl}" alt="${s.title}" class="w-full h-full object-cover transition-transform duration-700">
           `}
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex flex-col justify-end p-6 md:p-10 text-left">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div class="space-y-1.5 max-w-2xl">
-                <div class="flex items-center gap-2">
-                  <span class="px-3 py-1 rounded-full bg-red-600/90 text-white text-[10px] font-extrabold uppercase tracking-widest">${s.badge || 'Banner RedCover 2026'}</span>
-                  <span class="px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 text-white text-[10px] font-mono">
-                    ${isVideo ? '🎬 Video Corto' : `Banner ${currentHeroSlideIndex + 1} de ${slides.length}`}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end p-6 sm:p-10 lg:p-14 pb-14 sm:pb-16 text-left">
+            <div class="max-w-[96rem] mx-auto w-full flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div class="space-y-2 max-w-3xl">
+                <div class="flex items-center gap-2.5">
+                  <span class="px-3.5 py-1 rounded-full bg-primary text-white text-[11px] font-extrabold uppercase tracking-widest shadow-md shadow-red-600/30">${s.badge || 'Banner RedCover 2026'}</span>
+                  <span class="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono">
+                    ${isVideo ? '🎬 Video Ultra HD' : `Banner ${currentHeroSlideIndex + 1} de ${slides.length}`}
                   </span>
                 </div>
-                <p class="text-white font-extrabold text-xl md:text-2xl tracking-tight">${s.title}</p>
-                <p class="text-zinc-300 text-xs md:text-sm">${s.subtitle}</p>
+                <h2 class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight">${s.title}</h2>
+                <p class="text-zinc-200 text-sm sm:text-base lg:text-lg max-w-2xl font-medium leading-relaxed drop-shadow-sm">${s.subtitle}</p>
               </div>
-              <div class="flex flex-wrap gap-2.5">
-                <a href="iphone-16-pro.html?id=${s.productIdTarget || 'iphone-18-pro-max'}" onclick="localStorage.setItem('redcover_selected_device_id', '${s.productIdTarget || 'iphone-18-pro-max'}')" class="metallic-btn metallic-btn-silver !p-0.5 text-xs font-extrabold uppercase tracking-wider">
+              <div class="flex flex-wrap items-center gap-3 shrink-0">
+                <a href="iphone-16-pro.html?id=${s.productIdTarget || 'iphone-18-pro-max'}" onclick="localStorage.setItem('redcover_selected_device_id', '${s.productIdTarget || 'iphone-18-pro-max'}')" class="metallic-btn metallic-btn-silver text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-lg">
                   ${s.btn1Text || 'Configurar Equipo'}
                 </a>
-                <button type="button" onclick="filterAndScroll('${s.categoryTarget || 'iphone'}')" class="metallic-btn metallic-btn-crimson !p-0.5 text-xs font-extrabold uppercase tracking-wider">
+                <button type="button" onclick="filterAndScroll('${s.categoryTarget || 'iphone'}')" class="metallic-btn metallic-btn-crimson text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-lg shadow-red-600/30">
                   ${s.btn2Text || 'Ver Catálogo'}
                 </button>
               </div>

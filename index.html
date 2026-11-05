@@ -179,33 +179,34 @@
   </div>
 
   <main>
-    <!-- Hero Section (Banner Panorámico Ancho & Apartado iPhone 18 Pro en Fondo Blanco) -->
-    <section class="relative pt-3 pb-6 px-3 sm:px-6 lg:px-8 max-w-[96rem] mx-auto overflow-hidden flex flex-col items-center text-center">
-
-      <!-- Banner Principal Panorámico (Más ancho y relación de aspecto cinematográfica) -->
-      <div class="relative w-full rounded-3xl overflow-hidden p-1 crimson-glow border border-gray-200 bg-white group/hero shadow-2xl">
-        <div id="hero-slides-viewport" class="relative h-[340px] sm:h-[440px] md:h-[520px] lg:h-[560px] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-950 shadow-xl border border-white/10">
-          <!-- Renderizado dinámicamente por JS (4 Banners / Videos Cortos) -->
+    <!-- Banner Principal Panorámico a Ancho Completo (Full Width 100vw) -->
+    <section class="relative w-full overflow-hidden bg-zinc-950">
+      <div class="relative w-full overflow-hidden group/hero">
+        <div id="hero-slides-viewport" class="relative h-[380px] sm:h-[480px] md:h-[560px] lg:h-[640px] xl:h-[700px] w-full overflow-hidden bg-zinc-950">
+          <!-- Renderizado dinámicamente por JS (Banners / Videos Cortos) -->
         </div>
 
         <!-- Flecha Izquierda Hero -->
-        <button type="button" onclick="prevHeroSlide()" aria-label="Banner anterior" class="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-primary text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-lg hover:scale-105">
-          <span class="material-symbols-outlined">chevron_left</span>
+        <button type="button" onclick="prevHeroSlide()" aria-label="Banner anterior" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-primary text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-xl hover:scale-110 cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">chevron_left</span>
         </button>
 
         <!-- Flecha Derecha Hero -->
-        <button type="button" onclick="nextHeroSlide()" aria-label="Siguiente banner" class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-primary text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-lg hover:scale-105">
-          <span class="material-symbols-outlined">chevron_right</span>
+        <button type="button" onclick="nextHeroSlide()" aria-label="Siguiente banner" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-primary text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-xl hover:scale-110 cursor-pointer">
+          <span class="material-symbols-outlined text-2xl">chevron_right</span>
         </button>
 
-        <!-- Indicadores de los 4 Banners + Controles -->
-        <div id="hero-dots-bar" class="absolute top-4 sm:top-6 right-4 sm:right-6 z-20 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
+        <!-- Indicadores de Banners + Controles -->
+        <div id="hero-dots-bar" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-lg">
           <!-- Renderizado por JS -->
         </div>
       </div>
+    </section>
 
+    <!-- Sección de Buques Insignia (iPhone 18 Pro, Pro Max, Duo) -->
+    <section class="relative pt-6 pb-6 px-3 sm:px-6 lg:px-8 max-w-[96rem] mx-auto overflow-hidden flex flex-col items-center text-center">
       <!-- Apartado iPhone 18 Pro / 18 Pro Max / Duo en Fondo Blanco Pulido -->
-      <div class="mt-6 w-full rounded-3xl bg-white border border-gray-200/90 p-6 sm:p-10 lg:p-12 shadow-xl relative overflow-hidden text-gray-900">
+      <div class="w-full rounded-3xl bg-white border border-gray-200/90 p-6 sm:p-10 lg:p-12 shadow-xl relative overflow-hidden text-gray-900">
         <!-- Resplandor sutil de fondo -->
         <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[550px] h-[220px] bg-red-100/70 rounded-full blur-[100px] pointer-events-none"></div>
 
