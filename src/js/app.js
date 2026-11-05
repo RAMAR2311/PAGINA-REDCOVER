@@ -2127,44 +2127,61 @@
 
       if (isVideo) {
         const videoEl = viewport.querySelector('video');
-        let timerCleared = false;
+        let hasAdvanced = false;
 
-        const safeAdvance = () => {
-          if (timerCleared) return;
-          timerCleared = true;
+        const triggerAdvance = () => {
+          if (hasAdvanced) return;
+          hasAdvanced = true;
+          if (heroAutoSlideTimer) {
+            clearTimeout(heroAutoSlideTimer);
+            heroAutoSlideTimer = null;
+          }
           advanceSlide();
         };
 
         if (videoEl) {
-          // Forzar reproducción sin sonido
+          // Asegurar propiedades de autoplay silencioso para políticas de navegadores
           videoEl.muted = true;
+          videoEl.defaultMuted = true;
+          videoEl.playsInline = true;
+          videoEl.currentTime = 0;
           videoEl.play().catch(() => {});
 
-          videoEl.onended = safeAdvance;
+          // 1. EVENTO PRINCIPAL: Cuando el video llega a su final exacto (sea 5s, 15s, 30s)
+          videoEl.onended = triggerAdvance;
 
-          const scheduleTimer = () => {
-            const dur = videoEl.duration;
-            let waitMs = 8000;
-            if (dur && !isNaN(dur) && isFinite(dur) && dur > 0) {
-              waitMs = Math.min(Math.max(dur * 1000, 3000), 10000);
+          // 2. MONITOREO EN TIEMPO REAL: Si por alguna razón onended no dispara, vigilar timeupdate
+          videoEl.ontimeupdate = () => {
+            if (videoEl.duration && videoEl.currentTime >= (videoEl.duration - 0.25)) {
+              triggerAdvance();
             }
-            if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
-            heroAutoSlideTimer = setTimeout(safeAdvance, waitMs);
+          };
+
+          // 3. Temporizador de respaldo dinámico basado en la duración exacta del video
+          const scheduleByDuration = () => {
+            const dur = videoEl.duration;
+            if (dur && !isNaN(dur) && isFinite(dur) && dur > 0) {
+              if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+              // Esperar la duración total exacta del video + 300ms de holgura natural
+              const waitMs = Math.round(dur * 1000) + 300;
+              heroAutoSlideTimer = setTimeout(triggerAdvance, waitMs);
+            }
           };
 
           if (videoEl.readyState >= 1) {
-            scheduleTimer();
+            scheduleByDuration();
           } else {
-            videoEl.onloadedmetadata = scheduleTimer;
-            // Fallback si no carga metadatos en 10s
-            heroAutoSlideTimer = setTimeout(safeAdvance, 10000);
+            videoEl.onloadedmetadata = scheduleByDuration;
           }
+
+          // En caso extremo de video roto o que no cargue, avanzar tras 12s
+          videoEl.onerror = triggerAdvance;
         } else {
-          heroAutoSlideTimer = setTimeout(safeAdvance, 8000);
+          heroAutoSlideTimer = setTimeout(triggerAdvance, 7000);
         }
       } else {
-        // Imágenes: pasan automáticamente a los 6 segundos
-        heroAutoSlideTimer = setTimeout(advanceSlide, 6000);
+        // Si es una imagen fija, se muestra durante 6.5 segundos
+        heroAutoSlideTimer = setTimeout(advanceSlide, 6500);
       }
     }
 
