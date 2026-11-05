@@ -2649,44 +2649,85 @@
       });
     }
 
-    function handleAdminHeroMediaUpload(fileInput, slideIdx) {
+    async function handleAdminHeroMediaUpload(fileInput, slideIdx) {
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
+
       const isVideoFile = file.type && file.type.startsWith('video/');
       const typeSelect = document.getElementById(`adm-slide-type-${slideIdx}`);
       if (typeSelect) {
         typeSelect.value = isVideoFile ? 'video' : 'image';
       }
+
+      const applyMediaToSlide = (finalUrl, mediaType) => {
+        const urlInput = document.getElementById(`adm-slide-url-${slideIdx}`);
+        if (urlInput) urlInput.value = finalUrl;
+        if (cmsData.heroSlides && cmsData.heroSlides[slideIdx]) {
+          cmsData.heroSlides[slideIdx].mediaType = mediaType;
+          cmsData.heroSlides[slideIdx].mediaUrl = finalUrl;
+          currentHeroSlideIndex = slideIdx;
+          saveCMSState();
+          if (typeof renderHeroBannerCarousel === 'function') renderHeroBannerCarousel();
+        }
+      };
+
       if (isVideoFile) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          const dataUrl = evt.target.result;
-          const urlInput = document.getElementById(`adm-slide-url-${slideIdx}`);
-          if (urlInput) urlInput.value = dataUrl;
-          if (cmsData.heroSlides && cmsData.heroSlides[slideIdx]) {
-            cmsData.heroSlides[slideIdx].mediaType = 'video';
-            cmsData.heroSlides[slideIdx].mediaUrl = dataUrl;
-            currentHeroSlideIndex = slideIdx;
-            saveCMSState();
-            if (typeof renderHeroBannerCarousel === 'function') renderHeroBannerCarousel();
-            showToast(`✅ Video de Banner #${slideIdx + 1} guardado y actualizado en vivo`);
+        showToast('⏳ Subiendo video al servidor (assets/videos/)...');
+        try {
+          const formData = new FormData();
+          formData.append('video', file);
+          formData.append('password', currentAdminPassword || ADMIN_MASTER_PASSWORD);
+
+          const res = await fetch('/api/upload-video', {
+            method: 'POST',
+            headers: {
+              'x-admin-password': currentAdminPassword || ADMIN_MASTER_PASSWORD
+            },
+            body: formData
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            applyMediaToSlide(data.url, 'video');
+            showToast(`🎬 Video (${data.sizeMB} MB) guardado permanentemente en el servidor`);
+            return;
+          } else {
+            const errJson = await res.json();
+            showToast('⚠️ Error subiendo video: ' + (errJson.error || 'Servidor no respondió'));
           }
-        };
-        reader.readAsDataURL(file);
+        } catch (err) {
+          console.error('Error al subir video:', err);
+          showToast('⚠️ No se pudo subir el archivo de video al servidor.');
+        }
       } else {
-        showToast('Optimizando imagen de banner...');
-        // Tamaño optimizado a 920px y calidad 0.68 para mantenerlo en ~30KB por slide
-        compressImageFile(file, 920, 0.68, function(dataUrl) {
-          const urlInput = document.getElementById(`adm-slide-url-${slideIdx}`);
-          if (urlInput) urlInput.value = dataUrl;
-          if (cmsData.heroSlides && cmsData.heroSlides[slideIdx]) {
-            cmsData.heroSlides[slideIdx].mediaType = 'image';
-            cmsData.heroSlides[slideIdx].mediaUrl = dataUrl;
-            currentHeroSlideIndex = slideIdx;
-            saveCMSState();
-            if (typeof renderHeroBannerCarousel === 'function') renderHeroBannerCarousel();
-            showToast(`✅ Imagen de Banner #${slideIdx + 1} guardada y actualizada en vivo`);
+        showToast('🚀 Optimizando imagen de banner a WebP...');
+        try {
+          const formData = new FormData();
+          formData.append('image', file);
+          formData.append('password', currentAdminPassword || ADMIN_MASTER_PASSWORD);
+
+          const res = await fetch('/api/upload-image', {
+            method: 'POST',
+            headers: {
+              'x-admin-password': currentAdminPassword || ADMIN_MASTER_PASSWORD
+            },
+            body: formData
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            applyMediaToSlide(data.url, 'image');
+            showToast(`✨ Imagen WebP (${data.sizeKB} KB) guardada en el banner`);
+            return;
           }
+        } catch (err) {
+          console.warn('Fallback a compresión local:', err);
+        }
+
+        // Fallback en cliente si no hay servidor
+        compressImageFile(file, 920, 0.68, function(dataUrl) {
+          applyMediaToSlide(dataUrl, 'image');
+          showToast(`✅ Imagen de Banner #${slideIdx + 1} guardada`);
         });
       }
     }

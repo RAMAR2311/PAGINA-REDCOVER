@@ -17,28 +17,43 @@ const pool = new Pool({
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, '..')));
 
-// Carpeta donde se guardarán las imágenes optimizadas
+// Carpetas de archivos subidos
 const UPLOADS_DIR = path.join(__dirname, '..', 'assets', 'uploads');
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
-}
+const VIDEOS_DIR = path.join(__dirname, '..', 'assets', 'videos');
+if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+if (!fs.existsSync(VIDEOS_DIR)) fs.mkdirSync(VIDEOS_DIR, { recursive: true });
 
-// Configuración de Multer (Almacenar temporalmente en memoria para procesar con Sharp)
-const storage = multer.memoryStorage();
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 15 * 1024 * 1024 }, // Límite de 15MB por archivo
+// Multer en memoria para Sharp (imágenes)
+const uploadMemory = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 }
+});
+
+// Multer en disco para Videos (hasta 100MB)
+const videoDiskStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, VIDEOS_DIR);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname) || '.mp4';
+    cb(null, `video-${Date.now()}-${Math.round(Math.random() * 1e5)}${ext}`);
+  }
+});
+
+const uploadVideo = multer({
+  storage: videoDiskStorage,
+  limits: { fileSize: 100 * 1024 * 1024 }, // Hasta 100MB
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    if (file.mimetype.startsWith('video/')) {
       cb(null, true);
     } else {
-      cb(new Error('Solo se permiten archivos de imagen'));
+      cb(new Error('Solo se permiten archivos de video (MP4, WebM, OGG)'));
     }
   }
 });
@@ -65,9 +80,41 @@ async function initDB() {
 initDB();
 
 // ==========================================
+// ENDPOINT: SUBIR VIDEO DIRECTAMENTE AL SERVIDOR
+// ==========================================
+app.post('/api/upload-video', uploadVideo.single('video'), async (req, res) => {
+  try {
+    const authHeader = req.headers['x-admin-password'] || req.body.password;
+    if (authHeader !== ADMIN_PASSWORD) {
+      if (req.file && req.file.path) fs.unlinkSync(req.file.path);
+      return res.status(401).json({ error: 'No autorizado. Contraseña de admin inválida.' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se subió ningún archivo de video.' });
+    }
+
+    const relativeUrl = `assets/videos/${req.file.filename}`;
+    const stats = fs.statSync(req.file.path);
+
+    console.log(`🎬 Video guardado con éxito: ${req.file.filename} (${Math.round(stats.size / (1024 * 1024) * 10) / 10} MB)`);
+
+    res.json({
+      success: true,
+      url: relativeUrl,
+      sizeBytes: stats.size,
+      sizeMB: Math.round(stats.size / (1024 * 1024) * 10) / 10
+    });
+  } catch (err) {
+    console.error('Error al subir video:', err);
+    res.status(500).json({ error: 'Error al procesar el video: ' + err.message });
+  }
+});
+
+// ==========================================
 // ENDPOINT: SUBIR Y OPTIMIZAR IMAGEN A WEBP
 // ==========================================
-app.post('/api/upload-image', upload.single('image'), async (req, res) => {
+app.post('/api/upload-image', uploadMemory.single('image'), async (req, res) => {
   try {
     const authHeader = req.headers['x-admin-password'] || req.body.password;
     if (authHeader !== ADMIN_PASSWORD) {
@@ -78,14 +125,9 @@ app.post('/api/upload-image', upload.single('image'), async (req, res) => {
       return res.status(400).json({ error: 'No se subió ningún archivo de imagen.' });
     }
 
-    // Nombre único para la imagen WebP
     const fileName = `img-${Date.now()}-${Math.round(Math.random() * 1e5)}.webp`;
     const outputPath = path.join(UPLOADS_DIR, fileName);
 
-    // Procesamiento y optimización con Sharp:
-    // - Redimensiona a máximo 1200px de ancho/alto manteniendo proporción
-    // - Convierte a formato WebP moderno (82% calidad, compresión visual sin pérdidas perceptibles)
-    // - Preserva canal alfa/transparencia de PNGs
     await sharp(req.file.buffer)
       .resize(1200, 1200, {
         fit: 'inside',
