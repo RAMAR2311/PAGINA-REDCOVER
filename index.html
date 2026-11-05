@@ -203,166 +203,188 @@
       </div>
     </section>
 
-    <!-- Sección de Buques Insignia (iPhone 18 Pro, Pro Max, Duo) -->
-    <section class="relative pt-6 pb-6 px-3 sm:px-6 lg:px-8 max-w-[96rem] mx-auto flex flex-col items-center text-center">
-      <!-- Apartado iPhone 18 Pro / 18 Pro Max / Duo Sin Fondo -->
-      <div class="w-full relative py-4 sm:py-6 text-gray-900">
-        <div class="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-          <!-- Top Row: Selector Dinámico Interactivo + Badge -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6 w-full">
-            <div class="inline-flex p-1.5 rounded-full bg-gray-100 border border-gray-200 shadow-inner items-center gap-1.5 flex-wrap justify-center">
-              <button type="button" onclick="switchHeroFlagship('iphone-18-pro')" id="btn-flagship-18-pro" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-primary to-red-600 text-white shadow-md shadow-red-500/30">
-                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                iPhone 18 Pro
-              </button>
-              <button type="button" onclick="switchHeroFlagship('iphone-18-pro-max')" id="btn-flagship-18-pro-max" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-white">
-                <span class="material-symbols-outlined text-sm text-primary">diamond</span>
-                iPhone 18 Pro Max
-              </button>
-              <button type="button" onclick="switchHeroFlagship('iphone-duo-fold')" id="btn-flagship-duo" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-white">
-                <span class="material-symbols-outlined text-sm text-amber-500">devices_fold</span>
-                iPhone Duo
-              </button>
-            </div>
+        <!-- ============================================================== -->
+    <!-- SECCIÓN DE BUQUES INSIGNIA EXPANDIDA A TODO EL ANCHO (iPhone 18) -->
+    <!-- ============================================================== -->
+    <section class="relative w-full py-10 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-20 overflow-hidden flex flex-col items-center text-center">
+      <!-- Resplandor ambiental de fondo para realce de profundidad estilo Apple -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-r from-red-100/35 via-zinc-100/30 to-red-100/35 rounded-full blur-[140px] pointer-events-none"></div>
 
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-primary text-[11px] font-mono font-bold tracking-wider uppercase">
-              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-              <span id="hero-flagship-badge">Lanzamiento Oficial 2026 • Chip A20 Pro 2nm</span>
+      <div class="w-full relative z-10 flex flex-col items-center text-center max-w-7xl mx-auto">
+        <!-- Fila Superior: Selector Dinámico Interactivo + Badge de Lanzamiento -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 w-full">
+          <div class="inline-flex p-1.5 rounded-full bg-white/90 backdrop-blur-md border border-gray-200/90 shadow-sm items-center gap-1.5 flex-wrap justify-center">
+            <button type="button" onclick="switchHeroFlagship('iphone-18-pro')" id="btn-flagship-18-pro" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-primary to-red-600 text-white shadow-md shadow-red-500/30">
+              <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+              iPhone 18 Pro
+            </button>
+            <button type="button" onclick="switchHeroFlagship('iphone-18-pro-max')" id="btn-flagship-18-pro-max" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-white">
+              <span class="material-symbols-outlined text-sm text-primary">diamond</span>
+              iPhone 18 Pro Max
+            </button>
+            <button type="button" onclick="switchHeroFlagship('iphone-duo-fold')" id="btn-flagship-duo" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-white">
+              <span class="material-symbols-outlined text-sm text-amber-500">devices_fold</span>
+              iPhone Duo
+            </button>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/90 border border-red-200 text-primary text-[11px] font-mono font-bold tracking-wider uppercase shadow-2xs backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            <span id="hero-flagship-badge">Lanzamiento Oficial 2026 • Chip A20 Pro 2nm</span>
+          </div>
+        </div>
+
+        <!-- Headline Gigante en Gran Formato -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-4 leading-[1.04]">
+          <span id="cms-hero-title-main" class="text-gray-900 font-black block">iPhone 18 Pro.</span>
+          <span id="cms-hero-title-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 font-black block mt-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
+            Titanio Café Bronce & Chip A20 Pro.
+          </span>
+        </h1>
+
+        <!-- Párrafo Descriptivo Amplio y Nítido -->
+        <p id="cms-hero-description" class="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mb-10 leading-relaxed font-normal">
+          La cumbre de la ingeniería portátil. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 y zoom óptico periscópico continuo de 10x.
+        </p>
+
+        <!-- Barra Unificada Ampliada: Acabados Oficiales + CTAs -->
+        <div class="w-full max-w-5xl flex flex-col lg:flex-row items-center justify-between gap-6 p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-xl border border-gray-200/90 shadow-xl shadow-black/5 mb-8">
+          <!-- Selector de Acabados Oficiales -->
+          <div class="flex items-center gap-3.5">
+            <div class="flex items-center gap-2.5 p-2 rounded-full bg-gray-50 border border-gray-200 shadow-inner" id="hero-color-swatches">
+              <!-- Swatches por JS -->
+            </div>
+            <div class="text-left">
+              <span class="text-[10px] uppercase font-mono tracking-widest text-gray-500 font-bold block">Acabado Oficial</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900" id="hero-color-name">Titanio Café Bronce</span>
             </div>
           </div>
 
-          <!-- Headline En Grande con Text-Effect sobre Fondo Blanco -->
-          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-4 leading-[1.08]">
-            <span id="cms-hero-title-main" class="text-gray-900 font-black block">iPhone 18 Pro.</span>
-            <span id="cms-hero-title-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 font-black block mt-1 text-2xl sm:text-4xl lg:text-5xl">
-              Titanio Café Bronce & Chip A20 Pro.
-            </span>
-          </h1>
+          <!-- Botones de Acción -->
+          <div class="flex flex-col sm:flex-row items-center gap-3.5 w-full lg:w-auto">
+            <a id="hero-cta-primary-btn" class="metallic-btn metallic-btn-crimson w-full sm:w-auto text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-lg shadow-red-600/30" href="iphone-16-pro.html?id=iphone-18-pro" onclick="localStorage.setItem('redcover_selected_device_id', 'iphone-18-pro')">
+              <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-6">
+                <span id="cms-hero-cta1">Reservar iPhone 18 Pro</span>
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </span>
+            </a>
+            <a class="metallic-btn metallic-btn-silver w-full sm:w-auto text-xs sm:text-sm font-extrabold uppercase tracking-wider" href="plan-canje.html">
+              <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-6">
+                <span class="material-symbols-outlined text-base text-primary">swap_horiz</span>
+                <span id="cms-hero-cta2">Plan Canje Online</span>
+              </span>
+            </a>
+          </div>
+        </div>
 
-          <!-- Párrafo Descriptivo con tipografía clara y nítida -->
-          <p id="cms-hero-description" class="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mb-8 leading-relaxed font-normal">
-            La cumbre de la ingeniería portátil. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 y zoom óptico periscópico continuo de 10x.
-          </p>
-
-          <!-- Barra Unificada en Fondo Blanco: Colores Oficiales + CTAs -->
-          <div class="w-full flex flex-col lg:flex-row items-center justify-between gap-5 p-4 sm:p-5 rounded-2xl bg-gray-50/90 border border-gray-200/90 shadow-sm mb-6">
-            <!-- Selector de Acabados Oficiales -->
-            <div class="flex items-center gap-3">
-              <div class="flex items-center gap-2 p-1.5 rounded-full bg-white border border-gray-200 shadow-sm" id="hero-color-swatches">
-                <!-- Swatches por JS -->
-              </div>
-              <div class="text-left">
-                <span class="text-[10px] uppercase font-mono tracking-widest text-gray-500 font-semibold block">Acabado Oficial</span>
-                <span class="text-xs sm:text-sm font-bold text-gray-900" id="hero-color-name">Titanio Café Bronce</span>
-              </div>
+        <!-- Píldoras de Especificaciones Técnicas Ampliadas en 4 Columnas -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 w-full max-w-5xl text-left">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">memory</span>
             </div>
-
-            <!-- Botones de Acción -->
-            <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
-              <a id="hero-cta-primary-btn" class="metallic-btn metallic-btn-crimson w-full sm:w-auto" href="iphone-16-pro.html?id=iphone-18-pro" onclick="localStorage.setItem('redcover_selected_device_id', 'iphone-18-pro')">
-                <span class="metallic-btn-inner">
-                  <span id="cms-hero-cta1">Reservar iPhone 18 Pro</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                </span>
-              </a>
-              <a class="metallic-btn metallic-btn-silver w-full sm:w-auto" href="plan-canje.html">
-                <span class="metallic-btn-inner">
-                  <span class="material-symbols-outlined text-sm text-primary">swap_horiz</span>
-                  <span id="cms-hero-cta2">Plan Canje</span>
-                </span>
-              </a>
+            <div>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Procesador</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900" id="hero-spec-chip">Chip A20 Pro 2nm</span>
             </div>
           </div>
 
-          <!-- Píldoras de Especificaciones en Fondo Blanco -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full text-left">
-            <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-2.5 shadow-2xs">
-              <span class="material-symbols-outlined text-primary text-xl">memory</span>
-              <div>
-                <span class="text-[10px] text-gray-500 uppercase font-mono block">Procesador</span>
-                <span class="text-xs font-bold text-gray-900" id="hero-spec-chip">Chip A20 Pro 2nm</span>
-              </div>
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-primary/40 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">photo_camera</span>
             </div>
-            <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-2.5 shadow-2xs">
-              <span class="material-symbols-outlined text-red-500 text-xl">photo_camera</span>
-              <div>
-                <span class="text-[10px] text-gray-500 uppercase font-mono block">Sistema Óptico</span>
-                <span class="text-xs font-bold text-gray-900" id="hero-spec-cam">Triple 48MP • Zoom 10x</span>
-              </div>
+            <div>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Sistema Óptico</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900" id="hero-spec-cam">Triple 48MP • Zoom 10x</span>
             </div>
-            <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-2.5 shadow-2xs">
-              <span class="material-symbols-outlined text-emerald-600 text-xl">verified_user</span>
-              <div>
-                <span class="text-[10px] text-gray-500 uppercase font-mono block">Respaldo</span>
-                <span class="text-xs font-bold text-gray-900">Garantía Apple 1 Año</span>
-              </div>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">verified_user</span>
             </div>
-            <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-2.5 shadow-2xs">
-              <span class="material-symbols-outlined text-amber-500 text-xl">payments</span>
-              <div>
-                <span class="text-[10px] text-gray-500 uppercase font-mono block">Financiación</span>
-                <span class="text-xs font-bold text-gray-900">Hasta 24 Cuotas 0%</span>
-              </div>
+            <div>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Respaldo Oficial</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900">Garantía Apple 1 Año</span>
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/90 flex items-center gap-3.5 shadow-sm hover:shadow-md hover:border-amber-300 transition-all group">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">payments</span>
+            </div>
+            <div>
+              <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Financiación</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900">Hasta 24 Cuotas 0%</span>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECCIÓN PLAN CANJE & COMUNIDAD DE CLIENTES -->
-    <!-- ========================================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+    <!-- ============================================================== -->
+    <!-- SECCIÓN PLAN CANJE & COMUNIDAD DE CLIENTES (FULL WIDTH 50% / 50%) -->
+    <!-- ============================================================== -->
+    <section class="w-full py-8 sm:py-12 px-4 sm:px-8 lg:px-12 xl:px-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch w-full">
         
-        <!-- BANNER PLAN CANJE (Izquierda / Centro - 7 Columnas) -->
-        <div id="canje" class="lg:col-span-7 rounded-3xl p-6 sm:p-8 relative overflow-hidden bg-white border border-gray-200/90 shadow-xl flex flex-col justify-between group hover:border-red-300 transition-all text-left">
+        <!-- MITAD IZQUIERDA (50%): BANNER PLAN CANJE ULTRA PREMIUM -->
+        <div id="canje" class="rounded-3xl p-7 sm:p-10 relative overflow-hidden bg-white border border-gray-200/90 shadow-2xl flex flex-col justify-between group hover:border-red-400 transition-all text-left">
           <!-- Glow decorativo de fondo -->
-          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-red-100/60 rounded-full blur-[90px] pointer-events-none"></div>
+          <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-red-100/70 rounded-full blur-[100px] pointer-events-none"></div>
 
-          <div class="relative z-10 space-y-4">
+          <div class="relative z-10 space-y-5">
             <div class="flex items-center justify-between flex-wrap gap-2">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-primary text-[11px] font-extrabold uppercase tracking-wider">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-primary text-[11px] font-extrabold uppercase tracking-wider shadow-2xs">
                 <span class="material-symbols-outlined text-sm">swap_horiz</span>
                 Plan Canje Oficial RedCover 2026
               </span>
-              <span class="text-xs font-mono font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
-                Tasación en 3 Minutos
+              <span class="text-xs font-mono font-bold text-gray-600 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
+                ⚡ Tasación en 3 Minutos
               </span>
             </div>
 
             <div>
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight leading-tight">
                 Renueva tu equipo y recibe hasta <br/>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900">
                   $4.900.000 COP como parte de pago
                 </span>
               </h2>
-              <p class="text-xs sm:text-sm text-gray-600 mt-2.5 leading-relaxed">
+              <p class="text-xs sm:text-sm md:text-base text-gray-600 mt-3 leading-relaxed">
                 Entrega tu iPhone, iPad, MacBook o Apple Watch actual y recibe un bono directo aplicable a tu nuevo equipo Apple o pagado de inmediato en nuestras tiendas.
               </p>
             </div>
 
-            <!-- Chips de Beneficios -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-              <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-100">
-                <span class="material-symbols-outlined text-emerald-600 text-xl">verified</span>
+            <!-- Chips de Beneficios Premium -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-gray-50/90 border border-gray-200/80">
+                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-xl">verified</span>
+                </div>
                 <div>
-                  <span class="text-xs font-bold text-gray-900 block leading-tight">Mejor Avalúo</span>
+                  <span class="text-xs font-black text-gray-900 block leading-tight">Mejor Avalúo</span>
                   <span class="text-[10px] text-gray-500 block">Garantizado en Bogotá</span>
                 </div>
               </div>
-              <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-100">
-                <span class="material-symbols-outlined text-primary text-xl">security</span>
+
+              <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-gray-50/90 border border-gray-200/80">
+                <div class="w-9 h-9 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-xl">security</span>
+                </div>
                 <div>
-                  <span class="text-xs font-bold text-gray-900 block leading-tight">Borrado Seguro</span>
+                  <span class="text-xs font-black text-gray-900 block leading-tight">Borrado Seguro</span>
                   <span class="text-[10px] text-gray-500 block">Certificado frente a ti</span>
                 </div>
               </div>
-              <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-100">
-                <span class="material-symbols-outlined text-amber-500 text-xl">bolt</span>
+
+              <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-gray-50/90 border border-gray-200/80">
+                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-xl">bolt</span>
+                </div>
                 <div>
-                  <span class="text-xs font-bold text-gray-900 block leading-tight">Entrega Inmediata</span>
+                  <span class="text-xs font-black text-gray-900 block leading-tight">Entrega Inmediata</span>
                   <span class="text-[10px] text-gray-500 block">Estrena en 15 minutos</span>
                 </div>
               </div>
@@ -370,16 +392,16 @@
           </div>
 
           <!-- CTAs del Banner de Canje -->
-          <div class="relative z-10 pt-5 mt-5 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="relative z-10 pt-6 mt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-1.5 flex-wrap">
-              <span class="text-xs font-semibold text-gray-500">Recibimos:</span>
-              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">iPhone 11 al 17</span>
-              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">MacBook</span>
-              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">iPad</span>
-              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">Apple Watch</span>
+              <span class="text-xs font-bold text-gray-500">Recibimos:</span>
+              <span class="text-[11px] font-extrabold text-gray-800 bg-gray-100 border border-gray-200 px-2.5 py-1 rounded-lg">iPhone 11 al 17</span>
+              <span class="text-[11px] font-extrabold text-gray-800 bg-gray-100 border border-gray-200 px-2.5 py-1 rounded-lg">MacBook</span>
+              <span class="text-[11px] font-extrabold text-gray-800 bg-gray-100 border border-gray-200 px-2.5 py-1 rounded-lg">iPad</span>
+              <span class="text-[11px] font-extrabold text-gray-800 bg-gray-100 border border-gray-200 px-2.5 py-1 rounded-lg">Apple Watch</span>
             </div>
-            <a href="plan-canje.html" class="metallic-btn metallic-btn-crimson w-full sm:w-auto text-xs sm:text-sm font-extrabold uppercase tracking-wider py-1 px-2 shadow-lg shadow-red-500/25 flex items-center justify-center">
-              <span class="metallic-btn-inner flex items-center gap-2 !py-2.5 !px-5 w-full justify-center">
+            <a href="plan-canje.html" class="metallic-btn metallic-btn-crimson w-full sm:w-auto text-xs sm:text-sm font-extrabold uppercase tracking-wider py-1.5 px-3 shadow-xl shadow-red-500/25 flex items-center justify-center">
+              <span class="metallic-btn-inner flex items-center gap-2 !py-3 !px-6 w-full justify-center">
                 <span>Cotizar Plan Canje Online</span>
                 <span class="material-symbols-outlined text-base">arrow_forward</span>
               </span>
@@ -387,68 +409,69 @@
           </div>
         </div>
 
-        <!-- BANNER DE CLIENTES (Extremo Derecho - 5 Columnas) -->
-        <div class="lg:col-span-5 rounded-3xl p-6 sm:p-7 relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800/90 shadow-2xl text-white flex flex-col justify-between text-left">
-          <!-- Resplandor decorativo -->
-          <div class="absolute -top-20 -right-20 w-60 h-60 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- MITAD DERECHA (50%): BANNER DE CLIENTES ULTRA PREMIUM OSCURO -->
+        <div class="rounded-3xl p-7 sm:p-10 relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800/90 shadow-2xl text-white flex flex-col justify-between text-left">
+          <!-- Resplandor decorativo de titanio y crimson -->
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-primary/25 rounded-full blur-[100px] pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-red-600/15 rounded-full blur-[100px] pointer-events-none"></div>
 
-          <div class="relative z-10 space-y-4">
+          <div class="relative z-10 space-y-5">
             <div class="flex items-center justify-between">
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] font-extrabold uppercase tracking-wider">
+              <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider">
                 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-                Comunidad Oficial
+                Comunidad Oficial RedCover Colombia
               </div>
-              <div class="flex items-center text-amber-400 text-xs font-bold">
-                ★★★★★ <span class="text-white text-[11px] font-extrabold ml-1">4.9 / 5.0</span>
+              <div class="flex items-center text-amber-400 text-xs sm:text-sm font-bold bg-zinc-900/80 px-3 py-1 rounded-full border border-zinc-800">
+                ★★★★★ <span class="text-white text-xs font-black ml-1.5">4.9 / 5.0</span>
               </div>
             </div>
 
             <div>
-              <div class="flex items-baseline gap-2">
-                <span class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-primary">+10.000</span>
-                <span class="text-base sm:text-lg font-bold text-white">Clientes Felices</span>
+              <div class="flex items-baseline gap-3">
+                <span class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-primary tracking-tight">+10.000</span>
+                <span class="text-xl sm:text-2xl font-black text-white">Clientes Felices</span>
               </div>
-              <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Entregas garantizadas en Bogotá y toda Colombia con garantía oficial y atención personalizada.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+                Entregas garantizadas en Bogotá y toda Colombia con garantía oficial, sellados de fábrica y atención personalizada.
               </p>
             </div>
 
-            <!-- Avatares + Mini Estadísticas -->
-            <div class="grid grid-cols-3 gap-2 pt-1 text-center">
-              <div class="p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                <span class="text-base font-extrabold text-white block">10.480+</span>
-                <span class="text-[9px] text-zinc-400 block leading-tight">Equipos</span>
+            <!-- Avatares + Métricas en Vivo -->
+            <div class="grid grid-cols-3 gap-2.5 sm:gap-3 pt-1 text-center">
+              <div class="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-all">
+                <span class="text-lg sm:text-xl font-black text-white block">10.480+</span>
+                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium block leading-tight mt-0.5">Equipos</span>
               </div>
-              <div class="p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                <span class="text-base font-extrabold text-emerald-400 block">99.4%</span>
-                <span class="text-[9px] text-zinc-400 block leading-tight">Satisfechos</span>
+              <div class="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-all">
+                <span class="text-lg sm:text-xl font-black text-emerald-400 block">99.4%</span>
+                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium block leading-tight mt-0.5">Satisfechos</span>
               </div>
-              <div class="p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                <span class="text-base font-extrabold text-amber-400 block">2 Sedes</span>
-                <span class="text-[9px] text-zinc-400 block leading-tight">C.C. Caribe</span>
+              <div class="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-all">
+                <span class="text-lg sm:text-xl font-black text-amber-400 block">2 Sedes</span>
+                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium block leading-tight mt-0.5">C.C. Caribe</span>
               </div>
             </div>
 
-            <!-- Testimonio Rotativo -->
-            <div class="p-3.5 rounded-2xl bg-zinc-900/95 border border-zinc-800/90 flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3 overflow-hidden">
-                <img id="client-story-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente RedCover" class="w-10 h-10 rounded-xl object-cover border border-primary shrink-0">
+            <!-- Testimonio Rotativo Interactivo con Avatares -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-zinc-900/95 border border-zinc-800/90 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 overflow-hidden">
+                <img id="client-story-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente RedCover" class="w-12 h-12 rounded-2xl object-cover border-2 border-primary shrink-0 shadow-md">
                 <div class="overflow-hidden">
-                  <div class="flex items-center gap-1.5">
-                    <span class="text-[11px] font-extrabold text-white truncate" id="client-story-name">Valentina Gómez • Bogotá</span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs sm:text-sm font-black text-white truncate" id="client-story-name">Valentina Gómez • Bogotá</span>
                   </div>
-                  <span id="client-story-model" class="inline-block px-1.5 py-0.5 rounded bg-red-500/20 text-red-300 text-[9px] font-bold mt-0.5">Estrenó iPhone 18 Pro Max</span>
-                  <p id="client-story-quote" class="text-[10px] text-zinc-300 italic truncate mt-0.5">
+                  <span id="client-story-model" class="inline-block px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold mt-1">Estrenó iPhone 18 Pro Max</span>
+                  <p id="client-story-quote" class="text-xs text-zinc-300 italic truncate mt-1">
                     "Entregué mi iPhone 15 Pro en Plan Canje y salí con mi iPhone 18 Pro Max..."
                   </p>
                 </div>
               </div>
-              <div class="flex items-center gap-1 shrink-0">
-                <button type="button" onclick="prevClientStory()" class="w-7 h-7 rounded-lg bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Testimonio anterior">
-                  <span class="material-symbols-outlined text-xs">chevron_left</span>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="prevClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Testimonio anterior">
+                  <span class="material-symbols-outlined text-sm">chevron_left</span>
                 </button>
-                <button type="button" onclick="nextClientStory()" class="w-7 h-7 rounded-lg bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Siguiente testimonio">
-                  <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <button type="button" onclick="nextClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Siguiente testimonio">
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
                 </button>
               </div>
             </div>
