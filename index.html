@@ -134,7 +134,7 @@
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('samsung')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">Samsung Galaxy</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden'); filterDevices('gafas')" class="block text-base font-semibold text-gray-800 hover:text-primary" href="#catalogo-dispositivos">Gafas Ray-Ban Meta</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#accesorios">Accesorios</a>
-      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#canje">Plan Canje</a>
+      <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="plan-canje.html">Plan Canje</a>
       <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-base font-medium text-gray-700 hover:text-primary" href="#tiendas">Nuestras Tiendas en Bogotá</a>
       <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
         <a onclick="document.getElementById('mobile-menu').classList.add('hidden')" href="#ofertas" class="w-full text-center py-2.5 rounded-full crimson-btn text-white text-sm font-semibold">
@@ -265,7 +265,7 @@
                   <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </span>
               </a>
-              <a class="metallic-btn metallic-btn-silver w-full sm:w-auto" href="#canje">
+              <a class="metallic-btn metallic-btn-silver w-full sm:w-auto" href="plan-canje.html">
                 <span class="metallic-btn-inner">
                   <span class="material-symbols-outlined text-sm text-primary">swap_horiz</span>
                   <span id="cms-hero-cta2">Plan Canje</span>
@@ -309,87 +309,152 @@
       </div>
     </section>
 
-    <!-- Sección Interactiva Debajo del Banner Principal: +10.000 Clientes Satisfechos -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
-      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800/90 p-6 sm:p-8 shadow-2xl text-white">
-        <!-- Resplandor decorativo -->
-        <div class="absolute -top-24 -left-24 w-72 h-72 bg-primary/25 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- ========================================== -->
+    <!-- SECCIÓN PLAN CANJE & COMUNIDAD DE CLIENTES -->
+    <!-- ========================================== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- BANNER PLAN CANJE (Izquierda / Centro - 7 Columnas) -->
+        <div id="canje" class="lg:col-span-7 rounded-3xl p-6 sm:p-8 relative overflow-hidden bg-white border border-gray-200/90 shadow-xl flex flex-col justify-between group hover:border-red-300 transition-all text-left">
+          <!-- Glow decorativo de fondo -->
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-red-100/60 rounded-full blur-[90px] pointer-events-none"></div>
 
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <!-- Columna Izquierda: Contador & Comunidad +10.000 Clientes -->
-          <div class="lg:col-span-5 space-y-3 text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[11px] font-extrabold uppercase tracking-wider">
-              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-              Comunidad Oficial RedCover Colombia
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-primary text-[11px] font-extrabold uppercase tracking-wider">
+                <span class="material-symbols-outlined text-sm">swap_horiz</span>
+                Plan Canje Oficial RedCover 2026
+              </span>
+              <span class="text-xs font-mono font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                Tasación en 3 Minutos
+              </span>
             </div>
-            <div class="flex items-baseline gap-3">
-              <span class="text-4xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-primary">+10.000</span>
-              <span class="text-lg sm:text-xl font-extrabold text-white">Clientes Felices</span>
+
+            <div>
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+                Renueva tu equipo y recibe hasta <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900">
+                  $4.900.000 COP como parte de pago
+                </span>
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-600 mt-2.5 leading-relaxed">
+                Entrega tu iPhone, iPad, MacBook o Apple Watch actual y recibe un bono directo aplicable a tu nuevo equipo Apple o pagado de inmediato en nuestras tiendas.
+              </p>
             </div>
-            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Más de diez mil personas en Bogotá y toda Colombia han estrenado su iPhone, MacBook, iPad, Apple Watch y Samsung Galaxy con respaldo oficial y entrega inmediata.
-            </p>
-            <div class="flex flex-wrap items-center gap-4 pt-1">
-              <div class="flex -space-x-2.5 overflow-hidden">
-                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente 1">
-                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Cliente 2">
-                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Cliente 3">
-                <img class="inline-block h-9 w-9 rounded-full ring-2 ring-zinc-900 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Cliente 4">
-                <span class="inline-flex items-center justify-center h-9 px-2.5 rounded-full ring-2 ring-zinc-900 bg-primary text-white text-[10px] font-extrabold">+10K</span>
-              </div>
-              <div>
-                <div class="flex items-center text-amber-400 text-sm font-bold tracking-tight">
-                  ★★★★★ <span class="text-white text-xs font-extrabold ml-1.5">4.9 / 5.0</span>
+
+            <!-- Chips de Beneficios -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+              <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-100">
+                <span class="material-symbols-outlined text-emerald-600 text-xl">verified</span>
+                <div>
+                  <span class="text-xs font-bold text-gray-900 block leading-tight">Mejor Avalúo</span>
+                  <span class="text-[10px] text-gray-500 block">Garantizado en Bogotá</span>
                 </div>
-                <span class="text-[11px] text-zinc-400 block">Calificación verificada en tiendas y WhatsApp</span>
+              </div>
+              <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-100">
+                <span class="material-symbols-outlined text-primary text-xl">security</span>
+                <div>
+                  <span class="text-xs font-bold text-gray-900 block leading-tight">Borrado Seguro</span>
+                  <span class="text-[10px] text-gray-500 block">Certificado frente a ti</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-100">
+                <span class="material-symbols-outlined text-amber-500 text-xl">bolt</span>
+                <div>
+                  <span class="text-xs font-bold text-gray-900 block leading-tight">Entrega Inmediata</span>
+                  <span class="text-[10px] text-gray-500 block">Estrena en 15 minutos</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Columna Derecha: Testimonios Interactivos + Métricas en Vivo -->
-          <div class="lg:col-span-7 flex flex-col gap-4">
-            <!-- Métricas Interactivas -->
-            <div class="grid grid-cols-3 gap-2.5 sm:gap-3">
-              <div onclick="document.getElementById('tiendas').scrollIntoView({behavior:'smooth'})" class="cursor-pointer p-3.5 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-primary/60 transition-all text-center group">
-                <span class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-primary transition-colors block">10.480+</span>
-                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Equipos Entregados</span>
+          <!-- CTAs del Banner de Canje -->
+          <div class="relative z-10 pt-5 mt-5 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="text-xs font-semibold text-gray-500">Recibimos:</span>
+              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">iPhone 11 al 17</span>
+              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">MacBook</span>
+              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">iPad</span>
+              <span class="text-[11px] font-extrabold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">Apple Watch</span>
+            </div>
+            <a href="plan-canje.html" class="metallic-btn metallic-btn-crimson w-full sm:w-auto text-xs sm:text-sm font-extrabold uppercase tracking-wider py-1 px-2 shadow-lg shadow-red-500/25 flex items-center justify-center">
+              <span class="metallic-btn-inner flex items-center gap-2 !py-2.5 !px-5 w-full justify-center">
+                <span>Cotizar Plan Canje Online</span>
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- BANNER DE CLIENTES (Extremo Derecho - 5 Columnas) -->
+        <div class="lg:col-span-5 rounded-3xl p-6 sm:p-7 relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800/90 shadow-2xl text-white flex flex-col justify-between text-left">
+          <!-- Resplandor decorativo -->
+          <div class="absolute -top-20 -right-20 w-60 h-60 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] font-extrabold uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                Comunidad Oficial
               </div>
-              <div onclick="document.getElementById('canje').scrollIntoView({behavior:'smooth'})" class="cursor-pointer p-3.5 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-primary/60 transition-all text-center group">
-                <span class="text-xl sm:text-2xl font-extrabold text-emerald-400 block">99.4%</span>
-                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Recomendación Real</span>
-              </div>
-              <div onclick="document.getElementById('tiendas').scrollIntoView({behavior:'smooth'})" class="cursor-pointer p-3.5 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-primary/60 transition-all text-center group">
-                <span class="text-xl sm:text-2xl font-extrabold text-amber-400 block">2 Sedes</span>
-                <span class="text-[10px] sm:text-[11px] text-zinc-400 font-medium">C.C. Caribe • Locales 136 y 197</span>
+              <div class="flex items-center text-amber-400 text-xs font-bold">
+                ★★★★★ <span class="text-white text-[11px] font-extrabold ml-1">4.9 / 5.0</span>
               </div>
             </div>
 
-            <!-- Visor Interactivo de Clientes Satisfechos -->
-            <div class="p-4 sm:p-5 rounded-2xl bg-zinc-900/95 border border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div class="flex items-start gap-3.5">
-                <img id="client-story-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop" alt="Cliente RedCover" class="w-12 h-12 rounded-2xl object-cover border-2 border-primary shrink-0">
-                <div class="space-y-1 text-left">
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span id="client-story-name" class="text-xs font-extrabold text-white">Valentina Gómez • Bogotá</span>
-                    <span id="client-story-model" class="px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold">Estrenó iPhone 18 Pro Max</span>
+            <div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-primary">+10.000</span>
+                <span class="text-base sm:text-lg font-bold text-white">Clientes Felices</span>
+              </div>
+              <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+                Entregas garantizadas en Bogotá y toda Colombia con garantía oficial y atención personalizada.
+              </p>
+            </div>
+
+            <!-- Avatares + Mini Estadísticas -->
+            <div class="grid grid-cols-3 gap-2 pt-1 text-center">
+              <div class="p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                <span class="text-base font-extrabold text-white block">10.480+</span>
+                <span class="text-[9px] text-zinc-400 block leading-tight">Equipos</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                <span class="text-base font-extrabold text-emerald-400 block">99.4%</span>
+                <span class="text-[9px] text-zinc-400 block leading-tight">Satisfechos</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                <span class="text-base font-extrabold text-amber-400 block">2 Sedes</span>
+                <span class="text-[9px] text-zinc-400 block leading-tight">C.C. Caribe</span>
+              </div>
+            </div>
+
+            <!-- Testimonio Rotativo -->
+            <div class="p-3.5 rounded-2xl bg-zinc-900/95 border border-zinc-800/90 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 overflow-hidden">
+                <img id="client-story-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente RedCover" class="w-10 h-10 rounded-xl object-cover border border-primary shrink-0">
+                <div class="overflow-hidden">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-[11px] font-extrabold text-white truncate" id="client-story-name">Valentina Gómez • Bogotá</span>
                   </div>
-                  <p id="client-story-quote" class="text-xs text-zinc-300 italic leading-relaxed">
-                    "Entregué mi iPhone 15 Pro en Plan Canje en el Local 136 del C.C. Caribe y salí en 15 minutos con mi iPhone 18 Pro Max nuevo y sellado. ¡Atención 10/10!"
+                  <span id="client-story-model" class="inline-block px-1.5 py-0.5 rounded bg-red-500/20 text-red-300 text-[9px] font-bold mt-0.5">Estrenó iPhone 18 Pro Max</span>
+                  <p id="client-story-quote" class="text-[10px] text-zinc-300 italic truncate mt-0.5">
+                    "Entregué mi iPhone 15 Pro en Plan Canje y salí con mi iPhone 18 Pro Max..."
                   </p>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 self-end sm:self-center shrink-0">
-                <button type="button" onclick="prevClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors" title="Testimonio anterior">
-                  <span class="material-symbols-outlined text-sm">chevron_left</span>
+              <div class="flex items-center gap-1 shrink-0">
+                <button type="button" onclick="prevClientStory()" class="w-7 h-7 rounded-lg bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Testimonio anterior">
+                  <span class="material-symbols-outlined text-xs">chevron_left</span>
                 </button>
-                <button type="button" onclick="nextClientStory()" class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors" title="Siguiente testimonio">
-                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <button type="button" onclick="nextClientStory()" class="w-7 h-7 rounded-lg bg-zinc-800 hover:bg-primary text-white flex items-center justify-center transition-colors cursor-pointer" title="Siguiente testimonio">
+                  <span class="material-symbols-outlined text-xs">chevron_right</span>
                 </button>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -593,171 +658,6 @@
     <!-- ========================================== -->
     <!-- SECCIÓN DE OFERTAS ESPECIALES CON CARRUSEL DESLIZABLE (#ofertas) -->
     
-
-    <!-- Interactive Plan Canje Section (Con Cotizador Funcional) -->
-    <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto" id="canje">
-      <div class="rounded-3xl bg-white p-8 md:p-12 relative overflow-hidden border border-gray-200/90 crimson-glow shadow-md">
-        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-red-100/60 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span id="cms-canje-badge" class="px-3.5 py-1.5 rounded-full bg-red-50 text-xs font-bold text-primary border border-red-200 uppercase tracking-wider">Plan Canje RedCover</span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-4 mb-4 leading-tight tracking-tight">
-              <span id="cms-canje-title">Renueva tu dispositivo y recibe hasta</span> <span id="cms-canje-max" class="text-primary">$4.900.000 COP</span>
-            </h2>
-            <p id="cms-canje-desc" class="text-base text-gray-600 mb-6 leading-relaxed">
-              Entrega tu iPhone, iPad, Watch o Mac actual como parte de pago. Cotiza en segundos de forma instantánea y recibe el abono directo a tu nuevo dispositivo Apple.
-            </p>
-
-            <ul class="space-y-4 mb-8 text-sm text-gray-700">
-              <li class="flex items-center gap-3">
-                <span class="w-7 h-7 rounded-full bg-red-50 text-primary flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-lg">check_circle</span>
-                </span>
-                <span class="font-medium">Valoración técnica inmediata y transparente</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="w-7 h-7 rounded-full bg-red-50 text-primary flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-lg">check_circle</span>
-                </span>
-                <span class="font-medium">Aceptamos iPhone desde iPhone 11 en adelante, iPad y Mac</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="w-7 h-7 rounded-full bg-red-50 text-primary flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-lg">check_circle</span>
-                </span>
-                <span class="font-medium">Descuento aplicado en el carrito o en nuestras 4 tiendas físicas</span>
-              </li>
-            </ul>
-
-            <div class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 p-3 rounded-xl border border-gray-200">
-              <span class="material-symbols-outlined text-primary text-base">verified_user</span>
-              <span>Protegemos tu privacidad: borrado de datos certificado militar frente a ti.</span>
-            </div>
-          </div>
-
-          <!-- Calculator Widget -->
-          <div class="bg-gray-50/80 p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm relative z-10">
-            <h3 class="text-xl font-bold text-gray-900 mb-1 flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary">calculate</span>
-              Cotizador Express de Canje
-            </h3>
-            <p class="text-xs text-gray-500 mb-6">Calcula el valor exacto según el modelo, batería y estado estético</p>
-
-            <div class="space-y-5">
-              <!-- 1. Device Select -->
-              <div>
-                <label for="device-select" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">1. Selecciona tu dispositivo actual</label>
-                <select id="device-select" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 text-sm font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm">
-                  <option value="4200000">iPhone 17 Pro Max (256GB) — Hasta $4.200.000 COP</option>
-                  <option value="3700000">iPhone 17 Pro (128GB) — Hasta $3.700.000 COP</option>
-                  <option value="3300000">iPhone 17 (128GB) — Hasta $3.300.000 COP</option>
-                  <option value="3500000">iPhone 16 Pro Max (256GB) — Hasta $3.500.000 COP</option>
-                  <option value="3100000">iPhone 16 Pro (128GB) — Hasta $3.100.000 COP</option>
-                  <option value="2600000">iPhone 16 (128GB) — Hasta $2.600.000 COP</option>
-                  <option value="3250000">iPhone 15 Pro Max (256GB)</option>
-                  <option value="2850000">iPhone 15 Pro (128GB)</option>
-                  <option value="2400000">iPhone 15 (128GB)</option>
-                  <option value="2200000">iPhone 14 Pro Max (256GB)</option>
-                  <option value="1900000">iPhone 14 Pro (128GB)</option>
-                  <option value="1600000">iPhone 14 Plus (128GB)</option>
-                  <option value="1500000">iPhone 14 (128GB)</option>
-                  <option value="1550000">iPhone 13 Pro Max (128GB)</option>
-                  <option value="1450000">iPhone 13 Pro (128GB)</option>
-                  <option value="1150000">iPhone 13 (128GB)</option>
-                  <option value="950000">iPhone 13 mini (128GB)</option>
-                  <option value="1050000">iPhone 12 Pro Max (128GB)</option>
-                  <option value="980000">iPhone 12 Pro (128GB)</option>
-                  <option value="820000">iPhone 12 (64GB)</option>
-                  <option value="720000">iPhone 12 mini (64GB)</option>
-                  <option value="850000">iPhone 11 Pro Max (64GB)</option>
-                  <option value="750000">iPhone 11 Pro (64GB)</option>
-                  <option value="600000">iPhone 11 (64GB)</option>
-                  <option value="4900000">MacBook Pro 14 M4 Pro (512GB) — Hasta $4.900.000 COP</option>
-                  <option value="3900000">MacBook Pro 14 M3 Pro (512GB) — Hasta $3.900.000 COP</option>
-                  <option value="3300000">MacBook Air M4 (256GB) — Hasta $3.300.000 COP</option>
-                  <option value="2850000">MacBook Air M3 (256GB) — Hasta $2.850.000 COP</option>
-                  <option value="2400000">MacBook Air M2 (256GB) — Hasta $2.400.000 COP</option>
-                  <option value="3400000">iPad Pro 11 M4 OLED (256GB) — Hasta $3.400.000 COP</option>
-                  <option value="2100000">iPad Air M2 (128GB) — Hasta $2.100.000 COP</option>
-                  <option value="1800000">iPad Pro 11 M2 (128GB) — Hasta $1.800.000 COP</option>
-                  <option value="2200000">Apple Watch Ultra 2 (49mm) — Hasta $2.200.000 COP</option>
-                  <option value="1250000">Apple Watch Series 10 (46mm) — Hasta $1.250.000 COP</option>
-                </select>
-              </div>
-
-              <!-- 2. Battery Health -->
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-700">2. Condición de la Batería</label>
-                  <span id="battery-tag" class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Óptima (≥ 85%)</span>
-                </div>
-                <div class="grid grid-cols-3 gap-2.5" id="battery-buttons">
-                  <button type="button" data-battery-factor="1.0" data-label="Óptima (≥ 85%)" class="battery-btn px-2.5 py-3 rounded-xl bg-white border-2 border-primary text-primary text-xs font-bold text-center shadow-sm transition-all flex flex-col items-center gap-1">
-                    <span class="material-symbols-outlined text-lg text-emerald-500">battery_full</span>
-                    <span class="font-bold">≥ 85%</span>
-                    <span class="text-[10px] text-gray-500 font-normal">Óptima</span>
-                  </button>
-                  <button type="button" data-battery-factor="0.92" data-label="Normal (80% - 84%)" class="battery-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
-                    <span class="material-symbols-outlined text-lg text-amber-500">battery_5_bar</span>
-                    <span class="font-bold">80% - 84%</span>
-                    <span class="text-[10px] text-gray-500 font-normal">Normal</span>
-                  </button>
-                  <button type="button" data-battery-factor="0.80" data-label="Mantenimiento (< 80%)" class="battery-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
-                    <span class="material-symbols-outlined text-lg text-red-500">battery_alert</span>
-                    <span class="font-bold">< 80%</span>
-                    <span class="text-[10px] text-gray-500 font-normal">Servicio</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- 3. Cosmetic & Functional Condition -->
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-700">3. Estado del Equipo</label>
-                  <span id="condition-tag" class="text-[11px] font-semibold text-primary bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200">Impecable (Sin detalles)</span>
-                </div>
-                <div class="grid grid-cols-3 gap-2.5" id="condition-buttons">
-                  <button type="button" data-condition-factor="1.0" data-label="Impecable (Sin detalles)" class="condition-btn px-2.5 py-3 rounded-xl bg-white border-2 border-primary text-primary text-xs font-bold text-center shadow-sm transition-all flex flex-col items-center gap-1">
-                    <span class="material-symbols-outlined text-lg text-emerald-500">verified</span>
-                    <span class="font-bold">Impecable</span>
-                    <span class="text-[10px] text-gray-500 font-normal">Sin rayones</span>
-                  </button>
-                  <button type="button" data-condition-factor="0.85" data-label="Marcas leves" class="condition-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
-                    <span class="material-symbols-outlined text-lg text-blue-500">check_circle</span>
-                    <span class="font-bold">Marcas leves</span>
-                    <span class="text-[10px] text-gray-500 font-normal">Uso normal</span>
-                  </button>
-                  <button type="button" data-condition-factor="0.70" data-label="Detalle visible" class="condition-btn px-2.5 py-3 rounded-xl bg-white border border-gray-300 text-gray-600 text-xs font-medium text-center hover:border-primary transition-all flex flex-col items-center gap-1">
-                    <span class="material-symbols-outlined text-lg text-amber-500">warning</span>
-                    <span class="font-bold">Detalle visible</span>
-                    <span class="text-[10px] text-gray-500 font-normal">Chasis / Pantalla</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Output & CTAs -->
-              <div class="pt-5 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <span class="text-xs text-gray-500 font-medium block">Bono de canje estimado:</span>
-                  <span id="calculated-bonus" class="text-2xl font-extrabold text-primary">$3.250.000 COP</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <button id="apply-canje-btn" class="w-full sm:w-auto px-5 py-3 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-1.5">
-                    <span class="material-symbols-outlined text-sm">verified</span>
-                    <span>Aplicar Bono</span>
-                  </button>
-                  <button id="canje-whatsapp-btn" onclick="sendCanjeToWhatsApp()" class="w-full sm:w-auto px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-sm">chat</span>
-                    <span>Cotizar</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Essential Accessories Section (Catálogo Completo de Accesorios) -->
     <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto" id="accesorios">
@@ -1523,7 +1423,7 @@
           <a onclick="filterDevices('mac')" class="hover:text-primary transition-colors cursor-pointer" href="#catalogo-dispositivos">MacBook</a>
           <a onclick="filterDevices('ipad')" class="hover:text-primary transition-colors cursor-pointer" href="#catalogo-dispositivos">iPad</a>
           <a class="hover:text-primary transition-colors" href="#ofertas">Ofertas</a>
-          <a class="hover:text-primary transition-colors" href="#canje">Plan Canje</a>
+          <a class="hover:text-primary transition-colors" href="plan-canje.html">Plan Canje</a>
           <a class="hover:text-primary transition-colors" href="#accesorios">Accesorios</a>
           <a class="hover:text-primary transition-colors" href="#tiendas">Tiendas Físicas</a>
           <button type="button" onclick="openInfoModal('terminos')" class="hover:text-primary transition-colors">Términos y Condiciones</button>

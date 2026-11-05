@@ -1119,15 +1119,15 @@
       canje: {
         categoryTitle: "Plan Canje RedCover",
         primaryLinks: [
-          { name: "Cotizar mi Equipo", href: "#canje", bold: true },
-          { name: "Canjear iPhone", href: "#canje" },
-          { name: "Canjear MacBook", href: "#canje" },
-          { name: "Canjear iPad", href: "#canje" }
+          { name: "Cotizar mi Equipo", href: "plan-canje.html", bold: true },
+          { name: "Canjear iPhone", href: "plan-canje.html" },
+          { name: "Canjear MacBook", href: "plan-canje.html" },
+          { name: "Canjear iPad", href: "plan-canje.html" }
         ],
         secondaryTitle: "¿Cómo Funciona?",
         secondaryLinks: [
-          { name: "1. Cotiza tu equipo", href: "#canje" },
-          { name: "2. Recibe tu bono", href: "#canje" },
+          { name: "1. Cotiza online en 3 pasos", href: "plan-canje.html" },
+          { name: "2. Recibe tu bono inmediato", href: "plan-canje.html" },
           { name: "3. Asesoría por WhatsApp", action: "sendCanjeToWhatsApp()" }
         ],
         tertiaryTitle: "Ventajas",
