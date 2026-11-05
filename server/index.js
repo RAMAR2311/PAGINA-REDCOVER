@@ -50,10 +50,12 @@ const uploadVideo = multer({
   storage: videoDiskStorage,
   limits: { fileSize: 100 * 1024 * 1024 }, // Hasta 100MB
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('video/')) {
+    const isVideoMime = file.mimetype && file.mimetype.startsWith('video/');
+    const isVideoExt = /\.(mp4|webm|ogg|mov|m4v|avi|mkv)$/i.test(file.originalname);
+    if (isVideoMime || isVideoExt) {
       cb(null, true);
     } else {
-      cb(new Error('Solo se permiten archivos de video (MP4, WebM, OGG)'));
+      cb(new Error('Solo se permiten archivos de video (.mp4, .webm, .mov, etc.)'));
     }
   }
 });
@@ -82,33 +84,41 @@ initDB();
 // ==========================================
 // ENDPOINT: SUBIR VIDEO DIRECTAMENTE AL SERVIDOR
 // ==========================================
-app.post('/api/upload-video', uploadVideo.single('video'), async (req, res) => {
-  try {
-    const authHeader = req.headers['x-admin-password'] || req.body.password;
-    if (authHeader !== ADMIN_PASSWORD) {
-      if (req.file && req.file.path) fs.unlinkSync(req.file.path);
-      return res.status(401).json({ error: 'No autorizado. Contraseña de admin inválida.' });
+app.post('/api/upload-video', (req, res) => {
+  uploadVideo.single('video')(req, res, async (err) => {
+    if (err) {
+      console.error('Error Multer en upload-video:', err.message);
+      return res.status(400).json({ error: err.message });
     }
 
-    if (!req.file) {
-      return res.status(400).json({ error: 'No se subió ningún archivo de video.' });
+    try {
+      const authHeader = req.headers['x-admin-password'] || req.body?.password;
+      if (authHeader !== ADMIN_PASSWORD) {
+        if (req.file && req.file.path && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+        return res.status(401).json({ error: 'No autorizado. Contraseña de admin inválida.' });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No se recibió ningún archivo de video.' });
+      }
+
+      const relativeUrl = `assets/videos/${req.file.filename}`;
+      const stats = fs.statSync(req.file.path);
+      const sizeMB = Math.round(stats.size / (1024 * 1024) * 10) / 10;
+
+      console.log(`🎬 Video guardado con éxito: ${req.file.filename} (${sizeMB} MB)`);
+
+      res.json({
+        success: true,
+        url: relativeUrl,
+        sizeBytes: stats.size,
+        sizeMB: sizeMB
+      });
+    } catch (innerErr) {
+      console.error('Error procesando video subido:', innerErr);
+      res.status(500).json({ error: 'Error al procesar el video: ' + innerErr.message });
     }
-
-    const relativeUrl = `assets/videos/${req.file.filename}`;
-    const stats = fs.statSync(req.file.path);
-
-    console.log(`🎬 Video guardado con éxito: ${req.file.filename} (${Math.round(stats.size / (1024 * 1024) * 10) / 10} MB)`);
-
-    res.json({
-      success: true,
-      url: relativeUrl,
-      sizeBytes: stats.size,
-      sizeMB: Math.round(stats.size / (1024 * 1024) * 10) / 10
-    });
-  } catch (err) {
-    console.error('Error al subir video:', err);
-    res.status(500).json({ error: 'Error al procesar el video: ' + err.message });
-  }
+  });
 });
 
 // ==========================================

@@ -2653,7 +2653,7 @@
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
 
-      const isVideoFile = file.type && file.type.startsWith('video/');
+      const isVideoFile = (file.type && file.type.startsWith('video/')) || /\.(mp4|webm|ogg|mov|m4v|avi|mkv)$/i.test(file.name);
       const typeSelect = document.getElementById(`adm-slide-type-${slideIdx}`);
       if (typeSelect) {
         typeSelect.value = isVideoFile ? 'video' : 'image';
