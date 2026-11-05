@@ -104,6 +104,7 @@
   if (urlCat) {
     activeCategory = urlCat.toLowerCase();
     if (activeCategory === 'accesorios') activeType = 'accessories';
+    else if (activeCategory === 'promociones') activeType = 'all';
   }
 
   const urlQuery = urlParams.get('q');
@@ -346,6 +347,18 @@
       btn.classList.remove('text-gray-700', 'font-medium');
 
       activeCategory = btn.getAttribute('data-cat');
+      if (activeCategory === 'promociones') {
+        activeType = 'all';
+        typeBtns.forEach(b => {
+          if (b.getAttribute('data-type') === 'all') {
+            b.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
+            b.classList.remove('text-gray-600', 'font-medium');
+          } else {
+            b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
+            b.classList.add('text-gray-600', 'font-medium');
+          }
+        });
+      }
       if (catLabel) catLabel.innerText = activeCategory === 'promociones' ? '🔥 PROMOCIONES' : activeCategory.toUpperCase();
       currentPage = 1;
       renderCatalog();

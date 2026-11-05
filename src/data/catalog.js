@@ -3313,6 +3313,12 @@ const allCatalogOffers = [
   }
 ];
 
+if (typeof window !== 'undefined') {
+  window.allCatalogDevices = allCatalogDevices;
+  window.allCatalogAccessories = allCatalogAccessories;
+  window.allCatalogOffers = allCatalogOffers;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { allCatalogDevices, allCatalogAccessories, allCatalogOffers };
 }
