@@ -743,50 +743,47 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- NUEVO BANNER PANORÁMICO: CATÁLOGO DE PRODUCTOS Y ACCESORIOS    -->
+    <!-- BANNER PANORÁMICO: CATÁLOGO DE PRODUCTOS Y ACCESORIOS (SIN FONDO) -->
     <!-- ============================================================== -->
-    <section class="w-full py-6 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-20">
-      <div class="rounded-3xl p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800 shadow-2xl text-white flex flex-col lg:flex-row items-center justify-between gap-8">
-        <!-- Resplandor decorativo de fondo -->
-        <div class="absolute -top-24 -left-24 w-80 h-80 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-red-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+    <section class="w-full py-8 sm:py-12 px-4 sm:px-8 lg:px-12 xl:px-20 border-t border-gray-200/80 dark:border-zinc-800/80">
+      <div class="relative flex flex-col lg:flex-row items-center justify-between gap-8 text-left max-w-7xl mx-auto">
 
-        <div class="relative z-10 space-y-3.5 max-w-2xl text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-[11px] font-extrabold uppercase tracking-wider">
+        <div class="space-y-3 max-w-2xl text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/40 text-primary dark:text-red-400 text-[11px] font-extrabold uppercase tracking-tight">
             <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
             Catálogo Oficial Completo 2026
           </div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
             Descubre Toda Nuestra Gama de <br class="hidden sm:inline"/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-red-100 to-primary">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 dark:from-white dark:via-red-100 dark:to-primary">
               Productos y Accesorios
             </span>
           </h2>
-          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-xl">
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-zinc-400 leading-relaxed max-w-xl">
             Explora más de 100 referencias de iPhone, MacBook, iPad, Apple Watch, Samsung Galaxy, Ray-Ban Meta y accesorios originales con filtros interactivos, garantía oficial de 1 año y financiación a 24 cuotas sin interés.
           </p>
-          <div class="flex items-center gap-4 pt-1 text-xs text-zinc-300 flex-wrap">
-            <span class="flex items-center gap-1 font-bold text-white"><span class="material-symbols-outlined text-sm text-emerald-400">check_circle</span> +100 Modelos en Stock</span>
-            <span class="flex items-center gap-1 font-bold text-white"><span class="material-symbols-outlined text-sm text-primary">verified</span> Garantía Oficial 1 Año</span>
-            <span class="flex items-center gap-1 font-bold text-white"><span class="material-symbols-outlined text-sm text-amber-400">payments</span> Financiación 24 Cuotas 0%</span>
+          <div class="flex items-center gap-4 pt-1 text-xs text-gray-700 dark:text-zinc-300 flex-wrap">
+            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span> +100 Modelos en Stock</span>
+            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-primary">verified</span> Garantía Oficial 1 Año</span>
+            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-amber-500">payments</span> Financiación 24 Cuotas 0%</span>
           </div>
         </div>
 
-        <!-- Botones de Acción Destacados (Uno sobre otro) -->
-        <div class="relative z-10 flex flex-col items-stretch gap-3 w-full sm:w-72 lg:w-80 shrink-0">
-          <a href="catalogo.html?tipo=productos" class="metallic-btn metallic-btn-crimson w-full text-xs sm:text-sm font-extrabold uppercase tracking-wider py-1.5 px-3 shadow-xl shadow-red-600/30">
-            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3.5 !px-6 w-full text-center">
-              <span class="material-symbols-outlined text-lg">devices</span>
-              <span>Ver Catálogo de Productos</span>
-              <span class="material-symbols-outlined text-base">arrow_forward</span>
+        <!-- Botones de Acción Destacados (Uno sobre otro con letra compacta / junta) -->
+        <div class="flex flex-col items-stretch gap-2.5 w-full sm:w-72 lg:w-80 shrink-0">
+          <a href="catalogo.html?tipo=productos" class="metallic-btn metallic-btn-crimson w-full text-xs sm:text-sm font-extrabold tracking-tight py-1 px-2.5 shadow-lg shadow-red-600/25">
+            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-4 w-full text-center tracking-tight">
+              <span class="material-symbols-outlined text-base">devices</span>
+              <span class="tracking-tight">Ver Catálogo de Productos</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </span>
           </a>
 
-          <a href="catalogo.html?tipo=accesorios" class="metallic-btn metallic-btn-silver w-full text-xs sm:text-sm font-extrabold uppercase tracking-wider py-1.5 px-3 shadow-xl">
-            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3.5 !px-6 w-full text-center">
-              <span class="material-symbols-outlined text-lg text-primary">power</span>
-              <span>Ver Catálogo de Accesorios</span>
-              <span class="material-symbols-outlined text-base">arrow_forward</span>
+          <a href="catalogo.html?tipo=accesorios" class="metallic-btn metallic-btn-silver w-full text-xs sm:text-sm font-extrabold tracking-tight py-1 px-2.5 shadow-md">
+            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-4 w-full text-center tracking-tight">
+              <span class="material-symbols-outlined text-base text-primary">power</span>
+              <span class="tracking-tight">Ver Catálogo de Accesorios</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </span>
           </a>
         </div>
