@@ -574,47 +574,95 @@
               </a>
             </div>
 
-            <!-- TARJETA VISUAL INTERACTIVA SEGÚN CATEGORÍA (Llena el espacio visual antes vacío) -->
-            <div id="vanguardia-preview-card" class="mt-2.5 p-3.5 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800 text-white flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 relative overflow-hidden shadow-md">
-              <div id="vanguardia-glow" class="absolute -top-10 -right-10 w-36 h-36 bg-red-600/25 rounded-full blur-[45px] pointer-events-none"></div>
+            <!-- GRILLA DE DOS TARJETAS VISUALES INTERACTIVAS SEGÚN CATEGORÍA (Ocupa el espacio visual completo) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2.5 pt-1">
+              
+              <!-- TARJETA 1: MODELO INSIGNIA / PRINCIPAL -->
+              <div id="vanguardia-preview-card-1" class="p-3.5 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800 text-white flex flex-col justify-between transition-all duration-300 relative overflow-hidden shadow-md group/card1">
+                <div id="vanguardia-glow-1" class="absolute -top-10 -right-10 w-32 h-32 bg-red-600/25 rounded-full blur-[40px] pointer-events-none"></div>
 
-              <!-- Imagen con Badge Flotante -->
-              <div class="w-full sm:w-36 h-32 rounded-xl overflow-hidden bg-black shrink-0 relative border border-zinc-800/80">
-                <img id="vanguardia-img" src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80" alt="iPhone Preview" class="w-full h-full object-cover transition-opacity duration-300">
-                <span id="vanguardia-badge" class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
-                  Titanio & A19 Pro
-                </span>
-              </div>
+                <div>
+                  <!-- Imagen con Badge Flotante -->
+                  <div class="w-full h-36 rounded-xl overflow-hidden bg-black relative border border-zinc-800/80 mb-3">
+                    <img id="vanguardia-img-1" src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80" alt="iPhone Preview 1" class="w-full h-full object-cover transition-all duration-300 group-hover/card1:scale-105">
+                    <span id="vanguardia-badge-1" class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-wider shadow-sm">
+                      Flagship • Titanio
+                    </span>
+                  </div>
 
-              <!-- Datos y Especificaciones Clave -->
-              <div class="flex-1 w-full space-y-1.5 text-left">
-                <div class="flex items-center justify-between gap-2">
-                  <span id="vanguardia-category-tag" class="text-[10px] font-mono text-primary font-extrabold uppercase tracking-wider">
-                    Universo iPhone
-                  </span>
-                  <span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Stock Inmediato
-                  </span>
+                  <!-- Datos Clave -->
+                  <div class="space-y-1 text-left">
+                    <div class="flex items-center justify-between gap-1">
+                      <span id="vanguardia-category-tag-1" class="text-[10px] font-mono text-primary font-extrabold uppercase tracking-wider">
+                        iPhone 18 Pro Max
+                      </span>
+                      <span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> En Stock
+                      </span>
+                    </div>
+
+                    <h4 id="vanguardia-title-1" class="text-sm font-black text-white leading-tight line-clamp-1">
+                      iPhone 18 Pro & Pro Max
+                    </h4>
+
+                    <p id="vanguardia-desc-1" class="text-[11px] text-zinc-400 leading-snug line-clamp-2">
+                      Chip A19 Pro, titanio aeroespacial Grado 5 y cámara 48MP con teleobjetivo 5x.
+                    </p>
+                  </div>
                 </div>
 
-                <h4 id="vanguardia-title" class="text-sm sm:text-base font-black text-white leading-tight">
-                  iPhone 18 Pro Max, 17 Pro & 16 Pro
-                </h4>
-
-                <p id="vanguardia-desc" class="text-[11px] text-zinc-400 leading-snug line-clamp-2">
-                  Titanio Grado 5 aeroespacial, chip A19 Pro con Neural Engine de 16 núcleos y cámara 48MP Fusion con zoom óptico 5x.
-                </p>
-
-                <div class="pt-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] font-mono text-zinc-400 hidden md:inline">
-                    Garantía 1 Año • Financiación 0%
-                  </span>
-                  <a id="vanguardia-link" href="catalogo.html?cat=iphone" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white text-[11px] font-extrabold tracking-wide flex items-center gap-1 transition-colors ml-auto shadow-sm">
-                    <span id="vanguardia-link-text">Ver iPhone</span>
+                <div class="pt-3 mt-2 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+                  <span class="text-[10px] font-mono text-zinc-400">Garantía 1 Año</span>
+                  <a id="vanguardia-link-1" href="catalogo.html?cat=iphone" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white text-[11px] font-extrabold tracking-wide flex items-center gap-1 transition-colors shadow-sm">
+                    <span id="vanguardia-link-text-1">Ver Pro Max</span>
                     <span class="material-symbols-outlined text-xs">arrow_forward</span>
                   </a>
                 </div>
               </div>
+
+              <!-- TARJETA 2: MODELO DESTACADO / COMPLEMENTARIO (SEGUNDA TARJETA IGUAL) -->
+              <div id="vanguardia-preview-card-2" class="p-3.5 sm:p-4 rounded-2xl bg-zinc-950 border border-zinc-800 text-white flex flex-col justify-between transition-all duration-300 relative overflow-hidden shadow-md group/card2">
+                <div id="vanguardia-glow-2" class="absolute -top-10 -right-10 w-32 h-32 bg-zinc-700/25 rounded-full blur-[40px] pointer-events-none"></div>
+
+                <div>
+                  <!-- Imagen con Badge Flotante -->
+                  <div class="w-full h-36 rounded-xl overflow-hidden bg-black relative border border-zinc-800/80 mb-3">
+                    <img id="vanguardia-img-2" src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80" alt="iPhone Preview 2" class="w-full h-full object-cover transition-all duration-300 group-hover/card2:scale-105">
+                    <span id="vanguardia-badge-2" class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-zinc-800 text-zinc-200 text-[9px] font-black uppercase tracking-wider shadow-sm border border-zinc-700">
+                      Ultra Delgado • 5.5mm
+                    </span>
+                  </div>
+
+                  <!-- Datos Clave -->
+                  <div class="space-y-1 text-left">
+                    <div class="flex items-center justify-between gap-1">
+                      <span id="vanguardia-category-tag-2" class="text-[10px] font-mono text-zinc-400 font-extrabold uppercase tracking-wider">
+                        iPhone Air & 17
+                      </span>
+                      <span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> En Stock
+                      </span>
+                    </div>
+
+                    <h4 id="vanguardia-title-2" class="text-sm font-black text-white leading-tight line-clamp-1">
+                      iPhone Air & iPhone 17
+                    </h4>
+
+                    <p id="vanguardia-desc-2" class="text-[11px] text-zinc-400 leading-snug line-clamp-2">
+                      Diseño ultraligero revolucionario con pantalla ProMotion 120Hz y chip A19.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="pt-3 mt-2 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+                  <span class="text-[10px] font-mono text-zinc-400">Financiación 0%</span>
+                  <a id="vanguardia-link-2" href="catalogo.html?cat=iphone" class="px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-[11px] font-extrabold tracking-wide flex items-center gap-1 transition-colors shadow-sm border border-zinc-700">
+                    <span id="vanguardia-link-text-2">Ver iPhone Air</span>
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+
             </div>
 
             <!-- Contenedor oculto para compatibilidad CMS si se requiere -->

@@ -2391,80 +2391,168 @@
     }
 
     // ==========================================
-    // SHOWCASE INTERACTIVO: INGENIERÍA DE VANGUARDIA (TARJETAS VISUALES)
+    // SHOWCASE INTERACTIVO: INGENIERÍA DE VANGUARDIA (DOS TARJETAS VISUALES)
     // ==========================================
     const vanguardiaData = {
       iphone: {
-        title: 'iPhone 18 Pro Max, 17 Pro & 16 Pro',
-        tag: 'Universo iPhone',
-        badge: 'Titanio & A19 Pro',
-        desc: 'Titanio Grado 5 aeroespacial, chip A19 Pro con Neural Engine de 16 núcleos y cámara 48MP Fusion con zoom óptico 5x.',
-        img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=iphone',
-        btnText: 'Ver iPhone'
+        card1: {
+          title: 'iPhone 18 Pro & Pro Max',
+          tag: 'iPhone 18 Pro Max',
+          badge: 'Flagship • Titanio',
+          desc: 'Chip A19 Pro, titanio aeroespacial Grado 5 y cámara 48MP con teleobjetivo 5x.',
+          img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=iphone',
+          btnText: 'Ver Pro Max'
+        },
+        card2: {
+          title: 'iPhone Air & iPhone 17',
+          tag: 'iPhone Air & 17',
+          badge: 'Ultra Delgado • 5.5mm',
+          desc: 'Diseño ultraligero revolucionario con pantalla ProMotion 120Hz y chip A19.',
+          img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=iphone',
+          btnText: 'Ver iPhone Air'
+        }
       },
       mac: {
-        title: 'MacBook Pro M4 & MacBook Air M3',
-        tag: 'Universo Mac',
-        badge: 'Apple Silicon M4',
-        desc: 'Potencia profesional con hasta 128GB de memoria unificada, pantalla Liquid Retina XDR de 1600 nits y 24h de batería.',
-        img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=mac',
-        btnText: 'Ver MacBook'
+        card1: {
+          title: 'MacBook Pro 14" & 16"',
+          tag: 'Gama Profesional',
+          badge: 'Apple Silicon M4',
+          desc: 'Potencia máxima con M4 Pro/Max, Liquid Retina XDR y hasta 128GB RAM unificada.',
+          img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=mac',
+          btnText: 'Ver MacBook Pro'
+        },
+        card2: {
+          title: 'MacBook Air 13" & 15"',
+          tag: 'Ultraligera M3',
+          badge: '24h Autonomía',
+          desc: 'Diseño ultrafino sin ventiladores, rápida, silenciosa y pantalla Liquid Retina.',
+          img: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=mac',
+          btnText: 'Ver MacBook Air'
+        }
       },
       ipad: {
-        title: 'iPad Pro M4 & iPad Air M2',
-        tag: 'Universo iPad',
-        badge: 'Ultra Retina XDR',
-        desc: 'Diseño revolucionario de 5.1 mm, pantalla OLED en tándem de 1000 nits, chip M4 y soporte para Apple Pencil Pro.',
-        img: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=ipad',
-        btnText: 'Ver iPad'
+        card1: {
+          title: 'iPad Pro M4 (11" y 13")',
+          tag: 'Chip M4 • 5.1mm',
+          badge: 'Ultra Retina XDR',
+          desc: 'Pantalla OLED en tándem de 1000 nits, chip M4 y Apple Pencil Pro.',
+          img: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=ipad',
+          btnText: 'Ver iPad Pro'
+        },
+        card2: {
+          title: 'iPad Air M2 & iPad Mini',
+          tag: 'Gama Air & Mini',
+          badge: 'Versatilidad M2',
+          desc: 'Rendimiento épico para estudio y trabajo con compatibilidad Magic Keyboard.',
+          img: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=ipad',
+          btnText: 'Ver iPad Air'
+        }
       },
       watch: {
-        title: 'Apple Watch Ultra 2 & Series 10',
-        tag: 'Universo Watch',
-        badge: 'Titanio 49mm',
-        desc: 'Caja de titanio de 49mm, pantalla de 3000 nits, GPS de doble frecuencia, sirena de 86dB y resistencia al agua 100m.',
-        img: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=watch',
-        btnText: 'Ver Watch'
+        card1: {
+          title: 'Apple Watch Ultra 2',
+          tag: 'Resistencia Extrema',
+          badge: 'Titanio 49mm',
+          desc: 'Pantalla de 3000 nits, GPS doble frecuencia, caja de titanio y 72h batería.',
+          img: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=watch',
+          btnText: 'Ver Ultra 2'
+        },
+        card2: {
+          title: 'Apple Watch Series 10',
+          tag: 'Series 10 Oficial',
+          badge: 'Diseño Más Fino',
+          desc: 'Pantalla OLED gran angular, carga rápida al 80% en 30 min y sensor de profundidad.',
+          img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=watch',
+          btnText: 'Ver Series 10'
+        }
       },
       airpods: {
-        title: 'AirPods Pro 2 & AirPods Max USB-C',
-        tag: 'Universo AirPods',
-        badge: 'Cancelación 2X',
-        desc: 'Cancelación activa de ruido 2x superior, audio espacial personalizado y estuche MagSafe con altavoz y rastreo.',
-        img: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=airpods',
-        btnText: 'Ver AirPods'
+        card1: {
+          title: 'AirPods Pro 2 MagSafe',
+          tag: 'Gama Pro USB-C',
+          badge: 'Cancelación 2X',
+          desc: 'Audio espacial adaptativo, modo ambiente y estuche con altavoz de rastreo.',
+          img: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=airpods',
+          btnText: 'Ver AirPods Pro'
+        },
+        card2: {
+          title: 'AirPods Max USB-C',
+          tag: 'Diadema Premium',
+          badge: 'Audio Hi-Fi',
+          desc: 'Sonido de alta fidelidad, ecualización adaptativa y almohadillas acústicas.',
+          img: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=airpods',
+          btnText: 'Ver AirPods Max'
+        }
       },
       samsung: {
-        title: 'Samsung Galaxy S26 Ultra & Z Fold',
-        tag: 'Universo Samsung',
-        badge: 'Galaxy AI 2026',
-        desc: 'Cámara de 200 MP, chasis de titanio con S-Pen integrado, pantalla Gorilla Armor anti-reflejos y Snapdragon 8 Gen 4.',
-        img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=samsung',
-        btnText: 'Ver Galaxy'
+        card1: {
+          title: 'Galaxy S26 Ultra',
+          tag: 'Titanio & S-Pen',
+          badge: 'Galaxy AI • 200 MP',
+          desc: 'Cámara 200 MP, zoom espacial 100x, Gorilla Armor y Snapdragon 8 Gen 4.',
+          img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=samsung',
+          btnText: 'Ver S26 Ultra'
+        },
+        card2: {
+          title: 'Galaxy Z Fold & Z Flip',
+          tag: 'Z Series Plegable',
+          badge: 'Pantalla Plegable',
+          desc: 'Pantalla Dynamic AMOLED 2X de 120Hz con bisagra FlexHinge reforzada.',
+          img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=samsung',
+          btnText: 'Ver Plegables'
+        }
       },
       gafas: {
-        title: 'Ray-Ban Meta Wayfarer Edición Limitada',
-        tag: 'Universo Ray-Ban',
-        badge: 'Meta AI Integrada',
-        desc: 'Gafas inteligentes con cámara ultra-wide de 12 MP, audio direccional discreto, 5 micrófonos y lentes Transitions.',
-        img: 'https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=600&q=80',
-        link: 'catalogo.html?cat=gafas',
-        btnText: 'Ver Ray-Ban'
+        card1: {
+          title: 'Ray-Ban Meta Wayfarer',
+          tag: 'Transitions Gen S',
+          badge: 'Edición Transparente',
+          desc: 'Montura transparente de colección con arquitectura visible y Qualcomm AR1.',
+          img: 'https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=gafas',
+          btnText: 'Ver Wayfarer'
+        },
+        card2: {
+          title: 'Ray-Ban Meta Headliner',
+          tag: 'Cámara 12 MP',
+          badge: 'Meta AI Integrada',
+          desc: 'Altavoces abiertos integrados, captura de video ultrarrápida y 5 micrófonos.',
+          img: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80',
+          link: 'catalogo.html?cat=gafas',
+          btnText: 'Ver Headliner'
+        }
       },
       accesorios: {
-        title: 'Accesorios Originales Apple Sellados',
-        tag: 'Universo Accesorios',
-        badge: '100% Originales',
-        desc: 'Cubos de carga rápida 20W y 40W duales, cables trenzados USB-C, cargador MagSafe 25W, AirTags y fundas Kevlar.',
-        img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7T2_GEO_US?wid=800&hei=800&fmt=jpeg&qlt=90',
-        link: 'catalogo.html?tipo=accesorios',
-        btnText: 'Ver Accesorios'
+        card1: {
+          title: 'Cubos de Carga & MagSafe',
+          tag: 'Energía Rápida',
+          badge: 'Carga Oficial 20W/40W',
+          desc: 'Carga de 0 a 50% en 25 minutos para iPhone, iPad y Apple Watch sellados.',
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7T2_GEO_US?wid=800&hei=800&fmt=jpeg&qlt=90',
+          link: 'catalogo.html?tipo=accesorios',
+          btnText: 'Ver Cargadores'
+        },
+        card2: {
+          title: 'AirTags & Fundas Kevlar',
+          tag: 'Protección Total',
+          badge: 'Rastreo & Kevlar',
+          desc: 'Rastreo de precisión en Encontrar y fundas grado militar con imanes N52.',
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airtag-4pack-select-202104?wid=800&hei=800&fmt=jpeg&qlt=90',
+          link: 'catalogo.html?tipo=accesorios',
+          btnText: 'Ver Protección'
+        }
       }
     };
 
@@ -2472,31 +2560,57 @@
 
     window.selectVanguardiaCategory = function(catKey) {
       if (!vanguardiaData[catKey]) return;
-      const data = vanguardiaData[catKey];
+      const { card1, card2 } = vanguardiaData[catKey];
 
-      const img = document.getElementById('vanguardia-img');
-      const badge = document.getElementById('vanguardia-badge');
-      const tag = document.getElementById('vanguardia-category-tag');
-      const title = document.getElementById('vanguardia-title');
-      const desc = document.getElementById('vanguardia-desc');
-      const link = document.getElementById('vanguardia-link');
-      const linkText = document.getElementById('vanguardia-link-text');
+      // Actualizar Tarjeta 1
+      const img1 = document.getElementById('vanguardia-img-1');
+      const badge1 = document.getElementById('vanguardia-badge-1');
+      const tag1 = document.getElementById('vanguardia-category-tag-1');
+      const title1 = document.getElementById('vanguardia-title-1');
+      const desc1 = document.getElementById('vanguardia-desc-1');
+      const link1 = document.getElementById('vanguardia-link-1');
+      const linkText1 = document.getElementById('vanguardia-link-text-1');
 
-      if (img) {
-        img.style.opacity = '0.35';
+      if (img1) {
+        img1.style.opacity = '0.35';
         setTimeout(() => {
-          img.src = data.img;
-          img.alt = data.title;
-          img.style.opacity = '1';
+          img1.src = card1.img;
+          img1.alt = card1.title;
+          img1.style.opacity = '1';
         }, 80);
       }
-      if (badge) badge.innerText = data.badge;
-      if (tag) tag.innerText = data.tag;
-      if (title) title.innerText = data.title;
-      if (desc) desc.innerText = data.desc;
-      if (link) link.href = data.link;
-      if (linkText) linkText.innerText = data.btnText;
+      if (badge1) badge1.innerText = card1.badge;
+      if (tag1) tag1.innerText = card1.tag;
+      if (title1) title1.innerText = card1.title;
+      if (desc1) desc1.innerText = card1.desc;
+      if (link1) link1.href = card1.link;
+      if (linkText1) linkText1.innerText = card1.btnText;
 
+      // Actualizar Tarjeta 2
+      const img2 = document.getElementById('vanguardia-img-2');
+      const badge2 = document.getElementById('vanguardia-badge-2');
+      const tag2 = document.getElementById('vanguardia-category-tag-2');
+      const title2 = document.getElementById('vanguardia-title-2');
+      const desc2 = document.getElementById('vanguardia-desc-2');
+      const link2 = document.getElementById('vanguardia-link-2');
+      const linkText2 = document.getElementById('vanguardia-link-text-2');
+
+      if (img2) {
+        img2.style.opacity = '0.35';
+        setTimeout(() => {
+          img2.src = card2.img;
+          img2.alt = card2.title;
+          img2.style.opacity = '1';
+        }, 80);
+      }
+      if (badge2) badge2.innerText = card2.badge;
+      if (tag2) tag2.innerText = card2.tag;
+      if (title2) title2.innerText = card2.title;
+      if (desc2) desc2.innerText = card2.desc;
+      if (link2) link2.href = card2.link;
+      if (linkText2) linkText2.innerText = card2.btnText;
+
+      // Actualizar botones de categoría
       const btns = document.querySelectorAll('.vanguardia-btn');
       btns.forEach(b => {
         const cat = b.getAttribute('data-vanguardia-cat');
