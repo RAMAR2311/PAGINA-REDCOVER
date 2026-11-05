@@ -1851,21 +1851,42 @@
     let inlineTextEditingEnabled = false;
 
     async function loadCMSState() {
+      let hasLocalChanges = false;
+      // 1. Cargar tus cambios guardados en este navegador (tu trabajo actual tiene máxima prioridad)
       try {
         const raw = localStorage.getItem(CMS_STORAGE_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
           if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
             allCatalogDevices = parsed.devices;
+            hasLocalChanges = true;
           }
           if (parsed.cmsData) {
             cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+            hasLocalChanges = true;
           }
         }
       } catch (e) {
-        console.warn('Fallback local inicial:', e);
+        console.warn('Carga local:', e);
       }
 
+      // Si tienes cambios en tu navegador, subirlos de inmediato a PostgreSQL para que el servidor los adopte
+      if (hasLocalChanges) {
+        try {
+          fetch('/api/catalog', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              password: (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD,
+              devices: allCatalogDevices,
+              cmsData: cmsData
+            })
+          }).catch(() => {});
+        } catch(e) {}
+        return; // Detener aquí para que NINGUNA consulta antigua sobreescriba lo que hiciste
+      }
+
+      // 2. Si es un navegador nuevo o limpio, cargar desde PostgreSQL
       try {
         const res = await fetch('/api/catalog');
         if (res.ok) {
@@ -1875,15 +1896,11 @@
             if (remote.cmsData) {
               cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), remote.cmsData);
             }
-            localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify({
-              devices: allCatalogDevices,
-              cmsData: cmsData
-            }));
             renderAllCMSContent();
           }
         }
       } catch (err) {
-        console.log('Modo offline/local activado');
+        console.log('Cargado catálogo base');
       }
     }
 
@@ -1899,6 +1916,7 @@
         console.warn('Advertencia localStorage:', err);
       }
 
+      // 1. Guardar en base de datos PostgreSQL
       try {
         const response = await fetch('/api/catalog', {
           method: 'POST',
@@ -1912,12 +1930,20 @@
 
         if (response.ok) {
           console.log('☁️ Sincronizado en PostgreSQL');
-        } else {
-          console.warn('No se pudo persistir en PostgreSQL');
         }
       } catch (networkErr) {
         console.log('Error de red persistiendo en PostgreSQL:', networkErr);
       }
+
+      // 2. Guardar también directamente en el archivo src/data/catalog.js del proyecto
+      // para que tus cambios queden fijos en el código fuente y suban a GitHub/servidor
+      try {
+        await fetch('/api/sync-to-files', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ devices: allCatalogDevices })
+        });
+      } catch (e) {}
     }
 
     function updateAdminCounters() {

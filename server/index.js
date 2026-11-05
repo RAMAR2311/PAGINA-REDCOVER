@@ -243,6 +243,26 @@ app.get('/api/health', (req, res) => {
 });
 
 // Iniciar servidor
+
+// Guardar cambios directamente en src/data/catalog.js para que queden fijos en el proyecto
+app.post('/api/sync-to-files', (req, res) => {
+  try {
+    const { devices } = req.body;
+    if (!devices || !Array.isArray(devices)) {
+      return res.status(400).json({ error: 'Dispositivos inválidos' });
+    }
+    const filePath = path.join(__dirname, '..', 'src', 'data', 'catalog.js');
+    const fileHeader = '    const IMG_IPHONE_PRO = "assets/img/iphone-pro.png";\n    const IMG_IPHONE_16 = "assets/img/iphone-16.png";\n    const IMG_MACBOOK = "assets/img/macbook.png";\n    const IMG_IPAD = "assets/img/ipad.png";\n    const IMG_WATCH = "assets/img/watch.png";\n    const IMG_AIRPODS = "assets/img/airpods.png";\n    const IMG_MAGSAFE = "assets/img/magsafe.png";\n    const IMG_CASE = "assets/img/case.png";\n\n    let allCatalogDevices = ';
+    const fileContent = fileHeader + JSON.stringify(devices, null, 2) + ';\n';
+    fs.writeFileSync(filePath, fileContent, 'utf8');
+    console.log('✅ Archivo src/data/catalog.js actualizado permanentemente en disco con tus cambios');
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Error escribiendo archivo:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Servidor RedCover corriendo en http://localhost:${PORT}`);
 });
