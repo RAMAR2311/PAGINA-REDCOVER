@@ -248,15 +248,15 @@
         </p>
 
         <!-- Barra Unificada Ampliada: Acabados Oficiales + CTAs -->
-        <div class="w-full max-w-5xl flex flex-col lg:flex-row items-center justify-between gap-6 p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-xl border border-gray-200/90 shadow-xl shadow-black/5 mb-8">
+        <div class="w-full max-w-5xl flex flex-col lg:flex-row items-center justify-between gap-6 p-5 sm:p-6 rounded-3xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-gray-200/90 dark:border-zinc-800 shadow-xl shadow-black/5 mb-8">
           <!-- Selector de Acabados Oficiales -->
           <div class="flex items-center gap-3.5">
-            <div class="flex items-center gap-2.5 p-2 rounded-full bg-gray-50 border border-gray-200 shadow-inner" id="hero-color-swatches">
+            <div class="flex items-center gap-2.5 p-2 rounded-full bg-gray-50 dark:bg-zinc-800/80 border border-gray-200 dark:border-zinc-700 shadow-inner" id="hero-color-swatches">
               <!-- Swatches por JS -->
             </div>
             <div class="text-left">
-              <span class="text-[10px] uppercase font-mono tracking-widest text-gray-500 font-bold block">Acabado Oficial</span>
-              <span class="text-xs sm:text-sm font-extrabold text-gray-900" id="hero-color-name">Titanio Café Bronce</span>
+              <span class="text-[10px] uppercase font-mono tracking-widest text-gray-500 dark:text-zinc-400 font-bold block">Acabado Oficial</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900 dark:text-zinc-100" id="hero-color-name">Negro carbón</span>
             </div>
           </div>
 
@@ -315,7 +315,7 @@
             </div>
             <div>
               <span class="text-[10px] sm:text-[11px] text-gray-500 uppercase font-mono font-bold block">Financiación</span>
-              <span class="text-xs sm:text-sm font-extrabold text-gray-900">Hasta 24 Cuotas 0%</span>
+              <span class="text-xs sm:text-sm font-extrabold text-gray-900">Hasta 24 Cuotas</span>
             </div>
           </div>
         </div>
@@ -497,6 +497,54 @@
       </div>
     </section>
 
+    <!-- ============================================================== -->
+    <!-- BANNER PANORÁMICO: CATÁLOGO DE PRODUCTOS Y ACCESORIOS (SIN FONDO) -->
+    <!-- ============================================================== -->
+    <section class="w-full py-8 sm:py-12 px-4 sm:px-8 lg:px-12 xl:px-20 border-t border-gray-200/80 dark:border-zinc-800/80">
+      <div class="relative flex flex-col lg:flex-row items-center justify-start gap-8 lg:gap-14 text-left max-w-7xl mx-auto">
+
+        <div class="space-y-3 max-w-2xl text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/40 text-primary dark:text-red-400 text-[11px] font-extrabold uppercase tracking-tight">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+            Catálogo Oficial Completo 2026
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+            Descubre Toda Nuestra Gama de <br class="hidden sm:inline"/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 dark:from-white dark:via-red-100 dark:to-primary">
+              Productos y Accesorios
+            </span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-zinc-400 leading-relaxed max-w-xl">
+            Explora más de 100 referencias de iPhone, MacBook, iPad, Apple Watch, Samsung Galaxy, Ray-Ban Meta y accesorios originales con filtros interactivos, garantía oficial de 1 año y financiación a 24 cuotas sin interés.
+          </p>
+          <div class="flex items-center gap-4 pt-1 text-xs text-gray-700 dark:text-zinc-300 flex-wrap">
+            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span> +100 Modelos en Stock</span>
+            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-primary">verified</span> Garantía Oficial 1 Año</span>
+            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-amber-500">payments</span> Financiación 24 Cuotas</span>
+          </div>
+        </div>
+
+        <!-- Botones de Acción Destacados (Junto al texto) -->
+        <div class="flex flex-col items-stretch gap-2.5 w-full sm:w-72 lg:w-80 shrink-0">
+          <a href="catalogo.html?tipo=productos" class="metallic-btn metallic-btn-crimson w-full text-xs sm:text-sm font-extrabold tracking-tight py-1 px-2.5 shadow-lg shadow-red-600/25">
+            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-4 w-full text-center tracking-tight">
+              <span class="material-symbols-outlined text-base">devices</span>
+              <span class="tracking-tight">Ver Catálogo de Productos</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </a>
+
+          <a href="catalogo.html?tipo=accesorios" class="metallic-btn metallic-btn-silver w-full text-xs sm:text-sm font-extrabold tracking-tight py-1 px-2.5 shadow-md">
+            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-4 w-full text-center tracking-tight">
+              <span class="material-symbols-outlined text-base text-primary">power</span>
+              <span class="tracking-tight">Ver Catálogo de Accesorios</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
             <!-- ========================================================================= -->
     <!-- SECCIÓN ECOSISTEMA DE VANGUARDIA & PROMOCIONES (COMPACTA - MITAD TAMAÑO)   -->
     <!-- ========================================================================= -->
@@ -671,7 +719,7 @@
                 </div>
 
                 <div class="pt-3 mt-2 border-t border-zinc-800/80 flex items-center justify-between gap-2">
-                  <span class="text-[10px] font-mono text-zinc-400">Financiación 0%</span>
+                  <span class="text-[10px] font-mono text-zinc-400">Financiación</span>
                   <a id="vanguardia-link-2" href="catalogo.html?cat=iphone" class="px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-[11px] font-extrabold tracking-wide flex items-center gap-1 transition-colors shadow-sm border border-zinc-700">
                     <span id="vanguardia-link-text-2">Ver iPhone Air</span>
                     <span class="material-symbols-outlined text-xs">arrow_forward</span>
@@ -691,7 +739,7 @@
               <span class="material-symbols-outlined text-primary text-sm">verified</span> Garantía Oficial 1 Año
             </span>
             <a href="catalogo.html" class="text-primary font-bold hover:underline flex items-center gap-1 text-xs">
-              Ver Catálogo Completo <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              Ver Tienda RedCover <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
           </div>
         </div>
@@ -758,53 +806,6 @@
       </div>
     </section>
 
-    <!-- ============================================================== -->
-    <!-- BANNER PANORÁMICO: CATÁLOGO DE PRODUCTOS Y ACCESORIOS (SIN FONDO) -->
-    <!-- ============================================================== -->
-    <section class="w-full py-8 sm:py-12 px-4 sm:px-8 lg:px-12 xl:px-20 border-t border-gray-200/80 dark:border-zinc-800/80">
-      <div class="relative flex flex-col lg:flex-row items-center justify-start gap-8 lg:gap-14 text-left max-w-7xl mx-auto">
-
-        <div class="space-y-3 max-w-2xl text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/40 text-primary dark:text-red-400 text-[11px] font-extrabold uppercase tracking-tight">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-            Catálogo Oficial Completo 2026
-          </div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
-            Descubre Toda Nuestra Gama de <br class="hidden sm:inline"/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-zinc-900 dark:from-white dark:via-red-100 dark:to-primary">
-              Productos y Accesorios
-            </span>
-          </h2>
-          <p class="text-xs sm:text-sm text-gray-600 dark:text-zinc-400 leading-relaxed max-w-xl">
-            Explora más de 100 referencias de iPhone, MacBook, iPad, Apple Watch, Samsung Galaxy, Ray-Ban Meta y accesorios originales con filtros interactivos, garantía oficial de 1 año y financiación a 24 cuotas sin interés.
-          </p>
-          <div class="flex items-center gap-4 pt-1 text-xs text-gray-700 dark:text-zinc-300 flex-wrap">
-            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span> +100 Modelos en Stock</span>
-            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-primary">verified</span> Garantía Oficial 1 Año</span>
-            <span class="flex items-center gap-1 font-bold text-gray-900 dark:text-white"><span class="material-symbols-outlined text-sm text-amber-500">payments</span> Financiación 24 Cuotas 0%</span>
-          </div>
-        </div>
-
-        <!-- Botones de Acción Destacados (Junto al texto) -->
-        <div class="flex flex-col items-stretch gap-2.5 w-full sm:w-72 lg:w-80 shrink-0">
-          <a href="catalogo.html?tipo=productos" class="metallic-btn metallic-btn-crimson w-full text-xs sm:text-sm font-extrabold tracking-tight py-1 px-2.5 shadow-lg shadow-red-600/25">
-            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-4 w-full text-center tracking-tight">
-              <span class="material-symbols-outlined text-base">devices</span>
-              <span class="tracking-tight">Ver Catálogo de Productos</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </a>
-
-          <a href="catalogo.html?tipo=accesorios" class="metallic-btn metallic-btn-silver w-full text-xs sm:text-sm font-extrabold tracking-tight py-1 px-2.5 shadow-md">
-            <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-4 w-full text-center tracking-tight">
-              <span class="material-symbols-outlined text-base text-primary">power</span>
-              <span class="tracking-tight">Ver Catálogo de Accesorios</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
 
     <!-- Physical Stores Section -->
     <section class="py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-200" id="tiendas">
@@ -905,7 +906,7 @@
           <div class="p-2.5 rounded-xl bg-white border border-gray-200 flex items-center justify-between text-xs">
             <label class="flex items-center gap-2 cursor-pointer text-gray-700 font-medium">
               <input type="checkbox" id="cart-financing-checkbox" onchange="toggleCartFinancing(this.checked)" class="rounded text-primary focus:ring-primary h-4 w-4">
-              <span>¿Financiar hasta en 24 cuotas 0% interés?</span>
+              <span>¿Financiar hasta en 24 cuotas?</span>
             </label>
           </div>
 
@@ -1033,7 +1034,7 @@
 
             <!-- Aviso si selecciona Financiar -->
             <div id="chk-financing-box" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs">
-              <strong>Estudio de Crédito por WhatsApp:</strong> Al confirmar, te enviaremos directamente al WhatsApp oficial de RedCover con tus datos y pedido para aprobar tus 24 cuotas al 0% de interés.
+              <strong>Estudio de Crédito por WhatsApp:</strong> Al confirmar, te enviaremos directamente al WhatsApp oficial de RedCover con tus datos y pedido para tramitar tus 24 cuotas.
             </div>
           </div>
 

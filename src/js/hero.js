@@ -3,7 +3,7 @@
     const heroFlagshipsData = {
       'iphone-18-pro': {
         titleMain: 'iPhone 18 Pro.',
-        titleGradient: 'Titanio Café Bronce & Chip A20 Pro.',
+        titleGradient: 'Negro carbón, Plata, Azul glaciar y Borgoña.',
         description: 'La cumbre de la ingeniería portátil. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 y zoom óptico periscópico continuo de 10x.',
         badge: 'Lanzamiento Oficial 2026 • Chip A20 Pro 2nm',
         ctaText: 'Reservar iPhone 18 Pro',
@@ -11,10 +11,10 @@
         specCam: 'Triple 48MP • Zoom 10x',
         targetId: 'iphone-18-pro',
         colors: [
-          { name: 'Titanio Café Bronce', hex: '#6E5446' },
-          { name: 'Titanio Borgoña', hex: '#5B2430' },
-          { name: 'Titanio Morado Oscuro', hex: '#3F334D' },
-          { name: 'Titanio Negro Ónix', hex: '#222224' }
+          { name: 'Negro carbón', hex: '#1C1C1E' },
+          { name: 'Plata', hex: '#E5E5EA' },
+          { name: 'Azul glaciar', hex: '#A4C8E1' },
+          { name: 'Borgoña', hex: '#5B1E28' }
         ]
       },
       'iphone-18-pro-max': {
@@ -27,10 +27,10 @@
         specCam: 'ProRAW 48MP • Zoom 12x',
         targetId: 'iphone-18-pro-max',
         colors: [
-          { name: 'Titanio Café Bronce', hex: '#6E5446' },
-          { name: 'Titanio Borgoña', hex: '#5B2430' },
-          { name: 'Titanio Morado Oscuro', hex: '#3F334D' },
-          { name: 'Titanio Negro Ónix', hex: '#222224' }
+          { name: 'Negro carbón', hex: '#1C1C1E' },
+          { name: 'Plata', hex: '#E5E5EA' },
+          { name: 'Azul glaciar', hex: '#A4C8E1' },
+          { name: 'Borgoña', hex: '#5B1E28' }
         ]
       },
       'iphone-duo-fold': {
@@ -43,9 +43,8 @@
         specCam: 'Sistema Plegable 8.2" OLED',
         targetId: 'iphone-duo-fold',
         colors: [
-          { name: 'Titanio Carmesí Edición Especial', hex: '#8A1C27' },
-          { name: 'Titanio Negro Espacial', hex: '#1F2022' },
-          { name: 'Titanio Plata Líquido', hex: '#DCDFE3' }
+          { name: 'Blanco estrella', hex: '#F9F6EE' },
+          { name: 'Cielo nocturno', hex: '#1B2430' }
         ]
       }
     };

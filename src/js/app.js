@@ -103,7 +103,7 @@
                 <span class="text-[11px] text-gray-400">Contado desde:</span>
                 <span class="text-base font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
               </div>
-              <p class="text-[11px] text-primary font-medium text-right">o 24 cuotas de ${calculate24Installment(dev.price)} (0%)</p>
+              <p class="text-[11px] text-primary font-medium text-right">o 24 cuotas de ${calculate24Installment(dev.price)} </p>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
@@ -235,7 +235,7 @@
                 <span class="text-2xl font-extrabold text-gray-900">${formatCOP(dev.price)}</span>
               </div>
               <div class="text-right">
-                <span class="text-xs text-emerald-700 font-bold block">Financiación 0% Interés:</span>
+                <span class="text-xs text-emerald-700 font-bold block">Financiación:</span>
                 <span class="text-xs text-gray-600">24 cuotas de <strong>${calculate24Installment(dev.price)}</strong></span>
               </div>
             </div>
@@ -288,7 +288,7 @@
 
     function directFinanceWhatsApp(productTitle, price) {
       const installment = calculate24Installment(price);
-      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN a 0% de interés* para:%0A%0A` +
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar la *FINANCIACIÓN* para:%0A%0A` +
         `📱 *Producto:* ${encodeURIComponent(productTitle)}%0A` +
         `💰 *Precio de contado:* ${encodeURIComponent(formatCOP(price))}%0A` +
         `💳 *Cuota estimada:* ${encodeURIComponent(installment)} (24 cuotas sin interés)%0A`;
@@ -691,7 +691,7 @@
     function sendCartFinancingWhatsApp(customerInfo = null) {
       const netTotal = getCartNetTotal();
       const itemsText = cart.map(i => `• ${i.title} (x${i.qty}) - ${formatCOP(i.price * i.qty)}`).join('%0A');
-      let msg = `Hola RedCover Colombia 👋 Quiero solicitar *FINANCIACIÓN a 24 cuotas (0% interés)* para mi pedido:%0A%0A` +
+      let msg = `Hola RedCover Colombia 👋 Quiero solicitar *FINANCIACIÓN a 24 cuotas* para mi pedido:%0A%0A` +
         `${itemsText}%0A`;
 
       if (appliedCanje) {
@@ -873,7 +873,7 @@
         content: `
           <div class="space-y-3 text-xs text-gray-600 max-h-64 overflow-y-auto pr-2">
             <p><strong>1. Facturación Electrónica DIAN:</strong> Todos los precios publicados están en Pesos Colombianos (COP) e incluyen el IVA legal vigente (19% cuando aplique según estatuto tributario).</p>
-            <p><strong>2. Financiación 0% Interés:</strong> Las 24 cuotas sin interés aplican con tarjetas seleccionadas de Bancolombia, Davivienda, Nu Colombia y Banco de Bogotá previa aprobación de la entidad financiera a través de nuestro canal asistido por WhatsApp.</p>
+            <p><strong>2. Financiación:</strong> Las 24 cuotas sin interés aplican con tarjetas seleccionadas de Bancolombia, Davivienda, Nu Colombia y Banco de Bogotá previa aprobación de la entidad financiera a través de nuestro canal asistido por WhatsApp.</p>
             <p><strong>3. Plan Canje RedCover:</strong> El valor cotizado en la web corresponde a una estimación según el estado reportado de batería y estética. Al entregar el equipo se realiza una revisión técnica de 10 minutos para validar que no tenga bloqueos de iCloud ni reportes.</p>
             <p><strong>4. Derecho de Retracto:</strong> Cumplimos íntegramente con el Estatuto del Consumidor (Ley 1480 de 2011) de la Superintendencia de Industria y Comercio (SIC).</p>
           </div>
@@ -944,7 +944,7 @@
         secondaryTitle: "Comprar & Servicios",
         secondaryLinks: [
           { name: "Plan Canje", href: "#canje" },
-          { name: "Financiación 0% WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / Nuevos', 5999000)" },
+          { name: "Financiación WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / Nuevos', 5999000)" },
           { name: "Accesorios MagSafe", href: "#accesorios" },
           { name: "Garantía Oficial 1 Año", action: "openInfoModal('garantia')" },
           { name: "Comparar Modelos", href: "iphone-16-pro.html#comparativa" }
@@ -966,7 +966,7 @@
           { name: "Reservar AirPods Pro 3", action: "openProductModal('airpods-pro-3')" },
           { name: "Comprar AirPods Max 2", action: "openProductModal('airpods-max-2')" },
           { name: "Ver Catálogo de AirPods", action: "filterAndScroll('airpods')" },
-          { name: "Financiar AirPods 0%", action: "directFinanceWhatsApp('AirPods Pro 3 / AirPods Max 2', 1399000)" }
+          { name: "Financiar AirPods", action: "directFinanceWhatsApp('AirPods Pro 3 / AirPods Max 2', 1399000)" }
         ],
         tertiaryTitle: "Más para AirPods",
         tertiaryLinks: [
@@ -991,7 +991,7 @@
           { name: "Comprar Galaxy S26 Ultra", action: "openProductModal('samsung-s26-ultra')" },
           { name: "Comprar Galaxy S25 Ultra", action: "openProductModal('samsung-s25-ultra')" },
           { name: "Plan Canje Samsung", href: "#canje" },
-          { name: "Financiación 0% WhatsApp", action: "directFinanceWhatsApp('Samsung Galaxy S26 Ultra / S25 Ultra', 5599000)" }
+          { name: "Financiación WhatsApp", action: "directFinanceWhatsApp('Samsung Galaxy S26 Ultra / S25 Ultra', 5599000)" }
         ],
         tertiaryTitle: "Respaldo Samsung",
         tertiaryLinks: [
@@ -1013,7 +1013,7 @@
         secondaryLinks: [
           { name: "Comprar Ray-Ban Meta Wayfarer", action: "openProductModal('rayban-meta-wayfarer')" },
           { name: "Comprar Ray-Ban Meta Skyler", action: "openProductModal('rayban-meta-skyler')" },
-          { name: "Financiación 0% WhatsApp", action: "directFinanceWhatsApp('Gafas Ray-Ban Meta', 1699000)" }
+          { name: "Financiación WhatsApp", action: "directFinanceWhatsApp('Gafas Ray-Ban Meta', 1699000)" }
         ],
         tertiaryTitle: "Tecnología Ray-Ban Meta",
         tertiaryLinks: [
@@ -1037,7 +1037,7 @@
           { name: "Ver Catálogo Apple Watch", action: "filterAndScroll('watch')" },
           { name: "Correas y Cargadores", href: "#accesorios" },
           { name: "Plan Canje Watch", href: "#canje" },
-          { name: "Financiar Watch 0%", action: "directFinanceWhatsApp('Apple Watch Ultra 3 / Series 12', 2499000)" }
+          { name: "Financiar Watch", action: "directFinanceWhatsApp('Apple Watch Ultra 3 / Series 12', 2499000)" }
         ],
         tertiaryTitle: "Más para Watch",
         tertiaryLinks: [
@@ -1061,7 +1061,7 @@
           { name: "Ver Catálogo de Mac", action: "filterAndScroll('mac')" },
           { name: "Accesorios para Mac", href: "#accesorios" },
           { name: "Plan Canje MacBook", href: "#canje" },
-          { name: "Financiar MacBook 0%", action: "directFinanceWhatsApp('MacBook Pro / Air', 5899000)" }
+          { name: "Financiar MacBook", action: "directFinanceWhatsApp('MacBook Pro / Air', 5899000)" }
         ],
         tertiaryTitle: "Más para Mac",
         tertiaryLinks: [
@@ -1085,7 +1085,7 @@
           { name: "Ver Catálogo de iPad", action: "filterAndScroll('ipad')" },
           { name: "Apple Pencil y Teclados", href: "#accesorios" },
           { name: "Plan Canje iPad", href: "#canje" },
-          { name: "Financiar iPad 0%", action: "directFinanceWhatsApp('iPad Pro / iPad Air', 3599000)" }
+          { name: "Financiar iPad", action: "directFinanceWhatsApp('iPad Pro / iPad Air', 3599000)" }
         ],
         tertiaryTitle: "Más para iPad",
         tertiaryLinks: [
@@ -1416,20 +1416,20 @@
       whatsappNumber: '573001234567',
       iphone16proConfig: {
         title: "iPhone 16 Pro y iPhone 16 Pro Max",
-        subtitle: "Configura tu iPhone 16 Pro y iPhone 16 Pro Max. Elige acabado en Titanio, almacenamiento, cotiza Plan Canje y financia con 0% de interés en RedCover Colombia.",
+        subtitle: "Configura tu iPhone 16 Pro y iPhone 16 Pro Max. Elige acabado en Titanio, almacenamiento, cotiza Plan Canje y financia cómodamente en RedCover Colombia.",
         stickyBadge: "Titanio Grado 5",
         heroStockPill: "En Stock Colombia",
         heroBadgeText: "Apple Intelligence Ready",
         guaranteeText: "Distribuidor Autorizado Oficial Apple & Samsung Colombia • Factura legal DIAN",
         stockLocation: "San Andresito de la 38 C.C. Caribe (Locales 136 y 197)",
-        installmentText: "o 24 cuotas con 0% interés",
+        installmentText: "o 24 cuotas",
         tradeInTitle: "Plan Canje RedCover: Ahorra hasta $2.500.000",
         baseDeviceId: "iphone-16-pro"
       },
       heroFlagships: {
         'iphone-18-pro': {
           titleMain: 'iPhone 18 Pro.',
-          titleGradient: 'Titanio Café Bronce & Chip A20 Pro.',
+          titleGradient: 'Negro carbón, Plata, Azul glaciar y Borgoña.',
           description: 'La cumbre de la ingeniería portátil. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 y zoom óptico periscópico continuo de 10x.',
           badge: 'Lanzamiento Oficial 2026 • Chip A20 Pro 2nm',
           ctaText: 'Reservar iPhone 18 Pro',
@@ -1458,14 +1458,14 @@
           targetId: 'iphone-duo-fold'
         }
       },
-      topbarText: '🇨🇴 Lanzamiento 2026: iPhone 18 Pro, AirPods Pro 3 & Samsung Galaxy S26 Ultra • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
+      topbarText: '🇨🇴 Lanzamiento 2026: iPhone 18 Pro, AirPods Pro 3 & Samsung Galaxy S26 Ultra • Envío Asegurado Gratis • Financiación por WhatsApp',
       hero: {
         authBadge: 'Distribuidor Oficial Autorizado • Colombia',
         clientsBadge: '+10.000 Clientes Satisfechos',
         ratingBadge: '4.9/5 Estrellas',
         titleMain: 'iPhone 18 Pro',
         titleGradient: 'Titanio Grado Aeroespacial. Chip A20 Pro.',
-        description: 'El salto más grande en la historia del iPhone junto al revolucionario iPhone Duo plegable. Nuevo Chip A20 Pro de 2nm, triple cámara de 48 MP con Teleobjetivo Periscopio 10x, Face ID bajo pantalla y Apple Intelligence 3.0. Fináncialo hoy al 0% de interés por WhatsApp.',
+        description: 'El salto más grande en la historia del iPhone junto al revolucionario iPhone Duo plegable. Nuevo Chip A20 Pro de 2nm, triple cámara de 48 MP con Teleobjetivo Periscopio 10x, Face ID bajo pantalla y Apple Intelligence 3.0. Fináncialo hoy por WhatsApp.',
         cta1Text: 'Reservar / Comprar iPhone 18 Pro',
         cta2Text: 'Cotizar mi Equipo en Plan Canje'
       },
@@ -1651,7 +1651,7 @@
       offersHeader: {
         badge: '🔥 Ofertas Relámpago Colombia',
         title: 'Precios Especiales y Combos RedCover',
-        subtitle: 'Descuentos directos aplicados en carrito o financiados a 0% de interés por WhatsApp. Desliza con las flechas para ver más.',
+        subtitle: 'Descuentos directos aplicados en carrito o financiados por WhatsApp. Desliza con las flechas para ver más.',
         stockAlert: 'Unidades Limitadas con Envío Hoy'
       },
       offers: [
@@ -2032,7 +2032,7 @@
             <!-- Footer Bar Uniforme: Precios alineados y Botones a la misma altura en todas las tarjetas -->
             <div class="z-10 pt-3 mt-3 border-t ${card.darkTheme ? 'border-zinc-800/80' : 'border-gray-100'} flex flex-col gap-2.5">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] uppercase tracking-wider ${card.darkTheme ? 'text-zinc-400' : 'text-gray-500'} font-semibold">Contado o 0%</span>
+                <span class="text-[10px] uppercase tracking-wider ${card.darkTheme ? 'text-zinc-400' : 'text-gray-500'} font-semibold">Contado o Financiado</span>
                 <span class="text-xs sm:text-sm font-extrabold ${card.darkTheme ? 'text-white' : 'text-gray-900'}">${card.priceText}</span>
               </div>
               
@@ -2092,7 +2092,7 @@
                 <h2 class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight">${s.title}</h2>
                 <p class="text-zinc-200 text-sm sm:text-base lg:text-lg max-w-2xl font-medium leading-relaxed drop-shadow-sm">${s.subtitle}</p>
               </div>
-              <div class="flex flex-wrap items-center gap-3 shrink-0">
+              <div class="flex flex-wrap items-center gap-3 shrink-0 sm:mr-8 md:mr-10">
                 <a href="catalogo.html?cat=${s.categoryTarget || 'all'}" class="metallic-btn metallic-btn-crimson text-xs sm:text-sm font-extrabold uppercase tracking-tight shadow-xl shadow-red-600/40 hover:scale-105 transition-transform">
                   <span class="metallic-btn-inner flex items-center justify-center gap-2 !py-3 !px-6">
                     <span class="material-symbols-outlined text-base">storefront</span>
@@ -4005,7 +4005,7 @@
         mediaUrl: 'assets/img/iphone-pro.png',
         badge: `Banner ${newIdx} • Nuevo Lanzamiento`,
         title: 'Nuevo Banner Promocional RedCover',
-        subtitle: 'Edita este subtítulo con tus ofertas especiales, garantía y financiación 0%',
+        subtitle: 'Edita este subtítulo con tus ofertas especiales, garantía y financiación',
         btn1Text: 'Ver Producto',
         productIdTarget: 'iphone-18-pro-max',
         btn2Text: 'Ver Catálogo',
@@ -4265,13 +4265,13 @@
       if (!cmsData.iphone16proConfig) {
         cmsData.iphone16proConfig = {
           title: "iPhone 16 Pro y iPhone 16 Pro Max",
-          subtitle: "Configura tu iPhone 16 Pro y iPhone 16 Pro Max. Elige acabado en Titanio, almacenamiento, cotiza Plan Canje y financia con 0% de interés en RedCover Colombia.",
+          subtitle: "Configura tu iPhone 16 Pro y iPhone 16 Pro Max. Elige acabado en Titanio, almacenamiento, cotiza Plan Canje y financia cómodamente en RedCover Colombia.",
           stickyBadge: "Titanio Grado 5",
           heroStockPill: "En Stock Colombia",
           heroBadgeText: "Apple Intelligence Ready",
           guaranteeText: "Distribuidor Autorizado Oficial Apple & Samsung Colombia • Factura legal DIAN",
           stockLocation: "San Andresito de la 38 C.C. Caribe (Locales 136 y 197)",
-          installmentText: "o 24 cuotas con 0% interés",
+          installmentText: "o 24 cuotas",
           tradeInTitle: "Plan Canje RedCover: Ahorra hasta $2.500.000",
           baseDeviceId: "iphone-16-pro"
         };
@@ -4419,7 +4419,7 @@
                 </div>
                 <div>
                   <label class="block font-bold text-gray-700 mb-1">Texto de Cuotas en Barra</label>
-                  <input id="adm-i16-installment" type="text" value="${(cfg.installmentText || 'o 24 cuotas con 0% interés').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                  <input id="adm-i16-installment" type="text" value="${(cfg.installmentText || 'o 24 cuotas').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
                 </div>
               </div>
 
