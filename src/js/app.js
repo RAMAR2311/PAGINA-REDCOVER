@@ -1418,6 +1418,38 @@
         tradeInTitle: "Plan Canje RedCover: Ahorra hasta $2.500.000",
         baseDeviceId: "iphone-16-pro"
       },
+      heroFlagships: {
+        'iphone-18-pro': {
+          titleMain: 'iPhone 18 Pro.',
+          titleGradient: 'Titanio Café Bronce & Chip A20 Pro.',
+          description: 'La cumbre de la ingeniería portátil. Chasis de Titanio Líquido ultraliviano, pantalla ProMotion de 240Hz sin bordes, Apple Intelligence 3.0 y zoom óptico periscópico continuo de 10x.',
+          badge: 'Lanzamiento Oficial 2026 • Chip A20 Pro 2nm',
+          ctaText: 'Reservar iPhone 18 Pro',
+          specChip: 'Chip A20 Pro 2nm',
+          specCam: 'Triple 48MP • Zoom 10x',
+          targetId: 'iphone-18-pro'
+        },
+        'iphone-18-pro-max': {
+          titleMain: 'iPhone 18 Pro Max.',
+          titleGradient: 'Pantalla 6.9\" Tandem OLED & Máxima Batería.',
+          description: 'Poder descomunal en 6.9 pulgadas. Cámara de vapor de grafeno, autonomía récord de hasta 38 horas y sistema fotográfico profesional ProRAW de 48 MP con sensor principal de 1 pulgada.',
+          badge: 'Buque Insignia 2026 • 6.9\" Tandem OLED',
+          ctaText: 'Reservar iPhone 18 Pro Max',
+          specChip: 'A20 Pro Max + Vapor',
+          specCam: 'ProRAW 48MP • Zoom 12x',
+          targetId: 'iphone-18-pro-max'
+        },
+        'iphone-duo-fold': {
+          titleMain: 'iPhone Duo.',
+          titleGradient: 'Dos Pantallas. Cero Arrugas. Revolución Plegable.',
+          description: 'El primer iPhone plegable de Apple. Bisagra de Titanio Líquido aeroespacial y doble pantalla Super Retina XDR que se despliega en un lienzo de 8.2 pulgadas con multitarea extrema.',
+          badge: 'Edición Especial 2026 • Plegable Dual-Screen',
+          ctaText: 'Reservar iPhone Duo Plegable',
+          specChip: 'A20 Pro Dual-Engine',
+          specCam: 'Sistema Plegable 8.2\" OLED',
+          targetId: 'iphone-duo-fold'
+        }
+      },
       topbarText: '🇨🇴 Lanzamiento 2026: iPhone 18 Pro, AirPods Pro 3 & Samsung Galaxy S26 Ultra • Envío Asegurado Gratis • Financiación 0% por WhatsApp',
       hero: {
         authBadge: 'Distribuidor Oficial Autorizado • Colombia',
@@ -3317,89 +3349,49 @@
     // ==========================================
     // TAB 5: PUBLICIDAD HERO (4 BANNERS MOVIBLES CON IMAGEN O VIDEO CORTO) & BENTO ECOSISTEMA
     // ==========================================
+        let selectedAdminFlagshipKey = 'iphone-18-pro';
+
     function renderAdminHeroTab(container) {
-      const h = cmsData.hero;
       if (!Array.isArray(cmsData.heroSlides) || cmsData.heroSlides.length === 0) {
         cmsData.heroSlides = JSON.parse(JSON.stringify(defaultCMSData.heroSlides));
       }
+      if (!cmsData.heroFlagships) {
+        cmsData.heroFlagships = JSON.parse(JSON.stringify(defaultCMSData.heroFlagships));
+      }
+
+      const activeFlagship = cmsData.heroFlagships[selectedAdminFlagshipKey] || cmsData.heroFlagships['iphone-18-pro'];
 
       container.innerHTML = `
         <div class="space-y-6 text-xs">
-          <!-- Publicidad Principal Hero (Textos Superiores) -->
-          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
-            <div class="flex items-center justify-between border-b border-gray-200 pb-3">
-              <div>
-                <h4 class="text-sm font-extrabold text-gray-900">Encabezado Principal de Inicio (Hero) y Barra Superior</h4>
-                <p class="text-[11px] text-gray-500">Modifica el titular principal anunciado al abrir la página.</p>
-              </div>
-              <button type="button" onclick="saveAdminHeroConfig()" class="px-5 py-2.5 rounded-full crimson-btn text-white font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">save</span> Guardar Textos Hero
-              </button>
-            </div>
-
-            <div>
-              <label class="font-bold text-gray-700 block mb-1">Texto Barra Roja Superior (Topbar)</label>
-              <input id="adm-hero-topbar" type="text" value="${cmsData.topbarText.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold">
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Badge Autorizado</label>
-                <input id="adm-hero-auth" type="text" value="${h.authBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
-              </div>
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Badge Clientes Satisfechos</label>
-                <input id="adm-hero-clients" type="text" value="${h.clientsBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-emerald-700 font-bold">
-              </div>
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Badge Calificación</label>
-                <input id="adm-hero-rating" type="text" value="${h.ratingBadge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Título Gigante Principal (ej. iPhone 18 Pro)</label>
-                <input id="adm-hero-title1" type="text" value="${h.titleMain.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-extrabold text-base">
-              </div>
-              <div>
-                <label class="font-bold text-gray-700 block mb-1">Subtítulo con Gradiente Rojo</label>
-                <input id="adm-hero-title2" type="text" value="${h.titleGradient.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-primary">
-              </div>
-            </div>
-
-            <div>
-              <label class="font-bold text-gray-700 block mb-1">Párrafo Descriptivo Principal</label>
-              <textarea id="adm-hero-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300">${h.description}</textarea>
-            </div>
-          </div>
-
-          <!-- 4 Banners Movibles del Carrusel Hero (Imagen o Video Corto) -->
-          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
+          <!-- 1. SECCIÓN PRINCIPAL: 4 BANNERS PANORÁMICOS DEL CARRUSEL (PRIMERO COMO EN LA PÁGINA) -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4 shadow-xs">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-3">
               <div>
-                <h4 class="text-sm font-extrabold text-gray-900">Carrusel de 4 Banners Principales Movibles (Imágenes o Videos Cortos)</h4>
-                <p class="text-[11px] text-gray-500">Configura hasta 4 banners deslizables. Puedes pegar URL de imagen/video (.mp4/.webm) o subir archivos desde tu PC.</p>
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white font-black text-[10px] tracking-wide uppercase">Elemento #1 en Web</span>
+                  <h4 class="text-sm font-extrabold text-gray-900">Banners Principales Panorámicos (Carrusel Superior)</h4>
+                </div>
+                <p class="text-[11px] text-gray-500 mt-0.5">Es el primer elemento visual gigante que ven los clientes al entrar a la tienda. Puedes subir imágenes o videos cortos (.mp4).</p>
               </div>
-              <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 font-extrabold text-[11px]">4 Slides Activos</span>
+              <span class="px-3 py-1 rounded-full bg-red-50 text-primary border border-red-200 font-extrabold text-[11px] w-fit">4 Banners Activos</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               ${cmsData.heroSlides.map((sl, idx) => `
-                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-2.5">
-                  <div class="flex items-center justify-between">
-                    <span class="font-extrabold text-primary uppercase flex items-center gap-1">
-                      <span class="material-symbols-outlined text-sm">view_carousel</span> Banner Slide #${idx + 1}
+                <div class="p-4 rounded-2xl bg-gray-50/80 border border-gray-200 space-y-3 relative group">
+                  <div class="flex items-center justify-between border-b border-gray-200/70 pb-2">
+                    <span class="font-extrabold text-primary uppercase flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-sm">view_carousel</span> Banner #${idx + 1}
                     </span>
                     <div class="flex items-center gap-1.5">
-                      <button type="button" onclick="goToHeroSlide(${idx}); showToast('Previsualizando Banner #${idx + 1} en la página')" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-[10px]">Ver Slide</button>
-                      <button type="button" onclick="saveAdminHeroSlide(${idx})" class="px-3 py-1 rounded-lg crimson-btn text-white font-bold">Guardar Banner #${idx + 1}</button>
+                      <button type="button" onclick="goToHeroSlide(${idx}); showToast('Previsualizando Banner #${idx + 1} en la web')" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-[10px]">Previsualizar</button>
+                      <button type="button" onclick="saveAdminHeroSlide(${idx})" class="px-3 py-1 rounded-lg crimson-btn text-white font-bold text-[11px] shadow-xs">Guardar Banner</button>
                     </div>
                   </div>
 
                   <div class="grid grid-cols-2 gap-2">
                     <div>
-                      <label class="text-[10px] font-bold text-gray-500 block">Tipo de Multimedia</label>
+                      <label class="text-[10px] font-bold text-gray-500 block">Tipo Multimedia</label>
                       <select id="adm-slide-type-${idx}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
                         <option value="image" ${sl.mediaType !== 'video' ? 'selected' : ''}>🖼️ Imagen / Foto</option>
                         <option value="video" ${sl.mediaType === 'video' ? 'selected' : ''}>🎬 Video Corto (MP4/WebM)</option>
@@ -3407,24 +3399,24 @@
                     </div>
                     <div>
                       <label class="text-[10px] font-bold text-gray-500 block">Etiqueta Superior Roja</label>
-                      <input id="adm-slide-badge-${idx}" type="text" value="${(sl.badge || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                      <input id="adm-slide-badge-${idx}" type="text" value="${(sl.badge || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-semibold">
                     </div>
                   </div>
 
                   <div>
                     <label class="text-[10px] font-bold text-gray-500 block">Título Principal del Banner</label>
-                    <input id="adm-slide-title-${idx}" type="text" value="${(sl.title || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-extrabold">
+                    <input id="adm-slide-title-${idx}" type="text" value="${(sl.title || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-extrabold text-sm">
                   </div>
 
                   <div>
-                    <label class="text-[10px] font-bold text-gray-500 block">Subtítulo / Oferta del Banner</label>
+                    <label class="text-[10px] font-bold text-gray-500 block">Subtítulo / Oferta / Condiciones</label>
                     <input id="adm-slide-sub-${idx}" type="text" value="${(sl.subtitle || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
                   </div>
 
                   <div class="grid grid-cols-2 gap-2">
                     <div>
-                      <label class="text-[10px] font-bold text-gray-500 block">Texto Botón 1</label>
-                      <input id="adm-slide-btn1-${idx}" type="text" value="${(sl.btn1Text || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                      <label class="text-[10px] font-bold text-gray-500 block">Texto Botón 1 (Detalle)</label>
+                      <input id="adm-slide-btn1-${idx}" type="text" value="${(sl.btn1Text || '').replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
                     </div>
                     <div>
                       <label class="text-[10px] font-bold text-gray-500 block">Categoría Destino Botón 2</label>
@@ -3434,13 +3426,13 @@
                     </div>
                   </div>
 
-                  <div class="space-y-1.5 pt-1">
-                    <label class="text-[10px] font-bold text-gray-600 block">URL de Imagen o Video Corto (.mp4 / .webm) o Subir Archivo</label>
+                  <div class="space-y-1 pt-1">
+                    <label class="text-[10px] font-bold text-gray-600 block">Archivo Multimedia (Convierte automáticamente a WebP si es foto)</label>
                     <div class="flex items-center gap-2">
-                      <input id="adm-slide-url-${idx}" type="text" value="${sl.mediaUrl || ''}" placeholder="https://... (.jpg, .png, .mp4)" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
-                      <label class="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-primary text-white cursor-pointer font-bold shrink-0 flex items-center gap-1">
-                        <span class="material-symbols-outlined text-xs">upload_file</span> Subir Img/Video
-                        <input type="file" accept="image/*,video/mp4,video/webm,video/ogg" class="hidden" onchange="handleAdminHeroMediaUpload(this, ${idx})">
+                      <input id="adm-slide-url-${idx}" type="text" value="${sl.mediaUrl || ''}" placeholder="assets/img/... o URL" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
+                      <label class="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-primary text-white cursor-pointer font-bold shrink-0 flex items-center gap-1 shadow-xs">
+                        <span class="material-symbols-outlined text-xs">upload_file</span> Subir
+                        <input type="file" accept="image/*,video/mp4,video/webm" class="hidden" onchange="handleAdminHeroMediaUpload(this, ${idx})">
                       </label>
                     </div>
                   </div>
@@ -3449,63 +3441,129 @@
             </div>
           </div>
 
-          <!-- Tarjetas Bento del Ecosistema -->
-          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4">
-            <h4 class="text-sm font-extrabold text-gray-900">Tarjetas Destacadas del Ecosistema (Bento Grid)</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              ${cmsData.bentoCards.map((card, idx) => `
-                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-2.5">
-                  <div class="flex items-center justify-between">
-                    <span class="font-extrabold text-primary uppercase">Tarjeta Bento #${idx + 1}</span>
-                    <button type="button" onclick="saveAdminBentoCard(${idx})" class="px-3 py-1 rounded-lg bg-zinc-900 hover:bg-primary text-white font-bold">Guardar Tarjeta</button>
-                  </div>
-                  <div class="grid grid-cols-2 gap-2">
-                    <div>
-                      <label class="text-[10px] font-bold text-gray-500">Etiqueta Superior</label>
-                      <input id="adm-bento-badge-${idx}" type="text" value="${card.badge.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
-                    </div>
-                    <div>
-                      <label class="text-[10px] font-bold text-gray-500">Precio Visible</label>
-                      <input id="adm-bento-price-${idx}" type="text" value="${card.priceText.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
-                    </div>
-                  </div>
-                  <div>
-                    <label class="text-[10px] font-bold text-gray-500">Título</label>
-                    <input id="adm-bento-title-${idx}" type="text" value="${card.title.replace(/"/g, '&quot;')}" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white font-bold">
-                  </div>
-                  <div>
-                    <label class="text-[10px] font-bold text-gray-500">Descripción</label>
-                    <textarea id="adm-bento-desc-${idx}" rows="2" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">${card.desc}</textarea>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <img id="adm-bento-prev-${idx}" src="${card.img}" class="w-12 h-12 rounded-lg object-cover bg-zinc-900 shrink-0">
-                    <input id="adm-bento-img-${idx}" type="text" value="${card.img}" oninput="document.getElementById('adm-bento-prev-${idx}').src=this.value" class="flex-1 px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white">
-                    <label class="px-2.5 py-1.5 rounded-lg bg-zinc-900 text-white cursor-pointer font-bold shrink-0">
-                      Subir
-                      <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-bento-img-${idx}', 'adm-bento-prev-${idx}')">
-                    </label>
-                  </div>
+          <!-- 2. SECCIÓN HERO FLAGSHIP BLANCO: SELECTOR INTERACTIVO IPHONE 18 PRO, PRO MAX Y DUO -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-4 shadow-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-zinc-900 text-white font-black text-[10px] tracking-wide uppercase">Elemento #2 en Web</span>
+                  <h4 class="text-sm font-extrabold text-gray-900">Apartado Hero: Buques Insignia (Fondo Blanco)</h4>
                 </div>
-              `).join('')}
+                <p class="text-[11px] text-gray-500 mt-0.5">Controla los textos del bloque central interactivo con selector de modelos y acabados en titanio.</p>
+              </div>
+
+              <!-- Selector de modelo a configurar en el admin -->
+              <div class="flex items-center gap-1.5 bg-gray-100 p-1 rounded-xl border border-gray-200">
+                <button type="button" onclick="selectedAdminFlagshipKey='iphone-18-pro'; renderAdminHeroTab(document.getElementById('admin-tab-content'))" class="px-3 py-1.5 rounded-lg font-bold text-xs ${selectedAdminFlagshipKey === 'iphone-18-pro' ? 'bg-primary text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'}">
+                  iPhone 18 Pro
+                </button>
+                <button type="button" onclick="selectedAdminFlagshipKey='iphone-18-pro-max'; renderAdminHeroTab(document.getElementById('admin-tab-content'))" class="px-3 py-1.5 rounded-lg font-bold text-xs ${selectedAdminFlagshipKey === 'iphone-18-pro-max' ? 'bg-primary text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'}">
+                  18 Pro Max
+                </button>
+                <button type="button" onclick="selectedAdminFlagshipKey='iphone-duo-fold'; renderAdminHeroTab(document.getElementById('admin-tab-content'))" class="px-3 py-1.5 rounded-lg font-bold text-xs ${selectedAdminFlagshipKey === 'iphone-duo-fold' ? 'bg-primary text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'}">
+                  iPhone Duo Plegable
+                </button>
+              </div>
+            </div>
+
+            <!-- Formulario del modelo activo seleccionado -->
+            <div class="p-4 rounded-2xl bg-gray-50/70 border border-gray-200 space-y-3.5">
+              <div class="flex items-center justify-between">
+                <span class="font-extrabold text-gray-900 uppercase flex items-center gap-1">
+                  <span class="material-symbols-outlined text-primary text-base">smartphone</span> Editando: <span class="text-primary ml-1">${activeFlagship.titleMain}</span>
+                </span>
+                <button type="button" onclick="saveAdminFlagshipConfig('${selectedAdminFlagshipKey}')" class="px-5 py-2 rounded-full crimson-btn text-white font-extrabold shadow-sm flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">save</span> Guardar Datos de este Modelo
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Título Principal (Línea 1 en grande)</label>
+                  <input id="adm-flag-title1" type="text" value="${activeFlagship.titleMain.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-extrabold text-base bg-white">
+                </div>
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Subtítulo con Gradiente Rojo (Línea 2)</label>
+                  <input id="adm-flag-title2" type="text" value="${activeFlagship.titleGradient.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-primary bg-white">
+                </div>
+              </div>
+
+              <div>
+                <label class="font-bold text-gray-700 block mb-1">Descripción Tecnológica</label>
+                <textarea id="adm-flag-desc" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-normal">${activeFlagship.description}</textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Etiqueta Badge Superior</label>
+                  <input id="adm-flag-badge" type="text" value="${activeFlagship.badge.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-mono text-[11px]">
+                </div>
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Texto Botón de Reserva</label>
+                  <input id="adm-flag-cta" type="text" value="${activeFlagship.ctaText.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-bold">
+                </div>
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">ID Producto Vinculado</label>
+                  <input id="adm-flag-target" type="text" value="${activeFlagship.targetId}" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-mono">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Especificación: Procesador</label>
+                  <input id="adm-flag-chip" type="text" value="${activeFlagship.specChip}" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white">
+                </div>
+                <div>
+                  <label class="font-bold text-gray-700 block mb-1">Especificación: Cámara</label>
+                  <input id="adm-flag-cam" type="text" value="${activeFlagship.specCam}" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. BARRA ROJA SUPERIOR (TOPBAR PROMO) -->
+          <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-3 shadow-xs">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-2.5">
+              <h4 class="text-sm font-extrabold text-gray-900">Barra Superior Anuncio Promocional (Topbar Roja)</h4>
+              <button type="button" onclick="cmsData.topbarText = document.getElementById('adm-hero-topbar').value; saveCMSState(); renderCMSHeroAndTopbar(); showToast('Barra superior actualizada')" class="px-4 py-1.5 rounded-full crimson-btn text-white font-bold text-xs">
+                Guardar Topbar
+              </button>
+            </div>
+            <div>
+              <label class="font-bold text-gray-600 block mb-1">Mensaje marquesina de la barra roja superior</label>
+              <input id="adm-hero-topbar" type="text" value="${cmsData.topbarText.replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold bg-white">
             </div>
           </div>
         </div>
       `;
     }
 
-    function saveAdminHeroConfig() {
-      cmsData.topbarText = document.getElementById('adm-hero-topbar').value;
-      const h = cmsData.hero;
-      h.authBadge = document.getElementById('adm-hero-auth').value;
-      h.clientsBadge = document.getElementById('adm-hero-clients').value;
-      h.ratingBadge = document.getElementById('adm-hero-rating').value;
-      h.titleMain = document.getElementById('adm-hero-title1').value;
-      h.titleGradient = document.getElementById('adm-hero-title2').value;
-      h.description = document.getElementById('adm-hero-desc').value;
+    function saveAdminFlagshipConfig(key) {
+      if (!cmsData.heroFlagships) {
+        cmsData.heroFlagships = JSON.parse(JSON.stringify(defaultCMSData.heroFlagships));
+      }
+      const item = cmsData.heroFlagships[key];
+      if (!item) return;
+
+      item.titleMain = document.getElementById('adm-flag-title1').value;
+      item.titleGradient = document.getElementById('adm-flag-title2').value;
+      item.description = document.getElementById('adm-flag-desc').value;
+      item.badge = document.getElementById('adm-flag-badge').value;
+      item.ctaText = document.getElementById('adm-flag-cta').value;
+      item.targetId = document.getElementById('adm-flag-target').value;
+      item.specChip = document.getElementById('adm-flag-chip').value;
+      item.specCam = document.getElementById('adm-flag-cam').value;
+
+      // Sincronizar también con la variable global de hero.js si está presente
+      if (typeof heroFlagshipsData !== 'undefined' && heroFlagshipsData[key]) {
+        Object.assign(heroFlagshipsData[key], item);
+      }
 
       saveCMSState();
-      renderCMSHeroAndTopbar();
-      showToast('¡Textos principales del Hero actualizados!');
+      if (typeof switchHeroFlagship === 'function') {
+        switchHeroFlagship(key);
+      }
+      showToast(`¡Datos de ${item.titleMain} guardados y actualizados en la web!`);
     }
 
     function saveAdminHeroSlide(idx) {
