@@ -2112,44 +2112,59 @@
 
       // Manejo de duracion de pase: Imagen fija (7.5s) o Video (su duracion o maximo 10s)
       const advanceSlide = () => {
-        if (adminModeActive) return;
-        if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+        // Pausar solo si la ventana del CMS está abierta activamente editando
+        const adminModal = document.getElementById('admin-cms-modal');
+        if (adminModal && !adminModal.classList.contains('hidden') && adminModal.classList.contains('flex')) {
+          return;
+        }
+        if (heroAutoSlideTimer) {
+          clearTimeout(heroAutoSlideTimer);
+          heroAutoSlideTimer = null;
+        }
         currentHeroSlideIndex = (currentHeroSlideIndex + 1) % cmsData.heroSlides.length;
         renderHeroBannerCarousel();
       };
 
       if (isVideo) {
         const videoEl = viewport.querySelector('video');
-        let fallbackMs = 10000;
+        let timerCleared = false;
+
+        const safeAdvance = () => {
+          if (timerCleared) return;
+          timerCleared = true;
+          advanceSlide();
+        };
 
         if (videoEl) {
-          // Intentar forzar play si el navegador lo detuvo
+          // Forzar reproducción sin sonido
+          videoEl.muted = true;
           videoEl.play().catch(() => {});
 
-          videoEl.onended = () => {
-            advanceSlide();
-          };
+          videoEl.onended = safeAdvance;
 
-          const checkDuration = () => {
+          const scheduleTimer = () => {
             const dur = videoEl.duration;
-            if (dur && !isNaN(dur) && isFinite(dur)) {
-              const targetMs = Math.min(Math.max(dur * 1000, 3000), 10000);
-              if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
-              heroAutoSlideTimer = setTimeout(advanceSlide, targetMs);
+            let waitMs = 8000;
+            if (dur && !isNaN(dur) && isFinite(dur) && dur > 0) {
+              waitMs = Math.min(Math.max(dur * 1000, 3000), 10000);
             }
+            if (heroAutoSlideTimer) clearTimeout(heroAutoSlideTimer);
+            heroAutoSlideTimer = setTimeout(safeAdvance, waitMs);
           };
 
           if (videoEl.readyState >= 1) {
-            checkDuration();
+            scheduleTimer();
           } else {
-            videoEl.onloadedmetadata = checkDuration;
+            videoEl.onloadedmetadata = scheduleTimer;
+            // Fallback si no carga metadatos en 10s
+            heroAutoSlideTimer = setTimeout(safeAdvance, 10000);
           }
+        } else {
+          heroAutoSlideTimer = setTimeout(safeAdvance, 8000);
         }
-
-        // Siempre tener un timeout de seguridad garantizado
-        heroAutoSlideTimer = setTimeout(advanceSlide, fallbackMs);
       } else {
-        heroAutoSlideTimer = setTimeout(advanceSlide, 7500);
+        // Imágenes: pasan automáticamente a los 6 segundos
+        heroAutoSlideTimer = setTimeout(advanceSlide, 6000);
       }
     }
 
