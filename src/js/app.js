@@ -2692,12 +2692,12 @@
             showToast(`🎬 Video (${data.sizeMB} MB) guardado permanentemente en el servidor`);
             return;
           } else {
-            const errJson = await res.json();
-            showToast('⚠️ Error subiendo video: ' + (errJson.error || 'Servidor no respondió'));
+            const errJson = await res.json().catch(() => ({}));
+            showToast('⚠️ Error subiendo video: ' + (errJson.error || res.statusText || 'Servidor respondió con error'));
           }
         } catch (err) {
           console.error('Error al subir video:', err);
-          showToast('⚠️ No se pudo subir el archivo de video al servidor.');
+          showToast('⚠️ Error de conexión: ' + (err.message || 'Servidor no respondió'));
         }
       } else {
         showToast('🚀 Optimizando imagen de banner a WebP...');
