@@ -147,13 +147,25 @@
   // 4. Filtrado y Ordenamiento
   function getFilteredItems() {
     return masterList.filter(item => {
-      // Filtro de tipo
-      if (activeType === 'devices' && item.itemType !== 'device') return false;
-      if (activeType === 'accessories' && item.itemType !== 'accessory') return false;
-
       // Filtro de categoría
       if (activeCategory !== 'all' && item.displayCategory !== activeCategory) {
         return false;
+      }
+
+      // Filtro de tipo (si se seleccionó una categoría específica como promociones o accesorios, anula el filtro restrictivo de tipo)
+      if (activeCategory === 'promociones') {
+        // En promociones siempre se muestran las ofertas
+        if (item.itemType !== 'offer') return false;
+      } else if (activeCategory === 'accesorios') {
+        // En accesorios siempre se muestran accesorios
+        if (item.itemType !== 'accessory') return false;
+      } else if (activeCategory !== 'all') {
+        // En categorías de dispositivos (iphone, mac, ipad, watch, etc.)
+        if (item.itemType !== 'device') return false;
+      } else {
+        // Categoría 'all': respetar pestañas Todos / Equipos / Accesorios
+        if (activeType === 'devices' && item.itemType !== 'device') return false;
+        if (activeType === 'accessories' && item.itemType !== 'accessory') return false;
       }
 
       // Filtro de búsqueda
@@ -349,16 +361,24 @@
       activeCategory = btn.getAttribute('data-cat');
       if (activeCategory === 'promociones') {
         activeType = 'all';
-        typeBtns.forEach(b => {
-          if (b.getAttribute('data-type') === 'all') {
-            b.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-            b.classList.remove('text-gray-600', 'font-medium');
-          } else {
-            b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-            b.classList.add('text-gray-600', 'font-medium');
-          }
-        });
+      } else if (activeCategory === 'accesorios') {
+        activeType = 'accessories';
+      } else if (activeCategory === 'all') {
+        activeType = 'all';
+      } else {
+        activeType = 'devices';
       }
+
+      // Sincronizar visualmente los botones de Tipo (Todos / Equipos / Accesorios)
+      typeBtns.forEach(b => {
+        if (b.getAttribute('data-type') === activeType) {
+          b.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
+          b.classList.remove('text-gray-600', 'font-medium');
+        } else {
+          b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
+          b.classList.add('text-gray-600', 'font-medium');
+        }
+      });
       if (catLabel) catLabel.innerText = activeCategory === 'promociones' ? '🔥 PROMOCIONES' : activeCategory.toUpperCase();
       currentPage = 1;
       renderCatalog();
