@@ -1318,6 +1318,7 @@
     // ============================================================================
     const CMS_STORAGE_KEY = 'redcover_cms_state_v9';
     const ADMIN_MASTER_PASSWORD = 'admin2026*';
+    let currentAdminPassword = localStorage.getItem('redcover_admin_pass') || 'admin2026*';
     let adminAuthenticated = false;
     let pendingAdminTabAfterAuth = null;
 
@@ -1849,23 +1850,44 @@
     let currentAccCategoryFilter = 'all';
     let inlineTextEditingEnabled = false;
 
-    function loadCMSState() {
+    async function loadCMSState() {
       try {
         const raw = localStorage.getItem(CMS_STORAGE_KEY);
-        if (!raw) return;
-        const parsed = JSON.parse(raw);
-        if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
-          allCatalogDevices = parsed.devices;
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
+            allCatalogDevices = parsed.devices;
+          }
+          if (parsed.cmsData) {
+            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+          }
         }
-        if (parsed.cmsData) {
-          cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+      } catch (e) {
+        console.warn('Fallback local inicial:', e);
+      }
+
+      try {
+        const res = await fetch('/api/catalog');
+        if (res.ok) {
+          const remote = await res.json();
+          if (remote.exists && remote.devices && remote.devices.length > 0) {
+            allCatalogDevices = remote.devices;
+            if (remote.cmsData) {
+              cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), remote.cmsData);
+            }
+            localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify({
+              devices: allCatalogDevices,
+              cmsData: cmsData
+            }));
+            renderAllCMSContent();
+          }
         }
       } catch (err) {
-        console.warn('Error cargando estado CMS:', err);
+        console.log('Modo offline/local activado');
       }
     }
 
-    function saveCMSState() {
+    async function saveCMSState() {
       try {
         const payload = JSON.stringify({
           devices: allCatalogDevices,
@@ -1874,22 +1896,27 @@
         localStorage.setItem(CMS_STORAGE_KEY, payload);
         updateAdminCounters();
       } catch (err) {
-        console.warn('Advertencia guardando en localStorage:', err);
-        try {
-          // Si ocurre QuotaExceededError, limpiar items temporales antiguos del origen e intentar guardar
-          const keysToClean = ['redcover_cms_state_v8', 'redcover_cms_state_v7', 'redcover_cms_backup'];
-          keysToClean.forEach(k => localStorage.removeItem(k));
-          const payload = JSON.stringify({
+        console.warn('Advertencia localStorage:', err);
+      }
+
+      try {
+        const response = await fetch('/api/catalog', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            password: (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD,
             devices: allCatalogDevices,
             cmsData: cmsData
-          });
-          localStorage.setItem(CMS_STORAGE_KEY, payload);
-          updateAdminCounters();
-          showToast('✅ Cambios guardados con éxito');
-        } catch (innerErr) {
-          console.error('Error crítico guardando en localStorage:', innerErr);
-          showToast('⚠️ Capacidad de almacenamiento del navegador al límite. Se recomienda usar URLs para algunas fotos.');
+          })
+        });
+
+        if (response.ok) {
+          console.log('☁️ Sincronizado en PostgreSQL');
+        } else {
+          console.warn('No se pudo persistir en PostgreSQL');
         }
+      } catch (networkErr) {
+        console.log('Error de red persistiendo en PostgreSQL:', networkErr);
       }
     }
 
@@ -2434,6 +2461,8 @@
 
       if (entered === ADMIN_MASTER_PASSWORD) {
         adminAuthenticated = true;
+        currentAdminPassword = entered;
+        localStorage.setItem('redcover_admin_pass', entered);
         closeAdminLoginModal();
         showToast('Acceso Administrador Autorizado');
         launchAuthenticatedAdminPanel(pendingAdminTabAfterAuth);
