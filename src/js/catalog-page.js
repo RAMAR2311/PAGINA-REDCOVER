@@ -330,14 +330,6 @@
             <div>
               <!-- Imagen del Producto / Accesorio / Promoción -->
               <div class="relative h-48 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 mb-4 flex items-center justify-center cursor-pointer" onclick="viewItemDetail('${item.id}')">
-                <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full ${isOffer ? 'bg-red-600 animate-pulse' : 'bg-red-600'} text-[10px] font-black text-white uppercase tracking-wider shadow-sm">
-                  ${item.badge || (isOffer ? '🔥 OFERTA' : 'Oficial Apple')}
-                </span>
-                ${item.topTag ? `
-                  <span class="absolute top-2.5 right-2.5 z-10 px-2 py-0.5 rounded-full bg-emerald-600 text-[9px] font-extrabold text-white uppercase tracking-wider shadow-sm">
-                    ${item.topTag}
-                  </span>
-                ` : ''}
                 <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
               </div>
 
@@ -366,7 +358,6 @@
                     <span class="text-base font-black ${isOffer ? 'text-red-600' : 'text-gray-900'}">${formatCOP(item.cleanPrice)}</span>
                   </div>
                 </div>
-                <p class="text-[11px] text-primary font-bold text-right">o 24 cuotas de ${calculate24(item.cleanPrice)}</p>
               </div>
 
               ${isDevice ? `
