@@ -4437,7 +4437,7 @@
       crimson: { name: 'Carmesí RedCover', hex: '#EF233C' }
     };
 
-    function getDeviceColorOptions(device) {
+    function getBaseDeviceColorOptions(device) {
       if (!device) return [];
 
       const id = (device.id || '').toLowerCase();
@@ -4692,6 +4692,30 @@
         { name: 'Negro (Black)', hex: '#18181B', img: baseImg },
         { name: 'Plata (Silver)', hex: '#E4E4E7', img: baseImg }
       ];
+    }
+
+    function applyCustomColorImages(rawColors, device) {
+      if (!Array.isArray(rawColors) || !device) return rawColors || [];
+      return rawColors.map((c, idx) => {
+        let custom = null;
+        if (Array.isArray(device.colorImages) && device.colorImages[idx]) {
+          custom = device.colorImages[idx];
+        } else if (device.colorImages && typeof device.colorImages === 'object' && device.colorImages[c.name]) {
+          custom = device.colorImages[c.name];
+        } else if (Array.isArray(device.colors) && device.colors[idx] && device.colors[idx].img) {
+          custom = device.colors[idx].img;
+        }
+        return {
+          name: c.name,
+          hex: c.hex,
+          img: custom || c.img || device.img
+        };
+      });
+    }
+
+    function getDeviceColorOptions(device) {
+      const baseColors = getBaseDeviceColorOptions(device);
+      return applyCustomColorImages(baseColors, device);
     }
 
     function parseDeviceVariants(device) {
@@ -8787,6 +8811,7 @@
         targetId = dev.id;
         cfg.baseDeviceId = dev.id;
       }
+      const devColors = getDeviceColorOptions(dev);
 
       container.innerHTML = `
         <div class="space-y-6 max-w-5xl mx-auto">
@@ -8860,23 +8885,71 @@
                 </div>
               </div>
 
-              <!-- 2. Imagen Principal del Escenario con Canvas Compresión -->
+              <!-- 2. Foto Principal en Escenario Hero & Fotos por Color -->
               <div class="bg-white p-5 rounded-2xl border border-gray-200 space-y-4">
-                <h5 class="text-xs font-black uppercase tracking-wider text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
-                  <span class="material-symbols-outlined text-primary text-base">photo_camera</span> 2. Foto Principal en Escenario Hero
-                </h5>
-                <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
-                  <img id="adm-i16-img-preview" src="${dev.img}" class="w-28 h-28 rounded-2xl object-contain bg-zinc-950/5 border border-gray-200 p-2 shrink-0">
-                  <div class="flex-1 w-full space-y-2">
-                    <label class="block font-bold text-gray-700">URL de la Imagen o Subir desde tu PC</label>
-                    <input id="adm-i16-img" type="text" value="${dev.img}" oninput="document.getElementById('adm-i16-img-preview').src=this.value" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-[11px]">
-                    <div class="flex flex-wrap items-center gap-2">
-                      <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1 shadow-sm transition-colors">
-                        <span class="material-symbols-outlined text-sm">upload_file</span> Subir Foto desde PC
-                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-i16-img', 'adm-i16-img-preview')">
-                      </label>
-                      <button type="button" onclick="document.getElementById('adm-i16-img').value=IMG_IPHONE_PRO; document.getElementById('adm-i16-img-preview').src=IMG_IPHONE_PRO;" class="px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-[10px] font-semibold">Foto iPhone 16 Pro</button>
+                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <h5 class="text-xs font-black uppercase tracking-wider text-gray-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base">photo_camera</span> 2. Foto Principal en Escenario Hero &amp; Fotos por Color
+                  </h5>
+                  <span class="text-[11px] font-bold text-gray-500">${devColors.length} Colores Oficiales</span>
+                </div>
+
+                <!-- Foto Principal Base (Portada) -->
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
+                  <span class="text-[11px] font-extrabold text-gray-800 block">Foto Principal Predeterminada</span>
+                  <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
+                    <img id="adm-i16-img-preview" src="${dev.img}" class="w-24 h-24 rounded-2xl object-contain bg-white border border-gray-200 p-2 shrink-0 shadow-2xs">
+                    <div class="flex-1 w-full space-y-2">
+                      <label class="block font-bold text-gray-700 text-[11px]">URL de la Imagen o Subir desde tu PC</label>
+                      <input id="adm-i16-img" type="text" value="${dev.img}" oninput="document.getElementById('adm-i16-img-preview').src=this.value" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-[11px] bg-white font-mono">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1 shadow-sm transition-colors">
+                          <span class="material-symbols-outlined text-sm">upload_file</span> Subir Foto desde PC
+                          <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-i16-img', 'adm-i16-img-preview')">
+                        </label>
+                        <button type="button" onclick="document.getElementById('adm-i16-img').value=IMG_IPHONE_PRO; document.getElementById('adm-i16-img-preview').src=IMG_IPHONE_PRO;" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700 text-[10px] font-semibold">Foto Oficial</button>
+                      </div>
                     </div>
+                  </div>
+                </div>
+
+                <!-- Fotos Individuales por cada Color del Teléfono -->
+                <div class="space-y-3 pt-1">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h6 class="text-xs font-black text-gray-900 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm text-primary">palette</span> Fotos según el Color del Celular
+                      </h6>
+                      <p class="text-[11px] text-gray-500">Al seleccionar un color en el configurador, el escenario hero y las miniaturas cambiarán a la foto que elijas aquí.</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+                    ${devColors.map((col, idx) => `
+                      <div class="p-3 rounded-xl border border-gray-200 bg-white space-y-2 shadow-2xs hover:border-gray-300 transition-all">
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-1.5">
+                          <div class="flex items-center gap-2 min-w-0">
+                            <span class="w-4 h-4 rounded-full border border-gray-300 shrink-0 shadow-2xs" style="background-color: ${col.hex};"></span>
+                            <span class="text-xs font-bold text-gray-900 truncate" title="${col.name}">${col.name}</span>
+                          </div>
+                          <span class="text-[10px] font-mono text-gray-400 shrink-0">Color #${idx + 1}</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                          <img id="adm-i16-col-preview-${idx}" src="${col.img}" class="w-16 h-16 rounded-xl object-contain bg-gray-50 border border-gray-200 p-1 shrink-0">
+                          <div class="flex-1 space-y-1.5 min-w-0">
+                            <input id="adm-i16-col-img-${idx}" type="text" value="${col.img}" oninput="document.getElementById('adm-i16-col-preview-${idx}').src=this.value" placeholder="URL de imagen para este color..." class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 text-[11px] bg-white font-mono">
+                            <div class="flex items-center gap-2">
+                              <label class="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-primary text-white text-[10px] font-bold cursor-pointer inline-flex items-center gap-1 transition-colors shadow-2xs">
+                                <span class="material-symbols-outlined text-xs">upload_file</span> Subir Foto
+                                <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-i16-col-img-${idx}', 'adm-i16-col-preview-${idx}')">
+                              </label>
+                              <button type="button" onclick="document.getElementById('adm-i16-col-img-${idx}').value=document.getElementById('adm-i16-img').value; document.getElementById('adm-i16-col-preview-${idx}').src=document.getElementById('adm-i16-img').value;" class="px-2 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 text-[10px] font-medium">Usar Portada</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    `).join('')}
                   </div>
                 </div>
               </div>
@@ -8970,6 +9043,22 @@
       cfg.stockLocation = document.getElementById('adm-i16-location').value.trim();
       cfg.guaranteeText = document.getElementById('adm-i16-guarantee').value.trim();
       cfg.installmentText = document.getElementById('adm-i16-installment').value.trim();
+
+      // Guardar fotos personalizadas por color
+      dev.colorImages = Array.isArray(dev.colorImages) ? dev.colorImages : [];
+      const currentDevColors = getDeviceColorOptions(dev);
+      currentDevColors.forEach((col, idx) => {
+        const inputEl = document.getElementById(`adm-i16-col-img-${idx}`);
+        if (inputEl) {
+          const val = inputEl.value.trim();
+          dev.colorImages[idx] = val || col.img || dev.img;
+        }
+      });
+      if (Array.isArray(dev.colors)) {
+        dev.colors.forEach((c, idx) => {
+          if (dev.colorImages[idx]) c.img = dev.colorImages[idx];
+        });
+      }
 
       saveCMSState();
 

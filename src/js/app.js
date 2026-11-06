@@ -4320,6 +4320,302 @@
     }
 
     
+    // Paletas de acabados y colores por categoría / modelo
+    const COLOR_PALETTES = {
+      desert: { name: 'Titanio Desierto', hex: '#C5B29F', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM' },
+      natural: { name: 'Titanio Natural', hex: '#9B968F', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9Vbp8i7NcqJPqqwjnib7N5kojQ12qGEvJgIy1wgV3-32WO0IHIp3LcK4Ii52b8UHFqKq4nvW7NQozR1cqvE9Qi9YJvFMfEglIWYtutmYXcOCAHk7kKQ1fAZlk8G6cnyTsgxyq8-axeHjd0Kz_VsZNFP_I2DfY1IYtOchlgLNey5Za6e4zt0u21jvBsIQptmckP2q5sEk66EL0qAqhSdjjneDIX9ws4Uhh05RrKjuOfyasw9Bl-f51' },
+      white: { name: 'Titanio Blanco', hex: '#E8E8E6', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKpi-7626i_BJoAesODslUPkoHF04It4WQfIRb2gDCzY-XPTt0M4AWO3WivVPvllUKPqKO1qhdw_EkyK6IsQgqWFmrYCyz666iavAdl6p3SM5Rd7J82vr0lZhy3YDHo9sPYN5PQUCyWDPW9pdYh6VzFQp3QVDOIaAfKgJXAz2givYj5_BDYXPsmJsCXvxGgS-JuiYI6ziK3EGAf1dO_3gPjpA3eRj_FrcGJ__DTBAC1ChH96IN4DBt' },
+      black: { name: 'Titanio Negro', hex: '#343332', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMv6ybGEqgj4q7JB0905STGqvKkmeSjkOwJKHIsW3lZQs4t7J9z3Amool_EzZPhTuq47-VhCiR1KPVV_-avHCio8xc3fr8wI60m9tDqXziuhwgWSjPM1LTVzemNhlB7eDtEfWXuEjN91U0oRvU3KQv-a9Q-5xFxWdZlqEEJzeVWzKrhgXeEuRV3YEQMRl6YOAUBssA02c0rygPJNmzDND3-L9BBigYBXR_GsW5GtkuUN7mn8VyrNqi' },
+      silver: { name: 'Plata Estelar', hex: '#E2E4E5' },
+      spacegray: { name: 'Gris Espacial', hex: '#535150' },
+      midnight: { name: 'Medianoche', hex: '#2E3642' },
+      starlight: { name: 'Blanco Estelar', hex: '#F0EAD6' },
+      gold: { name: 'Oro Champán', hex: '#F5E7D0' },
+      blue: { name: 'Azul Titanio', hex: '#3B4459' },
+      green: { name: 'Verde Salvia', hex: '#879788' },
+      crimson: { name: 'Carmesí RedCover', hex: '#EF233C' }
+    };
+
+    function getBaseDeviceColorOptions(device) {
+      if (!device) return [];
+
+      const id = (device.id || '').toLowerCase();
+      const title = (device.title || '').toLowerCase();
+      const cat = (device.category || '').toLowerCase();
+      const baseImg = device.img;
+
+      // 1. Serie iPhone 11
+      if (id.includes('iphone-11-pro') || title.includes('iphone 11 pro')) {
+        return [
+          { name: 'Gris espacial (Space Gray)', hex: '#4C4B49', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E2E4E1', img: baseImg },
+          { name: 'Oro (Gold)', hex: '#FAD7BD', img: baseImg },
+          { name: 'Verde noche (Midnight Green)', hex: '#4E5851', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-11') || title.includes('iphone 11')) {
+        return [
+          { name: 'Negro (Black)', hex: '#1F2024', img: baseImg },
+          { name: 'Blanco (White)', hex: '#F9F6EF', img: baseImg },
+          { name: 'Verde (Green - menta pastel)', hex: '#AEE1CD', img: baseImg },
+          { name: 'Amarillo (Yellow)', hex: '#FFE680', img: baseImg },
+          { name: 'Morado / Malva (Purple)', hex: '#D1CDDA', img: baseImg },
+          { name: 'Rojo ((PRODUCT)RED)', hex: '#BA0C2F', img: baseImg }
+        ];
+      }
+
+      // 2. Serie iPhone 12
+      if (id.includes('iphone-12-pro') || title.includes('iphone 12 pro')) {
+        return [
+          { name: 'Grafito (Graphite)', hex: '#504F4B', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E5E5E2', img: baseImg },
+          { name: 'Oro (Gold)', hex: '#F9E5C9', img: baseImg },
+          { name: 'Azul pacífico (Pacific Blue)', hex: '#2F4B54', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-12') || title.includes('iphone 12')) {
+        return [
+          { name: 'Negro (Black)', hex: '#1D1D1F', img: baseImg },
+          { name: 'Blanco (White)', hex: '#F9F6EF', img: baseImg },
+          { name: 'Azul (Blue)', hex: '#273C4C', img: baseImg },
+          { name: 'Verde (Green)', hex: '#DBEFE1', img: baseImg },
+          { name: 'Morado (Purple)', hex: '#BDB7DC', img: baseImg },
+          { name: 'Rojo ((PRODUCT)RED)', hex: '#D62934', img: baseImg }
+        ];
+      }
+
+      // 3. Serie iPhone 13
+      if (id.includes('iphone-13-pro') || title.includes('iphone 13 pro')) {
+        return [
+          { name: 'Grafito (Graphite)', hex: '#54524F', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E9EAE8', img: baseImg },
+          { name: 'Oro (Gold)', hex: '#FAE7CF', img: baseImg },
+          { name: 'Azul Sierra (Sierra Blue)', hex: '#9BB5CE', img: baseImg },
+          { name: 'Verde alpino (Alpine Green)', hex: '#576856', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-13') || title.includes('iphone 13')) {
+        return [
+          { name: 'Medianoche (Midnight)', hex: '#1C232E', img: baseImg },
+          { name: 'Blanco estelar (Starlight)', hex: '#F8F7F2', img: baseImg },
+          { name: 'Azul (Blue)', hex: '#3B6B88', img: baseImg },
+          { name: 'Rosa (Pink)', hex: '#FADDD7', img: baseImg },
+          { name: 'Verde (Green)', hex: '#3B5240', img: baseImg },
+          { name: 'Rojo ((PRODUCT)RED)', hex: '#C82333', img: baseImg }
+        ];
+      }
+
+      // 4. iPhone 14 / Pro
+      if (id.includes('iphone-14-pro') || title.includes('iphone 14 pro')) {
+        return [
+          { name: 'Negro espacial (Space Black)', hex: '#38363B', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#F1F2ED', img: baseImg },
+          { name: 'Oro (Gold)', hex: '#F4E8CE', img: baseImg },
+          { name: 'Morado oscuro (Deep Purple)', hex: '#483F50', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-14') || title.includes('iphone 14')) {
+        return [
+          { name: 'Medianoche (Midnight)', hex: '#1E232A', img: baseImg },
+          { name: 'Blanco estelar (Starlight)', hex: '#FAF7F2', img: baseImg },
+          { name: 'Azul (Blue)', hex: '#A0B4C7', img: baseImg },
+          { name: 'Morado (Purple)', hex: '#E3DFF2', img: baseImg },
+          { name: 'Amarillo (Yellow)', hex: '#F9E378', img: baseImg },
+          { name: 'Rojo ((PRODUCT)RED)', hex: '#DE263E', img: baseImg }
+        ];
+      }
+
+      // 5. iPhone 15 / Pro
+      if (id.includes('iphone-15-pro') || title.includes('iphone 15 pro')) {
+        return [
+          { name: 'Titanio negro (Black Titanium)', hex: '#3C3B3A', img: baseImg },
+          { name: 'Titanio blanco (White Titanium)', hex: '#E3E4E5', img: baseImg },
+          { name: 'Titanio azul (Blue Titanium)', hex: '#3B4454', img: baseImg },
+          { name: 'Titanio natural (Natural Titanium)', hex: '#888681', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-15') || title.includes('iphone 15')) {
+        return [
+          { name: 'Negro (Black)', hex: '#35393B', img: baseImg },
+          { name: 'Azul (Blue)', hex: '#D4E0E6', img: baseImg },
+          { name: 'Verde (Green)', hex: '#D3E1D4', img: baseImg },
+          { name: 'Amarillo (Yellow)', hex: '#F3E9C4', img: baseImg },
+          { name: 'Rosa (Pink)', hex: '#EAD2D4', img: baseImg }
+        ];
+      }
+
+      // 6. iPhone 16 / Plus / Pro
+      if (id === 'iphone-16-pro' || id === 'iphone-16-pro-max' || title.includes('iphone 16 pro')) {
+        return [
+          { name: 'Titanio negro (Black Titanium)', hex: '#343538', img: COLOR_PALETTES.black.img },
+          { name: 'Titanio blanco (White Titanium)', hex: '#E2E3E5', img: COLOR_PALETTES.white.img },
+          { name: 'Titanio natural (Natural Titanium)', hex: '#9A958D', img: COLOR_PALETTES.natural.img },
+          { name: 'Titanio desierto (Desert Titanium)', hex: '#C5A58A', img: COLOR_PALETTES.desert.img }
+        ];
+      }
+      if (id.includes('iphone-16') || title.includes('iphone 16')) {
+        return [
+          { name: 'Negro (Black)', hex: '#2F3337', img: baseImg },
+          { name: 'Blanco (White)', hex: '#F3F3F5', img: baseImg },
+          { name: 'Rosa (Pink)', hex: '#EA8CA5', img: baseImg },
+          { name: 'Verde azulado (Teal)', hex: '#84BDAC', img: baseImg },
+          { name: 'Ultramarino (Ultramarine)', hex: '#4B6BB5', img: baseImg }
+        ];
+      }
+
+      // 7. iPhone 17 / Air / Pro
+      if (id.includes('iphone-17-air') || title.includes('iphone 17 air')) {
+        return [
+          { name: 'Azul cielo (Sky Blue)', hex: '#87CEEB', img: baseImg },
+          { name: 'Dorado claro (Light Gold)', hex: '#F5E6AB', img: baseImg },
+          { name: 'Blanco nube (Cloud White)', hex: '#F5F6F8', img: baseImg },
+          { name: 'Negro espacial (Space Black)', hex: '#2B2D42', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-17-pro') || title.includes('iphone 17 pro')) {
+        return [
+          { name: 'Naranja cósmico (Cosmic Orange)', hex: '#E05A2B', img: baseImg },
+          { name: 'Azul oscuro (Dark Blue)', hex: '#1E3A8A', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E2E8F0', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-17') || title.includes('iphone 17')) {
+        return [
+          { name: 'Lavanda (Lavender)', hex: '#C8BFE7', img: baseImg },
+          { name: 'Verde salvia (Sage)', hex: '#9EAB9D', img: baseImg },
+          { name: 'Azul neblina (Mist Blue)', hex: '#A7BED3', img: baseImg },
+          { name: 'Blanco (White)', hex: '#F8F9FA', img: baseImg },
+          { name: 'Negro (Black)', hex: '#212529', img: baseImg }
+        ];
+      }
+
+      // 8. iPhone 18 / Duo
+      if (id.includes('iphone-duo') || id.includes('fold') || title.includes('duo')) {
+        return [
+          { name: 'Blanco estelar (Starlight)', hex: '#F8FAFC', img: baseImg },
+          { name: 'Cielo nocturno (Night Sky)', hex: '#0F172A', img: baseImg }
+        ];
+      }
+      if (id.includes('iphone-18') || title.includes('iphone 18')) {
+        return [
+          { name: 'Negro carbón (Black)', hex: '#18181B', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E4E4E7', img: baseImg },
+          { name: 'Azul glaciar (Glacier)', hex: '#7DD3FC', img: baseImg },
+          { name: 'Borgoña (Burgundy)', hex: '#831843', img: baseImg }
+        ];
+      }
+
+      // 9. MacBooks
+      if (id.includes('macbook-neo') || title.includes('macbook neo')) {
+        return [
+          { name: 'Plata (Silver)', hex: '#CBD5E1', img: baseImg },
+          { name: 'Rosa nube (Cloud Pink)', hex: '#F472B6', img: baseImg },
+          { name: 'Cítrico (Citrus)', hex: '#FBBF24', img: baseImg },
+          { name: 'Índigo (Indigo)', hex: '#6366F1', img: baseImg }
+        ];
+      }
+      if (id.includes('macbook-air') || title.includes('macbook air')) {
+        return [
+          { name: 'Azul cielo (Sky Blue)', hex: '#93C5FD', img: baseImg },
+          { name: 'Medianoche (Midnight)', hex: '#1E293B', img: baseImg },
+          { name: 'Blanco estelar (Starlight)', hex: '#F1F5F9', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E2E8F0', img: baseImg }
+        ];
+      }
+      if (id.includes('macbook-pro') || title.includes('macbook pro')) {
+        return [
+          { name: 'Negro espacial (Space Black)', hex: '#1E1E24', img: baseImg },
+          { name: 'Plata (Silver)', hex: '#E2E8F0', img: baseImg }
+        ];
+      }
+
+      // 10. AirPods
+      if (cat === 'airpods' || id.includes('airpods') || title.includes('airpods')) {
+        return [
+          { name: 'Blanco (White)', hex: '#FFFFFF', img: baseImg }
+        ];
+      }
+
+      // 11. Apple Watch
+      if (id.includes('ultra') || title.includes('ultra')) {
+        return [
+          { name: 'Titanio natural (Natural Titanium)', hex: '#A8A29E', img: baseImg },
+          { name: 'Titanio negro (Black Titanium)', hex: '#1C1917', img: baseImg }
+        ];
+      }
+      if (cat === 'watch' || id.includes('watch') || title.includes('watch') || title.includes('serie')) {
+        return [
+          { name: 'Aluminio Negro azabache (Jet Black)', hex: '#0A0A0A', img: baseImg },
+          { name: 'Aluminio Oro rosa (Rose Gold)', hex: '#E8B4B8', img: baseImg },
+          { name: 'Aluminio Plata (Silver)', hex: '#E2E8F0', img: baseImg },
+          { name: 'Aluminio Gris espacial (Space Grey)', hex: '#4A4E69', img: baseImg },
+          { name: 'Titanio Natural (Natural)', hex: '#A8A29E', img: baseImg },
+          { name: 'Titanio Oro (Gold)', hex: '#D4AF37', img: baseImg },
+          { name: 'Titanio Pizarra (Slate)', hex: '#475569', img: baseImg }
+        ];
+      }
+
+      // 12. Samsung
+      if (id.includes('s26') || title.includes('s26')) {
+        return [
+          { name: 'Violeta Cobalto (Cobalt Violet)', hex: '#581C87', img: baseImg },
+          { name: 'Azul Cielo (Sky Blue)', hex: '#38BDF8', img: baseImg },
+          { name: 'Negro (Black)', hex: '#18181B', img: baseImg },
+          { name: 'Blanco (White)', hex: '#F8FAFC', img: baseImg },
+          { name: 'Gris (Gray)', hex: '#64748B', img: baseImg },
+          { name: 'Oro Rosa (Pink Gold)', hex: '#F43F5E', img: baseImg }
+        ];
+      }
+      if (id.includes('s25') || title.includes('s25')) {
+        return [
+          { name: 'Titanio Negro (Titanium Black)', hex: '#18181B', img: baseImg },
+          { name: 'Titanio Gris (Titanium Gray)', hex: '#71717A', img: baseImg },
+          { name: 'Titanio Plata Azul (Titanium Silverblue)', hex: '#94A3B8', img: baseImg },
+          { name: 'Titanio Blanco Plata (Titanium Whitesilver)', hex: '#F1F5F9', img: baseImg },
+          { name: 'Titanio Negro Intenso (Titanium Jetblack)', hex: '#09090B', img: baseImg },
+          { name: 'Titanio Verde Jade (Titanium Jadegreen)', hex: '#059669', img: baseImg },
+          { name: 'Titanio Oro Rosa (Titanium Pinkgold)', hex: '#FB7185', img: baseImg }
+        ];
+      }
+
+      if (Array.isArray(device.colors) && device.colors.length > 0) {
+        return device.colors.map(c => ({
+          name: c.name,
+          hex: c.hex,
+          img: c.img || baseImg
+        }));
+      }
+
+      return [
+        { name: 'Negro (Black)', hex: '#18181B', img: baseImg },
+        { name: 'Plata (Silver)', hex: '#E4E4E7', img: baseImg }
+      ];
+    }
+
+    function applyCustomColorImages(rawColors, device) {
+      if (!Array.isArray(rawColors) || !device) return rawColors || [];
+      return rawColors.map((c, idx) => {
+        let custom = null;
+        if (Array.isArray(device.colorImages) && device.colorImages[idx]) {
+          custom = device.colorImages[idx];
+        } else if (device.colorImages && typeof device.colorImages === 'object' && device.colorImages[c.name]) {
+          custom = device.colorImages[c.name];
+        } else if (Array.isArray(device.colors) && device.colors[idx] && device.colors[idx].img) {
+          custom = device.colors[idx].img;
+        }
+        return {
+          name: c.name,
+          hex: c.hex,
+          img: custom || c.img || device.img
+        };
+      });
+    }
+
+    function getDeviceColorOptions(device) {
+      const baseColors = getBaseDeviceColorOptions(device);
+      return applyCustomColorImages(baseColors, device);
+    }
+
     // ==========================================
     // TAB 7: CONFIGURACIÓN DIRECTA DE IPHONE-16-PRO.HTML
     // ==========================================
@@ -4346,6 +4642,7 @@
         targetId = dev.id;
         cfg.baseDeviceId = dev.id;
       }
+      const devColors = getDeviceColorOptions(dev);
 
       container.innerHTML = `
         <div class="space-y-6 max-w-5xl mx-auto">
@@ -4419,23 +4716,71 @@
                 </div>
               </div>
 
-              <!-- 2. Imagen Principal del Escenario con Canvas Compresión -->
+              <!-- 2. Foto Principal en Escenario Hero & Fotos por Color -->
               <div class="bg-white p-5 rounded-2xl border border-gray-200 space-y-4">
-                <h5 class="text-xs font-black uppercase tracking-wider text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
-                  <span class="material-symbols-outlined text-primary text-base">photo_camera</span> 2. Foto Principal en Escenario Hero
-                </h5>
-                <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
-                  <img id="adm-i16-img-preview" src="${dev.img}" class="w-28 h-28 rounded-2xl object-contain bg-zinc-950/5 border border-gray-200 p-2 shrink-0">
-                  <div class="flex-1 w-full space-y-2">
-                    <label class="block font-bold text-gray-700">URL de la Imagen o Subir desde tu PC</label>
-                    <input id="adm-i16-img" type="text" value="${dev.img}" oninput="document.getElementById('adm-i16-img-preview').src=this.value" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-[11px]">
-                    <div class="flex flex-wrap items-center gap-2">
-                      <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1 shadow-sm transition-colors">
-                        <span class="material-symbols-outlined text-sm">upload_file</span> Subir Foto desde PC
-                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-i16-img', 'adm-i16-img-preview')">
-                      </label>
-                      <button type="button" onclick="document.getElementById('adm-i16-img').value=IMG_IPHONE_PRO; document.getElementById('adm-i16-img-preview').src=IMG_IPHONE_PRO;" class="px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-[10px] font-semibold">Foto iPhone 16 Pro</button>
+                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <h5 class="text-xs font-black uppercase tracking-wider text-gray-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base">photo_camera</span> 2. Foto Principal en Escenario Hero &amp; Fotos por Color
+                  </h5>
+                  <span class="text-[11px] font-bold text-gray-500">${devColors.length} Colores Oficiales</span>
+                </div>
+
+                <!-- Foto Principal Base (Portada) -->
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
+                  <span class="text-[11px] font-extrabold text-gray-800 block">Foto Principal Predeterminada</span>
+                  <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
+                    <img id="adm-i16-img-preview" src="${dev.img}" class="w-24 h-24 rounded-2xl object-contain bg-white border border-gray-200 p-2 shrink-0 shadow-2xs">
+                    <div class="flex-1 w-full space-y-2">
+                      <label class="block font-bold text-gray-700 text-[11px]">URL de la Imagen o Subir desde tu PC</label>
+                      <input id="adm-i16-img" type="text" value="${dev.img}" oninput="document.getElementById('adm-i16-img-preview').src=this.value" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-[11px] bg-white font-mono">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <label class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-primary text-white text-[11px] font-bold cursor-pointer inline-flex items-center gap-1 shadow-sm transition-colors">
+                          <span class="material-symbols-outlined text-sm">upload_file</span> Subir Foto desde PC
+                          <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-i16-img', 'adm-i16-img-preview')">
+                        </label>
+                        <button type="button" onclick="document.getElementById('adm-i16-img').value=IMG_IPHONE_PRO; document.getElementById('adm-i16-img-preview').src=IMG_IPHONE_PRO;" class="px-2.5 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700 text-[10px] font-semibold">Foto Oficial</button>
+                      </div>
                     </div>
+                  </div>
+                </div>
+
+                <!-- Fotos Individuales por cada Color del Teléfono -->
+                <div class="space-y-3 pt-1">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h6 class="text-xs font-black text-gray-900 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm text-primary">palette</span> Fotos según el Color del Celular
+                      </h6>
+                      <p class="text-[11px] text-gray-500">Al seleccionar un color en el configurador, el escenario hero y las miniaturas cambiarán a la foto que elijas aquí.</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+                    ${devColors.map((col, idx) => `
+                      <div class="p-3 rounded-xl border border-gray-200 bg-white space-y-2 shadow-2xs hover:border-gray-300 transition-all">
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-1.5">
+                          <div class="flex items-center gap-2 min-w-0">
+                            <span class="w-4 h-4 rounded-full border border-gray-300 shrink-0 shadow-2xs" style="background-color: ${col.hex};"></span>
+                            <span class="text-xs font-bold text-gray-900 truncate" title="${col.name}">${col.name}</span>
+                          </div>
+                          <span class="text-[10px] font-mono text-gray-400 shrink-0">Color #${idx + 1}</span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                          <img id="adm-i16-col-preview-${idx}" src="${col.img}" class="w-16 h-16 rounded-xl object-contain bg-gray-50 border border-gray-200 p-1 shrink-0">
+                          <div class="flex-1 space-y-1.5 min-w-0">
+                            <input id="adm-i16-col-img-${idx}" type="text" value="${col.img}" oninput="document.getElementById('adm-i16-col-preview-${idx}').src=this.value" placeholder="URL de imagen para este color..." class="w-full px-2.5 py-1.5 rounded-lg border border-gray-300 text-[11px] bg-white font-mono">
+                            <div class="flex items-center gap-2">
+                              <label class="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-primary text-white text-[10px] font-bold cursor-pointer inline-flex items-center gap-1 transition-colors shadow-2xs">
+                                <span class="material-symbols-outlined text-xs">upload_file</span> Subir Foto
+                                <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-i16-col-img-${idx}', 'adm-i16-col-preview-${idx}')">
+                              </label>
+                              <button type="button" onclick="document.getElementById('adm-i16-col-img-${idx}').value=document.getElementById('adm-i16-img').value; document.getElementById('adm-i16-col-preview-${idx}').src=document.getElementById('adm-i16-img').value;" class="px-2 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 text-[10px] font-medium">Usar Portada</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    `).join('')}
                   </div>
                 </div>
               </div>
@@ -4529,6 +4874,22 @@
       cfg.stockLocation = document.getElementById('adm-i16-location').value.trim();
       cfg.guaranteeText = document.getElementById('adm-i16-guarantee').value.trim();
       cfg.installmentText = document.getElementById('adm-i16-installment').value.trim();
+
+      // Guardar fotos personalizadas por color
+      dev.colorImages = Array.isArray(dev.colorImages) ? dev.colorImages : [];
+      const currentDevColors = getDeviceColorOptions(dev);
+      currentDevColors.forEach((col, idx) => {
+        const inputEl = document.getElementById(`adm-i16-col-img-${idx}`);
+        if (inputEl) {
+          const val = inputEl.value.trim();
+          dev.colorImages[idx] = val || col.img || dev.img;
+        }
+      });
+      if (Array.isArray(dev.colors)) {
+        dev.colors.forEach((c, idx) => {
+          if (dev.colorImages[idx]) c.img = dev.colorImages[idx];
+        });
+      }
 
       saveCMSState();
 
