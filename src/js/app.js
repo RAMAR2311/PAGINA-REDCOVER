@@ -673,12 +673,6 @@
         showToast('Tu bolsa está vacía. Añade un producto primero.');
         return;
       }
-
-      if (cartFinancingMode) {
-        sendCartFinancingWhatsApp();
-        return;
-      }
-
       closeCart();
       openCheckoutModal();
     });
@@ -758,48 +752,51 @@
     function submitOrderCheckout(e) {
       e.preventDefault();
       const customer = {
-        name: document.getElementById('chk-name').value,
-        doc: document.getElementById('chk-doc').value,
-        phone: document.getElementById('chk-phone').value,
-        email: document.getElementById('chk-email').value,
+        name: (document.getElementById('chk-name').value || '').trim(),
+        doc: (document.getElementById('chk-doc').value || '').trim(),
+        phone: (document.getElementById('chk-phone').value || '').trim(),
+        email: (document.getElementById('chk-email').value || '').trim(),
         delivery: document.getElementById('chk-delivery').value,
-        address: document.getElementById('chk-address').value
+        address: (document.getElementById('chk-address').value || '').trim()
       };
 
-      if (selectedCheckoutMethod === 'financing') {
-        sendCartFinancingWhatsApp(customer);
-        closeCheckoutModal();
+      if (!customer.name || !customer.doc || !customer.phone || !customer.address) {
+        showToast('Por favor completa todos los datos obligatorios.');
         return;
       }
 
-      const orderId = 'RC-2026-' + Math.floor(1000 + Math.random() * 9000);
       const netTotal = getCartNetTotal();
-      lastCompletedOrder = {
-        orderId,
-        customer,
-        items: [...cart],
-        canje: appliedCanje,
-        total: netTotal,
-        method: selectedCheckoutMethod === 'pse' ? 'Débito Bancario PSE' : 'Tarjeta Crédito/Débito Contado'
-      };
+      const itemsStr = cart.map(i => `• ${i.title} (x${i.qty}) - ${formatCOP(i.price * i.qty)}`).join('%0A');
+      let msg = `Hola RedCover Colombia 👋 Deseo *PAGAR AHORA* mi pedido:%0A%0A` +
+        `👤 *DATOS DEL CLIENTE:*%0A` +
+        `• Nombre: ${encodeURIComponent(customer.name)}%0A` +
+        `• Cédula/NIT: ${encodeURIComponent(customer.doc)}%0A` +
+        `• WhatsApp / Celular: ${encodeURIComponent(customer.phone)}%0A` +
+        `• Correo: ${encodeURIComponent(customer.email)}%0A` +
+        `• Modalidad de Entrega: ${encodeURIComponent(customer.delivery)}%0A` +
+        `• Dirección: ${encodeURIComponent(customer.address)}%0A%0A` +
+        `🛍️ *PRODUCTOS:*%0A${itemsStr}%0A`;
 
-      document.getElementById('success-order-id').innerText = `Pedido #${orderId}`;
-      document.getElementById('success-order-details').innerHTML = `
-        <p><strong>Cliente:</strong> ${customer.name} (CC/NIT: ${customer.doc})</p>
-        <p><strong>Entrega:</strong> ${customer.delivery}</p>
-        <p><strong>Dirección:</strong> ${customer.address}</p>
-        <p><strong>Medio de Pago:</strong> ${lastCompletedOrder.method}</p>
-        <p><strong>Total Pagado:</strong> <span class="text-primary font-extrabold">${formatCOP(netTotal)}</span></p>
-      `;
+      if (appliedCanje) {
+        msg += `%0A🔄 *Plan Canje Aplicado:*%0A` +
+          `• Equipo entregado: ${encodeURIComponent(appliedCanje.device)}%0A` +
+          `• Descuento: -${encodeURIComponent(formatCOP(appliedCanje.amount))}%0A`;
+      }
 
-      // Clear cart after successful order
+      msg += `%0A💰 *TOTAL A PAGAR:* ${encodeURIComponent(formatCOP(netTotal))}%0A%0A` +
+        `Quedo atento para que un asesor me atienda y realizar el pago.`;
+
+      const waPhone = (typeof cmsData !== 'undefined' && cmsData.whatsappNumber) ? cmsData.whatsappNumber : '573001234567';
+      window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
+
+      closeCheckoutModal();
+      showToast('Redirigiendo a WhatsApp con tu pedido...');
+
+      // Clear cart
       cart = [];
       appliedCanje = null;
       saveCartState();
       updateCartUI();
-
-      document.getElementById('checkout-form-step').classList.add('hidden');
-      document.getElementById('checkout-success-step').classList.remove('hidden');
     }
 
     function sendOrderReceiptWhatsApp() {
