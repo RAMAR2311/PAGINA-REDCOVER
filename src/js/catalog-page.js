@@ -338,7 +338,7 @@
                     ${item.topTag}
                   </span>
                 ` : ''}
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
+                <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
               </div>
 
               <!-- Metadatos de Garantía y Stock -->

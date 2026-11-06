@@ -87,7 +87,7 @@
           <div>
             <div class="relative h-48 rounded-2xl overflow-hidden bg-zinc-950 mb-4 flex items-center justify-center cursor-pointer" onclick="openProductModal('${dev.id}')">
               <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full bg-red-600/90 text-[10px] font-bold text-white uppercase">${dev.badge}</span>
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${dev.title}" src="${dev.img}">
+              <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${dev.title}" src="${dev.img}">
             </div>
             <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 uppercase">
               <span>${dev.warranty || 'Garantía Oficial 1 Año'}</span>
@@ -2408,7 +2408,7 @@
             <div class="w-full h-44 rounded-xl bg-zinc-950 overflow-hidden relative flex items-center justify-center mb-4 border border-zinc-700/60">
               <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-1 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase shadow-sm">${off.discountBadge}</span>
               <span class="absolute bottom-2 right-2 z-10 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-amber-400 border border-amber-500/30">${off.stockLeftText}</span>
-              <img src="${off.img}" alt="${off.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="${off.img}" alt="${off.title}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500">
             </div>
 
             <!-- Etiqueta y Textos Bien Alineados -->
@@ -2723,7 +2723,7 @@
             <div>
               <div class="relative h-44 rounded-xl overflow-hidden bg-zinc-900 mb-4 flex items-center justify-center">
                 <span class="absolute top-2 left-2 z-10 px-2.5 py-0.5 rounded-full ${acc.badgeColor || 'bg-red-600/90'} text-[10px] font-bold text-white uppercase">${acc.badge}</span>
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${acc.title}" src="${acc.img}">
+                <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${acc.title}" src="${acc.img}">
               </div>
               <h3 class="text-sm font-bold text-gray-900">${acc.title}</h3>
               <p class="text-xs text-gray-500 mt-1">${acc.desc}</p>
