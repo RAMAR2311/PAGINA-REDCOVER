@@ -494,36 +494,36 @@
       <div class="lg:col-span-7 lg:sticky lg:top-36 space-y-6">
         
         <!-- Hero Device Stage con fondo claro premium -->
-        <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-3xl glass-tier-2 flex flex-col items-center justify-center p-6 overflow-hidden group bg-gradient-to-b from-gray-50/80 via-white to-gray-50/50 border border-gray-200/90 shadow-sm">
+        <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] min-h-[420px] sm:min-h-[480px] rounded-3xl glass-tier-2 flex flex-col items-center justify-center pt-16 pb-16 px-6 overflow-hidden group bg-gradient-to-b from-gray-50/80 via-white to-gray-50/50 border border-gray-200/90 shadow-sm">
           <!-- Ambient light glow -->
           <div id="hero-stage-glow" class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(239,35,60,0.08)_0%,_rgba(255,255,255,0)_70%)] pointer-events-none transition-all duration-500"></div>
 
           <!-- Live Spec Badges overlay -->
-          <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 text-[11px] font-mono text-gray-800 shadow-sm" id="hero-stock-pill">
+          <div class="absolute top-4 left-4 z-20 flex flex-col gap-2 pointer-events-none">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 text-[11px] font-mono text-gray-800 shadow-sm" id="hero-stock-pill">
               <span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span>
               En Stock Colombia
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/90 backdrop-blur-md border border-red-200 text-[11px] font-semibold text-primary shadow-sm" id="hero-badge-pill">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/95 backdrop-blur-md border border-red-200 text-[11px] font-semibold text-primary shadow-sm" id="hero-badge-pill">
               <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
               <span id="hero-badge-text">Apple Intelligence Ready</span>
             </span>
           </div>
 
           <!-- Color Label Indicator on Stage -->
-          <div class="absolute top-4 right-4 z-10">
-            <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/90 text-gray-800 border border-gray-200 uppercase tracking-wider font-semibold shadow-sm" id="hero-finish-tag">
+          <div class="absolute top-4 right-4 z-20 pointer-events-none">
+            <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/95 text-gray-800 border border-gray-200 uppercase tracking-wider font-semibold shadow-sm" id="hero-finish-tag">
               Titanio Desierto
             </span>
           </div>
 
-          <!-- Main Interactive Device Presentation -->
-          <div class="relative z-10 w-full h-full flex items-center justify-center transition-all duration-500 transform group-hover:scale-[1.02]">
-            <img class="max-h-[360px] sm:max-h-[420px] w-auto object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 rounded-2xl" id="hero-main-device-image" alt="Dispositivo RedCover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM"/>
+          <!-- Main Interactive Device Presentation con padding vertical protector -->
+          <div class="relative z-10 w-full h-full flex items-center justify-center p-4 my-auto transition-all duration-500 transform group-hover:scale-[1.02]">
+            <img class="max-h-[260px] sm:max-h-[320px] md:max-h-[350px] w-auto max-w-[85%] object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)] transition-all duration-300 rounded-2xl" id="hero-main-device-image" alt="Dispositivo RedCover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM"/>
           </div>
 
           <!-- Highlight Pip at bottom of stage -->
-          <div class="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between px-4 py-2.5 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200 text-xs shadow-sm">
+          <div class="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-gray-200 text-xs shadow-sm">
             <div class="flex items-center gap-2 text-gray-800 truncate pr-2">
               <span class="material-symbols-outlined text-primary text-[18px] shrink-0">verified</span>
               <span id="hero-bottom-spec-1" class="truncate font-medium">Equipo 100% Original Sellado con Garantía Oficial</span>
