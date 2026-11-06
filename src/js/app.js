@@ -1732,72 +1732,134 @@
         {
           id: 'acc-cubo-20w',
           category: 'carga',
-          badge: 'Original Apple',
-          badgeColor: 'bg-red-600/90',
+          badge: 'Carga Rápida',
+          badgeColor: 'bg-red-600',
           title: 'Cubo de Carga 20W USB-C Original Apple',
           desc: 'Adaptador de corriente USB-C de 20W original sellado en caja. Carga rápida del 0 al 50% en 30 minutos para iPhone y iPad.',
           price: 119000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7T2_GEO_US?wid=800&hei=800&fmt=jpeg&qlt=90'
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU7T2_GEO_US?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPhone 11 a 18 Pro, iPad, Apple Watch'
         },
         {
           id: 'acc-cubo-40w',
           category: 'carga',
-          badge: 'Carga Ultra Rápida',
-          badgeColor: 'bg-zinc-900/90',
-          title: 'Cubo de Carga 40W USB-C Original Apple',
-          desc: 'Adaptador de corriente original de 40W para máxima velocidad de carga en iPhone 18 Pro, 17 Pro, 16 Pro, iPad Pro y MacBook Air.',
+          badge: 'Carga Ultra Rápida Dual',
+          badgeColor: 'bg-zinc-900',
+          title: 'Cubo de Carga 40W USB-C Dual Original Apple',
+          desc: 'Adaptador de corriente dual original de 40W para máxima velocidad de carga simultánea en iPhone, iPad Pro y MacBook Air.',
           price: 189000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNWM3?wid=800&hei=800&fmt=jpeg&qlt=90'
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNWM3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'MacBook Air, iPad Pro, iPhone 16/17/18'
+        },
+        {
+          id: 'acc-magsafe-25w',
+          category: 'carga',
+          badge: 'MagSafe 25W Qi2',
+          badgeColor: 'bg-red-600',
+          title: 'Cargador MagSafe Oficial Apple (1m / 25W)',
+          desc: 'Alineación magnética perfecta para carga ultra rápida de 25W compatible con iPhone 12 en adelante y estuches MagSafe.',
+          price: 249000,
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX6X3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPhone 12 a 18 Pro Max, AirPods con MagSafe'
+        },
+        {
+          id: 'acc-airpods-pro-2',
+          category: 'audio',
+          badge: 'Cancelación Pro',
+          badgeColor: 'bg-zinc-900',
+          title: 'AirPods Pro 2 (USB-C MagSafe con Altavoz)',
+          desc: 'Cancelación activa de ruido hasta 2 veces superior, audio espacial personalizado y estuche con altavoz de búsqueda precisa.',
+          price: 1049000,
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'Todos los dispositivos Apple y Bluetooth'
+        },
+        {
+          id: 'acc-pencil-pro',
+          category: 'pencil',
+          badge: 'Gama Creativa Pro',
+          badgeColor: 'bg-red-600',
+          title: 'Apple Pencil Pro Original con Respuesta Háptica',
+          desc: 'Gesto de apretar, rotación del barril, respuesta háptica, puntero flotante y localización precisa en la app Encontrar.',
+          price: 699000,
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX2D3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPad Pro M4, iPad Air M2/M4'
         },
         {
           id: 'acc-pencil-usbc',
           category: 'pencil',
           badge: 'Original Apple',
-          badgeColor: 'bg-zinc-900/90',
+          badgeColor: 'bg-zinc-900',
           title: 'Apple Pencil (USB-C) Original',
           desc: 'Precisión milimétrica, baja latencia, sensibilidad a la inclinación y acople magnético para cargar y enlazar por USB-C.',
           price: 449000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MUWA3?wid=800&hei=800&fmt=jpeg&qlt=90'
-        },
-        {
-          id: 'acc-pencil-pro',
-          category: 'pencil',
-          badge: 'Gama Pro',
-          badgeColor: 'bg-red-600/90',
-          title: 'Apple Pencil Pro Original',
-          desc: 'Gesto de apretar, rotación de barril, respuesta háptica, puntero flotante y rastreo en la app Encontrar. Original sellado.',
-          price: 649000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MX2D3?wid=800&hei=800&fmt=jpeg&qlt=90'
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MUWA3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPad 10ma gen, iPad Air, iPad Pro USB-C'
         },
         {
           id: 'acc-cable-usbc',
           category: 'cables',
-          badge: 'Trenzado Original',
-          badgeColor: 'bg-emerald-600/90',
-          title: 'Cable de Carga USB-C a USB-C Original Apple',
-          desc: 'Cable trenzado original de alta resistencia para carga rápida y sincronización en iPhone 15, 16, 17, 18, iPad y MacBook.',
+          badge: 'Trenzado 60W/240W',
+          badgeColor: 'bg-emerald-600',
+          title: 'Cable de Carga USB-C a USB-C Original Apple (1m)',
+          desc: 'Diseño trenzado de alta durabilidad para carga rápida y transferencia de datos confiable en iPhone 15/16/17/18 y Mac.',
           price: 99000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU2G3?wid=800&hei=800&fmt=jpeg&qlt=90'
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU2G3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPhone 15/16/17/18, iPad Pro/Air, MacBook Pro/Air'
         },
         {
           id: 'acc-cable-lightning',
           category: 'cables',
           badge: 'Original Certificado',
-          badgeColor: 'bg-zinc-900/90',
-          title: 'Cable USB-C a Lightning Original Apple',
-          desc: 'Cable original de carga rápida para iPhone 11, 12, 13, 14 y AirPods con conector Lightning. 100% original con garantía.',
-          price: 99000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MM0A3?wid=800&hei=800&fmt=jpeg&qlt=90'
+          badgeColor: 'bg-zinc-900',
+          title: 'Cable USB-C a Lightning Original Apple (1m)',
+          desc: 'Conecta tu iPhone con conector Lightning a un cargador de pared USB-C para aprovechar la carga rápida oficial.',
+          price: 89000,
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MM0A3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPhone 11, 12, 13, 14, AirPods y Magic Mouse'
         },
         {
-          id: 'acc-airtag',
+          id: 'acc-airtag-single',
           category: 'airtag',
-          badge: 'Rastreo Preciso',
-          badgeColor: 'bg-red-600/90',
-          title: 'AirTag Original Apple (Unidad & Pack x4)',
-          desc: 'Rastreador inteligente con tecnología Ultra Banda Ancha y red Encontrar de Apple para localizar tus llaves, maletas o vehículo.',
+          badge: 'Rastreo UWB',
+          badgeColor: 'bg-red-600',
+          title: 'Apple AirTag (Unidad Individual)',
+          desc: 'Rastreador inteligente oficial con chip U1/U2 y red Encontrar de Apple para localizar tus llaves, maletas o vehículo.',
           price: 159000,
-          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airtag-single-select-202104?wid=800&hei=800&fmt=jpeg&qlt=90'
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airtag-single-select-202104?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPhone 11 en adelante con chip U1/U2'
+        },
+        {
+          id: 'acc-airtag-pack4',
+          category: 'airtag',
+          badge: 'Pack x4 Ahorro',
+          badgeColor: 'bg-red-600',
+          title: 'Apple AirTag (Pack de 4 Unidades Oficial)',
+          desc: 'Protege todo lo importante: morrales, maletas de viaje, vehículos y llaves con el pack cuádruple de AirTags Apple.',
+          price: 549000,
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airtag-4pack-select-202104?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'iPhone con iOS 14.5 en adelante'
+        },
+        {
+          id: 'acc-funda-carbon',
+          category: 'fundas',
+          badge: 'Kevlar MagSafe',
+          badgeColor: 'bg-zinc-900',
+          title: 'Funda Carbon Armor Pro MagSafe Kevlar',
+          desc: 'Protección militar ultraliviana en fibra de carbono auténtica con imanes de neodimio N52 compatibles con cargadores MagSafe.',
+          price: 189000,
+          img: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=800&q=80',
+          compat: 'iPhone 15 Pro, 16 Pro, 17 Pro, 18 Pro'
+        },
+        {
+          id: 'acc-correa-alpine',
+          category: 'correas',
+          badge: 'Titanio & Tejido',
+          badgeColor: 'bg-amber-600',
+          title: 'Correa Apple Watch Ultra Alpine Loop Oficial',
+          desc: 'Tejido continuo de alta resistencia sin costuras con gancho en G de titanio resistente a la corrosión para entrenamientos extremos.',
+          price: 219000,
+          img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQEG3?wid=800&hei=800&fmt=jpeg&qlt=90',
+          compat: 'Apple Watch 44mm, 45mm, 46mm y Ultra 49mm'
         }
       ],
       canjeConfig: {
@@ -1918,6 +1980,7 @@
           cmsData: cmsData
         });
         localStorage.setItem(CMS_STORAGE_KEY, payload);
+        localStorage.setItem('redcover_cms_data', payload);
         updateAdminCounters();
       } catch (err) {
         console.warn('Advertencia localStorage:', err);
@@ -1948,7 +2011,11 @@
         await fetch('/api/sync-to-files', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ devices: allCatalogDevices })
+          body: JSON.stringify({
+            devices: allCatalogDevices,
+            accessories: (cmsData && cmsData.accessories && cmsData.accessories.length > 0) ? cmsData.accessories : undefined,
+            offers: (cmsData && cmsData.offers && cmsData.offers.length > 0) ? cmsData.offers : undefined
+          })
         });
       } catch (e) {}
     }

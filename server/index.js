@@ -207,6 +207,21 @@ app.post('/api/catalog', async (req, res) => {
       return res.status(400).json({ error: 'Formato de dispositivos inválido' });
     }
 
+    // Proteger accesorios y ofertas contra sobreescritura accidental o vacía
+    const safeCMS = cmsData ? { ...cmsData } : {};
+    try {
+      const prevRes = await pool.query('SELECT cms_data FROM redcover_store_state WHERE state_key = $1', ['primary_state']);
+      if (prevRes.rows.length > 0 && prevRes.rows[0].cms_data) {
+        const prevCms = prevRes.rows[0].cms_data;
+        if ((!safeCMS.accessories || safeCMS.accessories.length === 0) && prevCms.accessories && prevCms.accessories.length > 0) {
+          safeCMS.accessories = prevCms.accessories;
+        }
+        if ((!safeCMS.offers || safeCMS.offers.length === 0) && prevCms.offers && prevCms.offers.length > 0) {
+          safeCMS.offers = prevCms.offers;
+        }
+      }
+    } catch(e) {}
+
     const query = `
       INSERT INTO redcover_store_state (state_key, devices, cms_data, updated_at)
       VALUES ($1, $2, $3, CURRENT_TIMESTAMP)
@@ -221,7 +236,7 @@ app.post('/api/catalog', async (req, res) => {
     const result = await pool.query(query, [
       'primary_state',
       JSON.stringify(devices),
-      JSON.stringify(cmsData || {})
+      JSON.stringify(safeCMS)
     ]);
 
     console.log(`[${new Date().toISOString()}] Catálogo actualizado con éxito en PostgreSQL`);
@@ -245,19 +260,53 @@ app.get('/api/health', (req, res) => {
 // Iniciar servidor
 
 // Guardar cambios directamente en src/data/catalog.js para que queden fijos en el proyecto
-app.post('/api/sync-to-files', (req, res) => {
+app.post('/api/sync-to-files', async (req, res) => {
   try {
-    const { devices } = req.body;
+    const { devices, accessories: bodyAccessories, offers: bodyOffers } = req.body;
     if (!devices || !Array.isArray(devices)) {
       return res.status(400).json({ error: 'Dispositivos inválidos' });
     }
     const filePath = path.join(__dirname, '..', 'src', 'data', 'catalog.js');
     let existingContent = fs.readFileSync(filePath, 'utf8');
 
-    // Extraer todo lo que está después de allCatalogDevices (accesorios, ofertas y exports)
+    // 1. Determinar accesorios y ofertas a persistir
+    let finalAccessories = (Array.isArray(bodyAccessories) && bodyAccessories.length > 0) ? bodyAccessories : null;
+    let finalOffers = (Array.isArray(bodyOffers) && bodyOffers.length > 0) ? bodyOffers : null;
+
+    // Si no vinieron en el cuerpo, obtenerlos de PostgreSQL para garantizar no perderlos jamás
+    if (!finalAccessories || !finalOffers) {
+      try {
+        const pgRes = await pool.query('SELECT cms_data FROM redcover_store_state WHERE state_key = $1', ['primary_state']);
+        if (pgRes.rows.length > 0 && pgRes.rows[0].cms_data) {
+          const cmsData = pgRes.rows[0].cms_data;
+          if (!finalAccessories && Array.isArray(cmsData.accessories) && cmsData.accessories.length > 0) {
+            finalAccessories = cmsData.accessories;
+          }
+          if (!finalOffers && Array.isArray(cmsData.offers) && cmsData.offers.length > 0) {
+            finalOffers = cmsData.offers;
+          }
+        }
+      } catch (dbErr) {
+        console.warn('Advertencia DB al sincronizar archivos:', dbErr.message);
+      }
+    }
+
+    // Extraer tail de accesorios y ofertas
     const accIdx = existingContent.indexOf('const allCatalogAccessories = [');
     let accessoriesAndOffersTail = '';
-    if (accIdx !== -1) {
+
+    if (finalAccessories && finalOffers) {
+      accessoriesAndOffersTail = '\n\nconst allCatalogAccessories = ' + JSON.stringify(finalAccessories, null, 2) + ';\n\n'
+        + 'const allCatalogOffers = ' + JSON.stringify(finalOffers, null, 2) + ';\n\n'
+        + 'if (typeof window !== "undefined") {\n'
+        + '  window.allCatalogDevices = allCatalogDevices;\n'
+        + '  window.allCatalogAccessories = allCatalogAccessories;\n'
+        + '  window.allCatalogOffers = allCatalogOffers;\n'
+        + '}\n\n'
+        + 'if (typeof module !== "undefined" && module.exports) {\n'
+        + '  module.exports = { allCatalogDevices, allCatalogAccessories, allCatalogOffers };\n'
+        + '}\n';
+    } else if (accIdx !== -1) {
       accessoriesAndOffersTail = '\n\n' + existingContent.slice(accIdx).trim() + '\n';
     } else {
       accessoriesAndOffersTail = `
@@ -277,7 +326,7 @@ if (typeof module !== 'undefined' && module.exports) {
     const fileHeader = '    const IMG_IPHONE_PRO = "assets/img/iphone-pro.png";\n    const IMG_IPHONE_16 = "assets/img/iphone-16.png";\n    const IMG_MACBOOK = "assets/img/macbook.png";\n    const IMG_IPAD = "assets/img/ipad.png";\n    const IMG_WATCH = "assets/img/watch.png";\n    const IMG_AIRPODS = "assets/img/airpods.png";\n    const IMG_MAGSAFE = "assets/img/magsafe.png";\n    const IMG_CASE = "assets/img/case.png";\n\n    let allCatalogDevices = ';
     const fileContent = fileHeader + JSON.stringify(devices, null, 2) + ';' + accessoriesAndOffersTail;
     fs.writeFileSync(filePath, fileContent, 'utf8');
-    console.log('✅ Archivo src/data/catalog.js actualizado permanentemente en disco conservando accesorios y ofertas');
+    console.log('✅ Archivo src/data/catalog.js sincronizado permanentemente en disco conservando dispositivos, accesorios y promociones');
     res.json({ success: true });
   } catch (err) {
     console.error('Error escribiendo archivo:', err);

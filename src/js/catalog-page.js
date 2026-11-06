@@ -1,60 +1,106 @@
 // =========================================================================
-// CATALOGO.HTML — LÓGICA DE FILTRADO AVANZADO, SIDEBAR Y PRODUCTOS
+// CATALOGO.HTML — LÓGICA DE FILTRADO AVANZADO, SIDEBAR Y PRODUCTOS REDCOVER
 // =========================================================================
 
 (function() {
   // 1. Cargar Estado de Datos y Carrito
   let cms = null;
   try {
-    const raw = localStorage.getItem('redcover_cms_data');
+    const raw = localStorage.getItem('redcover_cms_state_v9') || localStorage.getItem('redcover_cms_data');
     if (raw) cms = JSON.parse(raw);
   } catch (e) {}
 
-  // Dispositivos
-  const devices = (cms && Array.isArray(cms.devices) && cms.devices.length > 0)
+  const cmsInner = (cms && cms.cmsData) ? cms.cmsData : (cms || {});
+
+  // Dispositivos (85 oficiales)
+  let devices = (cms && Array.isArray(cms.devices) && cms.devices.length > 0)
     ? cms.devices
     : (typeof allCatalogDevices !== 'undefined' ? allCatalogDevices : []);
 
-  // Accesorios (Prioridad: CMS -> allCatalogAccessories [12 items oficiales] -> defaultCMSData)
-  const accessories = (cms && Array.isArray(cms.accessories) && cms.accessories.length > 0)
-    ? cms.accessories
+  // Accesorios (12 items oficiales)
+  let accessories = (cmsInner && Array.isArray(cmsInner.accessories) && cmsInner.accessories.length > 0)
+    ? cmsInner.accessories
     : (typeof allCatalogAccessories !== 'undefined' && Array.isArray(allCatalogAccessories) && allCatalogAccessories.length > 0
         ? allCatalogAccessories
-        : (typeof defaultCMSData !== 'undefined' && Array.isArray(defaultCMSData.accessories) ? defaultCMSData.accessories : []));
+        : []);
 
-  // Promociones y Combos Oficiales
-  const offers = (cms && Array.isArray(cms.offers) && cms.offers.length > 0)
-    ? cms.offers
+  // Promociones y Combos Oficiales (6 combos oficiales)
+  let offers = (cmsInner && Array.isArray(cmsInner.offers) && cmsInner.offers.length > 0)
+    ? cmsInner.offers
     : (typeof allCatalogOffers !== 'undefined' && Array.isArray(allCatalogOffers) && allCatalogOffers.length > 0
         ? allCatalogOffers
-        : (typeof defaultCMSData !== 'undefined' && Array.isArray(defaultCMSData.offers) ? defaultCMSData.offers : []));
+        : []);
 
-  // Unificar catálogo completo con etiquetas de tipo
-  const masterList = [
-    ...devices.map(d => ({
-      ...d,
-      itemType: 'device',
-      displayCategory: d.category || 'iphone',
-      cleanPrice: Number(d.price) || 0
-    })),
-    ...accessories.map(a => ({
-      ...a,
-      itemType: 'accessory',
-      displayCategory: 'accesorios',
-      badge: 'Accesorio Original',
-      shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía oficial Apple de 1 año.',
-      cleanPrice: Number(a.price) || 0
-    })),
-    ...offers.map(o => ({
-      ...o,
-      itemType: 'offer',
-      displayCategory: 'promociones',
-      badge: o.discountBadge || '🔥 Oferta Especial',
-      shortDesc: o.desc || 'Combo especial con descuento directo, garantía oficial y financiación a 24 cuotas.',
-      cleanPrice: Number(o.price) || 0,
-      oldPrice: Number(o.oldPrice) || (Number(o.price) * 1.2)
-    }))
-  ];
+  // Unificar catálogo completo con etiquetas de tipo y prioridades
+  let masterList = [];
+
+  function rebuildMasterList() {
+    masterList = [
+      // 1. Promociones destacadas van primero (Prioridad 1 para que salgan arriba en "Todas" y al limpiar filtros)
+      ...offers.map(o => ({
+        ...o,
+        itemType: 'offer',
+        displayCategory: 'promociones',
+        badge: o.discountBadge || '🔥 OFERTA REDCOVER',
+        shortDesc: o.desc || 'Combo especial con descuento directo, garantía oficial y financiación a 24 cuotas.',
+        cleanPrice: Number(o.price) || 0,
+        oldPrice: Number(o.oldPrice) || (Number(o.price) * 1.2),
+        priority: 1
+      })),
+      // 2. Dispositivos oficiales (Prioridad 2)
+      ...devices.map(d => ({
+        ...d,
+        itemType: 'device',
+        displayCategory: d.category || 'iphone',
+        badge: d.badge || 'Oficial Apple',
+        cleanPrice: Number(d.price) || 0,
+        priority: 2
+      })),
+      // 3. Accesorios oficiales (Prioridad 3)
+      ...accessories.map(a => ({
+        ...a,
+        itemType: 'accessory',
+        displayCategory: 'accesorios',
+        badge: a.badge || 'Accesorio Original',
+        shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía oficial Apple de 1 año.',
+        cleanPrice: Number(a.price) || 0,
+        priority: 3
+      }))
+    ];
+  }
+
+  rebuildMasterList();
+
+  // Sincronización remota desde PostgreSQL para garantizar datos frescos
+  async function syncFromRemote() {
+    try {
+      const res = await fetch('/api/catalog');
+      if (res.ok) {
+        const data = await res.json();
+        let changed = false;
+        if (data.exists && Array.isArray(data.devices) && data.devices.length > 0) {
+          devices = data.devices;
+          changed = true;
+        }
+        if (data.cmsData && Array.isArray(data.cmsData.accessories) && data.cmsData.accessories.length > 0) {
+          accessories = data.cmsData.accessories;
+          changed = true;
+        }
+        if (data.cmsData && Array.isArray(data.cmsData.offers) && data.cmsData.offers.length > 0) {
+          offers = data.cmsData.offers;
+          changed = true;
+        }
+        if (changed) {
+          rebuildMasterList();
+          updateCategoryCounts();
+          renderCatalog();
+        }
+      }
+    } catch(err) {
+      console.log('Modo local catálogo activo');
+    }
+  }
+  syncFromRemote();
 
   // Carrito de compras
   let cart = JSON.parse(localStorage.getItem('redcover_cart') || '[]');
@@ -97,14 +143,26 @@
   const ITEMS_PER_PAGE = 12;
 
   const urlType = urlParams.get('tipo');
-  if (urlType === 'productos' || urlType === 'equipos') activeType = 'devices';
-  else if (urlType === 'accesorios') { activeType = 'accessories'; activeCategory = 'accesorios'; }
+  if (urlType === 'equipos') {
+    activeType = 'devices';
+  } else if (urlType === 'accesorios') {
+    activeType = 'accessories';
+    activeCategory = 'accesorios';
+  } else {
+    // Si viene de 'productos' o sin parámetro, mostrar todo el catálogo (Todos)
+    activeType = 'all';
+  }
 
   const urlCat = urlParams.get('cat') || urlParams.get('categoria');
   if (urlCat) {
     activeCategory = urlCat.toLowerCase();
-    if (activeCategory === 'accesorios') activeType = 'accessories';
-    else if (activeCategory === 'promociones') activeType = 'all';
+    if (activeCategory === 'accesorios') {
+      activeType = 'accessories';
+    } else if (activeCategory === 'promociones') {
+      activeType = 'all';
+    } else if (activeCategory !== 'all') {
+      activeType = 'devices';
+    }
   }
 
   const urlQuery = urlParams.get('q');
@@ -129,6 +187,44 @@
   if (topSearch && searchQuery) topSearch.value = searchQuery;
   if (sidebarSearch && searchQuery) sidebarSearch.value = searchQuery;
 
+  // Sincronizar visualmente botones de filtro
+  function syncFilterUI() {
+    // Tipo de Producto (Todos / Equipos / Accesorios)
+    typeBtns.forEach(b => {
+      const isMatch = b.getAttribute('data-type') === activeType;
+      b.classList.toggle('active', isMatch);
+      b.classList.toggle('bg-white', isMatch);
+      b.classList.toggle('text-gray-900', isMatch);
+      b.classList.toggle('shadow-2xs', isMatch);
+      b.classList.toggle('font-bold', isMatch);
+      b.classList.toggle('text-gray-600', !isMatch);
+      b.classList.toggle('font-medium', !isMatch);
+    });
+
+    // Categoría
+    catBtns.forEach(b => {
+      const cat = b.getAttribute('data-cat');
+      const isMatch = cat === activeCategory;
+      const isPromo = cat === 'promociones';
+
+      if (isMatch) {
+        b.classList.add('active', 'bg-red-50', 'text-primary', 'font-bold');
+        b.classList.remove('text-gray-700', 'font-medium');
+      } else {
+        b.classList.remove('active', 'bg-red-50', 'text-primary', 'font-bold');
+        if (!isPromo) {
+          b.classList.add('text-gray-700', 'font-medium');
+        }
+      }
+    });
+
+    if (catLabel) {
+      if (activeCategory === 'promociones') catLabel.innerText = '🔥 PROMOCIONES';
+      else if (activeCategory === 'all') catLabel.innerText = 'TODAS';
+      else catLabel.innerText = activeCategory.toUpperCase();
+    }
+  }
+
   // Actualizar contadores de categorías en el sidebar
   function updateCategoryCounts() {
     const counts = { all: masterList.length };
@@ -143,32 +239,26 @@
     });
   }
   updateCategoryCounts();
+  syncFilterUI();
 
   // 4. Filtrado y Ordenamiento
   function getFilteredItems() {
     return masterList.filter(item => {
-      // Filtro de categoría
-      if (activeCategory !== 'all' && item.displayCategory !== activeCategory) {
-        return false;
-      }
-
-      // Filtro de tipo (si se seleccionó una categoría específica como promociones o accesorios, anula el filtro restrictivo de tipo)
+      // 1. Filtro de Categoría específico
       if (activeCategory === 'promociones') {
-        // En promociones siempre se muestran las ofertas
         if (item.itemType !== 'offer') return false;
       } else if (activeCategory === 'accesorios') {
-        // En accesorios siempre se muestran accesorios
         if (item.itemType !== 'accessory') return false;
       } else if (activeCategory !== 'all') {
-        // En categorías de dispositivos (iphone, mac, ipad, watch, etc.)
-        if (item.itemType !== 'device') return false;
+        // En categorías de equipos específicos (iphone, mac, ipad, watch, airpods, samsung, gafas)
+        if (item.displayCategory !== activeCategory) return false;
       } else {
-        // Categoría 'all': respetar pestañas Todos / Equipos / Accesorios
+        // activeCategory === 'all': Respetar pestañas Todos / Equipos / Accesorios
         if (activeType === 'devices' && item.itemType !== 'device') return false;
         if (activeType === 'accessories' && item.itemType !== 'accessory') return false;
       }
 
-      // Filtro de búsqueda
+      // 2. Filtro de Búsqueda
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase();
         const t = (item.title || '').toLowerCase();
@@ -182,7 +272,8 @@
       if (activeSort === 'price-asc') return a.cleanPrice - b.cleanPrice;
       if (activeSort === 'price-desc') return b.cleanPrice - a.cleanPrice;
       if (activeSort === 'name-asc') return (a.title || '').localeCompare(b.title || '');
-      return 0; // featured default
+      // 'featured': promociones primero (priority 1), luego equipos (priority 2), luego accesorios (priority 3)
+      return (a.priority || 2) - (b.priority || 2);
     });
   }
 
@@ -204,7 +295,8 @@
         chipsHtml += `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-50 text-primary text-[10px] font-bold border border-red-200">${typeLabel} <button onclick="resetTypeFilter()" class="hover:text-black">×</button></span>`;
       }
       if (activeCategory !== 'all') {
-        chipsHtml += `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800 text-[10px] font-bold border border-gray-200">${activeCategory.toUpperCase()} <button onclick="resetCatFilter()" class="hover:text-black">×</button></span>`;
+        const catBadgeText = activeCategory === 'promociones' ? '🔥 PROMOCIONES' : activeCategory.toUpperCase();
+        chipsHtml += `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800 text-[10px] font-bold border border-gray-200">${catBadgeText} <button onclick="resetCatFilter()" class="hover:text-black">×</button></span>`;
       }
       if (searchQuery) {
         chipsHtml += `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-zinc-900 text-white text-[10px] font-bold">"${searchQuery}" <button onclick="resetSearchFilter()" class="hover:text-red-400">×</button></span>`;
@@ -274,7 +366,7 @@
                     <span class="text-base font-black ${isOffer ? 'text-red-600' : 'text-gray-900'}">${formatCOP(item.cleanPrice)}</span>
                   </div>
                 </div>
-                <p class="text-[11px] text-primary font-bold text-right">o 24 cuotas de ${calculate24(item.cleanPrice)} (0%)</p>
+                <p class="text-[11px] text-primary font-bold text-right">o 24 cuotas de ${calculate24(item.cleanPrice)}</p>
               </div>
 
               <div class="grid grid-cols-2 gap-2">
@@ -332,15 +424,18 @@
   // Filtro de tipo
   typeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      typeBtns.forEach(b => {
-        b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-        b.classList.add('text-gray-600', 'font-medium');
-      });
-      btn.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-      btn.classList.remove('text-gray-600', 'font-medium');
-
       activeType = btn.getAttribute('data-type');
+      if (activeType === 'all') {
+        if (activeCategory === 'accesorios') activeCategory = 'all';
+      } else if (activeType === 'devices') {
+        if (activeCategory === 'promociones' || activeCategory === 'accesorios') {
+          activeCategory = 'all';
+        }
+      } else if (activeType === 'accessories') {
+        activeCategory = 'accesorios';
+      }
       currentPage = 1;
+      syncFilterUI();
       renderCatalog();
     });
   });
@@ -348,16 +443,6 @@
   // Filtro de Categoría
   catBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      catBtns.forEach(b => {
-        const isPromo = b.getAttribute('data-cat') === 'promociones';
-        b.classList.remove('active', 'bg-red-50', 'text-primary', 'font-bold');
-        if (!isPromo) {
-          b.classList.add('text-gray-700', 'font-medium');
-        }
-      });
-      btn.classList.add('active', 'bg-red-50', 'text-primary', 'font-bold');
-      btn.classList.remove('text-gray-700', 'font-medium');
-
       activeCategory = btn.getAttribute('data-cat');
       if (activeCategory === 'promociones') {
         activeType = 'all';
@@ -368,19 +453,8 @@
       } else {
         activeType = 'devices';
       }
-
-      // Sincronizar visualmente los botones de Tipo (Todos / Equipos / Accesorios)
-      typeBtns.forEach(b => {
-        if (b.getAttribute('data-type') === activeType) {
-          b.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-          b.classList.remove('text-gray-600', 'font-medium');
-        } else {
-          b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-          b.classList.add('text-gray-600', 'font-medium');
-        }
-      });
-      if (catLabel) catLabel.innerText = activeCategory === 'promociones' ? '🔥 PROMOCIONES' : activeCategory.toUpperCase();
       currentPage = 1;
+      syncFilterUI();
       renderCatalog();
     });
   });
@@ -407,7 +481,7 @@
     renderCatalog();
   });
 
-  // Limpiar filtros
+  // Limpiar filtros (Restablece todo al catálogo completo oficial)
   if (clearBtn) clearBtn.addEventListener('click', () => {
     resetAllFilters();
   });
@@ -422,43 +496,21 @@
     if (topSearch) topSearch.value = '';
     if (sidebarSearch) sidebarSearch.value = '';
     if (sortSelect) sortSelect.value = 'featured';
-    if (catLabel) catLabel.innerText = 'TODAS';
 
-    typeBtns.forEach(b => {
-      if (b.getAttribute('data-type') === 'all') {
-        b.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-      } else {
-        b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-      }
-    });
-
-    catBtns.forEach(b => {
-      if (b.getAttribute('data-cat') === 'all') {
-        b.classList.add('active', 'bg-red-50', 'text-primary', 'font-bold');
-      } else {
-        b.classList.remove('active', 'bg-red-50', 'text-primary', 'font-bold');
-      }
-    });
-
+    syncFilterUI();
     renderCatalog();
   };
 
   window.resetTypeFilter = function() {
     activeType = 'all';
-    typeBtns.forEach(b => {
-      if (b.getAttribute('data-type') === 'all') b.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-      else b.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-2xs', 'font-bold');
-    });
+    syncFilterUI();
     renderCatalog();
   };
 
   window.resetCatFilter = function() {
     activeCategory = 'all';
-    if (catLabel) catLabel.innerText = 'TODAS';
-    catBtns.forEach(b => {
-      if (b.getAttribute('data-cat') === 'all') b.classList.add('active', 'bg-red-50', 'text-primary', 'font-bold');
-      else b.classList.remove('active', 'bg-red-50', 'text-primary', 'font-bold');
-    });
+    activeType = 'all';
+    syncFilterUI();
     renderCatalog();
   };
 
@@ -509,11 +561,11 @@
   };
 
   window.chatWhatsAppItem = function(title, price) {
-    const waPhone = (cms && cms.whatsappNumber) ? cms.whatsappNumber : '573001234567';
+    const waPhone = (cmsInner && cmsInner.whatsappNumber) ? cmsInner.whatsappNumber : '573001234567';
     const msg = `Hola RedCover Colombia 👋 Estoy interesado en el siguiente equipo:%0A` +
       `📱 Producto: ${title}%0A` +
       `💰 Precio: ${formatCOP(price)}%0A%0A` +
-      `¿Podrían confirmarme disponibilidad inmediata y financiación a 24 cuotas sin interés?`;
+      `¿Podrían confirmarme disponibilidad inmediata y opciones de financiación?`;
     window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
   };
 
