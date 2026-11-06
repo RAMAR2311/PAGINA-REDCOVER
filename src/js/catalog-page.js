@@ -370,7 +370,7 @@
               </div>
 
               ${isDevice ? `
-                <a href="iphone-16-pro.html?id=${item.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${item.id}')" class="w-full py-2.5 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm hover:shadow-md">
+                <a href="configuracion.html?id=${item.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${item.id}')" class="w-full py-2.5 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm hover:shadow-md">
                   <span class="material-symbols-outlined text-sm">tune</span> Configurar y Elegir
                 </a>
               ` : `
@@ -602,7 +602,7 @@
     if (configLink) {
       if (item.itemType === 'device') {
         configLink.classList.remove('hidden');
-        configLink.href = `iphone-16-pro.html?id=${item.id}`;
+        configLink.href = `configuracion.html?id=${item.id}`;
         configLink.onclick = () => localStorage.setItem('redcover_selected_device_id', item.id);
       } else if (item.itemType === 'offer') {
         configLink.classList.remove('hidden');

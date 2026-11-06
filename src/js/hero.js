@@ -106,7 +106,7 @@
       const ctaBtn = document.getElementById('hero-cta-primary-btn');
       const ctaText = document.getElementById('cms-hero-cta1');
       if (ctaBtn) {
-        ctaBtn.href = `iphone-16-pro.html?id=${data.targetId}`;
+        ctaBtn.href = `configuracion.html?id=${data.targetId}`;
         ctaBtn.setAttribute('onclick', `localStorage.setItem('redcover_selected_device_id', '${data.targetId}')`);
       }
       if (ctaText) ctaText.innerText = data.ctaText;

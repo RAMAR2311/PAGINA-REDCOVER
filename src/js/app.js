@@ -20,7 +20,7 @@
       try {
         localStorage.setItem('redcover_selected_device_id', deviceId);
       } catch (e) {}
-      window.location.href = 'iphone-16-pro.html?id=' + encodeURIComponent(deviceId);
+      window.location.href = 'configuracion.html?id=' + encodeURIComponent(deviceId);
     }
   
     function formatCOP(val) {
@@ -106,7 +106,7 @@
               <p class="text-[11px] text-primary font-medium text-right">o 24 cuotas de ${calculate24Installment(dev.price)} </p>
             </div>
 
-            <a href="iphone-16-pro.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="w-full py-2.5 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md">
+            <a href="configuracion.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="w-full py-2.5 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md">
               <span class="material-symbols-outlined text-sm">tune</span> Configurar y Elegir
             </a>
             <button type="button" onclick="directFinanceWhatsApp('${dev.title.replace(/'/g, "\\'")}', ${dev.price})" class="w-full py-2 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 text-[11px] font-bold transition-all flex items-center justify-center gap-1.5">
@@ -236,7 +236,7 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-              <a href="iphone-16-pro.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="py-3 px-4 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+              <a href="configuracion.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="py-3 px-4 rounded-full crimson-btn text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md">
                 <span class="material-symbols-outlined text-base">tune</span>
                 Configurar y Comprar
               </a>
@@ -246,7 +246,7 @@
               </button>
             </div>
             <div class="text-center pt-1 flex items-center justify-center gap-4">
-              <a href="iphone-16-pro.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1">
+              <a href="configuracion.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1">
                 Ir al Configurador Completo (Color, Capacidad y Canje) <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </a>
               <button type="button" onclick="addFromProductModal('${dev.title.replace(/'/g, "\\'")}', ${dev.price}, '${dev.img}')" class="text-xs font-semibold text-gray-500 hover:text-gray-900 underline">
@@ -513,7 +513,7 @@
           <div class="flex items-center gap-1.5 shrink-0">
             ${item.id ? `<button type="button" onclick="searchModal.classList.add('hidden'); searchModal.classList.remove('flex'); openProductModal('${item.id}')" class="px-3 py-1.5 rounded-full bg-white border border-gray-300 text-[11px] font-bold text-gray-800 hover:border-primary">Ficha</button>` : ''}
             ${item.id
-              ? `<a href="iphone-16-pro.html?id=${item.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${item.id}')" class="px-3 py-1.5 rounded-full crimson-btn text-white text-[11px] font-bold">Comprar</a>`
+              ? `<a href="configuracion.html?id=${item.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${item.id}')" class="px-3 py-1.5 rounded-full crimson-btn text-white text-[11px] font-bold">Comprar</a>`
               : `<button type="button" onclick="addToCart('${item.title.replace(/'/g, "\\'")}', ${item.price}, '${item.img}'); searchModal.classList.add('hidden'); searchModal.classList.remove('flex'); openCart();" class="px-3 py-1.5 rounded-full crimson-btn text-white text-[11px] font-bold">+ Bolsa</button>`
             }
           </div>
@@ -942,7 +942,7 @@
           { name: "Financiación WhatsApp", action: "directFinanceWhatsApp('iPhone 18 Pro / Nuevos', 5999000)" },
           { name: "Accesorios MagSafe", href: "#accesorios" },
           { name: "Garantía Oficial 1 Año", action: "openInfoModal('garantia')" },
-          { name: "Comparar Modelos", href: "iphone-16-pro.html#comparativa" }
+          { name: "Comparar Modelos", href: "configuracion.html#comparativa" }
         ]
       },
       airpods: {
@@ -2101,7 +2101,7 @@
               <!-- Fila de Botones 100% Simetrica y Alineada -->
               <div class="grid ${card.productIdTarget ? 'grid-cols-2' : 'grid-cols-1'} gap-1.5 w-full">
                 ${card.productIdTarget ? `
-                  <a href="iphone-16-pro.html?id=${card.productIdTarget}" onclick="localStorage.setItem('redcover_selected_device_id', '${card.productIdTarget}')" class="metallic-btn metallic-btn-silver !p-0.5 w-full text-center">
+                  <a href="configuracion.html?id=${card.productIdTarget}" onclick="localStorage.setItem('redcover_selected_device_id', '${card.productIdTarget}')" class="metallic-btn metallic-btn-silver !p-0.5 w-full text-center">
                     <span class="metallic-btn-inner !py-1.5 !px-2 text-[11px] font-bold w-full justify-center">
                       Configurar
                     </span>
@@ -4356,11 +4356,11 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
                 <span class="text-xs font-mono font-bold text-red-400 uppercase tracking-wider">Editor Universal de Producto</span>
               </div>
-              <h4 class="text-lg font-black tracking-tight">Página iPhone 16 Pro &amp; Configurador (<code class="text-xs text-red-300 font-mono">iphone-16-pro.html</code>)</h4>
+              <h4 class="text-lg font-black tracking-tight">Página iPhone 16 Pro &amp; Configurador (<code class="text-xs text-red-300 font-mono">configuracion.html</code>)</h4>
               <p class="text-xs text-zinc-400">Modifica precios, colores de titanio, fotos, variantes de memoria, textos de stock y garantía. Todos los cambios se sincronizan en vivo.</p>
             </div>
             <div class="flex items-center gap-2 shrink-0">
-              <a href="iphone-16-pro.html?id=${dev.id}" target="_blank" class="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold flex items-center gap-1.5 border border-zinc-700 transition-all">
+              <a href="configuracion.html?id=${dev.id}" target="_blank" class="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold flex items-center gap-1.5 border border-zinc-700 transition-all">
                 <span class="material-symbols-outlined text-sm">open_in_new</span> Ver Página
               </a>
               <button type="button" onclick="saveAdminIphone16ProChanges()" class="px-5 py-2.5 rounded-xl crimson-btn text-white text-xs font-bold flex items-center gap-1.5 shadow-md">
@@ -4488,7 +4488,7 @@
               <!-- Botón Guardar Cambios -->
               <div class="pt-2">
                 <button type="button" onclick="saveAdminIphone16ProChanges()" class="w-full py-4 rounded-full crimson-btn text-white text-xs font-black uppercase tracking-wider shadow-xl flex items-center justify-center gap-2">
-                  <span class="material-symbols-outlined text-lg">save</span> Guardar y Aplicar Cambios a iphone-16-pro.html
+                  <span class="material-symbols-outlined text-lg">save</span> Guardar y Aplicar Cambios a configuracion.html
                 </button>
               </div>
 
@@ -4537,7 +4537,7 @@
         showToast('✅ ¡Página de iPhone 16 Pro actualizada en vivo!');
       } else {
         renderAllCMSContent();
-        showToast(`✅ ¡Página iphone-16-pro.html y producto "${dev.title}" actualizados exitosamente!`);
+        showToast(`✅ ¡Página configuracion.html y producto "${dev.title}" actualizados exitosamente!`);
       }
       renderAdminIphone16ProTab(document.getElementById('admin-tab-content'));
     }
