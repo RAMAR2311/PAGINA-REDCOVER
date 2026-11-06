@@ -329,7 +329,7 @@
           <div class="rounded-3xl bg-white p-5 flex flex-col justify-between group border ${isOffer ? 'border-red-400/80 ring-2 ring-red-500/20 shadow-red-500/10' : 'border-gray-200'} hover:border-primary/50 transition-all shadow-xs hover:shadow-xl hover:-translate-y-1 relative">
             <div>
               <!-- Imagen del Producto / Accesorio / Promoción -->
-              <div class="relative h-48 rounded-2xl overflow-hidden bg-zinc-950 mb-4 flex items-center justify-center cursor-pointer" onclick="viewItemDetail('${item.id}')">
+              <div class="relative h-48 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 mb-4 flex items-center justify-center cursor-pointer" onclick="viewItemDetail('${item.id}')">
                 <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full ${isOffer ? 'bg-red-600 animate-pulse' : 'bg-red-600'} text-[10px] font-black text-white uppercase tracking-wider shadow-sm">
                   ${item.badge || (isOffer ? '🔥 OFERTA' : 'Oficial Apple')}
                 </span>
