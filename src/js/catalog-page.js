@@ -654,6 +654,11 @@
 
   initDarkMode();
 
+  // Acceso Universal al Administrador desde Catálogo
+  window.openAdminFromAnywhere = function() {
+    window.location.href = 'index.html#admin';
+  };
+
   // Render inicial
   renderCatalog();
 })();

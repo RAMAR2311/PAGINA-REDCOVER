@@ -4558,7 +4558,9 @@
       updateCartUI();
       if (window.location.hash) {
         const h = window.location.hash.replace('#', '');
-        if (['iphone', 'airpods', 'mac', 'ipad', 'watch', 'samsung'].includes(h)) {
+        if (h === 'admin') {
+          setTimeout(() => openAdminPanel(), 200);
+        } else if (['iphone', 'airpods', 'mac', 'ipad', 'watch', 'samsung'].includes(h)) {
           filterDevices(h);
         }
       }

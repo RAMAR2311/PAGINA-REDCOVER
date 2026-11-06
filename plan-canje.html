@@ -302,8 +302,12 @@
         <span class="font-extrabold text-gray-900">RedCover Colombia</span>
         <span>• C.C. Caribe Locales 136 y 197</span>
       </div>
-      <div>
+      <div class="flex items-center gap-4">
         <span>Garantía Oficial Apple • Todos los derechos reservados 2026</span>
+        <button type="button" onclick="openAdminFromAnywhere()" id="admin-nav-btn" title="Acceso de Administrador" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-600 text-xs font-semibold transition-all border border-zinc-200 hover:border-zinc-900 shadow-2xs">
+          <span class="material-symbols-outlined text-[15px] text-zinc-500 hover:text-white">lock</span>
+          <span>Admin</span>
+        </button>
       </div>
     </div>
   </footer>
@@ -465,6 +469,11 @@
           window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank');
         });
       }
+
+      // Acceso Universal al Administrador desde Plan Canje
+      window.openAdminFromAnywhere = function() {
+        window.location.href = 'index.html#admin';
+      };
 
       // Inicializar cálculo inicial
       updateCalculation();
