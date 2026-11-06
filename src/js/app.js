@@ -106,14 +106,9 @@
               <p class="text-[11px] text-primary font-medium text-right">o 24 cuotas de ${calculate24Installment(dev.price)} </p>
             </div>
 
-            <div class="grid grid-cols-2 gap-2">
-              <button type="button" onclick="openProductModal('${dev.id}')" class="py-2 px-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-all flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-sm">visibility</span> Ficha
-              </button>
-              <a href="iphone-16-pro.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="py-2 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-sm">tune</span> Comprar
-              </a>
-            </div>
+            <a href="iphone-16-pro.html?id=${dev.id}" onclick="localStorage.setItem('redcover_selected_device_id', '${dev.id}')" class="w-full py-2.5 px-3 rounded-xl crimson-btn text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md">
+              <span class="material-symbols-outlined text-sm">tune</span> Configurar y Elegir
+            </a>
             <button type="button" onclick="directFinanceWhatsApp('${dev.title.replace(/'/g, "\\'")}', ${dev.price})" class="w-full py-2 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 text-[11px] font-bold transition-all flex items-center justify-center gap-1.5">
               <span class="material-symbols-outlined text-sm">chat</span> Solicitar Financiación por WhatsApp
             </button>

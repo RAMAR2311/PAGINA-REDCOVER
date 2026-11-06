@@ -277,20 +277,14 @@
           </div>
         </div>
 
-        <!-- Botones de Acción -->
-        <div class="relative z-10 pt-6 space-y-3 mt-4">
-          <!-- Botón 1: Aplicar Bono e ir al Catálogo -->
-          <button type="button" id="apply-bonus-btn" class="w-full metallic-btn metallic-btn-crimson py-1 px-2 text-sm font-extrabold uppercase tracking-wider shadow-xl shadow-red-600/30">
-            <span class="metallic-btn-inner w-full py-3 px-5 flex items-center justify-center gap-2">
-              <span class="material-symbols-outlined text-lg">shopping_bag</span>
-              <span>Aplicar Bono y Elegir Mi Apple</span>
+        <!-- Botón de Acción Directo -->
+        <div class="relative z-10 pt-6 mt-4">
+          <!-- Validar por WhatsApp con Asesor -->
+          <button type="button" id="whatsapp-quote-btn" class="w-full metallic-btn metallic-btn-crimson py-1 px-2 text-sm font-extrabold uppercase tracking-wider shadow-xl shadow-red-600/30">
+            <span class="metallic-btn-inner w-full py-3.5 px-5 flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">chat</span>
+              <span>Validar Tasación con un Asesor</span>
             </span>
-          </button>
-
-          <!-- Botón 2: Validar por WhatsApp con Asesor -->
-          <button type="button" id="whatsapp-quote-btn" class="w-full py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md">
-            <span class="material-symbols-outlined text-base">chat</span>
-            <span>Validar Tasación con un Asesor</span>
           </button>
         </div>
 
@@ -456,31 +450,7 @@
         setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
       }
 
-      // Botón 1: Aplicar bono a la bolsa y redirigir
-      const applyBtn = document.getElementById('apply-bonus-btn');
-      if (applyBtn) {
-        applyBtn.addEventListener('click', () => {
-          const baseValue = parseFloat(deviceSelect.value) || 0;
-          const total = Math.round(baseValue * batteryFactor * conditionFactor);
-          const selText = deviceSelect.options[deviceSelect.selectedIndex].text.split(' — ')[0];
-
-          const canjeObj = {
-            device: selText,
-            battery: batteryLabel,
-            condition: conditionLabel,
-            amount: total
-          };
-
-          localStorage.setItem('redcover_canje', JSON.stringify(canjeObj));
-          showToast(`¡Bono de ${formatCOP(total)} aplicado con éxito!`);
-          
-          setTimeout(() => {
-            window.location.href = 'index.html#catalogo';
-          }, 800);
-        });
-      }
-
-      // Botón 2: Validar por WhatsApp
+      // Botón: Validar por WhatsApp con Asesor
       const waBtn = document.getElementById('whatsapp-quote-btn');
       if (waBtn) {
         waBtn.addEventListener('click', () => {
