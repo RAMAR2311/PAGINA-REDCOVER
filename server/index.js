@@ -5,23 +5,114 @@ const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 const sharp = require('sharp');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_MASTER_PASSWORD || 'admin2026*';
+const JWT_SECRET = process.env.JWT_SECRET || 'redcover-jwt-secret-key-2026';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-// Middleware
+// Middlewares globales
+app.use(compression());
 app.use(cors());
-app.use(express.json({ limit: '500mb' }));
-app.use(express.urlencoded({ extended: true, limit: '500mb' }));
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
-// Servir archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '..')));
+// Rate limiters
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+  message: { error: 'Demasiadas solicitudes desde esta IP, por favor intenta más tarde.' }
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 15,
+  message: { error: 'Demasiados intentos de acceso administrativo. Intenta más tarde.' }
+});
+
+const uploadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 60,
+  message: { error: 'Límite de subida alcanzado temporalmente.' }
+});
+
+app.use('/api/', generalLimiter);
+
+// Middleware de autenticación híbrido (JWT preferido, soporte retrocompatible para header/body)
+function authenticateAdmin(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.substring(7);
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      req.adminUser = decoded;
+      return next();
+    } catch (err) {
+      return res.status(401).json({ error: 'Token inválido o expirado' });
+    }
+  }
+
+  // Soporte retrocompatible con contraseña maestra directa
+  const legacyPassword = req.headers['x-admin-password'] || req.body?.password;
+  if (legacyPassword === ADMIN_PASSWORD) {
+    return next();
+  }
+
+  return res.status(401).json({ error: 'No autorizado. Se requiere token o credencial de administrador válida.' });
+}
+
+// Servir videos con soporte de HTTP Range (Streaming eficiente para móviles e iOS Safari)
+app.get('/assets/videos/:filename', (req, res, next) => {
+  const filePath = path.join(__dirname, '..', 'assets', 'videos', req.params.filename);
+  if (!fs.existsSync(filePath)) return next();
+
+  const stat = fs.statSync(filePath);
+  const fileSize = stat.size;
+  const range = req.headers.range;
+
+  if (range) {
+    const parts = range.replace(/bytes=/, '').split('-');
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+    const chunksize = (end - start) + 1;
+    const file = fs.createReadStream(filePath, { start, end });
+    const head = {
+      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': chunksize,
+      'Content-Type': 'video/mp4',
+    };
+    res.writeHead(206, head);
+    file.pipe(res);
+  } else {
+    const head = {
+      'Content-Length': fileSize,
+      'Content-Type': 'video/mp4',
+      'Cache-Control': 'public, max-age=86400'
+    };
+    res.writeHead(200, head);
+    fs.createReadStream(filePath).pipe(res);
+  }
+});
+
+// Servir archivos estáticos del frontend con caché controlada
+app.use(express.static(path.join(__dirname, '..'), {
+  setHeaders: (res, pathUrl) => {
+    if (pathUrl.endsWith('.html') || pathUrl.endsWith('.js') || pathUrl.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    } else if (/\.(webp|png|jpg|svg|ico)$/i.test(pathUrl)) {
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    }
+  }
+}));
 
 // Carpetas de archivos subidos
 const UPLOADS_DIR = path.join(__dirname, '..', 'assets', 'uploads');
@@ -35,7 +126,7 @@ const uploadMemory = multer({
   limits: { fileSize: 25 * 1024 * 1024 }
 });
 
-// Multer en disco para Videos (hasta 100MB)
+// Multer en disco para Videos
 const videoDiskStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, VIDEOS_DIR);
@@ -48,7 +139,7 @@ const videoDiskStorage = multer.diskStorage({
 
 const uploadVideo = multer({
   storage: videoDiskStorage,
-  limits: { fileSize: 500 * 1024 * 1024 }, // Hasta 100MB
+  limits: { fileSize: 250 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const isVideoMime = file.mimetype && file.mimetype.startsWith('video/');
     const isVideoExt = /\.(mp4|webm|ogg|mov|m4v|avi|mkv)$/i.test(file.originalname);
@@ -82,9 +173,22 @@ async function initDB() {
 initDB();
 
 // ==========================================
+// ENDPOINT: LOGIN ADMINISTRATIVO (JWT)
+// ==========================================
+app.post('/api/auth/login', authLimiter, (req, res) => {
+  const { password } = req.body;
+  if (!password || password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Credenciales de acceso inválidas' });
+  }
+
+  const token = jwt.sign({ role: 'admin', authorizedAt: Date.now() }, JWT_SECRET, { expiresIn: '12h' });
+  res.json({ success: true, token, expiresIn: '12h' });
+});
+
+// ==========================================
 // ENDPOINT: SUBIR VIDEO DIRECTAMENTE AL SERVIDOR
 // ==========================================
-app.post('/api/upload-video', (req, res) => {
+app.post('/api/upload-video', uploadLimiter, (req, res) => {
   uploadVideo.single('video')(req, res, async (err) => {
     if (err) {
       console.error('Error Multer en upload-video:', err.message);
@@ -92,10 +196,20 @@ app.post('/api/upload-video', (req, res) => {
     }
 
     try {
-      const authHeader = req.headers['x-admin-password'] || req.body?.password;
-      if (authHeader !== ADMIN_PASSWORD) {
+      const authHeader = req.headers['authorization'];
+      let isAuth = false;
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        try {
+          jwt.verify(authHeader.substring(7), JWT_SECRET);
+          isAuth = true;
+        } catch (e) {}
+      }
+      const legacyPassword = req.headers['x-admin-password'] || req.body?.password;
+      if (legacyPassword === ADMIN_PASSWORD) isAuth = true;
+
+      if (!isAuth) {
         if (req.file && req.file.path && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
-        return res.status(401).json({ error: 'No autorizado. Contraseña de admin inválida.' });
+        return res.status(401).json({ error: 'No autorizado. Contraseña o token de admin inválido.' });
       }
 
       if (!req.file) {
@@ -124,11 +238,21 @@ app.post('/api/upload-video', (req, res) => {
 // ==========================================
 // ENDPOINT: SUBIR Y OPTIMIZAR IMAGEN A WEBP
 // ==========================================
-app.post('/api/upload-image', uploadMemory.single('image'), async (req, res) => {
+app.post('/api/upload-image', uploadLimiter, uploadMemory.single('image'), async (req, res) => {
   try {
-    const authHeader = req.headers['x-admin-password'] || req.body.password;
-    if (authHeader !== ADMIN_PASSWORD) {
-      return res.status(401).json({ error: 'No autorizado. Contraseña de admin inválida.' });
+    const authHeader = req.headers['authorization'];
+    let isAuth = false;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      try {
+        jwt.verify(authHeader.substring(7), JWT_SECRET);
+        isAuth = true;
+      } catch (e) {}
+    }
+    const legacyPassword = req.headers['x-admin-password'] || req.body?.password;
+    if (legacyPassword === ADMIN_PASSWORD) isAuth = true;
+
+    if (!isAuth) {
+      return res.status(401).json({ error: 'No autorizado. Contraseña o token de admin inválido.' });
     }
 
     if (!req.file) {
@@ -195,19 +319,14 @@ app.get('/api/catalog', async (req, res) => {
 // ==========================================
 // 2. Guardar o actualizar catálogo y CMS
 // ==========================================
-app.post('/api/catalog', async (req, res) => {
+app.post('/api/catalog', authenticateAdmin, async (req, res) => {
   try {
-    const { password, devices, cmsData } = req.body;
-
-    if (password !== ADMIN_PASSWORD) {
-      return res.status(401).json({ error: 'Contraseña de administrador inválida' });
-    }
+    const { devices, cmsData } = req.body;
 
     if (!devices || !Array.isArray(devices)) {
       return res.status(400).json({ error: 'Formato de dispositivos inválido' });
     }
 
-    // Proteger accesorios y ofertas contra sobreescritura accidental o vacía
     const safeCMS = cmsData ? { ...cmsData } : {};
     try {
       const prevRes = await pool.query('SELECT cms_data FROM redcover_store_state WHERE state_key = $1', ['primary_state']);
@@ -257,10 +376,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date() });
 });
 
-// Iniciar servidor
-
-// Guardar cambios directamente en src/data/catalog.js para que queden fijos en el proyecto
-app.post('/api/sync-to-files', async (req, res) => {
+// Guardar cambios directamente en src/data/catalog.js
+app.post('/api/sync-to-files', authenticateAdmin, async (req, res) => {
   try {
     const { devices, accessories: bodyAccessories, offers: bodyOffers } = req.body;
     if (!devices || !Array.isArray(devices)) {
@@ -269,11 +386,9 @@ app.post('/api/sync-to-files', async (req, res) => {
     const filePath = path.join(__dirname, '..', 'src', 'data', 'catalog.js');
     let existingContent = fs.readFileSync(filePath, 'utf8');
 
-    // 1. Determinar accesorios y ofertas a persistir
     let finalAccessories = (Array.isArray(bodyAccessories) && bodyAccessories.length > 0) ? bodyAccessories : null;
     let finalOffers = (Array.isArray(bodyOffers) && bodyOffers.length > 0) ? bodyOffers : null;
 
-    // Si no vinieron en el cuerpo, obtenerlos de PostgreSQL para garantizar no perderlos jamás
     if (!finalAccessories || !finalOffers) {
       try {
         const pgRes = await pool.query('SELECT cms_data FROM redcover_store_state WHERE state_key = $1', ['primary_state']);
@@ -291,7 +406,6 @@ app.post('/api/sync-to-files', async (req, res) => {
       }
     }
 
-    // Extraer tail de accesorios y ofertas
     const accIdx = existingContent.indexOf('const allCatalogAccessories = [');
     let accessoriesAndOffersTail = '';
 
@@ -326,7 +440,7 @@ if (typeof module !== 'undefined' && module.exports) {
     const fileHeader = '    const IMG_IPHONE_PRO = "assets/img/iphone-pro.png";\n    const IMG_IPHONE_16 = "assets/img/iphone-16.png";\n    const IMG_MACBOOK = "assets/img/macbook.png";\n    const IMG_IPAD = "assets/img/ipad.png";\n    const IMG_WATCH = "assets/img/watch.png";\n    const IMG_AIRPODS = "assets/img/airpods.png";\n    const IMG_MAGSAFE = "assets/img/magsafe.png";\n    const IMG_CASE = "assets/img/case.png";\n\n    let allCatalogDevices = ';
     const fileContent = fileHeader + JSON.stringify(devices, null, 2) + ';' + accessoriesAndOffersTail;
     fs.writeFileSync(filePath, fileContent, 'utf8');
-    console.log('✅ Archivo src/data/catalog.js sincronizado permanentemente en disco conservando dispositivos, accesorios y promociones');
+    console.log('✅ Archivo src/data/catalog.js sincronizado permanentemente en disco');
     res.json({ success: true });
   } catch (err) {
     console.error('Error escribiendo archivo:', err);

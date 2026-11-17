@@ -1,7 +1,21 @@
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       background-color: #FAFAFC;
       color: #18181B;
       font-family: 'Inter', sans-serif;
+    }
+    @media (max-width: 640px) {
+      input, select, textarea {
+        font-size: 16px !important;
+      }
+      .group\/hero > button[onclick*="HeroSlide"] {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
     }
     .crimson-glow {
       box-shadow: 0 10px 30px -5px rgba(239, 35, 60, 0.2);

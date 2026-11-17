@@ -19,6 +19,23 @@
   <!-- Compiled Tailwind CSS & Custom Styles -->
   <link rel="stylesheet" href="dist/css/styles.min.css">
   <link rel="stylesheet" href="src/css/custom.css">
+
+  <!-- Datos Estructurados Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "RedCover Colombia",
+    "image": "https://redcovercolombia.com/assets/img/redcover-logo.png",
+    "description": "Distribuidor Autorizado Apple en Colombia. Venta de iPhone, Mac, iPad, Apple Watch y accesorios originales.",
+    "telephone": "+57 300 000 0000",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CO"
+    }
+  }
+  </script>
 </head>
 <body class="bg-[#FAFAFC] text-gray-900 antialiased selection:bg-red-100 selection:text-red-700 min-h-screen flex flex-col justify-between">
 
@@ -1242,8 +1259,9 @@
 
   <!-- Interactive JavaScript Logic -->
   <!-- Scripts Modulares -->
-  <script src="src/data/catalog.js"></script>
-  <script src="src/js/app.js"></script>
-  <script src="src/js/hero.js"></script>
+  <script src="src/data/catalog.js?v=2"></script>
+  <script src="src/js/modules/utils.js?v=1"></script>
+  <script src="src/js/app.js?v=2"></script>
+  <script src="src/js/hero.js?v=2"></script>
 </body>
 </html>

@@ -1333,6 +1333,46 @@
     "shortDesc": "La estación de trabajo portátil definitiva 2026: arquitectura de 2nm, Thunderbolt 5 de 120 Gb/s y hasta 24 horas de batería."
   },
   {
+    "id": "macbook-neo",
+    "img": "assets/img/macbook.png",
+    "badge": "Lanzamiento 2026 • El Mac Más Accesible",
+    "price": 3199000,
+    "specs": [
+      "Chip Apple A18 Pro (CPU 6 núcleos, GPU 5 núcleos, Neural Engine 16 núcleos con Apple Intelligence)",
+      "Pantalla Liquid Retina de 13\" (2408 x 1506 a 219 ppi, 500 nits de brillo)",
+      "Hasta 16 horas de autonomía con diseño 100% silencioso sin ventiladores",
+      "Chasis de aluminio aeroespacial ultraligero de tan solo 1.22 kg (2.7 libras)",
+      "Conectividad: Puerto USB-C DisplayPort 10Gbps, USB-C 2.0, jack de 3.5 mm y Wi-Fi 6E"
+    ],
+    "title": "MacBook Neo 13\" (Chip A18 Pro / 2nm)",
+    "colors": [
+      {
+        "hex": "#E3E4E6",
+        "name": "Plata (Silver)"
+      },
+      {
+        "hex": "#E8B4B8",
+        "name": "Rubor (Blush)"
+      },
+      {
+        "hex": "#E9D286",
+        "name": "Cítrico (Citrus)"
+      },
+      {
+        "hex": "#3F51B5",
+        "name": "Índigo (Indigo)"
+      }
+    ],
+    "category": "mac",
+    "variants": [
+      "13\" Neo (8GB / 256GB SSD) - $3.199.000",
+      "13\" Neo (8GB / 512GB SSD) - $3.799.000",
+      "13\" Neo (12GB / 512GB SSD) - $4.299.000"
+    ],
+    "shortDesc": "El revolucionario portátil ultraligero de Apple con arquitectura de alta eficiencia y Chip A18 Pro. Pantalla Liquid Retina de 13 pulgadas, 16 horas de batería y cuerpo de aluminio unibody en vibrantes colores.",
+    "stockStatus": "● En Stock"
+  },
+  {
     "id": "macbook-air-m5",
     "img": "assets/img/macbook.png",
     "badge": "Nuevo 2026 • Ultraligera",
@@ -1784,15 +1824,17 @@
   {
     "id": "ipad-11-gen",
     "img": "assets/img/ipad.png",
-    "badge": "Nuevo 2026 • Apple Intelligence",
+    "badge": "11.ª Gen • Chip A16 Bionic",
     "price": 2199000,
     "specs": [
-      "Pantalla Liquid Retina de 10.9 pulgadas de borde a borde",
-      "Chip de nueva generación con 8 GB de RAM para multitarea fluida",
-      "Cámara frontal horizontal de 12 MP con Encuadre Centrado",
-      "Compatible con Magic Keyboard Folio y Apple Pencil (USB-C)"
+      "Procesador Apple A16 Bionic con Neural Engine de 16 núcleos para máximo rendimiento y fluidez",
+      "Pantalla Liquid Retina de 11 pulgadas con resolución nítida y tecnología True Tone",
+      "Cámara frontal ubicada en el borde horizontal, optimizada para videollamadas en modo paisaje",
+      "Almacenamiento base renovado que arranca en los 128 GB de capacidad",
+      "Conectividad con puerto USB-C universal y redes Wi-Fi de alta velocidad",
+      "Compatibilidad con Apple Pencil (USB-C) y teclado Magic Keyboard Folio"
     ],
-    "title": "iPad (11.ª Generación - Chip A16 / A17)",
+    "title": "iPad (11.ª Generación - Chip A16 Bionic)",
     "colors": [
       {
         "hex": "#5487B2",
@@ -1814,9 +1856,11 @@
     "category": "ipad",
     "variants": [
       "128 GB Wi-Fi - $2.199.000",
-      "256 GB Wi-Fi - $2.699.000"
+      "256 GB Wi-Fi - $2.699.000",
+      "128 GB Wi-Fi + Cellular - $2.999.000"
     ],
-    "shortDesc": "El iPad más popular se renueva en 2026 con el doble de almacenamiento base (128 GB), chip preparado para IA y pantalla de 10.9\"."
+    "shortDesc": "El modelo estándar de entrada de Apple con Chip A16 Bionic. Diseñado para estudiantes, consumo multimedia y productividad diaria, con pantalla Liquid Retina de 11\", cámara frontal horizontal y arranque base en 128 GB.",
+    "stockStatus": "● En Stock"
   },
   {
     "id": "ipad-10-gen",
@@ -2295,6 +2339,47 @@
     "shortDesc": "Audio Espacial con seguimiento dinámico de la cabeza, ecualización adaptativa y sensor de presión en un formato ligero."
   },
   {
+    "id": "samsung-s25-ultra",
+    "title": "Samsung Galaxy S25 Ultra 5G (S-Pen • 200 MP)",
+    "category": "samsung",
+    "badge": "Top Ventas Android • Snapdragon 8 Elite • Titanio",
+    "price": 5599000,
+    "img": "assets/img/iphone-pro.png",
+    "shortDesc": "El buque insignia definitivo de Samsung: chasis de titanio con bordes ergonómicos, procesador Snapdragon 8 Elite for Galaxy (3nm), cámara cuádruple de 200 MP con Galaxy AI y lápiz S-Pen integrado.",
+    "specs": [
+      "Procesador Qualcomm Snapdragon 8 Elite for Galaxy (3nm) con NPU 40% más veloz para Galaxy AI multimodal",
+      "Pantalla Dynamic AMOLED 2X de 6.86\" QHD+ (1-120Hz LTPO, 2600 nits) con cristal Corning Gorilla Armor antirreflejos",
+      "Cámara Pro Cuádruple: Principal 200 MP (OIS) + Ultra Gran Angular 50 MP + Teleobjetivo 50 MP (Zoom 5x) + Teleobjetivo 10 MP (Zoom 3x)",
+      "Lápiz inteligente S-Pen integrado en el chasis con control remoto por gestos Air Actions y latencia de 2.8 ms",
+      "Batería de 5.000 mAh con carga ultra rápida 2.0 de 45W y carga inalámbrica Fast Wireless",
+      "Galaxy AI: Circle to Search, Live Translate en llamadas, Asistente de Notas inteligente y Edición Generativa de Fotos"
+    ],
+    "variants": [
+      "256 GB / 12 GB RAM - $5.599.000",
+      "512 GB / 12 GB RAM - $6.199.000",
+      "1 TB / 16 GB RAM - $7.199.000"
+    ],
+    "colors": [
+      {
+        "name": "Azul Plata Titanio",
+        "hex": "#8EA2B4"
+      },
+      {
+        "name": "Negro Titanio",
+        "hex": "#29292B"
+      },
+      {
+        "name": "Gris Titanio",
+        "hex": "#9C9891"
+      },
+      {
+        "name": "Blanco Plata Titanio",
+        "hex": "#E6E7E9"
+      }
+    ],
+    "stockStatus": "● En Stock"
+  },
+  {
     "id": "samsung-s26-ultra",
     "img": "assets/img/iphone-pro.png",
     "badge": "Gama 2026 • Buque Insignia Galaxy",
@@ -2509,44 +2594,6 @@
       "512 GB - $5.499.000"
     ],
     "shortDesc": "Estilo icónico de bolsillo con nueva pantalla externa FlexWindow de borde a borde de 4.0\", cámara FlexCam de 50 MP con IA y batería de 4.300 mAh."
-  },
-  {
-    "id": "samsung-s25-ultra",
-    "img": "assets/img/iphone-pro.png",
-    "badge": "Gama S25 (2025) • Titanio",
-    "price": 5599000,
-    "specs": [
-      "Pantalla Dynamic AMOLED 2X de 6.9\" QHD+ con Corning Gorilla Armor 2 antirreflejo",
-      "Procesador Snapdragon 8 Elite for Galaxy (3nm) con NPU un 40% más rápida",
-      "Cámara 200 MP + Nuevo Ultra Gran Angular 50 MP Macro + Teleobjetivos 50 MP (5x) y 10 MP (3x)",
-      "Grabación de video Log profesional de 10 bits, Audio Eraser con IA y S-Pen integrado"
-    ],
-    "title": "Samsung Galaxy S25 Ultra 5G (256GB - 1TB • S-Pen)",
-    "colors": [
-      {
-        "hex": "#8EA2B4",
-        "name": "Azul Plata Titanio"
-      },
-      {
-        "hex": "#29292B",
-        "name": "Negro Titanio"
-      },
-      {
-        "hex": "#9C9891",
-        "name": "Gris Titanio"
-      },
-      {
-        "hex": "#E6E7E9",
-        "name": "Blanco Plata Titanio"
-      }
-    ],
-    "category": "samsung",
-    "variants": [
-      "256 GB - Azul Titanio / Negro Titanio / Gris Titanio - $5.599.000",
-      "512 GB - $6.199.000",
-      "1 TB - $7.199.000"
-    ],
-    "shortDesc": "Diseño de titanio con bordes redondeados, procesador Snapdragon 8 Elite for Galaxy, nueva cámara Ultra Gran Angular de 50 MP + Principal de 200 MP y S-Pen."
   },
   {
     "id": "samsung-s25-edge",

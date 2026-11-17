@@ -12,10 +12,10 @@
 
   const cmsInner = (cms && cms.cmsData) ? cms.cmsData : (cms || {});
 
-  // Dispositivos (85 oficiales)
-  let devices = (cms && Array.isArray(cms.devices) && cms.devices.length > 0)
-    ? cms.devices
-    : (typeof allCatalogDevices !== 'undefined' ? allCatalogDevices : []);
+  // Dispositivos oficiales actualizados
+  let devices = (typeof allCatalogDevices !== 'undefined' && Array.isArray(allCatalogDevices) && allCatalogDevices.length > 0)
+    ? allCatalogDevices
+    : ((cms && Array.isArray(cms.devices) && cms.devices.length > 0) ? cms.devices : []);
 
   // Accesorios (12 items oficiales)
   let accessories = (cmsInner && Array.isArray(cmsInner.accessories) && cmsInner.accessories.length > 0)
@@ -91,6 +91,9 @@
           changed = true;
         }
         if (changed) {
+          try {
+            localStorage.setItem('redcover_cms_state_v9', JSON.stringify({ devices, cmsData: { accessories, offers } }));
+          } catch(e) {}
           rebuildMasterList();
           updateCategoryCounts();
           renderCatalog();
@@ -330,7 +333,7 @@
             <div>
               <!-- Imagen del Producto / Accesorio / Promoción -->
               <div class="relative h-48 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 mb-4 flex items-center justify-center cursor-pointer" onclick="viewItemDetail('${item.id}')">
-                <img class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
+                <img loading="lazy" decoding="async" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
               </div>
 
               <!-- Metadatos de Garantía y Stock -->

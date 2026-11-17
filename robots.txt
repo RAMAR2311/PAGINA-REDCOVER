@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /configuracion.html?*admin*
+Disallow: /api/
+
+Sitemap: https://redcovercolombia.com/sitemap.xml

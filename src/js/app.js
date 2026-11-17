@@ -14,34 +14,7 @@
     }
 
     
-    // Navegación confiable al configurador garantizando el paso del ID seleccionado
-    function goToConfigurator(deviceId) {
-      if (!deviceId) return;
-      try {
-        localStorage.setItem('redcover_selected_device_id', deviceId);
-      } catch (e) {}
-      window.location.href = 'configuracion.html?id=' + encodeURIComponent(deviceId);
-    }
-  
-    function formatCOP(val) {
-      return '$' + Math.round(val).toLocaleString('es-CO') + ' COP';
-    }
-
-    function calculate24Installment(val) {
-      return '$' + Math.round(val / 24).toLocaleString('es-CO') + ' COP/mes';
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-msg');
-      toastMsg.innerText = msg;
-      toast.classList.remove('hidden');
-      toast.classList.add('flex', 'toast-enter');
-      setTimeout(() => {
-        toast.classList.add('hidden');
-        toast.classList.remove('flex', 'toast-enter');
-      }, 2800);
-    }
+    // Utilidades compartidas (goToConfigurator, formatCOP, calculate24Installment, showToast) cargadas desde src/js/modules/utils.js
 
     // ==========================================
     // RENDERIZADO DEL CATÁLOGO DE PRODUCTOS CON PAGINACIÓN (MÁX 12: 3 FILAS x 4 COLUMNAS)
@@ -1509,6 +1482,18 @@
           productIdTarget: 'airpods-pro-3',
           btn2Text: 'Explorar AirPods',
           categoryTarget: 'airpods'
+        },
+        {
+          id: 'slide-5',
+          mediaType: 'image',
+          mediaUrl: IMG_IPAD,
+          badge: 'Banner 5 • Línea iPad 2026',
+          title: 'iPad Pro M5 Tandem OLED & iPad Air • Desde $1.799.000 COP',
+          subtitle: 'Pantalla Ultra Retina XDR, Chip M5 con Neural Engine acelerado, compatibilidad con Apple Pencil Pro y Magic Keyboard',
+          btn1Text: 'Ver iPad Pro M5',
+          productIdTarget: 'ipad-pro-m5',
+          btn2Text: 'Explorar 7 Modelos iPad',
+          categoryTarget: 'ipad'
         }
       ],
       bentoCards: [
@@ -1912,42 +1897,7 @@
     let inlineTextEditingEnabled = false;
 
     async function loadCMSState() {
-      let hasLocalChanges = false;
-      // 1. Cargar tus cambios guardados en este navegador (tu trabajo actual tiene máxima prioridad)
-      try {
-        const raw = localStorage.getItem(CMS_STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
-            allCatalogDevices = parsed.devices;
-            hasLocalChanges = true;
-          }
-          if (parsed.cmsData) {
-            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
-            hasLocalChanges = true;
-          }
-        }
-      } catch (e) {
-        console.warn('Carga local:', e);
-      }
-
-      // Si tienes cambios en tu navegador, subirlos de inmediato a PostgreSQL para que el servidor los adopte
-      if (hasLocalChanges) {
-        try {
-          fetch('/api/catalog', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              password: (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD,
-              devices: allCatalogDevices,
-              cmsData: cmsData
-            })
-          }).catch(() => {});
-        } catch(e) {}
-        return; // Detener aquí para que NINGUNA consulta antigua sobreescriba lo que hiciste
-      }
-
-      // 2. Si es un navegador nuevo o limpio, cargar desde PostgreSQL
+      // 1. Priorizar siempre la fuente de verdad del servidor (PostgreSQL) para reflejar cambios en vivo
       try {
         const res = await fetch('/api/catalog');
         if (res.ok) {
@@ -1958,10 +1908,28 @@
               cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), remote.cmsData);
             }
             renderAllCMSContent();
+            return;
           }
         }
       } catch (err) {
-        console.log('Cargado catálogo base');
+        console.warn('Fallo al consultar /api/catalog, usando respaldo local:', err);
+      }
+
+      // 2. Respaldo local si el servidor no responde
+      try {
+        const raw = localStorage.getItem(CMS_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
+            allCatalogDevices = parsed.devices;
+          }
+          if (parsed.cmsData) {
+            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+          }
+          renderAllCMSContent();
+        }
+      } catch (e) {
+        console.warn('Carga local:', e);
       }
     }
 
