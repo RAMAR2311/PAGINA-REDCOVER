@@ -2130,6 +2130,32 @@
     "shortDesc": "La forma más económica de estrenar Apple Watch original con todas las funciones de actividad, salud cardíaca y seguridad."
   },
   {
+    "id": "airpods-5",
+    "img": "assets/img/airpods.png",
+    "badge": "Lanzamiento 2026 • Serie 5",
+    "price": 729000,
+    "specs": [
+      "Cancelación Activa de Ruido (ANC) de diseño abierto que elimina hasta 50% más ruido externo",
+      "Chip Apple H2 con arquitectura acústica multipuerto, Ecualización Adaptativa y Traducción en Vivo",
+      "Siri AI con interacciones por gestos de cabeza (asentir o negar) y Audio Espacial personalizado",
+      "Resistencia IP57 contra polvo, agua y sudor + control táctil de volumen en el vástago (versión Inalámbrica)"
+    ],
+    "title": "AirPods 5 (Serie 5 • ANC y Traducción en Vivo)",
+    "colors": [
+      {
+        "hex": "#FFFFFF",
+        "name": "Blanco Brillante Original"
+      }
+    ],
+    "category": "airpods",
+    "variants": [
+      "AirPods 5 Estándar (USB-C • ANC) - $729.000",
+      "AirPods 5 Estuche Carga Inalámbrica (Control Volumen Táctil) - $849.000"
+    ],
+    "shortDesc": "La nueva Serie 5 (septiembre 2026) lleva la Cancelación Activa de Ruido de diseño abierto al siguiente nivel, junto con Traducción en Vivo, resistencia IP57 y gestos con la cabeza para Siri AI.",
+    "stockStatus": "● En Stock"
+  },
+  {
     "id": "airpods-pro-3",
     "img": "assets/img/airpods.png",
     "badge": "Nuevo 2026 • Chip H3 + Salud",

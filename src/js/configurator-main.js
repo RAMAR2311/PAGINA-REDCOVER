@@ -4519,6 +4519,7 @@
         categoryTitle: "Explorar AirPods",
         primaryLinks: [
           { name: "Ver todos los AirPods", action: "filterAndScroll('airpods')", bold: true },
+          { name: "AirPods 5 (Serie 5 • 2026)", action: "openProductModal('airpods-5')" },
           { name: "AirPods Pro 3", action: "openProductModal('airpods-pro-3')" },
           { name: "AirPods Max 2", action: "openProductModal('airpods-max-2')" },
           { name: "AirPods 4 ANC", action: "openProductModal('airpods-4-anc')" },
