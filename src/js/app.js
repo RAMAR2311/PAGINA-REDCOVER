@@ -2428,7 +2428,7 @@
           tag: 'iPhone 18 Pro Max',
           badge: 'Flagship • Titanio',
           desc: 'Chip A19 Pro, titanio aeroespacial Grado 5 y cámara 48MP con teleobjetivo 5x.',
-          img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80',
+          img: 'assets/img/iphone-pro.png',
           link: 'catalogo.html?cat=iphone',
           btnText: 'Ver Pro Max'
         },
@@ -2587,8 +2587,9 @@
     const vanguardiaKeys = ['iphone', 'mac', 'ipad', 'watch', 'airpods', 'samsung', 'gafas', 'accesorios'];
 
     window.selectVanguardiaCategory = function(catKey) {
-      if (!vanguardiaData[catKey]) return;
-      const { card1, card2 } = vanguardiaData[catKey];
+      const sourceObj = (cmsData && cmsData.vanguardia && cmsData.vanguardia[catKey]) ? cmsData.vanguardia[catKey] : vanguardiaData[catKey];
+      if (!sourceObj) return;
+      const { card1, card2 } = sourceObj;
 
       // Actualizar Tarjeta 1
       const img1 = document.getElementById('vanguardia-img-1');
@@ -3097,6 +3098,123 @@
       else if (tab === 'hero') renderAdminHeroTab(container);
       else if (tab === 'canje') renderAdminCanjeTab(container);
       else if (tab === 'iphone16pro') renderAdminIphone16ProTab(container);
+      else if (tab === 'vanguardia') renderAdminVanguardiaTab(container);
+    }
+
+    let selectedAdminVanguardiaCat = 'iphone';
+    function renderAdminVanguardiaTab(container) {
+      const cats = [
+        { key: 'iphone', label: 'iPhone' },
+        { key: 'mac', label: 'MacBook' },
+        { key: 'ipad', label: 'iPad' },
+        { key: 'watch', label: 'Watch' },
+        { key: 'airpods', label: 'AirPods' },
+        { key: 'samsung', label: 'Samsung' },
+        { key: 'gafas', label: 'Ray-Ban / Meta' },
+        { key: 'accesorios', label: 'Accesorios' }
+      ];
+      if (!cmsData.vanguardia) cmsData.vanguardia = {};
+      const current = cmsData.vanguardia[selectedAdminVanguardiaCat] || JSON.parse(JSON.stringify(vanguardiaData[selectedAdminVanguardiaCat]));
+
+      container.innerHTML = `
+        <div class="space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h4 class="text-sm font-extrabold text-gray-900">Ingeniería de Vanguardia (2 Tarjetas por Universo)</h4>
+              <p class="text-xs text-gray-500">Edita las tarjetas destacadas de cada categoría sin afectar tus demás productos ni configuraciones.</p>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              ${cats.map(c => `
+                <button type="button" onclick="selectedAdminVanguardiaCat='${c.key}'; renderAdminVanguardiaTab(document.getElementById('admin-tab-content'))" class="px-3 py-1.5 rounded-xl text-xs font-bold ${selectedAdminVanguardiaCat === c.key ? 'bg-primary text-white' : 'bg-white border border-gray-200 text-gray-700 hover:border-primary'}">${c.label}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            ${[1, 2].map(num => {
+              const card = num === 1 ? current.card1 : current.card2;
+              return `
+                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-extrabold text-gray-900 uppercase">Tarjeta ${num}</span>
+                    <img id="adm-van-prev-${num}" src="${card.img}" class="w-12 h-12 rounded-xl object-cover bg-zinc-900 border border-gray-300">
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-[11px] font-bold text-gray-600">Etiqueta Superior (Badge)</label>
+                      <input id="adm-van-badge-${num}" type="text" value="${(card.badge || '').replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
+                    </div>
+                    <div>
+                      <label class="text-[11px] font-bold text-gray-600">Subtítulo Rojo (Tag)</label>
+                      <input id="adm-van-tag-${num}" type="text" value="${(card.tag || '').replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="text-[11px] font-bold text-gray-600">Título</label>
+                    <input id="adm-van-title-${num}" type="text" value="${(card.title || '').replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
+                  </div>
+                  <div>
+                    <label class="text-[11px] font-bold text-gray-600">Descripción</label>
+                    <textarea id="adm-van-desc-${num}" rows="2" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">${card.desc || ''}</textarea>
+                  </div>
+                  <div>
+                    <label class="text-[11px] font-bold text-gray-600">URL de Imagen</label>
+                    <div class="flex gap-2">
+                      <input id="adm-van-img-${num}" type="text" value="${(card.img || '').replace(/"/g, '&quot;')}" oninput="document.getElementById('adm-van-prev-${num}').src=this.value" class="flex-1 px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
+                      <button type="button" onclick="triggerAdminImageUpload('adm-van-img-${num}', 'adm-van-prev-${num}')" class="px-3 py-1.5 rounded-xl bg-zinc-900 text-white text-xs font-bold hover:bg-primary transition-colors">Subir</button>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-[11px] font-bold text-gray-600">Texto del Botón</label>
+                      <input id="adm-van-btn-${num}" type="text" value="${(card.btnText || '').replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
+                    </div>
+                    <div>
+                      <label class="text-[11px] font-bold text-gray-600">Enlace (Link)</label>
+                      <input id="adm-van-link-${num}" type="text" value="${(card.link || '').replace(/"/g, '&quot;')}" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <div class="flex justify-end">
+            <button type="button" onclick="saveAdminVanguardia('${selectedAdminVanguardiaCat}')" class="px-5 py-2.5 rounded-xl crimson-btn text-white text-xs font-bold shadow-md flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">save</span> Guardar Universo (${selectedAdminVanguardiaCat.toUpperCase()})
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAdminVanguardia(catKey) {
+      if (!cmsData.vanguardia) cmsData.vanguardia = {};
+      cmsData.vanguardia[catKey] = {
+        card1: {
+          badge: document.getElementById('adm-van-badge-1').value.trim(),
+          tag: document.getElementById('adm-van-tag-1').value.trim(),
+          title: document.getElementById('adm-van-title-1').value.trim(),
+          desc: document.getElementById('adm-van-desc-1').value.trim(),
+          img: document.getElementById('adm-van-img-1').value.trim(),
+          btnText: document.getElementById('adm-van-btn-1').value.trim(),
+          link: document.getElementById('adm-van-link-1').value.trim()
+        },
+        card2: {
+          badge: document.getElementById('adm-van-badge-2').value.trim(),
+          tag: document.getElementById('adm-van-tag-2').value.trim(),
+          title: document.getElementById('adm-van-title-2').value.trim(),
+          desc: document.getElementById('adm-van-desc-2').value.trim(),
+          img: document.getElementById('adm-van-img-2').value.trim(),
+          btnText: document.getElementById('adm-van-btn-2').value.trim(),
+          link: document.getElementById('adm-van-link-2').value.trim()
+        }
+      };
+      saveCMSState();
+      if (typeof window.selectVanguardiaCategory === 'function') {
+        window.selectVanguardiaCategory(catKey);
+      }
+      showToast(`✅ Universo ${catKey.toUpperCase()} guardado y actualizado en vivo`);
     }
 
     // ==========================================
