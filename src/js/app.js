@@ -2103,7 +2103,7 @@
       viewport.innerHTML = `
         <div class="w-full h-full relative transition-opacity duration-500">
           ${isVideo ? `
-            <video src="${s.mediaUrl}" autoplay muted playsinline class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105"></video>
+            <video src="${s.mediaUrl}" autoplay muted playsinline preload="auto" class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105"></video>
           ` : `
             <img src="${s.mediaUrl}" alt="${s.title}" class="w-full h-full object-cover transition-transform duration-700">
           `}

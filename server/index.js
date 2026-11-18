@@ -19,8 +19,13 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-// Middlewares globales
-app.use(compression());
+// Middlewares globales (evitar comprimir streams de video)
+app.use(compression({
+  filter: (req, res) => {
+    if (req.path.startsWith('/assets/videos/')) return false;
+    return compression.filter(req, res);
+  }
+}));
 app.use(cors());
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
