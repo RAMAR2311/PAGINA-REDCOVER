@@ -4566,9 +4566,11 @@
         ]
       },
       gafas: {
-        categoryTitle: "Explorar Gafas Ray-Ban",
+        categoryTitle: "Explorar Gafas Meta AI",
         primaryLinks: [
-          { name: "Ver todas las Gafas Ray-Ban", action: "filterAndScroll('gafas')", bold: true },
+          { name: "Ver todas las Gafas Meta", action: "filterAndScroll('gafas')", bold: true },
+          { name: "Oakley Meta HSTN (Deportivas)", action: "openProductModal('oakley-meta-hstn')" },
+          { name: "Meta Starfire Kylie Edition", action: "openProductModal('meta-starfire-kylie')" },
           { name: "Ray-Ban Meta Wayfarer", action: "openProductModal('rayban-meta-wayfarer')" },
           { name: "Ray-Ban Meta Skyler", action: "openProductModal('rayban-meta-skyler')" },
           { name: "Ray-Ban Meta Headliner", action: "openProductModal('rayban-meta-headliner')" },
@@ -4576,14 +4578,15 @@
         ],
         secondaryTitle: "Comprar Gafas",
         secondaryLinks: [
+          { name: "Comprar Oakley Meta HSTN", action: "openProductModal('oakley-meta-hstn')" },
+          { name: "Comprar Meta Starfire Kylie", action: "openProductModal('meta-starfire-kylie')" },
           { name: "Comprar Ray-Ban Meta Wayfarer", action: "openProductModal('rayban-meta-wayfarer')" },
-          { name: "Comprar Ray-Ban Meta Skyler", action: "openProductModal('rayban-meta-skyler')" },
-          { name: "Financiación WhatsApp", action: "directFinanceWhatsApp('Gafas Ray-Ban Meta', 1699000)" }
+          { name: "Financiación WhatsApp", action: "directFinanceWhatsApp('Gafas Meta AI', 1699000)" }
         ],
-        tertiaryTitle: "Tecnología Ray-Ban Meta",
+        tertiaryTitle: "Tecnología Meta AI",
         tertiaryLinks: [
-          { name: "Cámara Ultra HD 12 MP + Meta AI", action: "openInfoModal('sistemas')" },
-          { name: "Garantía Oficial 1 Año", action: "openInfoModal('garantia')" }
+          { name: "Cámara POV 12 MP + Meta AI", action: "openInfoModal('sistemas')" },
+          { name: "Garantía RedCover 1 Año", action: "openInfoModal('garantia')" }
         ]
       },
       watch: {

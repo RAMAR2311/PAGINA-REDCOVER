@@ -2963,6 +2963,79 @@
     "shortDesc": "La entrada ideal a la serie S24 y Galaxy AI con gran pantalla de 6.7 pulgadas, cámara ProVisual Engine de 50 MP y batería de 4.700 mAh."
   },
   {
+    "id": "oakley-meta-hstn",
+    "img": "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=900&q=85",
+    "badge": "Oakley Meta • Deportivo & Streetwear",
+    "price": 1999000,
+    "specs": [
+      "Cámara POV ultra gran angular de 12 MP (100° FOV) con grabación de video hasta 3K",
+      "Montura deportiva ultraligera O Matter™ (~53 g) con resistencia al agua y sudor IPX4",
+      "Lentes de alto contraste Oakley Prizm™ Polarized y opción Transitions® fotocromática",
+      "Audio direccional de oído abierto con panel táctil en patilla y estuche de carga (hasta 48 horas totales)"
+    ],
+    "title": "Oakley Meta HSTN Smart Glasses (Prizm & Meta AI)",
+    "colors": [
+      {
+        "hex": "#1C1C1E",
+        "name": "Negro Mate"
+      },
+      {
+        "hex": "#8B8579",
+        "name": "Gris Cálido (Ed. 24K)"
+      },
+      {
+        "hex": "#D4A359",
+        "name": "Curry Claro"
+      },
+      {
+        "hex": "#E5E7EB",
+        "name": "Transparente"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "HSTN Negro Mate (Lente Prizm Black Polarized) - $1.999.000",
+      "HSTN Gris Cálido Ed. Limitada (Prizm 24K Gold Polarized) - $2.399.000",
+      "HSTN Transparente / Curry Claro (Lente Transitions®) - $2.299.000"
+    ],
+    "shortDesc": "Las nuevas gafas deportivas Oakley Meta HSTN combinan la icónica montura ligera O Matter™ con cámara POV de 12 MP (video hasta 3K), audio de oído abierto, resistencia IPX4 y asistente Meta AI.",
+    "stockStatus": "● En Stock"
+  },
+  {
+    "id": "meta-starfire-kylie",
+    "img": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=900&q=85",
+    "badge": "Meta Starfire • Edición Especial Kylie",
+    "price": 1999000,
+    "specs": [
+      "Diseño ovalado de alta moda con sutiles detalles de cristales en los lentes",
+      "Cámara HD de 12 MP integrada con grabación en primera persona y streaming directo",
+      "Asistente Meta AI con opción de voz personalizada y matriz de micrófonos con audio espacial",
+      "Estuche de carga portátil exclusivo con espejo interior tipo tocador y carga rápida USB-C"
+    ],
+    "title": "Meta Starfire Kylie Edition Smart Glasses",
+    "colors": [
+      {
+        "hex": "#18181A",
+        "name": "Negro Ónix"
+      },
+      {
+        "hex": "#8C6239",
+        "name": "Carey Champagne"
+      },
+      {
+        "hex": "#E8D5C4",
+        "name": "Marfil Dorado"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "Starfire Negro Ónix (Lente Cristal / Ahumado) - $1.999.000",
+      "Starfire Carey Champagne (Lente Degradado Polarizado) - $2.199.000"
+    ],
+    "shortDesc": "Gafas inteligentes de alta moda Meta Starfire Kylie Edition con silueta ovalada sofisticada, detalles de cristal en los lentes, audio espacial, cámara HD de 12 MP, voz personalizada de IA y estuche con espejo.",
+    "stockStatus": "● En Stock"
+  },
+  {
     "id": "rayban-meta-wayfarer",
     "img": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",
     "badge": "Ray-Ban Meta • Best Seller",
