@@ -5433,10 +5433,6 @@
         }
       } catch (e) {}
     }
-      } catch (err) {
-        console.warn('Error cargando estado CMS:', err);
-      }
-    }
 
     function saveCMSState() {
       try {
