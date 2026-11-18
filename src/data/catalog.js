@@ -1900,6 +1900,36 @@
     "shortDesc": "Diseño moderno todo pantalla colorido ideal para colegio, universidad, lectura, streaming y notas digitales."
   },
   {
+    "id": "watch-ultra-4",
+    "img": "assets/img/watch.png",
+    "badge": "Lanzamiento 2026 • Titanio 49mm",
+    "price": 3999000,
+    "specs": [
+      "Chip Apple S11 con Apple Intelligence en muñeca y watchOS 27 (Audio Intelligence & Siri Recap)",
+      "Caja de Titanio de 49 mm (Natural o Negro) con cristal de zafiro plano y Botón de Acción físico",
+      "Nuevo sistema de sensores de salud: lectura cardíaca cada 5 seg, HRV preciso y métrica Readiness Score",
+      "Batería de hasta 50h de uso normal (84h en Bajo Consumo) y carga ultra rápida (15 min = 18h)"
+    ],
+    "title": "Apple Watch Ultra 4 (49mm Titanio • Chip S11)",
+    "colors": [
+      {
+        "hex": "#B5AFA6",
+        "name": "Titanio Natural"
+      },
+      {
+        "hex": "#222224",
+        "name": "Titanio Negro"
+      }
+    ],
+    "category": "watch",
+    "variants": [
+      "49mm Titanio Natural (GPS + Cellular • Correa Alpine/Trail/Ocean) - $3.999.000",
+      "49mm Titanio Negro (GPS + Cellular • Correa Milanese/Ocean) - $4.199.000"
+    ],
+    "shortDesc": "El Apple Watch Ultra 4 (septiembre 2026) estrena el Chip S11, monitoreo cardíaco de alta frecuencia cada 5 segundos, métrica Readiness Score, comunicación satelital y hasta 84 horas de batería.",
+    "stockStatus": "● En Stock"
+  },
+  {
     "id": "watch-ultra-3",
     "img": "assets/img/watch.png",
     "badge": "Nuevo 2026 • Satelital",
@@ -2987,6 +3017,193 @@
       "256 GB - $2.799.000"
     ],
     "shortDesc": "La entrada ideal a la serie S24 y Galaxy AI con gran pantalla de 6.7 pulgadas, cámara ProVisual Engine de 50 MP y batería de 4.700 mAh."
+  },
+  {
+    "id": "rayban-meta-wayfarer-gen3",
+    "img": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",
+    "badge": "Ray-Ban Meta Gen 3 • Video 3K",
+    "price": 2199000,
+    "specs": [
+      "Perfil más delgado con cámara 12 MP un 36% más pequeña y grabación de video 3K Ultra HD (30fps)",
+      "Matriz mejorada de 6 micrófonos para llamadas nítidas + audio espacial Dolby Atmos de oído abierto",
+      "Hasta 9 horas de uso continuo + estuche con 50 horas extra (carga rápida 50% en 20 min)",
+      "32 GB de almacenamiento interno, varillas ajustables de confort, Wi-Fi 6, Bluetooth 5.3 y Meta AI"
+    ],
+    "title": "Ray-Ban Meta Wayfarer (Gen 3 • Video 3K & Meta AI)",
+    "colors": [
+      {
+        "hex": "#18181A",
+        "name": "Negro Clásico"
+      },
+      {
+        "hex": "#2A2A2E",
+        "name": "Negro Mate"
+      },
+      {
+        "hex": "#1D4E73",
+        "name": "Azul Océano Transparente"
+      },
+      {
+        "hex": "#5C3A21",
+        "name": "Ámbar / Carey"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "Wayfarer Gen 3 Negro Clásico (Lente Verde G-15) - $2.199.000",
+      "Wayfarer Gen 3 Azul Océano Transparente (Lente Polarizado) - $2.349.000",
+      "Wayfarer Gen 3 (Lente Transitions® Fotocromático) - $2.499.000"
+    ],
+    "shortDesc": "La nueva generación 3 del clásico Wayfarer: montura más delgada con cámara de 12 MP (video 3K), 6 micrófonos de alta claridad, 9 horas de batería, 32 GB internos y modo Autocapture con Meta AI.",
+    "stockStatus": "● En Stock"
+  },
+  {
+    "id": "rayban-meta-aviator-gen3",
+    "img": "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=900&q=85",
+    "badge": "Ray-Ban Meta Gen 3 • Video 3K",
+    "price": 2199000,
+    "specs": [
+      "Cámara ultra gran angular de 12 MP (36% más compacta) con grabación de video 3K Ultra HD a 30fps",
+      "Matriz mejorada de 6 micrófonos con cancelación de viento y altavoces abiertos con audio espacial",
+      "Hasta 9 horas de uso continuo + estuche de carga con 50 horas adicionales (50% en 20 min)",
+      "Botón de acción personalizable para Meta AI y Traducción en Vivo, 32 GB internos, Wi-Fi 6 e IPX4"
+    ],
+    "title": "Ray-Ban Meta Aviator (Gen 3 • Video 3K & Meta AI)",
+    "colors": [
+      {
+        "hex": "#1C1C1E",
+        "name": "Negro Clásico"
+      },
+      {
+        "hex": "#7C5836",
+        "name": "Ámbar Transparente"
+      },
+      {
+        "hex": "#D4AF37",
+        "name": "Dorado / G-15"
+      },
+      {
+        "hex": "#C0C0C0",
+        "name": "Plata Polarizado"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "Aviator Negro Clásico (Lente Verde G-15) - $2.199.000",
+      "Aviator Ámbar Transparente (Lente Polarizado) - $2.349.000",
+      "Aviator Gen 3 (Lente Transitions® Fotocromático) - $2.499.000"
+    ],
+    "shortDesc": "Las icónicas Ray-Ban Aviator ahora con tecnología Meta Gen 3: cámara 12 MP más discreta con video 3K Ultra HD, 6 micrófonos, botón de acción rápida para Meta AI y hasta 9 horas de batería.",
+    "stockStatus": "● En Stock"
+  },
+  {
+    "id": "rayban-meta-wayfarer-gen2",
+    "img": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",
+    "badge": "Ray-Ban Meta Gen 2 • 8h Batería",
+    "price": 1699000,
+    "specs": [
+      "Cámara ultra gran angular de 12 MP con grabación de video 1080p (hasta 60 seg) y fotos HD",
+      "Procesador Qualcomm Snapdragon AR1 Gen 1 + 32 GB de almacenamiento interno",
+      "Hasta 8 horas de uso moderado por carga + estuche de carga con 32 horas extra (50% en 20 min)",
+      "Sistema de 5 micrófonos, altavoces abiertos, Wi-Fi 6E, Bluetooth 5.3 y asistente multimodal Meta AI"
+    ],
+    "title": "Ray-Ban Meta Wayfarer (Gen 2 • Snapdragon AR1)",
+    "colors": [
+      {
+        "hex": "#18181A",
+        "name": "Negro Brillante"
+      },
+      {
+        "hex": "#2A2A2E",
+        "name": "Negro Mate"
+      },
+      {
+        "hex": "#6F4E37",
+        "name": "Caramelo / Jeans"
+      },
+      {
+        "hex": "#4B6A88",
+        "name": "Azul Jeans"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "Wayfarer Gen 2 Negro Brillante (Lente Verde G-15) - $1.699.000",
+      "Wayfarer Gen 2 Negro Mate (Lente Polarizado) - $1.849.000",
+      "Wayfarer Gen 2 (Lente Transitions® Fotocromático) - $1.999.000"
+    ],
+    "shortDesc": "La versión Gen 2 del ícono Wayfarer: hasta 8 horas de autonomía, chip Snapdragon AR1 Gen 1, cámara 12 MP, 5 micrófonos y asistente multimodal Meta AI con traducción en vivo.",
+    "stockStatus": "● En Stock"
+  },
+  {
+    "id": "rayban-meta-headliner-gen2",
+    "img": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=900&q=85",
+    "badge": "Ray-Ban Meta Gen 2 • Panthos",
+    "price": 1699000,
+    "specs": [
+      "Silueta híbrida Panthos (entre Wayfarer y Round) con cámara ultra gran angular de 12 MP",
+      "Chip Qualcomm Snapdragon AR1 Gen 1, 32 GB internos y hasta 8 horas de batería continua",
+      "Lentes disponibles en Verde G-15, Transitions® Zafiro/Esmeralda/Grafito y filtro luz azul",
+      "Audio espacial en oído abierto, matriz de 5 micrófonos, Wi-Fi 6E y comandos 'Hey Meta'"
+    ],
+    "title": "Ray-Ban Meta Headliner (Gen 2 • Transitions & AI)",
+    "colors": [
+      {
+        "hex": "#1C1C1E",
+        "name": "Negro Brillante"
+      },
+      {
+        "hex": "#5F6368",
+        "name": "Gris Asteroide"
+      },
+      {
+        "hex": "#6B4423",
+        "name": "Carey / Havana"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "Headliner Gen 2 Negro Brillante (Lente Verde G-15) - $1.699.000",
+      "Headliner Gen 2 Gris Asteroide (Transitions® Esmeralda) - $1.999.000",
+      "Headliner Gen 2 Negro (Transitions® Zafiro / Grafito) - $1.999.000"
+    ],
+    "shortDesc": "Gafas Ray-Ban Meta Headliner Gen 2 con diseño Panthos moderno, hasta 8 horas de batería, cámara 12 MP, opciones de lentes Transitions® Zafiro/Esmeralda y Meta AI integrada.",
+    "stockStatus": "● En Stock"
+  },
+  {
+    "id": "rayban-meta-skyler-gen2",
+    "img": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=900&q=85",
+    "badge": "Ray-Ban Meta Gen 2 • Cat-Eye 8h",
+    "price": 1799000,
+    "specs": [
+      "Silueta retro-chic Cat-Eye (modelo RW4014) con cámara ultra gran angular de 12 MP",
+      "Chip Qualcomm Snapdragon AR1 Gen 1 + 32 GB de almacenamiento interno y transmisión en vivo",
+      "Hasta 8 horas de autonomía por carga + estuche portátil con 32 horas adicionales",
+      "Opciones con lentes Transitions® Amatista/Grafito, Polarizados y filtro de luz azul + Meta AI"
+    ],
+    "title": "Ray-Ban Meta Skyler (Gen 2 • Cat-Eye & Transitions)",
+    "colors": [
+      {
+        "hex": "#1A1A1D",
+        "name": "Negro Brillante"
+      },
+      {
+        "hex": "#D8D8DC",
+        "name": "Gris Tiza / Caliza"
+      },
+      {
+        "hex": "#5C4B78",
+        "name": "Violeta Místico"
+      }
+    ],
+    "category": "gafas",
+    "variants": [
+      "Skyler Gen 2 Negro Brillante (Lente Verde G-15 / Polarizado) - $1.799.000",
+      "Skyler Gen 2 Negro (Transitions® Amatista / Grafito) - $2.049.000",
+      "Skyler Gen 2 Gris Tiza / Violeta Místico (Transitions®) - $2.099.000"
+    ],
+    "shortDesc": "Diseño Cat-Eye jet-set en su nueva versión Gen 2: hasta 8 horas de batería continua, chip Snapdragon AR1 Gen 1, cámara 12 MP, 5 micrófonos y lentes Transitions® Amatista o Grafito.",
+    "stockStatus": "● En Stock"
   },
   {
     "id": "oakley-meta-hstn",

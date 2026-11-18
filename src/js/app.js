@@ -885,7 +885,6 @@
         nuevosTitle: "Nuevos",
         nuevosLinks: [
           { name: "iPhone 18 Pro y 18 Pro Max", action: "openProductModal('iphone-18-pro-max')" },
-          { name: "iPhone 17 Pro y Pro Max", action: "openProductModal('iphone-17-pro')" },
           { name: "iPhone 17", action: "openProductModal('iphone-17')" },
           { name: "iPhone 16 Pro y Pro Max", action: "openProductModal('iphone-16-pro')" },
           { name: "iPhone 16", action: "openProductModal('iphone-16')" },
@@ -893,6 +892,8 @@
         ],
         exhibicionTitle: "De Exhibición",
         exhibicionLinks: [
+          { name: "iPhone 17 Pro Max", action: "openProductModal('iphone-17-pro-max')" },
+          { name: "iPhone 17 Pro", action: "openProductModal('iphone-17-pro')" },
           { name: "iPhone 16 Pro Max", action: "openProductModal('iphone-16-pro-max')" },
           { name: "iPhone 16 Pro", action: "openProductModal('iphone-16-pro')" },
           { name: "iPhone 16 y 16 Plus", action: "openProductModal('iphone-16')" },
@@ -921,18 +922,15 @@
           { name: "Ver todos los AirPods", action: "filterAndScroll('airpods')", bold: true },
           { name: "AirPods 5 (Serie 5 • 2026)", action: "openProductModal('airpods-5')" },
           { name: "AirPods Pro 3", action: "openProductModal('airpods-pro-3')" },
-          { name: "AirPods Max 2", action: "openProductModal('airpods-max-2')" },
           { name: "AirPods 4 ANC", action: "openProductModal('airpods-4-anc')" },
-          { name: "AirPods 4", action: "openProductModal('airpods-4')" },
-          { name: "AirPods Pro 2", action: "openProductModal('airpods-pro-2')" },
-          { name: "AirPods 3.ª Gen", action: "openProductModal('airpods-pro-2')" }
+          { name: "AirPods 4", action: "openProductModal('airpods-4')" }
         ],
         secondaryTitle: "Comprar AirPods",
         secondaryLinks: [
+          { name: "Comprar AirPods 5", action: "openProductModal('airpods-5')" },
           { name: "Reservar AirPods Pro 3", action: "openProductModal('airpods-pro-3')" },
-          { name: "Comprar AirPods Max 2", action: "openProductModal('airpods-max-2')" },
           { name: "Ver Catálogo de AirPods", action: "filterAndScroll('airpods')" },
-          { name: "Financiar AirPods", action: "directFinanceWhatsApp('AirPods Pro 3 / AirPods Max 2', 1399000)" }
+          { name: "Financiar AirPods", action: "directFinanceWhatsApp('AirPods 5 / AirPods Pro 3', 729000)" }
         ],
         tertiaryTitle: "Más para AirPods",
         tertiaryLinks: [
@@ -944,13 +942,9 @@
       samsung: {
         categoryTitle: "Explorar Samsung Galaxy",
         primaryLinks: [
-          { name: "Ver Samsung Galaxy S26 y S25", action: "filterAndScroll('samsung')", bold: true },
+          { name: "Ver Samsung Galaxy S26 y S25 Ultra", action: "filterAndScroll('samsung')", bold: true },
           { name: "Galaxy S26 Ultra", action: "openProductModal('samsung-s26-ultra')" },
-          { name: "Galaxy S26+ y S26", action: "openProductModal('samsung-s26-plus')" },
-          { name: "Galaxy S26 Slim", action: "openProductModal('samsung-s26-slim')" },
-          { name: "Galaxy S25 Ultra", action: "openProductModal('samsung-s25-ultra')" },
-          { name: "Galaxy S25+ y S25", action: "openProductModal('samsung-s25-plus')" },
-          { name: "Galaxy S25 Edge y S25 FE", action: "openProductModal('samsung-s25-edge')" }
+          { name: "Galaxy S25 Ultra", action: "openProductModal('samsung-s25-ultra')" }
         ],
         secondaryTitle: "Comprar Samsung",
         secondaryLinks: [
@@ -970,12 +964,13 @@
         categoryTitle: "Explorar Gafas Meta AI",
         primaryLinks: [
           { name: "Ver todas las Gafas Meta", action: "filterAndScroll('gafas')", bold: true },
+          { name: "Ray-Ban Meta Wayfarer (Gen 3)", action: "openProductModal('rayban-meta-wayfarer-gen3')" },
+          { name: "Ray-Ban Meta Aviator (Gen 3)", action: "openProductModal('rayban-meta-aviator-gen3')" },
+          { name: "Ray-Ban Meta Wayfarer (Gen 2)", action: "openProductModal('rayban-meta-wayfarer-gen2')" },
+          { name: "Ray-Ban Meta Headliner (Gen 2)", action: "openProductModal('rayban-meta-headliner-gen2')" },
+          { name: "Ray-Ban Meta Skyler (Gen 2)", action: "openProductModal('rayban-meta-skyler-gen2')" },
           { name: "Oakley Meta HSTN (Deportivas)", action: "openProductModal('oakley-meta-hstn')" },
-          { name: "Meta Starfire Kylie Edition", action: "openProductModal('meta-starfire-kylie')" },
-          { name: "Ray-Ban Meta Wayfarer", action: "openProductModal('rayban-meta-wayfarer')" },
-          { name: "Ray-Ban Meta Skyler", action: "openProductModal('rayban-meta-skyler')" },
-          { name: "Ray-Ban Meta Headliner", action: "openProductModal('rayban-meta-headliner')" },
-          { name: "Ray-Ban Meta Wayfarer Edición Limitada", action: "openProductModal('rayban-meta-limited')" }
+          { name: "Meta Starfire Kylie Edition", action: "openProductModal('meta-starfire-kylie')" }
         ],
         secondaryTitle: "Comprar Gafas",
         secondaryLinks: [
@@ -994,11 +989,10 @@
         categoryTitle: "Explorar Apple Watch",
         primaryLinks: [
           { name: "Ver todos los Apple Watch", action: "filterAndScroll('watch')", bold: true },
+          { name: "Apple Watch Ultra 4", action: "openProductModal('watch-ultra-4')" },
           { name: "Apple Watch Ultra 3", action: "openProductModal('watch-ultra-3')" },
           { name: "Apple Watch Series 12", action: "openProductModal('watch-series-12')" },
           { name: "Apple Watch Series 11", action: "openProductModal('watch-series-11')" },
-          { name: "Apple Watch Ultra 2", action: "openProductModal('watch-ultra-2')" },
-          { name: "Apple Watch Series 10", action: "openProductModal('watch-ultra-2')" },
           { name: "Apple Watch SE 3", action: "openProductModal('watch-se-3')" }
         ],
         secondaryTitle: "Comprar Watch",
@@ -1045,9 +1039,7 @@
           { name: "Ver todos los iPad", action: "filterAndScroll('ipad')", bold: true },
           { name: 'iPad Pro 11" y 13"', action: "openProductModal('ipad-pro-m5')" },
           { name: 'iPad Air 11" y 13"', action: "openProductModal('ipad-air-m4')" },
-          { name: "iPad mini", action: "openProductModal('ipad-mini-a17-pro')" },
-          { name: "iPad 11.ª Gen", action: "openProductModal('ipad-11-gen')" },
-          { name: "iPad 10.ª Gen", action: "openProductModal('ipad-11-gen')" }
+          { name: "iPad 11.ª Gen", action: "openProductModal('ipad-11-gen')" }
         ],
         secondaryTitle: "Comprar iPad",
         secondaryLinks: [
@@ -2492,22 +2484,22 @@
       },
       watch: {
         card1: {
-          title: 'Apple Watch Ultra 2',
-          tag: 'Resistencia Extrema',
+          title: 'Apple Watch Ultra 4',
+          tag: 'Chip S11 • 2026',
           badge: 'Titanio 49mm',
-          desc: 'Pantalla de 3000 nits, GPS doble frecuencia, caja de titanio y 72h batería.',
+          desc: 'Sensor cardíaco cada 5s, Readiness Score, conexión satelital y hasta 84h de batería.',
           img: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80',
           link: 'catalogo.html?cat=watch',
-          btnText: 'Ver Ultra 2'
+          btnText: 'Ver Ultra 4'
         },
         card2: {
-          title: 'Apple Watch Series 10',
-          tag: 'Series 10 Oficial',
-          badge: 'Diseño Más Fino',
-          desc: 'Pantalla OLED gran angular, carga rápida al 80% en 30 min y sensor de profundidad.',
+          title: 'Apple Watch Series 12',
+          tag: 'Series 12 Oficial',
+          badge: 'Diseño Ultrafino',
+          desc: 'Pantalla OLED gran angular, carga rápida al 80% en 30 min y salud avanzada.',
           img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80',
           link: 'catalogo.html?cat=watch',
-          btnText: 'Ver Series 10'
+          btnText: 'Ver Series 12'
         }
       },
       airpods: {
