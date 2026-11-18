@@ -3872,7 +3872,7 @@
         `💾 *Capacidad:* ${encodeURIComponent(activeVariant.label)}%0A` +
         `🎨 *Color:* ${encodeURIComponent(activeColor.name)}%0A` +
         `💰 *Precio de lista:* ${encodeURIComponent(formatCOP(activeVariant.price))}%0A` +
-        `💳 *Método de pago preferido:* ${encodeURIComponent(productState.paymentMode === 'financing' ? 'Financiación' : 'Contado / PSE')}%0A%0A` +
+        `💳 *Método de pago preferido:* ${encodeURIComponent(productState.paymentMode === 'financing' ? 'Financiación' : 'Pago Contado')}%0A%0A` +
         `🔄 *DATOS DEL EQUIPO QUE ENTREGO EN PARTE DE PAGO:*%0A` +
         `• Modelo a entregar: ${encodeURIComponent(productState.tradeIn.deviceText || 'No seleccionado')}%0A` +
         `• Condición de Batería: ${encodeURIComponent(productState.tradeIn.batteryLabel || 'Normal')}%0A` +
