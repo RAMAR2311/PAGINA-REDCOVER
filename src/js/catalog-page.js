@@ -36,7 +36,26 @@
 
   function rebuildMasterList() {
     masterList = [
-      // 1. Promociones destacadas van primero (Prioridad 1 para que salgan arriba en "Todas" y al limpiar filtros)
+      // 1. Dispositivos oficiales (Prioridad 1 — aparecen primero en "Todas")
+      ...devices.map(d => ({
+        ...d,
+        itemType: 'device',
+        displayCategory: d.category || 'iphone',
+        badge: d.badge || 'RedCover Colombia',
+        cleanPrice: Number(d.price) || 0,
+        priority: 1
+      })),
+      // 2. Accesorios oficiales (Prioridad 2)
+      ...accessories.map(a => ({
+        ...a,
+        itemType: 'accessory',
+        displayCategory: 'accesorios',
+        badge: a.badge || 'Accesorio Original',
+        shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía de 1 año en RedCover.',
+        cleanPrice: Number(a.price) || 0,
+        priority: 2
+      })),
+      // 3. Promociones y Combos (Prioridad 3 — salen de últimas en la vista general, pero filtrables arriba en el sidebar)
       ...offers.map(o => ({
         ...o,
         itemType: 'offer',
@@ -45,25 +64,6 @@
         shortDesc: o.desc || 'Combo especial con descuento directo, garantía oficial y financiación a 24 cuotas.',
         cleanPrice: Number(o.price) || 0,
         oldPrice: Number(o.oldPrice) || (Number(o.price) * 1.2),
-        priority: 1
-      })),
-      // 2. Dispositivos oficiales (Prioridad 2)
-      ...devices.map(d => ({
-        ...d,
-        itemType: 'device',
-        displayCategory: d.category || 'iphone',
-        badge: d.badge || 'RedCover Colombia',
-        cleanPrice: Number(d.price) || 0,
-        priority: 2
-      })),
-      // 3. Accesorios oficiales (Prioridad 3)
-      ...accessories.map(a => ({
-        ...a,
-        itemType: 'accessory',
-        displayCategory: 'accesorios',
-        badge: a.badge || 'Accesorio Original',
-        shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía de 1 año en RedCover.',
-        cleanPrice: Number(a.price) || 0,
         priority: 3
       }))
     ];
@@ -275,8 +275,8 @@
       if (activeSort === 'price-asc') return a.cleanPrice - b.cleanPrice;
       if (activeSort === 'price-desc') return b.cleanPrice - a.cleanPrice;
       if (activeSort === 'name-asc') return (a.title || '').localeCompare(b.title || '');
-      // 'featured': promociones primero (priority 1), luego equipos (priority 2), luego accesorios (priority 3)
-      return (a.priority || 2) - (b.priority || 2);
+      // 'featured': equipos primero (priority 1), luego accesorios (priority 2), luego promociones al final (priority 3)
+      return (a.priority || 1) - (b.priority || 1);
     });
   }
 

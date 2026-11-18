@@ -1059,16 +1059,16 @@
         categoryTitle: "Explorar Accesorios",
         primaryLinks: [
           { name: "Ver todos los Accesorios", href: "#accesorios", bold: true },
-          { name: "Cubo de 20W y 40W Original", href: "#accesorios" },
+          { name: "Cubo de 20W y 40W", href: "#accesorios" },
           { name: "Apple Pencil USB-C y Pencil Pro", href: "#accesorios" },
-          { name: "Cable USB-C y Lightning Originales", href: "#accesorios" },
-          { name: "AirTag Original", href: "#accesorios" }
+          { name: "Cable USB-C y Lightning", href: "#accesorios" },
+          { name: "AirTag", href: "#accesorios" }
         ],
         secondaryTitle: "Categorías",
         secondaryLinks: [
-          { name: "Cubos de Carga Originales", href: "#accesorios" },
+          { name: "Cubos de Carga", href: "#accesorios" },
           { name: "Apple Pencil", href: "#accesorios" },
-          { name: "Cables Originales", href: "#accesorios" },
+          { name: "Cables", href: "#accesorios" },
           { name: "AirTag", href: "#accesorios" }
         ],
         tertiaryTitle: "Respaldo",
@@ -1375,6 +1375,38 @@
 
     const defaultCMSData = {
       whatsappNumber: '573001234567',
+      faqs: [
+        {
+          id: 'faq-exhibicion',
+          question: '¿Qué diferencia hay entre los equipos nuevos y los de exhibición?',
+          answer: 'En nuestro catálogo y configurador encuentras equipos nuevos sellados (100% libres de operador, homologados en Colombia y con garantía oficial de 1 año) y equipos de exhibición verificados técnicamente en batería, pantalla y chasis, sin reparaciones previas y con respaldo directo RedCover a un precio más económico.'
+        },
+        {
+          id: 'faq-configurador',
+          question: '¿Cómo funciona el configurador y la bolsa de compras?',
+          answer: 'Seleccionas el modelo, color, capacidad de almacenamiento y estado que prefieras; el sistema calcula de inmediato el precio en COP y la opción estimada a 24 cuotas. Luego puedes agregarlo a tu bolsa o enviar tu configuración directa por WhatsApp con un solo botón.'
+        },
+        {
+          id: 'faq-precio-final',
+          question: '¿El precio de la web es el precio final?',
+          answer: 'Sí, todos los valores publicados están en Pesos Colombianos (COP) e incluyen factura electrónica legal DIAN. Si decides aplicar el Plan Canje, el bono estimado de tu equipo anterior se descuenta directamente del valor total en tu bolsa de compras.'
+        },
+        {
+          id: 'faq-canje',
+          question: '¿Cómo funciona el Plan Canje para entregar mi equipo actual?',
+          answer: 'Cotizas tu iPhone, MacBook o iPad actual en 3 pasos desde Plan Canje para obtener un bono estimado (hasta $2.500.000 según modelo). Al entregarlo en tienda realizamos una revisión técnica de 10 minutos para validar batería, estética y que esté libre de iCloud o reportes, además de realizar el borrado seguro de tus datos.'
+        },
+        {
+          id: 'faq-envios',
+          question: '¿Hacen envíos fuera de Bogotá y qué respaldo tienen?',
+          answer: 'Sí, realizamos envíos asegurados a toda Colombia con póliza blindada contra todo riesgo hasta tus manos. Si estás en Bogotá puedes visitarnos, probar tu equipo y recogerlo en nuestras sedes de San Andresito de la 38 — C.C. Caribe, Locales 136 y 197 (Lun a Sáb 9:30 AM - 7:30 PM | Dom y Festivos 10:00 AM - 5:00 PM).'
+        },
+        {
+          id: 'faq-financiacion',
+          question: '¿Cómo funciona la financiación hasta 24 cuotas sin interés?',
+          answer: 'Aplica con tarjetas seleccionadas de Bancolombia, Davivienda, Nu Colombia y Banco de Bogotá previa aprobación de la entidad a través de nuestro canal asistido por WhatsApp. También recibimos pagos presenciales y servicio técnico AST2 con configuración gratuita de tu iCloud+.'
+        }
+      ],
       iphone16proConfig: {
         title: "iPhone 16 Pro y iPhone 16 Pro Max",
         subtitle: "Configura tu iPhone 16 Pro y iPhone 16 Pro Max. Elige acabado en Titanio, almacenamiento, cotiza Plan Canje y financia cómodamente en RedCover Colombia.",
@@ -1993,7 +2025,81 @@
       renderCMSOffers();
       renderCMSAccessories(currentAccCategoryFilter);
       renderCMSCanjeAndStores();
+      renderCMSFaqs();
       updateAdminCounters();
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderCMSFaqs() {
+      const container = document.getElementById('faq-accordion-container');
+      if (!container) return;
+      const faqs = Array.isArray(cmsData.faqs) && cmsData.faqs.length ? cmsData.faqs : defaultCMSData.faqs;
+      container.innerHTML = faqs.map((item, idx) => {
+        const isOpen = idx === 0;
+        return `
+          <div id="faq-card-${idx}" class="rounded-2xl border ${isOpen ? 'border-primary/60 shadow-lg' : 'border-gray-200/90 shadow-sm'} bg-white overflow-hidden transition-all duration-300 hover:border-red-300 hover:shadow-md">
+            <button type="button" onclick="toggleFaqItem(${idx})" class="w-full px-5 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between gap-4 focus:outline-none group">
+              <div class="flex items-center gap-3.5 min-w-0">
+                <span id="faq-num-${idx}" class="w-8 h-8 rounded-xl ${isOpen ? 'bg-primary text-white border-primary' : 'bg-red-50 text-primary border-red-200'} border font-black text-xs flex items-center justify-center shrink-0 transition-colors duration-200">
+                  ${String(idx + 1).padStart(2, '0')}
+                </span>
+                <span id="faq-title-${idx}" class="text-sm sm:text-base font-extrabold ${isOpen ? 'text-primary' : 'text-gray-900'} group-hover:text-primary transition-colors">${escapeHtml(item.question)}</span>
+              </div>
+              <span id="faq-icon-wrap-${idx}" class="w-8 h-8 rounded-full ${isOpen ? 'bg-zinc-950 text-white' : 'bg-gray-100 text-gray-600'} flex items-center justify-center shrink-0 transition-all duration-200">
+                <span id="faq-icon-${idx}" class="material-symbols-outlined text-lg transition-transform duration-200">${isOpen ? 'remove' : 'add'}</span>
+              </span>
+            </button>
+            <div id="faq-body-${idx}" class="${isOpen ? '' : 'hidden'} px-5 sm:px-6 pb-5 pt-4 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-red-100/80 bg-gradient-to-b from-red-50/25 to-white">
+              ${escapeHtml(item.answer)}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleFaqItem(idx) {
+      const card = document.getElementById(`faq-card-${idx}`);
+      const body = document.getElementById(`faq-body-${idx}`);
+      const icon = document.getElementById(`faq-icon-${idx}`);
+      const num = document.getElementById(`faq-num-${idx}`);
+      const title = document.getElementById(`faq-title-${idx}`);
+      const iconWrap = document.getElementById(`faq-icon-wrap-${idx}`);
+      if (!body || !icon) return;
+      const isHidden = body.classList.contains('hidden');
+      body.classList.toggle('hidden', !isHidden);
+      icon.textContent = isHidden ? 'remove' : 'add';
+      if (title) {
+        title.classList.toggle('text-primary', isHidden);
+        title.classList.toggle('text-gray-900', !isHidden);
+      }
+      if (card) {
+        card.classList.toggle('border-primary/60', isHidden);
+        card.classList.toggle('shadow-lg', isHidden);
+        card.classList.toggle('border-gray-200/90', !isHidden);
+        card.classList.toggle('shadow-sm', !isHidden);
+      }
+      if (num) {
+        num.classList.toggle('bg-primary', isHidden);
+        num.classList.toggle('text-white', isHidden);
+        num.classList.toggle('border-primary', isHidden);
+        num.classList.toggle('bg-red-50', !isHidden);
+        num.classList.toggle('text-primary', !isHidden);
+        num.classList.toggle('border-red-200', !isHidden);
+      }
+      if (iconWrap) {
+        iconWrap.classList.toggle('bg-zinc-950', isHidden);
+        iconWrap.classList.toggle('text-white', isHidden);
+        iconWrap.classList.toggle('bg-gray-100', !isHidden);
+        iconWrap.classList.toggle('text-gray-600', !isHidden);
+      }
     }
 
     let currentHeroSlideIndex = 0;
@@ -3099,6 +3205,82 @@
       else if (tab === 'canje') renderAdminCanjeTab(container);
       else if (tab === 'iphone16pro') renderAdminIphone16ProTab(container);
       else if (tab === 'vanguardia') renderAdminVanguardiaTab(container);
+      else if (tab === 'faqs') renderAdminFaqsTab(container);
+    }
+
+    function renderAdminFaqsTab(container) {
+      if (!Array.isArray(cmsData.faqs)) cmsData.faqs = [...defaultCMSData.faqs];
+      container.innerHTML = `
+        <div class="space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-gray-200">
+            <div>
+              <h3 class="text-base font-black text-gray-900">Preguntas Frecuentes (FAQ)</h3>
+              <p class="text-xs text-gray-500">Agrega, edita o elimina las preguntas que aparecen en la página principal.</p>
+            </div>
+            <button type="button" onclick="addAdminFaq()" class="px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-red-700 transition flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">add</span> Agregar Pregunta
+            </button>
+          </div>
+          <div class="space-y-4">
+            ${cmsData.faqs.map((faq, idx) => `
+              <div class="bg-white p-4 rounded-2xl border border-gray-200 space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Pregunta #${idx + 1}</span>
+                  <button type="button" onclick="deleteAdminFaq(${idx})" class="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">delete</span> Eliminar
+                  </button>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">Pregunta</label>
+                  <input type="text" id="admin-faq-q-${idx}" value="${escapeHtml(faq.question)}" class="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm font-semibold focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">Respuesta</label>
+                  <textarea id="admin-faq-a-${idx}" rows="3" class="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm focus:border-primary focus:outline-none">${escapeHtml(faq.answer)}</textarea>
+                </div>
+                <div class="flex justify-end">
+                  <button type="button" onclick="saveAdminFaq(${idx})" class="px-4 py-2 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-black transition">
+                    Guardar cambios
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function addAdminFaq() {
+      if (!Array.isArray(cmsData.faqs)) cmsData.faqs = [];
+      cmsData.faqs.push({
+        id: 'faq-' + Date.now(),
+        question: 'Nueva pregunta frecuente',
+        answer: 'Escribe aquí la respuesta para tus clientes.'
+      });
+      saveCMSState();
+      renderCMSFaqs();
+      switchAdminTab('faqs');
+    }
+
+    function saveAdminFaq(idx) {
+      const q = document.getElementById(`admin-faq-q-${idx}`)?.value?.trim() || '';
+      const a = document.getElementById(`admin-faq-a-${idx}`)?.value?.trim() || '';
+      if (!q || !a) {
+        alert('La pregunta y la respuesta no pueden estar vacías.');
+        return;
+      }
+      cmsData.faqs[idx] = { ...cmsData.faqs[idx], question: q, answer: a };
+      saveCMSState();
+      renderCMSFaqs();
+      alert('Pregunta frecuente actualizada.');
+    }
+
+    function deleteAdminFaq(idx) {
+      if (!confirm('¿Eliminar esta pregunta frecuente?')) return;
+      cmsData.faqs.splice(idx, 1);
+      saveCMSState();
+      renderCMSFaqs();
+      switchAdminTab('faqs');
     }
 
     let selectedAdminVanguardiaCat = 'iphone';
@@ -3110,7 +3292,7 @@
         { key: 'watch', label: 'Watch' },
         { key: 'airpods', label: 'AirPods' },
         { key: 'samsung', label: 'Samsung' },
-        { key: 'gafas', label: 'Ray-Ban / Meta' },
+        { key: 'gafas', label: 'Gafas' },
         { key: 'accesorios', label: 'Accesorios' }
       ];
       if (!cmsData.vanguardia) cmsData.vanguardia = {};

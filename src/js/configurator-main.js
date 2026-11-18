@@ -4659,16 +4659,16 @@
         categoryTitle: "Explorar Accesorios",
         primaryLinks: [
           { name: "Ver todos los Accesorios", href: "#accesorios", bold: true },
-          { name: "Cubo de 20W y 40W Original", href: "#accesorios" },
+          { name: "Cubo de 20W y 40W", href: "#accesorios" },
           { name: "Apple Pencil USB-C y Pencil Pro", href: "#accesorios" },
-          { name: "Cable USB-C y Lightning Originales", href: "#accesorios" },
-          { name: "AirTag Original", href: "#accesorios" }
+          { name: "Cable USB-C y Lightning", href: "#accesorios" },
+          { name: "AirTag", href: "#accesorios" }
         ],
         secondaryTitle: "Categorías",
         secondaryLinks: [
-          { name: "Cubos de Carga Originales", href: "#accesorios" },
+          { name: "Cubos de Carga", href: "#accesorios" },
           { name: "Apple Pencil", href: "#accesorios" },
-          { name: "Cables Originales", href: "#accesorios" },
+          { name: "Cables", href: "#accesorios" },
           { name: "AirTag", href: "#accesorios" }
         ],
         tertiaryTitle: "Respaldo",
