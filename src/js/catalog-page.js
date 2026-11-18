@@ -52,7 +52,7 @@
         ...d,
         itemType: 'device',
         displayCategory: d.category || 'iphone',
-        badge: d.badge || 'Oficial Apple',
+        badge: d.badge || 'RedCover Colombia',
         cleanPrice: Number(d.price) || 0,
         priority: 2
       })),
@@ -62,7 +62,7 @@
         itemType: 'accessory',
         displayCategory: 'accesorios',
         badge: a.badge || 'Accesorio Original',
-        shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía oficial Apple de 1 año.',
+        shortDesc: a.desc || a.compat || 'Accesorio 100% original con garantía de 1 año en RedCover.',
         cleanPrice: Number(a.price) || 0,
         priority: 3
       }))
@@ -574,7 +574,7 @@
     const configLink = document.getElementById('modal-configurator-link');
 
     if (modalImg) modalImg.src = item.img;
-    if (modalBadge) modalBadge.innerText = item.badge || 'Oficial Apple';
+    if (modalBadge) modalBadge.innerText = item.badge || 'RedCover Colombia';
     if (modalCat) modalCat.innerText = item.displayCategory === 'promociones' ? 'COMBO PROMOCIONAL' : item.displayCategory.toUpperCase();
     if (modalTitle) modalTitle.innerText = item.title;
     if (modalPrice) {

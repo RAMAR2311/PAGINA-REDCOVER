@@ -4305,8 +4305,8 @@
     // ==========================================
     const officialInfoPages = {
       soporte: {
-        badge: 'Centro de Servicio Autorizado',
-        title: 'Soporte Técnico Oficial Apple en Colombia',
+        badge: 'Soporte Técnico Especializado',
+        title: 'Soporte Técnico en Colombia',
         content: `
           <p class="text-xs text-gray-600 leading-relaxed mb-4">En RedCover Colombia contamos con laboratorios certificados por Apple, diagnósticos oficiales AST2 y repuestos 100% genuinos de fábrica.</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
@@ -4326,9 +4326,9 @@
       },
       garantia: {
         badge: 'Respaldo Oficial 1 Año',
-        title: 'Garantía Oficial Apple y AppleCare+',
+        title: 'Garantía RedCover y AppleCare+',
         content: `
-          <p class="text-xs text-gray-600 leading-relaxed mb-4">Todos los equipos vendidos por RedCover Colombia se entregan sellados, con factura electrónica legal DIAN y 1 año de garantía directa en cualquier centro autorizado Apple del país.</p>
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">Todos los equipos vendidos por RedCover Colombia se entregan sellados, con factura electrónica legal DIAN y 1 año de garantía directa con RedCover Colombia.</p>
           <ul class="text-xs text-gray-700 space-y-2 mb-4">
             <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Cobertura nacional e internacional Apple por 12 meses.</li>
             <li class="flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600 text-base">verified</span> Equipos 100% libres de operador y homologados en Colombia.</li>
@@ -4973,19 +4973,19 @@
       whatsappNumber: '573001234567',
       iphone16proConfig: {
         title: "iPhone 16 Pro y iPhone 16 Pro Max",
-        subtitle: "Configura tu nuevo dispositivo oficial Apple o Samsung en RedCover Colombia con garantía de 1 año y factura legal.",
-        stickyBadge: "Garantía Oficial Apple",
+        subtitle: "Configura tu nuevo dispositivo original Apple o Samsung en RedCover Colombia con garantía de 1 año y factura legal.",
+        stickyBadge: "Garantía RedCover",
         heroStockPill: "En Stock Colombia",
         heroBadgeText: "Apple Intelligence Ready",
-        guaranteeText: "Distribuidor Autorizado Oficial Apple & Samsung Colombia • Factura legal DIAN",
+        guaranteeText: "RedCover Colombia • Equipos Originales y Factura legal DIAN",
         stockLocation: "San Andresito de la 38 C.C. Caribe (Locales 136 y 197)",
-        installmentText: "Garantía Oficial Apple • Factura Legal",
+        installmentText: "Garantía RedCover • Factura Legal",
         tradeInTitle: "Plan Canje RedCover: Ahorra hasta $2.500.000",
         baseDeviceId: "iphone-16-pro"
       },
       topbarText: '🇨🇴 Lanzamiento 2026: iPhone 18 Pro, AirPods Pro 3 & Samsung Galaxy S26 Ultra • Envío Asegurado Gratis • Asesoría WhatsApp',
       hero: {
-        authBadge: 'Distribuidor Oficial Autorizado • Colombia',
+        authBadge: 'RedCover Colombia • Equipos Originales',
         clientsBadge: '+10.000 Clientes Satisfechos',
         ratingBadge: '4.9/5 Estrellas',
         titleMain: 'iPhone 18 Pro',
@@ -5001,7 +5001,7 @@
           mediaUrl: IMG_IPHONE_PRO,
           badge: 'Banner 1 • Buque Insignia Apple 2026',
           title: 'iPhone 18 Pro Max & iPhone Duo • Desde $5.999.000 COP',
-          subtitle: 'Chip A20 Pro 2nm • Factura legal DIAN y 1 año de garantía oficial Apple',
+          subtitle: 'Chip A20 Pro 2nm • Factura legal DIAN y 1 año de garantía directa con RedCover',
           btn1Text: 'Configurar iPhone 18 Pro',
           productIdTarget: 'iphone-18-pro-max',
           btn2Text: 'Explorar 34 iPhones',
@@ -6399,7 +6399,7 @@
         title: 'Nuevo Producto Apple 2026',
         price: 3999000,
         img: IMG_IPHONE_PRO,
-        shortDesc: 'Descripción del nuevo producto oficial Apple con garantía de 1 año en Colombia.',
+        shortDesc: 'Descripción del nuevo producto original con garantía de 1 año en Colombia.',
         specs: ['Chip de última generación Apple', 'Pantalla Retina XDR', 'Garantía Oficial 1 Año en Colombia'],
         variants: ['128GB - Negro Espacial - $3.999.000', '256GB - Plata - $4.499.000']
       };
@@ -6747,7 +6747,7 @@
         category: 'magsafe',
         badge: 'Nuevo Accesorio',
         badgeColor: 'bg-red-600/90',
-        title: 'Nuevo Accesorio Oficial Apple',
+        title: 'Nuevo Accesorio Original',
         desc: 'Descripción del accesorio original con garantía.',
         price: 199000,
         img: IMG_AIRPODS
@@ -7336,13 +7336,13 @@
       if (!cmsData.iphone16proConfig) {
         cmsData.iphone16proConfig = {
           title: "Configurador Oficial RedCover",
-          subtitle: "Configura tu dispositivo oficial Apple o Samsung con garantía oficial de 1 año y factura legal en RedCover Colombia.",
-          stickyBadge: "Garantía Oficial Apple",
+          subtitle: "Configura tu dispositivo original Apple o Samsung con garantía oficial de 1 año y factura legal en RedCover Colombia.",
+          stickyBadge: "Garantía RedCover",
           heroStockPill: "En Stock Colombia",
           heroBadgeText: "Apple Intelligence Ready",
-          guaranteeText: "Distribuidor Autorizado Oficial Apple & Samsung Colombia • Factura legal DIAN",
+          guaranteeText: "RedCover Colombia • Equipos Originales y Factura legal DIAN",
           stockLocation: "San Andresito de la 38 C.C. Caribe (Locales 136 y 197)",
-          installmentText: "Garantía Oficial Apple • Factura Legal",
+          installmentText: "Garantía RedCover • Factura Legal",
           tradeInTitle: "Plan Canje RedCover: Ahorra hasta $2.500.000",
           baseDeviceId: "iphone-16-pro"
         };
@@ -7535,11 +7535,11 @@
                 </div>
                 <div>
                   <label class="block font-bold text-gray-700 mb-1">Texto de Garantía Oficial</label>
-                  <input id="adm-i16-guarantee" type="text" value="${(cfg.guaranteeText || 'Distribuidor Autorizado Oficial Apple & Samsung Colombia • Factura legal DIAN').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                  <input id="adm-i16-guarantee" type="text" value="${(cfg.guaranteeText || 'RedCover Colombia • Equipos Originales y Factura legal DIAN').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
                 </div>
                 <div>
                   <label class="block font-bold text-gray-700 mb-1">Texto de Subtítulo / Barra Superior</label>
-                  <input id="adm-i16-installment" type="text" value="${(cfg.installmentText || 'Garantía Oficial Apple • Factura Legal').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
+                  <input id="adm-i16-installment" type="text" value="${(cfg.installmentText || 'Garantía RedCover • Factura Legal').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300">
                 </div>
               </div>
 
