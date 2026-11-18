@@ -5403,6 +5403,23 @@
 
     async function loadCMSState() {
       try {
+        const raw = localStorage.getItem(CMS_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
+            allCatalogDevices = parsed.devices;
+          }
+          if (parsed.cmsData) {
+            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+          }
+          renderAllCMSContent();
+          return;
+        }
+      } catch (err) {
+        console.warn('Error cargando estado CMS local:', err);
+      }
+
+      try {
         const res = await fetch('/api/catalog');
         if (res.ok) {
           const data = await res.json();
@@ -5412,21 +5429,10 @@
               cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), data.cmsData);
             }
             renderAllCMSContent();
-            return;
           }
         }
       } catch (e) {}
-
-      try {
-        const raw = localStorage.getItem(CMS_STORAGE_KEY);
-        if (!raw) return;
-        const parsed = JSON.parse(raw);
-        if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
-          allCatalogDevices = parsed.devices;
-        }
-        if (parsed.cmsData) {
-          cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
-        }
+    }
       } catch (err) {
         console.warn('Error cargando estado CMS:', err);
       }
