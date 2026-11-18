@@ -2112,9 +2112,6 @@
               <div class="space-y-2 max-w-3xl">
                 <div class="flex items-center gap-2.5">
                   <span class="px-3.5 py-1 rounded-full bg-primary text-white text-[11px] font-extrabold uppercase tracking-widest shadow-md shadow-red-600/30">${s.badge || 'Banner RedCover 2026'}</span>
-                  <span class="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono">
-                    ${isVideo ? '🎬 Video Ultra HD' : `Banner ${currentHeroSlideIndex + 1} de ${slides.length}`}
-                  </span>
                 </div>
                 <h2 class="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight">${s.title}</h2>
                 <p class="text-zinc-200 text-sm sm:text-base lg:text-lg max-w-2xl font-medium leading-relaxed drop-shadow-sm">${s.subtitle}</p>
