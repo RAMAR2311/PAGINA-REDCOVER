@@ -1,15 +1,8 @@
-    // Constantes de imágenes maestras
-    const IMG_IPHONE_PRO = "https://lh3.googleusercontent.com/aida-public/AB6AXuBOnU-1io5KQnqoUA6WUNat6ojvnDdr4RkXvIriKVLjczuoc5kPQF70-CsJSZPAyTBGm8qNhqI8fzv3JuQ7ym10PfqC_wjNyBRZ2FW6hF5M4GjHmjxP9YCEmBr3wjpgLCMFLixJoZSxX989Rhcbt9jxoMnNqqpAHZMAUYCAjMJqL77iNjTWUDt9L7ORAHUTgKucVJ8zqmKZo5c58wlyIHPQrZzI5j_aj9DQja05soeqV7rBFmmUMGQk";
-    const IMG_IPHONE_16 = "https://lh3.googleusercontent.com/aida-public/AB6AXuBblwr5lr0zp-qFeKb6ElEAbcfsL_d-r6RX3u4vwrNtcMbr14aDrb9u4B1Wlk0k0ek9Ece3PoMg669j2scIC6SU6-YP9ZD88kGLIMHDAdHlODUf3TethuI8clPFIl0ZonTUQMz-ayeUPmH4DbApjIHv_RJ0dJXhqkS9jX4Ry3ZT2uH-is2N1OoWdyxHuoNXpMGtCn7n5yA_VkeUQKSobv3y-AcMMOIfIZAo2I8AlYPwK4PlXj7ohy3B";
-    const IMG_MACBOOK = "https://lh3.googleusercontent.com/aida-public/AB6AXuA3XKoxjfiBtixVbCUCZjIbZqYSnIeb7i3CgLIf2X24oCGaZ1uNohQXb9m_Gwe_pRCGReHujlHWpeJOV6-jzRi9r8LD7vvCydZ7-10mBS15HP3qVSHo9w1W_KROyZD5vrEReeadaWRDMlW1-nxzkToDRowmOuzXrzonM9jeYqHmirtib0eeYLl9rzN9q4zplxWvy5PKoNVWltnKF2WStfXkuLy5VkAFhwcH5fKL7a29Zitf1YypL4f0";
-    const IMG_IPAD = "https://lh3.googleusercontent.com/aida-public/AB6AXuCUJ-ZK-duveDMsFQ9-Gx4Xs7q5j3eaqBfozto4Q9LzlP38QJKiY8daraWmSuZZ0TvNVNn0DUB9Yk-OAMwfJD6YxgoP27b3fK7lGcERCqaUtizuvp2YMTCJrrgXoG9hep5h9QrRFrnL88nNFRFApvIdoXRS9PjTIqyA2kbv-h-6i1TT8c6_9IsmUukIz0xDTc19_Do8aJj_iaKzx23jrpEoQOttEERI9oOPWaBdmh3nO7T4L9mX2fDJ";
-    const IMG_WATCH = "https://lh3.googleusercontent.com/aida-public/AB6AXuBbQfMf59GfYugwDkCdYb9WZp8EINRjvRXooMeHX1hkU9tjWkF-U65wIJJGbxFzt-yGOg4g4UyG88fnnAFt-CyGb6OEvRYHJxgGJBhsyVe5bSQDxDJgaGtmzXnwTucipogLLtUIlXBIWvPqvQujpQPj18fBUfQWQHTsnbah5bV6nn5cHvh4GYk0WNaxYc_UISNge9nbZTyPBvC8G3RGjTOqFEukrS6nJPeV2CkTMGLoOssdb7PqBgxn";
-    const IMG_AIRPODS = "https://lh3.googleusercontent.com/aida-public/AB6AXuDw-1JHQqAXFDi8n9yKell6s3Y-HU9w8RQLYNVDgMXmOOTPgpHPF7sOqsZjC-zEUKwLOmlzBLcOcCue8IgoVJoTT_metw9JtFGXi_dYLYvDoYqlfQz3UANHNaYQj3yuqovkgdilzBXFO1yMHHT4H1fmLeHEbOxXgpz2TremrR3nwOO_iNtpA92v0vSIT6CiuO2AIWNZ4FSdP1fkicSpzGzTmwLdFEvip5HgTDSJ5-XSuQfSP_ZB4Gdi";
-    const IMG_MAGSAFE = "https://lh3.googleusercontent.com/aida-public/AB6AXuA--Qx8n7-rwUujj_PbFxxN66YaMTIVT4_VXKSmOAQa1AzHy3Mbz6gMtnccFgt_k6d-DTsra0CzQ1LwufJ88-9-l83qM01fu4aiteF1F2Lly-Em3hrvLuSpnoJhZHx6e9IZiAM4YZPVrrmpvJiv5hmJ2hI-Ng2N6KbFfBhOIxTrE-2-iQvhuQcX5WG9C81f59cNdyVItx4WgW-oL9AwrdWv1T9kb44HSBLmCbxhvhRx97K-10w_kL48";
-    const IMG_CASE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAL_HOyy1UX9N4Fhw_bLBfaLD4DTiODUFNAYPaqHe44km4L3nxHm1qiB-U56QGW7IOpAf3FBtE23rX1In4fvLzqn1TPukr2R6dLawgIiTIZPO7GLXl68QM52tR3a3ylzw63EZ3Tf3XqbNutLmOsFcIHLfY_HxSEHfEyNZ6tjKNRMd-GGZPsouXRs58VEecHFtYn5qigDgOg1wYe6MjK8QLVNeAuUMxstpvP1oSc7TH7jualgCG6r9we";
-
-    // Catálogo maestro completo de dispositivos (84 equipos)
-    let allCatalogDevices = (typeof window !== 'undefined' && Array.isArray(window.allCatalogDevices) && window.allCatalogDevices.length > 0) ? window.allCatalogDevices : [
+    // Catálogo maestro completo de dispositivos (cargado desde src/data/catalog.js)
+    if (typeof allCatalogDevices === 'undefined' || !Array.isArray(allCatalogDevices) || allCatalogDevices.length === 0) {
+      window.allCatalogDevices = [];
+    }
+    var _unusedFallback = [
       {
         id: 'iphone-duo-fold',
         category: 'iphone',
