@@ -3391,10 +3391,14 @@
         }
       } catch (e) {}
 
+      const prevDeviceId = currentDevice ? currentDevice.id : null;
+      const prevColorIdx = selectedColorIdx;
+      const prevVariantIdx = selectedVariantIdx;
+
       deviceVariants = parseDeviceVariants(currentDevice);
       deviceColors = getDeviceColorOptions(currentDevice);
-      selectedVariantIdx = 0;
-      selectedColorIdx = 0;
+      selectedVariantIdx = (prevDeviceId === currentDevice.id && prevVariantIdx < deviceVariants.length) ? prevVariantIdx : 0;
+      selectedColorIdx = (prevDeviceId === currentDevice.id && prevColorIdx < deviceColors.length) ? prevColorIdx : 0;
 
       populateQuickSwitcher();
       renderConfiguratorUI();
@@ -3535,7 +3539,10 @@
       const heroFinishTag = document.getElementById('hero-finish-tag');
       const selectedColorName = document.getElementById('selected-color-name');
 
-      if (heroImg) heroImg.src = activeImg;
+      if (heroImg) {
+        heroImg.src = activeImg;
+        heroImg.classList.remove('opacity-0');
+      }
       if (heroFinishTag) heroFinishTag.innerText = activeColor.name;
       if (selectedColorName) selectedColorName.innerText = activeColor.name;
     }
@@ -3553,6 +3560,7 @@
 
       if (heroImg) {
         heroImg.src = activeImg;
+        heroImg.classList.remove('opacity-0');
         // Efecto visual al cambiar de color: resplandor suave basado en el color hex seleccionado
         if (stageGlow && col.hex) {
           stageGlow.style.background = `radial-gradient(circle at center, ${col.hex}33 0%, rgba(255,255,255,0) 70%)`;
@@ -5390,40 +5398,73 @@
     let currentAccCategoryFilter = 'all';
     let inlineTextEditingEnabled = false;
 
-    async function loadCMSState() {
+    function hydrateLocalCMSCache() {
       try {
         const raw = localStorage.getItem(CMS_STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
-            allCatalogDevices = parsed.devices;
-          }
-          if (parsed.cmsData) {
-            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
-          }
-          renderAllCMSContent();
-          return;
+        if (!raw) return false;
+        const parsed = JSON.parse(raw);
+        let hydrated = false;
+        if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
+          allCatalogDevices = parsed.devices;
+          hydrated = true;
         }
+        if (parsed.cmsData) {
+          cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+          hydrated = true;
+        }
+        return hydrated;
       } catch (err) {
         console.warn('Error cargando estado CMS local:', err);
+        return false;
       }
-
-      try {
-        const res = await fetch('/api/catalog');
-        if (res.ok) {
-          const data = await res.json();
-          if (data.exists && Array.isArray(data.devices) && data.devices.length > 0) {
-            allCatalogDevices = data.devices;
-            if (data.cmsData) {
-              cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), data.cmsData);
-            }
-            renderAllCMSContent();
-          }
-        }
-      } catch (e) {}
     }
 
-    function saveCMSState() {
+    async function loadCMSState(alreadyRendered = false) {
+      const prevSnapshot = JSON.stringify({ devices: allCatalogDevices, cmsData });
+      try {
+        let data = null;
+        if (window.__redcoverCatalogPromise) {
+          const p = window.__redcoverCatalogPromise;
+          window.__redcoverCatalogPromise = null;
+          data = await Promise.race([
+            p,
+            new Promise(resolve => setTimeout(() => resolve('__TIMEOUT__'), 1200))
+          ]);
+          if (data === '__TIMEOUT__') {
+            if (!alreadyRendered) renderAllCMSContent();
+            data = await p;
+          }
+        } else {
+          const res = await fetch('/api/catalog', { cache: 'no-store' });
+          if (res.ok) data = await res.json();
+        }
+
+        if (data && data.exists && Array.isArray(data.devices) && data.devices.length > 0) {
+          allCatalogDevices = data.devices;
+          if (data.cmsData) {
+            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), data.cmsData);
+          }
+          try {
+            localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify({ devices: allCatalogDevices, cmsData: cmsData }));
+          } catch (quotaErr) {}
+
+          const nextSnapshot = JSON.stringify({ devices: allCatalogDevices, cmsData });
+          if (!alreadyRendered || nextSnapshot !== prevSnapshot) {
+            renderAllCMSContent();
+          }
+          return;
+        }
+      } catch (e) {
+        console.warn('Fallo al consultar /api/catalog en configurador, usando respaldo local:', e);
+      }
+
+      if (!alreadyRendered) {
+        renderAllCMSContent();
+      }
+    }
+
+    async function saveCMSState() {
+      const adminPass = (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD;
       try {
         const payload = JSON.stringify({
           devices: allCatalogDevices,
@@ -5434,8 +5475,7 @@
       } catch (err) {
         console.warn('Advertencia guardando en localStorage:', err);
         try {
-          // Si ocurre QuotaExceededError, limpiar items temporales antiguos del origen e intentar guardar
-          const keysToClean = ['redcover_cms_state_v8', 'redcover_cms_state_v7', 'redcover_cms_backup'];
+          const keysToClean = ['redcover_cms_data', 'redcover_cms_state_v8', 'redcover_cms_state_v7', 'redcover_cms_backup'];
           keysToClean.forEach(k => localStorage.removeItem(k));
           const payload = JSON.stringify({
             devices: allCatalogDevices,
@@ -5443,12 +5483,47 @@
           });
           localStorage.setItem(CMS_STORAGE_KEY, payload);
           updateAdminCounters();
-          showToast('✅ Cambios guardados con éxito');
         } catch (innerErr) {
           console.error('Error crítico guardando en localStorage:', innerErr);
-          showToast('⚠️ Capacidad de almacenamiento del navegador al límite. Se recomienda usar URLs para algunas fotos.');
         }
       }
+
+      try {
+        const response = await fetch('/api/catalog', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-password': adminPass
+          },
+          body: JSON.stringify({
+            password: adminPass,
+            devices: allCatalogDevices,
+            cmsData: cmsData
+          })
+        });
+        if (!response.ok) {
+          console.error('Error guardando en PostgreSQL:', response.status);
+          showToast(`⚠️ Error guardando en servidor (${response.status})`);
+        }
+      } catch (networkErr) {
+        console.error('Error de red persistiendo en PostgreSQL:', networkErr);
+      }
+
+      try {
+        await fetch('/api/sync-to-files', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-password': adminPass
+          },
+          body: JSON.stringify({
+            password: adminPass,
+            devices: allCatalogDevices,
+            accessories: (cmsData && cmsData.accessories && cmsData.accessories.length > 0) ? cmsData.accessories : undefined,
+            offers: (cmsData && cmsData.offers && cmsData.offers.length > 0) ? cmsData.offers : undefined
+          })
+        });
+      } catch (e) {}
     }
 
     function updateAdminCounters() {
@@ -5465,12 +5540,16 @@
       if (typeof initProductConfigurator === 'function') {
         initProductConfigurator();
       }
-      renderCMSHeroAndTopbar();
-      renderCMSCategories();
-      renderDevicesCatalog(currentCatalogCategoryFilter);
-      renderCMSOffers();
-      renderCMSAccessories(currentAccCategoryFilter);
-      renderCMSCanjeAndStores();
+      if (typeof renderCMSHeroAndTopbar === 'function') renderCMSHeroAndTopbar();
+      if (typeof renderCMSCategories === 'function') renderCMSCategories();
+      if (typeof renderDevicesCatalog === 'function') {
+        renderDevicesCatalog(typeof currentCatalogCategoryFilter !== 'undefined' ? currentCatalogCategoryFilter : 'all');
+      }
+      if (typeof renderCMSOffers === 'function') renderCMSOffers();
+      if (typeof renderCMSAccessories === 'function') {
+        renderCMSAccessories(typeof currentAccCategoryFilter !== 'undefined' ? currentAccCategoryFilter : 'all');
+      }
+      if (typeof renderCMSCanjeAndStores === 'function') renderCMSCanjeAndStores();
       updateAdminCounters();
     }
 
@@ -6098,23 +6177,24 @@
       reader.readAsDataURL(file);
     }
 
-    // Subida genérica de imágenes desde la PC con auto-compresión y autoguardado automático
-    function handleAdminImageUpload(fileInput, targetInputId, previewImgId) {
+    // Subida genérica de imágenes desde la PC: prioriza /api/upload-image (WebP en servidor) con fallback local
+    async function handleAdminImageUpload(fileInput, targetInputId, previewImgId) {
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
 
-      showToast('Optimizando y cargando imagen...');
-      compressImageFile(file, 750, 0.68, function(dataUrl) {
+      showToast('Subiendo y optimizando imagen...');
+
+      const applyUploadedUrl = (finalUrl) => {
         const urlInput = document.getElementById(targetInputId);
         const previewImg = document.getElementById(previewImgId);
-        if (urlInput) urlInput.value = dataUrl;
-        if (previewImg) previewImg.src = dataUrl;
+        if (urlInput) urlInput.value = finalUrl;
+        if (previewImg) previewImg.src = finalUrl;
 
         // Auto-guardado instantáneo según el contexto
         if (targetInputId.startsWith('adm-bento-img-')) {
           const bentoIdx = parseInt(targetInputId.replace('adm-bento-img-', ''), 10);
           if (!isNaN(bentoIdx) && cmsData.bentoCards && cmsData.bentoCards[bentoIdx]) {
-            cmsData.bentoCards[bentoIdx].img = dataUrl;
+            cmsData.bentoCards[bentoIdx].img = finalUrl;
             saveCMSState();
             if (typeof renderCMSHeroAndTopbar === 'function') renderCMSHeroAndTopbar();
             showToast(`✅ Imagen de Tarjeta Bento #${bentoIdx + 1} guardada y actualizada`);
@@ -6122,7 +6202,7 @@
           }
         } else if (targetInputId === 'adm-off-img') {
           if (cmsData.offers && cmsData.offers[selectedAdminOfferIndex]) {
-            cmsData.offers[selectedAdminOfferIndex].img = dataUrl;
+            cmsData.offers[selectedAdminOfferIndex].img = finalUrl;
             saveCMSState();
             if (typeof renderCMSOffers === 'function') renderCMSOffers();
             showToast('✅ Imagen de Oferta guardada y actualizada');
@@ -6130,7 +6210,7 @@
           }
         } else if (targetInputId === 'adm-dev-img') {
           if (allCatalogDevices && allCatalogDevices[selectedAdminDeviceIndex]) {
-            allCatalogDevices[selectedAdminDeviceIndex].img = dataUrl;
+            allCatalogDevices[selectedAdminDeviceIndex].img = finalUrl;
             saveCMSState();
             if (typeof renderDevicesCatalog === 'function') renderDevicesCatalog(currentCatalogCategoryFilter);
             showToast('✅ Imagen de Producto guardada y actualizada');
@@ -6138,7 +6218,7 @@
           }
         } else if (targetInputId === 'adm-acc-img') {
           if (cmsData.accessories && cmsData.accessories[selectedAdminAccessoryIndex]) {
-            cmsData.accessories[selectedAdminAccessoryIndex].img = dataUrl;
+            cmsData.accessories[selectedAdminAccessoryIndex].img = finalUrl;
             saveCMSState();
             if (typeof renderCMSAccessories === 'function') renderCMSAccessories(currentAccCategoryFilter);
             showToast('✅ Imagen de Accesorio guardada y actualizada');
@@ -6148,15 +6228,54 @@
           const targetId = document.getElementById('adm-i16-target-device')?.value || 'iphone-16-pro';
           const targetDev = allCatalogDevices.find(d => d.id === targetId);
           if (targetDev) {
-            targetDev.img = dataUrl;
+            targetDev.img = finalUrl;
             saveCMSState();
-            showToast('✅ Imagen de iPhone 16 Pro guardada');
+            if (typeof initProductConfigurator === 'function') initProductConfigurator();
+            showToast('✅ Imagen principal guardada');
+            return;
+          }
+        } else if (targetInputId.startsWith('adm-i16-col-img-')) {
+          const colIdx = parseInt(targetInputId.replace('adm-i16-col-img-', ''), 10);
+          const targetId = document.getElementById('adm-i16-target-device')?.value || cmsData.iphone16proConfig?.baseDeviceId || 'iphone-16-pro';
+          const targetDev = allCatalogDevices.find(d => d.id === targetId);
+          if (targetDev && !isNaN(colIdx)) {
+            targetDev.colorImages = Array.isArray(targetDev.colorImages) ? targetDev.colorImages : [];
+            targetDev.colorImages[colIdx] = finalUrl;
+            if (Array.isArray(targetDev.colors) && targetDev.colors[colIdx]) {
+              targetDev.colors[colIdx].img = finalUrl;
+            }
+            saveCMSState();
+            if (typeof initProductConfigurator === 'function') initProductConfigurator();
+            showToast(`✅ Foto de Color #${colIdx + 1} guardada en servidor`);
             return;
           }
         }
 
         showToast('✅ Imagen lista y optimizada.');
-      });
+      };
+
+      try {
+        const adminPass = (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD;
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('password', adminPass);
+        const res = await fetch('/api/upload-image', {
+          method: 'POST',
+          headers: { 'x-admin-password': adminPass },
+          body: formData
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.url) {
+            applyUploadedUrl(data.url);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('Fallback a compresión local:', err);
+      }
+
+      compressImageFile(file, 750, 0.68, applyUploadedUrl);
     }
 
     function handleAdminHeroMediaUpload(fileInput, slideIdx) {
@@ -7623,15 +7742,19 @@
 
     // Inicializar Catálogo, CMS y Carrito al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
-      loadCMSState();
-      renderAllCMSContent();
-      updateCartUI();
+      const hasCached = hydrateLocalCMSCache();
+      if (hasCached) {
+        renderAllCMSContent();
+      }
+      loadCMSState(hasCached);
+      if (typeof updateCartUI === 'function') updateCartUI();
+      else if (typeof updateCartDrawerUI === 'function') updateCartDrawerUI();
       if (window.location.hash) {
         const h = window.location.hash.replace('#', '');
         if (h === 'admin') {
           setTimeout(() => openAdminPanel(), 200);
         } else if (['iphone', 'airpods', 'mac', 'ipad', 'watch', 'samsung'].includes(h)) {
-          filterDevices(h);
+          if (typeof filterDevices === 'function') filterDevices(h);
         }
       }
     });

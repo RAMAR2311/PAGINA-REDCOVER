@@ -8,6 +8,11 @@
   <link rel="apple-touch-icon" href="assets/img/redcover-logo.png">
   <title>Tienda RedCover — Todos los Productos, Accesorios y Promociones</title>
   <meta name="description" content="Explora el catálogo oficial de RedCover Colombia. iPhone, MacBook, iPad, Apple Watch, Samsung Galaxy, Ray-Ban Meta y accesorios originales con filtros avanzados y garantía oficial.">
+  <script>
+    window.__redcoverCatalogPromise = fetch('/api/catalog', { cache: 'no-store' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .catch(function() { return null; });
+  </script>
 
   <!-- Detección Inmediata de Modo Oscuro para evitar destellos -->
   <script>
@@ -499,6 +504,6 @@
 
   <!-- Scripts -->
   <script src="src/data/catalog.js?v=2"></script>
-  <script src="src/js/catalog-page.js?v=2"></script>
+  <script src="src/js/catalog-page.js?v=3"></script>
 </body>
 </html>

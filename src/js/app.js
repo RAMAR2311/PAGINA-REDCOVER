@@ -1924,63 +1924,101 @@
     let currentAccCategoryFilter = 'all';
     let inlineTextEditingEnabled = false;
 
-    async function loadCMSState() {
-      // 1. Priorizar siempre la fuente de verdad del servidor (PostgreSQL) para reflejar cambios en vivo
+    function hydrateLocalCMSCache() {
       try {
-        const res = await fetch('/api/catalog');
-        if (res.ok) {
-          const remote = await res.json();
-          if (remote.exists && remote.devices && remote.devices.length > 0) {
-            allCatalogDevices = remote.devices;
-            if (remote.cmsData) {
-              cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), remote.cmsData);
-            }
-            renderAllCMSContent();
-            return;
+        const raw = localStorage.getItem(CMS_STORAGE_KEY);
+        if (!raw) return false;
+        const parsed = JSON.parse(raw);
+        let hydrated = false;
+        if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
+          allCatalogDevices = parsed.devices;
+          hydrated = true;
+        }
+        if (parsed.cmsData) {
+          cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
+          hydrated = true;
+        }
+        return hydrated;
+      } catch (e) {
+        console.warn('Carga local:', e);
+        return false;
+      }
+    }
+
+    async function loadCMSState(alreadyRendered = false) {
+      const prevSnapshot = JSON.stringify({ devices: allCatalogDevices, cmsData });
+      try {
+        let remote = null;
+        if (window.__redcoverCatalogPromise) {
+          const p = window.__redcoverCatalogPromise;
+          window.__redcoverCatalogPromise = null;
+          remote = await Promise.race([
+            p,
+            new Promise(resolve => setTimeout(() => resolve('__TIMEOUT__'), 1200))
+          ]);
+          if (remote === '__TIMEOUT__') {
+            if (!alreadyRendered) renderAllCMSContent();
+            remote = await p;
           }
+        } else {
+          const res = await fetch('/api/catalog', { cache: 'no-store' });
+          if (res.ok) remote = await res.json();
+        }
+
+        if (remote && remote.exists && Array.isArray(remote.devices) && remote.devices.length > 0) {
+          allCatalogDevices = remote.devices;
+          if (remote.cmsData) {
+            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), remote.cmsData);
+          }
+          try {
+            localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify({ devices: allCatalogDevices, cmsData }));
+          } catch (quotaErr) {}
+
+          const nextSnapshot = JSON.stringify({ devices: allCatalogDevices, cmsData });
+          if (!alreadyRendered || nextSnapshot !== prevSnapshot) {
+            renderAllCMSContent();
+          }
+          return;
         }
       } catch (err) {
         console.warn('Fallo al consultar /api/catalog, usando respaldo local:', err);
       }
 
-      // 2. Respaldo local si el servidor no responde
-      try {
-        const raw = localStorage.getItem(CMS_STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (parsed.devices && Array.isArray(parsed.devices) && parsed.devices.length > 0) {
-            allCatalogDevices = parsed.devices;
-          }
-          if (parsed.cmsData) {
-            cmsData = Object.assign(JSON.parse(JSON.stringify(defaultCMSData)), parsed.cmsData);
-          }
-          renderAllCMSContent();
-        }
-      } catch (e) {
-        console.warn('Carga local:', e);
+      if (!alreadyRendered) {
+        renderAllCMSContent();
       }
     }
 
     async function saveCMSState() {
+      const adminPass = (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD;
       try {
         const payload = JSON.stringify({
           devices: allCatalogDevices,
           cmsData: cmsData
         });
         localStorage.setItem(CMS_STORAGE_KEY, payload);
-        localStorage.setItem('redcover_cms_data', payload);
         updateAdminCounters();
       } catch (err) {
         console.warn('Advertencia localStorage:', err);
+        try {
+          ['redcover_cms_data', 'redcover_cms_state_v8', 'redcover_cms_state_v7', 'redcover_cms_backup'].forEach(k => localStorage.removeItem(k));
+          localStorage.setItem(CMS_STORAGE_KEY, JSON.stringify({ devices: allCatalogDevices, cmsData: cmsData }));
+          updateAdminCounters();
+        } catch (innerErr) {
+          console.warn('localStorage lleno, continuando con servidor:', innerErr);
+        }
       }
 
       // 1. Guardar en base de datos PostgreSQL
       try {
         const response = await fetch('/api/catalog', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-password': adminPass
+          },
           body: JSON.stringify({
-            password: (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD,
+            password: adminPass,
             devices: allCatalogDevices,
             cmsData: cmsData
           })
@@ -1988,18 +2026,26 @@
 
         if (response.ok) {
           console.log('☁️ Sincronizado en PostgreSQL');
+        } else {
+          const errText = await response.text().catch(() => response.status);
+          console.error('Error guardando en PostgreSQL:', response.status, errText);
+          if (typeof showToast === 'function') showToast(`⚠️ Error guardando en servidor (${response.status})`);
         }
       } catch (networkErr) {
-        console.log('Error de red persistiendo en PostgreSQL:', networkErr);
+        console.error('Error de red persistiendo en PostgreSQL:', networkErr);
+        if (typeof showToast === 'function') showToast('⚠️ Sin conexión con el servidor al guardar');
       }
 
       // 2. Guardar también directamente en el archivo src/data/catalog.js del proyecto
-      // para que tus cambios queden fijos en el código fuente y suban a GitHub/servidor
       try {
         await fetch('/api/sync-to-files', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-password': adminPass
+          },
           body: JSON.stringify({
+            password: adminPass,
             devices: allCatalogDevices,
             accessories: (cmsData && cmsData.accessories && cmsData.accessories.length > 0) ? cmsData.accessories : undefined,
             offers: (cmsData && cmsData.offers && cmsData.offers.length > 0) ? cmsData.offers : undefined
@@ -3040,23 +3086,24 @@
       reader.readAsDataURL(file);
     }
 
-    // Subida genérica de imágenes desde la PC con auto-compresión y autoguardado automático
-    function handleAdminImageUpload(fileInput, targetInputId, previewImgId) {
+    // Subida genérica de imágenes desde la PC: prioriza /api/upload-image (WebP en servidor) con fallback local
+    async function handleAdminImageUpload(fileInput, targetInputId, previewImgId) {
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
 
-      showToast('Optimizando y cargando imagen...');
-      compressImageFile(file, 750, 0.68, function(dataUrl) {
+      showToast('Subiendo y optimizando imagen...');
+
+      const applyUploadedUrl = (finalUrl) => {
         const urlInput = document.getElementById(targetInputId);
         const previewImg = document.getElementById(previewImgId);
-        if (urlInput) urlInput.value = dataUrl;
-        if (previewImg) previewImg.src = dataUrl;
+        if (urlInput) urlInput.value = finalUrl;
+        if (previewImg) previewImg.src = finalUrl;
 
         // Auto-guardado instantáneo según el contexto
         if (targetInputId.startsWith('adm-bento-img-')) {
           const bentoIdx = parseInt(targetInputId.replace('adm-bento-img-', ''), 10);
           if (!isNaN(bentoIdx) && cmsData.bentoCards && cmsData.bentoCards[bentoIdx]) {
-            cmsData.bentoCards[bentoIdx].img = dataUrl;
+            cmsData.bentoCards[bentoIdx].img = finalUrl;
             saveCMSState();
             if (typeof renderCMSHeroAndTopbar === 'function') renderCMSHeroAndTopbar();
             showToast(`✅ Imagen de Tarjeta Bento #${bentoIdx + 1} guardada y actualizada`);
@@ -3064,7 +3111,7 @@
           }
         } else if (targetInputId === 'adm-off-img') {
           if (cmsData.offers && cmsData.offers[selectedAdminOfferIndex]) {
-            cmsData.offers[selectedAdminOfferIndex].img = dataUrl;
+            cmsData.offers[selectedAdminOfferIndex].img = finalUrl;
             saveCMSState();
             if (typeof renderCMSOffers === 'function') renderCMSOffers();
             showToast('✅ Imagen de Oferta guardada y actualizada');
@@ -3072,7 +3119,7 @@
           }
         } else if (targetInputId === 'adm-dev-img') {
           if (allCatalogDevices && allCatalogDevices[selectedAdminDeviceIndex]) {
-            allCatalogDevices[selectedAdminDeviceIndex].img = dataUrl;
+            allCatalogDevices[selectedAdminDeviceIndex].img = finalUrl;
             saveCMSState();
             if (typeof renderDevicesCatalog === 'function') renderDevicesCatalog(currentCatalogCategoryFilter);
             showToast('✅ Imagen de Producto guardada y actualizada');
@@ -3080,7 +3127,7 @@
           }
         } else if (targetInputId === 'adm-acc-img') {
           if (cmsData.accessories && cmsData.accessories[selectedAdminAccessoryIndex]) {
-            cmsData.accessories[selectedAdminAccessoryIndex].img = dataUrl;
+            cmsData.accessories[selectedAdminAccessoryIndex].img = finalUrl;
             saveCMSState();
             if (typeof renderCMSAccessories === 'function') renderCMSAccessories(currentAccCategoryFilter);
             showToast('✅ Imagen de Accesorio guardada y actualizada');
@@ -3090,15 +3137,52 @@
           const targetId = document.getElementById('adm-i16-target-device')?.value || 'iphone-16-pro';
           const targetDev = allCatalogDevices.find(d => d.id === targetId);
           if (targetDev) {
-            targetDev.img = dataUrl;
+            targetDev.img = finalUrl;
             saveCMSState();
-            showToast('✅ Imagen de iPhone 16 Pro guardada');
+            showToast('✅ Imagen principal guardada');
+            return;
+          }
+        } else if (targetInputId.startsWith('adm-i16-col-img-')) {
+          const colIdx = parseInt(targetInputId.replace('adm-i16-col-img-', ''), 10);
+          const targetId = document.getElementById('adm-i16-target-device')?.value || cmsData.iphone16proConfig?.baseDeviceId || 'iphone-16-pro';
+          const targetDev = allCatalogDevices.find(d => d.id === targetId);
+          if (targetDev && !isNaN(colIdx)) {
+            targetDev.colorImages = Array.isArray(targetDev.colorImages) ? targetDev.colorImages : [];
+            targetDev.colorImages[colIdx] = finalUrl;
+            if (Array.isArray(targetDev.colors) && targetDev.colors[colIdx]) {
+              targetDev.colors[colIdx].img = finalUrl;
+            }
+            saveCMSState();
+            showToast(`✅ Foto de Color #${colIdx + 1} guardada en servidor`);
             return;
           }
         }
 
         showToast('✅ Imagen lista y optimizada.');
-      });
+      };
+
+      try {
+        const adminPass = (typeof currentAdminPassword !== 'undefined' ? currentAdminPassword : '') || ADMIN_MASTER_PASSWORD;
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('password', adminPass);
+        const res = await fetch('/api/upload-image', {
+          method: 'POST',
+          headers: { 'x-admin-password': adminPass },
+          body: formData
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.url) {
+            applyUploadedUrl(data.url);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('Fallback a compresión local:', err);
+      }
+
+      compressImageFile(file, 750, 0.68, applyUploadedUrl);
     }
 
     async function handleAdminHeroMediaUpload(fileInput, slideIdx) {
@@ -3209,7 +3293,9 @@
     }
 
     function renderAdminFaqsTab(container) {
-      if (!Array.isArray(cmsData.faqs)) cmsData.faqs = [...defaultCMSData.faqs];
+      if (!Array.isArray(cmsData.faqs) || cmsData.faqs.length === 0) {
+        cmsData.faqs = JSON.parse(JSON.stringify(defaultCMSData.faqs));
+      }
       container.innerHTML = `
         <div class="space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-gray-200">
@@ -3266,13 +3352,13 @@
       const q = document.getElementById(`admin-faq-q-${idx}`)?.value?.trim() || '';
       const a = document.getElementById(`admin-faq-a-${idx}`)?.value?.trim() || '';
       if (!q || !a) {
-        alert('La pregunta y la respuesta no pueden estar vacías.');
+        showToast('⚠️ La pregunta y la respuesta no pueden estar vacías.');
         return;
       }
       cmsData.faqs[idx] = { ...cmsData.faqs[idx], question: q, answer: a };
       saveCMSState();
       renderCMSFaqs();
-      alert('Pregunta frecuente actualizada.');
+      showToast('✅ Pregunta frecuente guardada y actualizada.');
     }
 
     function deleteAdminFaq(idx) {
@@ -3343,7 +3429,10 @@
                     <label class="text-[11px] font-bold text-gray-600">URL de Imagen</label>
                     <div class="flex gap-2">
                       <input id="adm-van-img-${num}" type="text" value="${(card.img || '').replace(/"/g, '&quot;')}" oninput="document.getElementById('adm-van-prev-${num}').src=this.value" class="flex-1 px-3 py-1.5 rounded-xl border border-gray-300 text-xs bg-white">
-                      <button type="button" onclick="triggerAdminImageUpload('adm-van-img-${num}', 'adm-van-prev-${num}')" class="px-3 py-1.5 rounded-xl bg-zinc-900 text-white text-xs font-bold hover:bg-primary transition-colors">Subir</button>
+                      <label class="px-3 py-1.5 rounded-xl bg-zinc-900 text-white text-xs font-bold hover:bg-primary transition-colors cursor-pointer inline-flex items-center gap-1 shrink-0">
+                        Subir
+                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminImageUpload(this, 'adm-van-img-${num}', 'adm-van-prev-${num}')">
+                      </label>
                     </div>
                   </div>
                   <div class="grid grid-cols-2 gap-2">
@@ -5172,8 +5261,11 @@
 
     // Inicializar Catálogo, CMS y Carrito al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
-      loadCMSState();
-      renderAllCMSContent();
+      const hasCached = hydrateLocalCMSCache();
+      if (hasCached) {
+        renderAllCMSContent();
+      }
+      loadCMSState(hasCached);
       updateCartUI();
       if (window.location.hash) {
         const h = window.location.hash.replace('#', '');

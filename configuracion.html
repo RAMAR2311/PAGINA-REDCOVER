@@ -8,6 +8,11 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Configurador de Equipos — RedCover Colombia | Tecnología Apple y Samsung</title>
   <meta name="description" content="Configura tu nuevo dispositivo Apple o Samsung en RedCover Colombia. Elige color oficial, capacidad, cotiza Plan Canje presencial y finaliza tu compra con garantía oficial.">
+  <script>
+    window.__redcoverCatalogPromise = fetch('/api/catalog', { cache: 'no-store' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .catch(function() { return null; });
+  </script>
 
   <!-- Material Symbols Outlined -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
@@ -519,7 +524,7 @@
 
           <!-- Main Interactive Device Presentation con padding vertical protector -->
           <div class="relative z-10 w-full h-full flex items-center justify-center p-4 my-auto transition-all duration-500 transform group-hover:scale-[1.02]">
-            <img class="max-h-[260px] sm:max-h-[320px] md:max-h-[350px] w-auto max-w-[85%] object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)] transition-all duration-300 rounded-2xl" id="hero-main-device-image" alt="Dispositivo RedCover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQCduY9KlZvDYMM12SNOKJ-UC7ud1w54GbunUI6a2Q6SQabwiz8Q2kaJBmntthx-YaCV8Wy8kQSKZmqDGQNYE9KcWrlbHdYwS8a_Ik-HauhOP6ewcTQJvWq3bt3UskJGN3TrdEt9BCFmGItcuKAUfBFXsjs8lfmRrz8yRzae409mM-WE221baiPBrvHCkacPhhb7xNklcGToW038Ak9jS7ImnRihPrS4ETqWMiTot3fPVgnVc_FZM"/>
+            <img class="max-h-[260px] sm:max-h-[320px] md:max-h-[350px] w-auto max-w-[85%] object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)] transition-all duration-300 rounded-2xl opacity-0" id="hero-main-device-image" alt="Dispositivo RedCover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
           </div>
 
           <!-- Highlight Pip at bottom of stage -->
@@ -1375,7 +1380,7 @@
 
   <script src="src/data/catalog.js?v=2"></script>
   <script src="src/js/modules/utils.js?v=3"></script>
-  <script src="src/js/configurator-main.js?v=3"></script>
+  <script src="src/js/configurator-main.js?v=4"></script>
   <script src="src/js/configurator-hero.js?v=3"></script>
 </body>
 </html>

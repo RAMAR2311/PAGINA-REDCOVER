@@ -3,7 +3,7 @@
 // =========================================================================
 
 (function() {
-  // 1. Cargar Estado de Datos y Carrito
+  // 1. Cargar Estado de Datos y Carrito (priorizar caché sincronizada del servidor sobre valores de fábrica)
   let cms = null;
   try {
     const raw = localStorage.getItem('redcover_cms_state_v9') || localStorage.getItem('redcover_cms_data');
@@ -11,11 +11,12 @@
   } catch (e) {}
 
   const cmsInner = (cms && cms.cmsData) ? cms.cmsData : (cms || {});
+  const hasCachedDevices = !!(cms && Array.isArray(cms.devices) && cms.devices.length > 0);
 
-  // Dispositivos oficiales actualizados
-  let devices = (typeof allCatalogDevices !== 'undefined' && Array.isArray(allCatalogDevices) && allCatalogDevices.length > 0)
-    ? allCatalogDevices
-    : ((cms && Array.isArray(cms.devices) && cms.devices.length > 0) ? cms.devices : []);
+  // Dispositivos oficiales actualizados (preferir siempre lo guardado en caché/servidor antes que src/data/catalog.js)
+  let devices = hasCachedDevices
+    ? cms.devices
+    : ((typeof allCatalogDevices !== 'undefined' && Array.isArray(allCatalogDevices) && allCatalogDevices.length > 0) ? allCatalogDevices : []);
 
   // Accesorios (12 items oficiales)
   let accessories = (cmsInner && Array.isArray(cmsInner.accessories) && cmsInner.accessories.length > 0)
@@ -71,12 +72,32 @@
 
   rebuildMasterList();
 
-  // Sincronización remota desde PostgreSQL para garantizar datos frescos
-  async function syncFromRemote() {
+  // Sincronización remota desde PostgreSQL para garantizar datos frescos sin sobrescribir otras secciones del CMS
+  async function syncFromRemote(alreadyRendered = false) {
+    const prevSnapshot = JSON.stringify({ devices, accessories, offers });
     try {
-      const res = await fetch('/api/catalog');
-      if (res.ok) {
-        const data = await res.json();
+      let data = null;
+      if (window.__redcoverCatalogPromise) {
+        const p = window.__redcoverCatalogPromise;
+        window.__redcoverCatalogPromise = null;
+        data = await Promise.race([
+          p,
+          new Promise(resolve => setTimeout(() => resolve('__TIMEOUT__'), 1200))
+        ]);
+        if (data === '__TIMEOUT__') {
+          if (!alreadyRendered) {
+            updateCategoryCounts();
+            renderCatalog();
+            alreadyRendered = true;
+          }
+          data = await p;
+        }
+      } else {
+        const res = await fetch('/api/catalog', { cache: 'no-store' });
+        if (res.ok) data = await res.json();
+      }
+
+      if (data) {
         let changed = false;
         if (data.exists && Array.isArray(data.devices) && data.devices.length > 0) {
           devices = data.devices;
@@ -92,18 +113,27 @@
         }
         if (changed) {
           try {
-            localStorage.setItem('redcover_cms_state_v9', JSON.stringify({ devices, cmsData: { accessories, offers } }));
+            const fullCmsData = data.cmsData ? { ...cmsInner, ...data.cmsData, accessories, offers } : { ...cmsInner, accessories, offers };
+            localStorage.setItem('redcover_cms_state_v9', JSON.stringify({ devices, cmsData: fullCmsData }));
           } catch(e) {}
-          rebuildMasterList();
-          updateCategoryCounts();
-          renderCatalog();
+          const nextSnapshot = JSON.stringify({ devices, accessories, offers });
+          if (!alreadyRendered || nextSnapshot !== prevSnapshot) {
+            rebuildMasterList();
+            updateCategoryCounts();
+            renderCatalog();
+            return;
+          }
         }
       }
     } catch(err) {
       console.log('Modo local catálogo activo');
     }
+
+    if (!alreadyRendered) {
+      updateCategoryCounts();
+      renderCatalog();
+    }
   }
-  syncFromRemote();
 
   // Carrito de compras
   let cart = JSON.parse(localStorage.getItem('redcover_cart') || '[]');
@@ -662,6 +692,12 @@
     window.location.href = 'index.html#admin';
   };
 
-  // Render inicial
-  renderCatalog();
+  // Render inicial inmediato si ya hay caché de PostgreSQL, o esperar respuesta remota rápida para evitar parpadeo
+  if (hasCachedDevices) {
+    updateCategoryCounts();
+    renderCatalog();
+    syncFromRemote(true);
+  } else {
+    syncFromRemote(false);
+  }
 })();

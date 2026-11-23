@@ -5,6 +5,11 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>RedCover Colombia | Tecnología Apple y Samsung</title>
   <meta name="description" content="RedCover Colombia - Especialistas en tecnología Apple y Samsung. Venta de iPhone, MacBook, Apple Watch, iPad, accesorios originales con garantía y Plan Canje.">
+  <script>
+    window.__redcoverCatalogPromise = fetch('/api/catalog', { cache: 'no-store' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .catch(function() { return null; });
+  </script>
 
   <!-- Google Fonts & Material Symbols -->
   <!-- Favicon Oficial RedCover -->
@@ -1426,7 +1431,7 @@
   <!-- Scripts Modulares -->
   <script src="src/data/catalog.js?v=2"></script>
   <script src="src/js/modules/utils.js?v=1"></script>
-  <script src="src/js/app.js?v=2"></script>
+  <script src="src/js/app.js?v=3"></script>
   <script src="src/js/hero.js?v=2"></script>
 </body>
 </html>
