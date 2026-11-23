@@ -6007,8 +6007,11 @@
       launchAuthenticatedAdminPanel(initialTab);
     }
 
+    let adminTargetManuallySelected = false;
+
     function launchAuthenticatedAdminPanel(initialTab = null) {
       adminModeActive = true;
+      adminTargetManuallySelected = false;
       const floatBar = document.getElementById('admin-floating-bar');
       if (floatBar) {
         floatBar.classList.remove('hidden');
@@ -7463,7 +7466,10 @@
         };
       }
       const cfg = cmsData.iphone16proConfig;
-      let targetId = cfg.baseDeviceId || 'iphone-16-pro';
+      let targetId = (!adminTargetManuallySelected && typeof currentDevice !== 'undefined' && currentDevice && currentDevice.id)
+        ? currentDevice.id
+        : (cfg.baseDeviceId || 'iphone-16-pro');
+      cfg.baseDeviceId = targetId;
       let dev = allCatalogDevices.find(d => d.id === targetId);
       if (!dev) {
         dev = allCatalogDevices.find(d => d.id === 'iphone-16-pro') || allCatalogDevices[0];
@@ -7673,13 +7679,14 @@
     }
 
     function changeIphone16ProTarget(newId) {
+      adminTargetManuallySelected = true;
       if (!cmsData.iphone16proConfig) cmsData.iphone16proConfig = {};
       cmsData.iphone16proConfig.baseDeviceId = newId;
       saveCMSState();
       renderAdminIphone16ProTab(document.getElementById('admin-tab-content'));
     }
 
-    function saveAdminIphone16ProChanges() {
+    async function saveAdminIphone16ProChanges() {
       if (!cmsData.iphone16proConfig) cmsData.iphone16proConfig = {};
       const cfg = cmsData.iphone16proConfig;
       const targetId = document.getElementById('adm-i16-target-device')?.value || cfg.baseDeviceId || 'iphone-16-pro';
@@ -7719,15 +7726,23 @@
         });
       }
 
-      saveCMSState();
-
       if (typeof initProductConfigurator === 'function') {
+        try {
+          localStorage.setItem('redcover_selected_device_id', targetId);
+          const currentUrl = new URL(window.location.href);
+          if (currentUrl.searchParams.get('id') !== targetId) {
+            currentUrl.searchParams.set('id', targetId);
+            window.history.replaceState({}, '', currentUrl.toString());
+          }
+        } catch (e) {}
         initProductConfigurator();
-        showToast('✅ ¡Página de iPhone 16 Pro actualizada en vivo!');
       } else {
         renderAllCMSContent();
-        showToast(`✅ ¡Página configuracion.html y producto "${dev.title}" actualizados exitosamente!`);
       }
+
+      showToast('⏳ Guardando cambios en el servidor...');
+      await saveCMSState();
+      showToast(`✅ ¡"${dev.title}" guardado y actualizado en configuracion.html!`);
       renderAdminIphone16ProTab(document.getElementById('admin-tab-content'));
     }
 

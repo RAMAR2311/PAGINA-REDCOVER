@@ -5198,7 +5198,7 @@
       renderAdminIphone16ProTab(document.getElementById('admin-tab-content'));
     }
 
-    function saveAdminIphone16ProChanges() {
+    async function saveAdminIphone16ProChanges() {
       if (!cmsData.iphone16proConfig) cmsData.iphone16proConfig = {};
       const cfg = cmsData.iphone16proConfig;
       const targetId = document.getElementById('adm-i16-target-device')?.value || cfg.baseDeviceId || 'iphone-16-pro';
@@ -5238,14 +5238,15 @@
         });
       }
 
-      saveCMSState();
+      showToast('⏳ Guardando cambios en el servidor...');
+      await saveCMSState();
 
       if (typeof initProductConfigurator === 'function') {
         initProductConfigurator();
         showToast('✅ ¡Página de iPhone 16 Pro actualizada en vivo!');
       } else {
         renderAllCMSContent();
-        showToast(`✅ ¡Página configuracion.html y producto "${dev.title}" actualizados exitosamente!`);
+        showToast(`✅ ¡"${dev.title}" guardado en servidor y listo en configuracion.html!`);
       }
       renderAdminIphone16ProTab(document.getElementById('admin-tab-content'));
     }
