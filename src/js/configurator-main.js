@@ -3684,7 +3684,8 @@
       return `
         <div class="rounded-3xl bg-white p-4 flex flex-col justify-between border border-gray-200 hover:border-primary/60 transition-all shadow-sm group">
           <div>
-            <div class="h-36 rounded-2xl bg-zinc-950 flex items-center justify-center p-3 mb-3 cursor-pointer overflow-hidden" onclick="switchConfiguredProduct('${dev.id}')">
+            <div class="relative h-36 rounded-2xl bg-white border border-gray-100 flex items-center justify-center p-3 mb-3 cursor-pointer overflow-hidden" onclick="switchConfiguredProduct('${dev.id}')">
+              ${typeof renderConditionBadge === 'function' ? renderConditionBadge(dev, 'absolute top-2 left-2 z-10 pointer-events-none') : ''}
               <img src="${dev.img}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" alt="${dev.title}">
             </div>
             <span class="text-[10px] font-mono uppercase tracking-wider text-primary font-bold">${dev.badge || 'Oficial'}</span>
