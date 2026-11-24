@@ -3701,7 +3701,7 @@
         return aMatch - bMatch;
       });
 
-      grid.innerHTML = sorted.map(acc => {
+      grid.innerHTML = sorted.slice(0, 4).map(acc => {
         const safeTitle = String(acc.title || '').replace(/'/g, "\\'");
         const safeImg = String(acc.img || 'assets/img/magsafe.png').replace(/'/g, "\\'");
         return `
