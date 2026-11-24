@@ -3454,7 +3454,9 @@
         optionsHtml += `<optgroup label="Categoría: ${cat}">`;
         grouped[cat].forEach(d => {
           const isSel = d.id === currentDevice.id ? 'selected' : '';
-          optionsHtml += `<option value="${d.id}" ${isSel}>${d.title} — ${formatCOP(d.price)}</option>`;
+          const cTag = typeof getDeviceCondition === 'function' ? getDeviceCondition(d) : null;
+          const cTxt = cTag === 'exhibicion' ? ' • Exhibición' : (cTag === 'nuevo' ? ' • Nuevo' : '');
+          optionsHtml += `<option value="${d.id}" ${isSel}>${d.title}${cTxt} — ${formatCOP(d.price)}</option>`;
         });
         optionsHtml += `</optgroup>`;
       }
@@ -3479,6 +3481,11 @@
       if (stickyTitle) stickyTitle.innerText = currentDevice.title;
       if (stickyBadge) stickyBadge.innerText = currentDevice.badge || 'Garantía Oficial';
       if (configCategoryTag) configCategoryTag.innerText = `Configuración • ${(currentDevice.category || 'Dispositivo').toUpperCase()}`;
+      const condBadgeHtml = typeof renderConditionBadge === 'function' ? renderConditionBadge(currentDevice) : '';
+      const heroCondPill = document.getElementById('hero-condition-pill');
+      const configCondPill = document.getElementById('config-condition-pill');
+      if (heroCondPill) heroCondPill.innerHTML = condBadgeHtml;
+      if (configCondPill) configCondPill.innerHTML = condBadgeHtml;
       if (configMainTitle) configMainTitle.innerText = `Elige tu nuevo ${currentDevice.title}.`;
       if (configShortDesc) configShortDesc.innerText = currentDevice.shortDesc || '';
       if (heroBadgeText) heroBadgeText.innerText = currentDevice.badge || 'En Stock';
@@ -6385,7 +6392,7 @@
                   <div class="flex items-center gap-2.5 min-w-0">
                     <img src="${item.img}" class="w-11 h-11 rounded-lg object-cover bg-zinc-900 shrink-0">
                     <div class="min-w-0">
-                      <span class="text-[10px] font-bold uppercase text-primary block">${item.category.toUpperCase()} • ${item.badge}</span>
+                      <span class="text-[10px] font-bold uppercase text-primary block">${item.category.toUpperCase()} • ${typeof getDeviceCondition === 'function' && getDeviceCondition(item) ? (getDeviceCondition(item) === 'exhibicion' ? 'EXHIBICIÓN' : 'NUEVO') + ' • ' : ''}${item.badge}</span>
                       <h5 class="text-xs font-bold text-gray-900 truncate">${item.title}</h5>
                       <p class="text-[11px] font-extrabold text-gray-600">${formatCOP(item.price)}</p>
                     </div>
@@ -6428,10 +6435,19 @@
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   <div>
                     <label class="block font-bold text-gray-700 mb-1">Precio Contado (COP) *</label>
                     <input id="adm-dev-price" type="number" step="1000" value="${dev.price}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold text-primary">
+                  </div>
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Condición (Etiqueta)</label>
+                    <select id="adm-dev-condition" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold bg-white">
+                      <option value="" ${!dev.condition ? 'selected' : ''}>Automático (${typeof getDeviceCondition === 'function' && getDeviceCondition({ ...dev, condition: '' }) === 'exhibicion' ? 'Exhibición' : 'Nuevo'})</option>
+                      <option value="nuevo" ${dev.condition === 'nuevo' ? 'selected' : ''}>Nuevo</option>
+                      <option value="exhibicion" ${dev.condition === 'exhibicion' ? 'selected' : ''}>Exhibición</option>
+                      <option value="none" ${dev.condition === 'none' ? 'selected' : ''}>Sin etiqueta</option>
+                    </select>
                   </div>
                   <div>
                     <label class="block font-bold text-gray-700 mb-1">Etiqueta Superior (Badge)</label>
@@ -6496,6 +6512,11 @@
       dev.title = document.getElementById('adm-dev-title').value.trim() || dev.title;
       dev.category = document.getElementById('adm-dev-category').value;
       dev.price = parseInt(document.getElementById('adm-dev-price').value, 10) || 0;
+      const condEl = document.getElementById('adm-dev-condition');
+      if (condEl) {
+        if (condEl.value) dev.condition = condEl.value;
+        else delete dev.condition;
+      }
       dev.badge = document.getElementById('adm-dev-badge').value.trim() || 'Apple Oficial';
       dev.stockStatus = document.getElementById('adm-dev-stock').value.trim() || '● En Stock';
       dev.img = document.getElementById('adm-dev-img').value.trim() || IMG_IPHONE_PRO;
@@ -7507,7 +7528,11 @@
               <span class="text-xs font-bold text-gray-800">Producto a Configurar en la Página:</span>
             </div>
             <select id="adm-i16-target-device" onchange="changeIphone16ProTarget(this.value)" class="px-3 py-2 rounded-xl border border-gray-300 text-xs font-bold bg-white text-gray-900 min-w-[280px]">
-              ${allCatalogDevices.map(d => `<option value="${d.id}" ${d.id === dev.id ? 'selected' : ''}>${d.title} (${formatCOP(d.price)})</option>`).join('')}
+              ${allCatalogDevices.map(d => {
+                const cTag = typeof getDeviceCondition === 'function' ? getDeviceCondition(d) : null;
+                const cTxt = cTag === 'exhibicion' ? ' • Exhibición' : (cTag === 'nuevo' ? ' • Nuevo' : '');
+                return `<option value="${d.id}" ${d.id === dev.id ? 'selected' : ''}>${d.title}${cTxt} (${formatCOP(d.price)})</option>`;
+              }).join('')}
             </select>
           </div>
 
@@ -7533,10 +7558,19 @@
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div>
                     <label class="block font-bold text-gray-700 mb-1">Badge Superior en Escenario</label>
                     <input id="adm-i16-badge" type="text" value="${(dev.badge || 'Apple Intelligence Ready').replace(/"/g, '&quot;')}" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-semibold">
+                  </div>
+                  <div>
+                    <label class="block font-bold text-gray-700 mb-1">Etiqueta Nuevo / Exhibición</label>
+                    <select id="adm-i16-condition" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-bold bg-white">
+                      <option value="" ${!dev.condition ? 'selected' : ''}>Automático (${typeof getDeviceCondition === 'function' && getDeviceCondition({ ...dev, condition: '' }) === 'exhibicion' ? 'Exhibición' : 'Nuevo'})</option>
+                      <option value="nuevo" ${dev.condition === 'nuevo' ? 'selected' : ''}>Nuevo</option>
+                      <option value="exhibicion" ${dev.condition === 'exhibicion' ? 'selected' : ''}>Exhibición</option>
+                      <option value="none" ${dev.condition === 'none' ? 'selected' : ''}>Sin etiqueta</option>
+                    </select>
                   </div>
                   <div>
                     <label class="block font-bold text-gray-700 mb-1">Badge de Material (Barra Flotante)</label>
@@ -7697,6 +7731,11 @@
 
       dev.title = document.getElementById('adm-i16-title').value.trim() || dev.title;
       dev.price = parseInt(document.getElementById('adm-i16-price').value, 10) || dev.price;
+      const condEl = document.getElementById('adm-i16-condition');
+      if (condEl) {
+        if (condEl.value) dev.condition = condEl.value;
+        else delete dev.condition;
+      }
       dev.badge = document.getElementById('adm-i16-badge').value.trim() || dev.badge;
       dev.shortDesc = document.getElementById('adm-i16-desc').value.trim() || dev.shortDesc;
       dev.img = document.getElementById('adm-i16-img').value.trim() || dev.img;

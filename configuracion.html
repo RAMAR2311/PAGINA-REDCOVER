@@ -504,11 +504,14 @@
           <div id="hero-stage-glow" class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(239,35,60,0.08)_0%,_rgba(255,255,255,0)_70%)] pointer-events-none transition-all duration-500"></div>
 
           <!-- Live Spec Badges overlay -->
-          <div class="absolute top-4 left-4 z-20 flex flex-col gap-2 pointer-events-none">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 text-[11px] font-mono text-gray-800 shadow-sm" id="hero-stock-pill">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span>
-              En Stock Colombia
-            </span>
+          <div class="absolute top-4 left-4 z-20 flex flex-col items-start gap-2 pointer-events-none">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 text-[11px] font-mono text-gray-800 shadow-sm" id="hero-stock-pill">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 led-pulse"></span>
+                En Stock Colombia
+              </span>
+              <span id="hero-condition-pill" class="inline-flex"></span>
+            </div>
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/95 backdrop-blur-md border border-red-200 text-[11px] font-semibold text-primary shadow-sm" id="hero-badge-pill">
               <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
               <span id="hero-badge-text">Apple Intelligence Ready</span>
@@ -606,7 +609,10 @@
 
         <!-- Header & Baseline Price -->
         <div>
-          <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100" id="config-category-tag">Configuración Personalizada</span>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-mono text-primary tracking-widest uppercase font-bold bg-red-50 px-2.5 py-1 rounded-md border border-red-100" id="config-category-tag">Configuración Personalizada</span>
+            <span id="config-condition-pill" class="inline-flex"></span>
+          </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-3 tracking-tight" id="config-main-title">Elige tu nuevo iPhone 16 Pro.</h2>
           <p class="text-sm text-gray-600 mt-1.5 leading-relaxed" id="config-short-desc">Diseñado para Apple Intelligence. Forjado en titanio ultraligero.</p>
         </div>
@@ -1379,8 +1385,8 @@
   
 
   <script src="src/data/catalog.js?v=2"></script>
-  <script src="src/js/modules/utils.js?v=3"></script>
-  <script src="src/js/configurator-main.js?v=5"></script>
+  <script src="src/js/modules/utils.js?v=4"></script>
+  <script src="src/js/configurator-main.js?v=6"></script>
   <script src="src/js/configurator-hero.js?v=3"></script>
 </body>
 </html>

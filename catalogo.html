@@ -474,7 +474,10 @@
         </div>
 
         <div class="space-y-3">
-          <div class="text-[10px] font-mono text-gray-500 uppercase" id="modal-product-cat"></div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <div class="text-[10px] font-mono text-gray-500 uppercase" id="modal-product-cat"></div>
+            <span id="modal-condition-badge"></span>
+          </div>
           <h2 id="modal-product-title" class="text-xl sm:text-2xl font-black text-gray-900 leading-tight"></h2>
           <div id="modal-product-price" class="text-2xl font-black text-primary"></div>
           <p id="modal-product-desc" class="text-xs text-gray-600 leading-relaxed"></p>
@@ -504,6 +507,7 @@
 
   <!-- Scripts -->
   <script src="src/data/catalog.js?v=2"></script>
-  <script src="src/js/catalog-page.js?v=3"></script>
+  <script src="src/js/modules/utils.js?v=4"></script>
+  <script src="src/js/catalog-page.js?v=4"></script>
 </body>
 </html>

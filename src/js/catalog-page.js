@@ -363,6 +363,7 @@
             <div>
               <!-- Imagen del Producto / Accesorio / Promoción -->
               <div class="relative h-48 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800 mb-4 flex items-center justify-center cursor-pointer" onclick="viewItemDetail('${item.id}')">
+                ${isDevice && typeof renderConditionBadge === 'function' ? `<div class="absolute top-2.5 left-2.5 z-10 pointer-events-none">${renderConditionBadge(item)}</div>` : ''}
                 <img loading="lazy" decoding="async" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" alt="${item.title}" src="${item.img}">
               </div>
 
@@ -597,6 +598,7 @@
     const modalImg = document.getElementById('modal-product-img');
     const modalBadge = document.getElementById('modal-product-badge');
     const modalCat = document.getElementById('modal-product-cat');
+    const modalCondBadge = document.getElementById('modal-condition-badge');
     const modalTitle = document.getElementById('modal-product-title');
     const modalPrice = document.getElementById('modal-product-price');
     const modalDesc = document.getElementById('modal-product-desc');
@@ -606,6 +608,11 @@
     if (modalImg) modalImg.src = item.img;
     if (modalBadge) modalBadge.innerText = item.badge || 'RedCover Colombia';
     if (modalCat) modalCat.innerText = item.displayCategory === 'promociones' ? 'COMBO PROMOCIONAL' : item.displayCategory.toUpperCase();
+    if (modalCondBadge) {
+      modalCondBadge.innerHTML = (item.itemType === 'device' && typeof renderConditionBadge === 'function')
+        ? renderConditionBadge(item)
+        : '';
+    }
     if (modalTitle) modalTitle.innerText = item.title;
     if (modalPrice) {
       if (item.oldPrice) {
