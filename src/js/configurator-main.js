@@ -3647,15 +3647,17 @@
       grid.innerHTML = specs.map((spec, i) => {
         const icon = icons[i % icons.length];
         return `
-          <div class="bg-white p-6 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
-            <div class="space-y-3">
-              <div class="w-10 h-10 rounded-xl bg-red-50 text-primary flex items-center justify-center">
-                <span class="material-symbols-outlined text-[22px]">${icon}</span>
+          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-all">
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-red-50 text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">${icon}</span>
+                </div>
+                <h4 class="text-xs sm:text-sm font-bold text-gray-900 leading-snug">Característica ${i + 1}</h4>
               </div>
-              <h4 class="text-sm font-bold text-gray-900 leading-snug">Característica ${i + 1}</h4>
               <p class="text-xs text-gray-600 leading-relaxed">${spec}</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-gray-100 text-[11px] font-mono text-primary font-bold flex items-center gap-1">
+            <div class="mt-3 pt-2.5 border-t border-gray-100 text-[10px] font-mono text-primary font-bold flex items-center gap-1">
               <span class="material-symbols-outlined text-xs">verified</span> Oficial RedCover
             </div>
           </div>
