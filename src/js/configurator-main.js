@@ -3405,6 +3405,7 @@
       renderSiblingModels();
       renderEngineeringSpecs();
       renderRelatedDevices();
+      renderRecommendedAccessories();
       updatePrices();
       updateCartDrawerUI();
     }
@@ -3680,6 +3681,53 @@
       }
     }
 
+    function renderRecommendedAccessories() {
+      const grid = document.getElementById('recommended-accessories-grid');
+      if (!grid) return;
+
+      const sourceList = (cmsData && Array.isArray(cmsData.accessories) && cmsData.accessories.length > 0)
+        ? cmsData.accessories
+        : (typeof allCatalogAccessories !== 'undefined' && Array.isArray(allCatalogAccessories) ? allCatalogAccessories : []);
+
+      if (!sourceList.length) {
+        grid.innerHTML = '<p class="col-span-full text-xs text-gray-500">No hay accesorios disponibles en este momento.</p>';
+        return;
+      }
+
+      const cat = (currentDevice && currentDevice.category ? currentDevice.category : '').toLowerCase();
+      const sorted = [...sourceList].sort((a, b) => {
+        const aMatch = (cat === 'ipad' && a.category === 'pencil') || (cat === 'iphone' && a.category !== 'pencil') ? 0 : 1;
+        const bMatch = (cat === 'ipad' && b.category === 'pencil') || (cat === 'iphone' && b.category !== 'pencil') ? 0 : 1;
+        return aMatch - bMatch;
+      });
+
+      grid.innerHTML = sorted.map(acc => {
+        const safeTitle = String(acc.title || '').replace(/'/g, "\\'");
+        const safeImg = String(acc.img || 'assets/img/magsafe.png').replace(/'/g, "\\'");
+        return `
+          <div class="bg-white p-5 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm hover:border-primary/50 hover:shadow-md transition-all group">
+            <div class="space-y-3.5">
+              <div class="w-full h-40 rounded-2xl bg-white border border-gray-100 flex items-center justify-center p-3 overflow-hidden relative">
+                ${acc.badge ? `<span class="absolute top-2 left-2 z-10 px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 text-gray-700 text-[10px] font-bold shadow-2xs">${acc.badge}</span>` : ''}
+                <img decoding="async" onerror="this.onerror=null; this.src='assets/img/magsafe.png';" class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105 duration-300" alt="${acc.title}" src="${acc.img || 'assets/img/magsafe.png'}"/>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-primary font-bold uppercase">${acc.category || 'Accesorio'}</span>
+                <h4 class="text-sm font-bold text-gray-900 mt-0.5 line-clamp-2">${acc.title}</h4>
+                <p class="text-xs text-gray-500 mt-1 line-clamp-2">${acc.desc || acc.compat || ''}</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+              <span class="text-sm font-extrabold text-gray-900">${formatCOP(acc.price)}</span>
+              <button type="button" class="px-3.5 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white text-gray-900 text-xs font-bold transition-all flex items-center gap-1 shrink-0" onclick="addAccessoryToBag('${safeTitle}', ${Number(acc.price) || 0}, '${safeImg}')">
+                <span class="material-symbols-outlined text-[15px]">add</span> Añadir
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     function renderSmallCard(dev) {
       return `
         <div class="rounded-3xl bg-white p-4 flex flex-col justify-between border border-gray-200 hover:border-primary/60 transition-all shadow-sm group">
@@ -3943,12 +3991,12 @@
       setTimeout(openCartDrawer, 600);
     }
 
-    function addAccessoryToBag(name, price) {
+    function addAccessoryToBag(name, price, img) {
       productState.bagItems.push({
         name: name,
         price: price,
         qty: 1,
-        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJcimQI86GNHtq-A713A44IekmJ6sJVkOc_cxW0miU6AnQX9HAw4glRP9aRLEEMaZ0-HibRgkg15IBT5Lg-AV_6CVy-VB2kKlO7aW8ZwMFi-iWetchexlHAaJ89LOdp3ocK7j_FH65ebRVp0_u7QhuUjKYxStRrIAsnBbCLzlIUTWzyDkyfwc7GsgWMtKsy1Ogg-0nwVT9y3npt2kNJQf5d4hpGMevc9oPwD_b4y5bSNM97Ywrn3Ui'
+        img: img || 'assets/img/magsafe.png'
       });
       syncCartToStorage();
       updateCartDrawerUI();
@@ -5916,6 +5964,7 @@
     function renderCMSAccessories(filterCat = 'all') {
       currentAccCategoryFilter = filterCat;
       renderCMSCategories();
+      renderRecommendedAccessories();
       const grid = document.getElementById('accessories-grid');
       if (!grid) return;
 
